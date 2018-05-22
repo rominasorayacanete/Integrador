@@ -5,8 +5,11 @@ using System.Web;
 
 namespace Integrador.Models
 {
-    private DateTime Fecha_alta_sistema { get; set; }
-    private int Id_sistema { get; set; }
+    public class Administrador
+    {
+        private DateTime Fecha_alta_sistema { get; set; }
+        private int Id_sistema { get; set; }
 
-    public int Meses_como_administrador() => DateTime.Now.Month - Fecha_alta_sistema.Month;
+        public int Meses_como_administrador() => DateTime.Now.Month - Fecha_alta_sistema.Month;
+    }
 }

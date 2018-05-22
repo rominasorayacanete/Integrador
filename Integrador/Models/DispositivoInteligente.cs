@@ -7,9 +7,7 @@ namespace Integrador.Models
 {
     public class DispositivoInteligente : Dispositivo
     {
-        public Actuador Actuador;
-
-        public Sensor Sensor;
+        public bool Encendido;
 
         public bool ModoAhorroDeEnergia { get; set; }
 
