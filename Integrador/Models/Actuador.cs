@@ -11,7 +11,7 @@ namespace Integrador.Models
 
         public void ActivarModoAhorroDeEnergia()
         {
-
+            dispositivo.ActivarModoAhorroDeEnergia();
         }
 
         public void AgendarAccion()
@@ -21,12 +21,12 @@ namespace Integrador.Models
 
         public void Apagar()
         {
-
+            dispositivo.Apagar();
         }
 
         public void BajarIntensidad()
-        {
-
+        { 
+            
         }
 
         public void CambiarModoOperacion()
@@ -41,7 +41,7 @@ namespace Integrador.Models
 
         public void Encender()
         {
-
+            dispositivo.Encender();
         }
 
         public void SubirIntensidad()
