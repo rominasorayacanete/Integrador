@@ -5,11 +5,13 @@ using System.Web;
 
 namespace Integrador.Models
 {
-    public class Adaptador
+    public class Adaptador: Dispositivo
     {
+        DispositivoInteligente dispositivoInteligente;
+
        public void ActivarModoAhorroDeEnergia()
         {
-
+            dispositivoInteligente.ActivarModoAhorroDeEnergia();
         }
 
         public void AgendarAccion()
@@ -19,7 +21,7 @@ namespace Integrador.Models
 
         public void Apagar()
         {
-
+            dispositivoInteligente.Apagar();
         }
 
         public void BajarIntensidad()
@@ -39,17 +41,17 @@ namespace Integrador.Models
 
         public void Encender()
         {
-
+            dispositivoInteligente.Encender();
         }
 
-        public bool EstaApagado()
+        public bool Apagado()
         {
-
+            dispositivoInteligente.Apagado();
         }
 
-        public bool EstaEncendido()
+        public bool Encendido()
         {
-
+            dispositivoInteligente.Encendido();
         }
 
         public void SubirIntensidad()

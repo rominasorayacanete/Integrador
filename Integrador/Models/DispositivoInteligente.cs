@@ -11,7 +11,9 @@ namespace Integrador.Models
 
         public bool ModoAhorroDeEnergia { get; set; }
 
-        public bool EstaApagado() => !Encendido;
+        public bool Encendido() = Encendido;
+
+        public bool Apagado() => !Encendido;
 
         public float EnergiaConsumidaUltimasNHoras(int horas) => ConsumoHora * horas;
 
@@ -20,7 +22,7 @@ namespace Integrador.Models
             return EnergiaConsumidaUltimasNHoras(finPeriodo - inicioPeriodo);
         }
 
-        public void Apagarse()
+        public void Apagar()
         {
             if (Encendido)
             {
@@ -32,7 +34,7 @@ namespace Integrador.Models
             }
         }
 
-        public void Encenderse()
+        public void Encender()
         {
             if (!Encendido)
             {
@@ -44,7 +46,7 @@ namespace Integrador.Models
             }
         }
 
-        public void PonerseEnModoAhorroDeEnergia()
+        public void ActivarModoAhorroDeEnergia()
         {
             if (!ModoAhorroDeEnergia)
             {
