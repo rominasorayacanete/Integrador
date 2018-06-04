@@ -6,17 +6,20 @@ using System.Web;
 namespace Integrador.Models
 {
     public class Actuador
-    {
+    {   
+        public string magnitud { get; set; }
+        public Sensor sensor { get; set; }
         public Dispositivo dispositivo;
 
+        
         public void ActivarModoAhorroDeEnergia()
         {
             dispositivo.ActivarModoAhorroDeEnergia();
         }
 
-        public void AgendarAccion()
+        public void AgendarAccion(string accion)
         {
-
+            dispositivo.agendarAccion( accion );
         }
 
         public void Apagar()
@@ -26,17 +29,17 @@ namespace Integrador.Models
 
         public void BajarIntensidad()
         {
-            dispositivo.BajarIntensidad();
+            dispositivo.bajarIntensidad();
         }
 
         public void CambiarModoOperacion()
         {
-
+            dispositivo.cambiarModoOperacion();
         }
 
         public void ConfigurarTimer()
         {
-
+            dispositivo.configurarTimer();
         }
 
         public void Encender()
@@ -46,7 +49,7 @@ namespace Integrador.Models
 
         public void SubirIntensidad()
         {
-            dispositivo.SubirIntensidad();
+            dispositivo.subirIntensidad();
         }
 
     }

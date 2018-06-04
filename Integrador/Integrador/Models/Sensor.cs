@@ -7,13 +7,13 @@ namespace Integrador.Models
 {
     public class Sensor
     {
-        private string Magnitud { get; set; }
-        private int IntervaloMedicicion { get; set; }
-        private Actuador actuador;
+        private string magnitud { get; set; }
+        private int intervaloMedicicion { get; set; }
+        private Actuador Actuador;
 
         public void TomarMedicion()
         {
-           
+           Actuador.magnitud = this.magnitud;
         }
 
     }
