@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Integrador.Models
 {
-    public class Adaptador: Dispositivo
+    public class ModuloAdaptador: Dispositivo
     {
         DispositivoInteligente dispositivoInteligente;
 
