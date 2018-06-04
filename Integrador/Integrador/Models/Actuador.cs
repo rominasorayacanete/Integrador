@@ -27,9 +27,9 @@ namespace Integrador.Models
             dispositivo.Apagar();
         }
 
-        public void BajarIntensidad()
+        public void BajarIntensidad(int intensidad)
         {
-            dispositivo.bajarIntensidad();
+            dispositivo.bajarIntensidad(intensidad);
         }
 
         public void CambiarModoOperacion()
@@ -47,9 +47,9 @@ namespace Integrador.Models
             dispositivo.Encender();
         }
 
-        public void SubirIntensidad()
+        public void SubirIntensidad(int intensidad)
         {
-            dispositivo.subirIntensidad();
+            dispositivo.subirIntensidad(intensidad);
         }
 
     }
