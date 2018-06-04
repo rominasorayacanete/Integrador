@@ -8,9 +8,9 @@ namespace Integrador.Models
     public class Categoria
     {
         public int Id { get; set; }
-        public float ConsumoMinimo { get; set; }
-        public float ConsumoMaximo { get; set; }
-        public float CargoFijo { get; set; }
-        public float CargoVariable { get; set; }
+        public float consumoMinimo { get; set; }
+        public float consumoMaximo { get; set; }
+        public float cargoFijo { get; set; }
+        public float cargoVariable { get; set; }
     }
 }

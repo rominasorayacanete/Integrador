@@ -8,11 +8,11 @@ namespace Integrador.Models
     public class Cliente : Usuario
     {
         private int puntos;
-        private DateTime fecha_alta_servicio;
+        private DateTime fechaAltaServicio;
         private Categoria categoria;
         private Dispositivo[] dispositivos;
 
-        public bool Tiene_dispositivos_encendidos()
+        public bool tieneDispositivosEncendidos()
         {
             foreach (Dispositivo d in dispositivos)
             {
@@ -22,7 +22,7 @@ namespace Integrador.Models
             return false;
         }
 
-        public int Cantidad_dispositivos_encendidos()
+        public int cantidadDispositivosEncendidos()
         {
             int cant = 0;
 
@@ -34,8 +34,8 @@ namespace Integrador.Models
             return cant;
         }
 
-        public int Cantidad_dispositivos_apagados() => Cantidad_dispositivos_encendidos() - dispositivos.Length;
+        public int cantidadDispositivosApagados() => cantidadDispositivosEncendidos() - dispositivos.Length;
 
-        public int Cantidad_dispositivos() => dispositivos.Length;
+        public int cantidadDispositivos() => dispositivos.Length;
     }
 }

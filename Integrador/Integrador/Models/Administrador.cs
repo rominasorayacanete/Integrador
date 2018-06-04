@@ -7,9 +7,9 @@ namespace Integrador.Models
 {
     public class Administrador
     {
-        private DateTime Fecha_alta_sistema { get; set; }
-        private int Id_sistema { get; set; }
+        private DateTime fechaAltaSistema { get; set; }
+        private int idSistema { get; set; }
 
-        public int Meses_como_administrador() => DateTime.Now.Month - Fecha_alta_sistema.Month;
+        public int mesesComoAdministrador() => DateTime.Now.Month - fechaAltaSistema.Month;
     }
 }

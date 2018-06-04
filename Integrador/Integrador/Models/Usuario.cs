@@ -7,13 +7,13 @@ namespace Integrador.Models
 {
     public class Usuario
     {
-        private string Nombre { get; set; }
-        private string Apellido { get; set; }
-        private string Tipo_documento { get; set; }
-        private string Domicilio { get; set; }
-        private string Nombre_usuario { get; set; }
-        private string Contrasenia { get; set; }
-        private int Nro_documento { get; set; }
-        private int Telefono { get; set; }
+        private string nombre { get; set; }
+        private string apellido { get; set; }
+        private string tipoDocumento { get; set; }
+        private string domicilio { get; set; }
+        private string nombreUsuario { get; set; }
+        private string contrasenia { get; set; }
+        private int nroDocumento { get; set; }
+        private int telefono { get; set; }
     }
 }
