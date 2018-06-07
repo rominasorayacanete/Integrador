@@ -10,8 +10,8 @@ namespace Integrador.Models
         public bool Encendido;
 
         public bool ModoAhorroDeEnergia { get; set; }
-
-        public bool Encendido() = Encendido;
+        /*
+        public bool Encendido() => Encendido;
 
         public bool Apagado() => !Encendido;
 
@@ -33,7 +33,7 @@ namespace Integrador.Models
                 throw new Exception("El dispositivo ya está apagado.");
             }
         }
-
+        
         public void Encender()
         {
             if (!Encendido)
@@ -45,7 +45,7 @@ namespace Integrador.Models
                 throw new Exception("El dispositivo ya está encendido.");
             }
         }
-
+        */
         public void ActivarModoAhorroDeEnergia()
         {
             if (!ModoAhorroDeEnergia)

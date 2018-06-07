@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+
+@foreach (var item in ViewBag.List)
+{
+    <div>
+        <span>Id : @item.Id</span>
+        <span>NombreGenerico : @item.NombreGenerico</span>
+        <span>ConsumoHora : @item.ConsumoHora</span>
+        <span>Encendido : @item.Encendido</span>
+    </div>
+}
