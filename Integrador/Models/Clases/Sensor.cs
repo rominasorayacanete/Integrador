@@ -12,25 +12,17 @@ namespace Integrador.Models.Clases
         private string magnitud;
         private List<IReglaObserver> reglas;
 
-
         public Sensor(string magnitud)
         {
             this.reglas = new List<IReglaObserver>();
-            this.magnitud = magnitud;
         }
 
 
-        public string magnitud
+        public void Obtenermagnitud()
         {
-            get { return this.magnitud; }
-            set
-            {
-                if (this.magnitud != value)
-                {
-                    this.magnitud = value;
-                    NotifyAllObservers()
-                     }
-            }
+            string magnitud = "Magnitud4";
+            // Metodo para obtener la magnitud del sensor
+            this.NotifyAllObservers(magnitud);
         }
 
 
@@ -48,9 +40,9 @@ namespace Integrador.Models.Clases
         }
 
 
-        public void NotifyAllObservers()
+        public void NotifyAllObservers(string magnitud)
         {
-            ForEach(IReglaObserver regla in reglas)
+            foreach(IReglaObserver regla in reglas)
            {
                 regla.Update(magnitud);
             }

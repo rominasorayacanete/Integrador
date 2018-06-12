@@ -8,8 +8,8 @@ namespace Integrador.Models.Clases.Interface
 {
     public interface IReglaSubject
     {
-        void Attach(IActuadorObserver actuador);
-        void Detach(IActuadorObserver actuador);
+        void Attach(Actuador actuador);
+        void Detach(Actuador actuador);
         void NotifyAllObservers();
     }
 

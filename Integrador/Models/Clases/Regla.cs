@@ -9,39 +9,29 @@ namespace Integrador.Models.Clases
     public class Regla : IReglaObserver, IReglaSubject
     {
 
-        private bool reglaCumplida;
-        private List<IActuadorObserver> actuadores;
+        private bool reglaCumplida { get; set; }
+        private List<Actuador> actuadores;
 
 
-        public Regla(reglaCumplida)
+        public Regla()
         {
             this.actuadores = new List<Actuador>();
-            this.reglaCumplida = reglaCumplida;
+            this.reglaCumplida = false;
         }
 
-
-        public boolean reglaCumplida
+        public bool SeCumple()
         {
-            get { return this.reglaCumplida; }
-            set
-            {
-                if (this.reglaCumplida != value)
-                {
-                    this.reglaCumplida = value;
-                    NotifyAllObservers()
-                   }
-            }
+            return this.reglaCumplida;
         }
 
-
-        public void Attach(IActuadorObserver actuador)
+        public void Attach(Actuador actuador)
         {
             if (!actuadores.Contains(actuador))
                 actuadores.Add(actuador);
         }
 
 
-        public void Detach(IActuadorObserver actuador)
+        public void Detach(Actuador actuador)
         {
             if (actuadores.Contains(actuador))
                 actuadores.Remove(actuador);
@@ -50,9 +40,9 @@ namespace Integrador.Models.Clases
 
         public void NotifyAllObservers()
         {
-            foreach(IActuadorObserver actuador in actuadores)
+            foreach(Actuador actuador in actuadores)
            {
-                actuador.Update(this);
+                actuador.Update();
             }
         }
 

@@ -22,7 +22,10 @@ namespace Integrador.Models
             ModuloAdaptador adaptador = new ModuloAdaptador();
             adaptador.AgregarDispositivo(dispositivo);
             // Persistencia del ModuloAdaptador
+            puntos += 10;
         }
+
+        public void AgregarDispositivo (Dis)
 
         public int cantidadDispositivos() => dispositivos.Length + dispositivosInteligentes.Length;
 

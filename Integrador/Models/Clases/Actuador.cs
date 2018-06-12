@@ -20,26 +20,24 @@ namespace Integrador.Models
             this.reglasRequeridas = new List<Regla>();
         }
 
-        public void Update(IReglaSubject regla)
+        public void Update()
         {
-            foreach(IReglaSubject r in reglasRequeridas)
+            if (SeCumplenTodasLasReglas(reglasRequeridas))
             {
-                r.Find(r => r.nombreRegla == regla.nombreRegla)
-                r.reglaCumplida = regla.reglaCumplida;
-            }
-
-            if (SeCumplenTodasLasReglas(r))
-            {
-                dispositivo.EjecutarAccion();
+                accion.Accionar(dispositivo);
             }
         }
 
         public bool SeCumplenTodasLasReglas(List<Regla> reglasRequeridas)
         {
-            ForEach(IReglaObserver regla in reglasRequeridas)
+            foreach(Regla regla in reglasRequeridas)
            {
-                regla.reglaCumplida();
+                if (!regla.SeCumple())
+                {
+                    return false;
+                }
             }
+            return true;
         }
 
         public void Update(bool estadoRegla)
