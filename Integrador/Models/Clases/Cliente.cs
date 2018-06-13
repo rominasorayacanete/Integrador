@@ -8,8 +8,8 @@ namespace Integrador.Models
     public class Cliente : Usuario
     {
         private Categoria categoria { get; set; }
-        private DispositivoEstandar[] dispositivos;
-        private DispositivoInteligente[] dispositivosInteligentes;
+        private List <DispositivoEstandar> dispositivos;
+        private List <DispositivoInteligente> dispositivosInteligentes;
         private DateTime fechaAltaServicio { get; set; }
         private int numeroDocumento { get; set;}
         private int puntos { get; set; }
@@ -19,15 +19,25 @@ namespace Integrador.Models
 
         public void AdaptarDispositivo(DispositivoEstandar dispositivo)
         {
+            this.dispositivos = new List<DispositivoEstandar>();
+            this.dispositivosInteligentes = new List<DispositivoInteligente>();
             ModuloAdaptador adaptador = new ModuloAdaptador();
             adaptador.AgregarDispositivo(dispositivo);
             // Persistencia del ModuloAdaptador
             puntos += 10;
         }
 
-        public void AgregarDispositivo (Dis)
+        public void AgregarDispositivo(DispositivoEstandar dispositivo)
+        {
+            dispositivos.Add(dispositivo);
+        }
 
-        public int cantidadDispositivos() => dispositivos.Length + dispositivosInteligentes.Length;
+        public void AgregarDispositivoInteligente(DispositivoInteligente dispositivo)
+        {
+            dispositivosInteligentes.Add(dispositivo);
+        }
+
+        public int cantidadDispositivos() => dispositivos.Count + dispositivosInteligentes.Count;
 
         public bool tieneDispositivosEncendidos()
         {

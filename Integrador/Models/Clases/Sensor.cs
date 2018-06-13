@@ -20,7 +20,7 @@ namespace Integrador.Models.Clases
 
         public void Obtenermagnitud()
         {
-            string magnitud = "Magnitud4";
+            this.magnitud = "Magnitud4";
             // Metodo para obtener la magnitud del sensor
             this.NotifyAllObservers(magnitud);
         }

@@ -13,6 +13,7 @@ namespace Integrador.Models.Clases.Tipos
         public override void BajarTemperatura()
         {
             // funcionalidad
+            temperatura += 1;
         }
 
         public override void BajarIntensidad()

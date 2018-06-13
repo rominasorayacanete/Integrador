@@ -9,9 +9,9 @@ namespace Integrador.Models
     public class DispositivoInteligente : Dispositivo
     {
 
-        private bool Encendido { get; set; }
-        private bool ModoAhorroDeEnergia { get; set; }
-        public TipoDispositivo TipoDispositivo { get; set; }
+        public bool Encendido { get; set; }
+        public bool ModoAhorroDeEnergia { get; set; }
+        public virtual TipoDispositivo TipoDispositivo { get; set; }
 
         public virtual void ActivarModoAhorroDeEnergia()
         {

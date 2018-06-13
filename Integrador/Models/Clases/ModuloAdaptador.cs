@@ -8,7 +8,7 @@ namespace Integrador.Models
 {
     public class ModuloAdaptador : DispositivoInteligente
     {
-        private TipoDispositivo TipoDispositivo { get; set; }
+        public override TipoDispositivo TipoDispositivo { get; set; }
         private DispositivoEstandar Dispositivo;
 
         public override void ActivarModoAhorroDeEnergia()

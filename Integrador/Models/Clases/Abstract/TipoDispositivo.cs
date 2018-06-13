@@ -18,7 +18,7 @@ namespace Integrador.Models.Interface
             throw new NotImplementedException();
         }
 
-        public virtual void CambiarModo()
+        public virtual void CambiarModo(string _modo)
         {
             throw new NotImplementedException();
         }
