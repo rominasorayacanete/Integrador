@@ -12,7 +12,7 @@ namespace Integrador.Models.Clases.Tipos
 
         public void BajarIntesidad(int _intensidad)
         {
-            intensidad = _intensidad;
+            intensidad -= _intensidad;
         }
     }
 }
