@@ -14,10 +14,16 @@ namespace Integrador.Models.Interface
         public int UsoMensualMax { get => usoMensualMax; set => usoMensualMax = value; }
         public int UsoMensualMin { get => usoMensualMin; set => usoMensualMin = value; }
 
-        public usosMensualesEstablecidos(int usoMin, int usoMax)
+        public void usosMensualesEstablecidos(int usoMin, int usoMax)
         {
-            set.UsoMensualMax = usoMax;
-            set.UsoMensualMin = usoMin;
+
+            //set.UsoMensualMax = usoMax;
+            //set.UsoMensualMin = usoMin;
+            //usoMensualMax = usoMax;
+            //usoMensualMin = usoMin;
+            //opcion 2
+            UsoMensualMax = usoMax;
+            UsoMensualMin = usoMin;
         }
 
         public virtual void BajarTemperatura()

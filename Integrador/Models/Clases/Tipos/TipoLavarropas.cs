@@ -12,7 +12,7 @@ namespace Integrador.Models.Clases.Tipos
         private int max = 30;
         private string modo;
 
-        public usosMensualesEstablecidos(int min, int max);
+        public new void usosMensualesEstablecidos(int min, int max) { }
 
         public override void CambiarModo(string _modo)
         {

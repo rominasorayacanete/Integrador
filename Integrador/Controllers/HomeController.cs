@@ -80,5 +80,22 @@ namespace Integrador.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult MostrarZonas(HttpPostedFileBase archivo)
+        {
+            try
+            {
+                string str = (new StreamReader(archivo.InputStream)).ReadToEnd();
+                var zonas = JsonConvert.DeserializeObject<List<ZonaGeografica>>(str);
+                ViewBag.Zonas = zonas;
+                return View("~/Views/Home/Zonas.cshtml");
+            }
+            catch
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
+
+        }
+
     }
 }

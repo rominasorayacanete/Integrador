@@ -1,0 +1,14 @@
+[
+	{
+	 "Id" : 1,
+	 "NombreGenerico" : "Dispositivo 1",
+	 "ConsumoHora" : 1000,
+	 "Encendido" : true
+	},
+	{
+	 "Id" : 1,
+	 "NombreGenerico" : "Dispositivo 2.0",
+	 "ConsumoHora" : 40,
+	 "Encendido" : false
+	}
+]

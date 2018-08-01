@@ -219,7 +219,9 @@
     <Compile Include="Models\Clases\Abstract\TipoDispositivo.cs" />
     <Compile Include="Models\Clases\ManageViewModels.cs" />
     <Compile Include="Models\Clases\Sensor.cs" />
+    <Compile Include="Models\Clases\Transformador.cs" />
     <Compile Include="Models\Clases\Usuario.cs" />
+    <Compile Include="Models\Clases\ZonaGeografica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -289,6 +291,7 @@
     <Content Include="Views\Home\LoadData.cshtml" />
     <Content Include="Views\Home\ListDevice.cshtml" />
     <Content Include="Views\Home\List.cshtml" />
+    <Content Include="Views\Home\Zonas.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
