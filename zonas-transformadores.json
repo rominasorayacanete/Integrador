@@ -1,0 +1,98 @@
+[
+{
+"NombreZona":"Noroeste",
+"Radio":20500,
+"Transformadores":[
+	{
+	"Nombre":"T1",
+	"Activo":true,
+	"ZonaGeografica":"Noroeste",
+	"EnergiaSuministrada":402685
+	}
+	]
+},
+{
+"NombreZona":"CentroNorte",
+"Radio":35000,
+"Transformadores":[
+	{
+    "Nombre":"T2",
+	"Activo":true,
+	"ZonaGeografica":"CentroNorte",
+	"EnergiaSuministrada":266445
+	},
+	{
+        "Nombre":"T3",
+	"Activo":true,
+	"ZonaGeografica":"CentroNorte",
+	"EnergiaSuministrada":345976
+	},
+	{
+    "Nombre":"T4",
+	"Activo":true,
+	"ZonaGeografica":"CentroNorte",
+	"EnergiaSuministrada":254633
+	}
+	]
+},
+{
+"NombreZona":"CentroSur",
+"Radio":14500,
+"Transformadores":[
+	{
+    "Nombre":"T5",
+	"Activo":true,
+	"ZonaGeografica":"CentroSur",
+	"EnergiaSuministrada":158453
+	},
+	{
+    "Nombre":"T6",
+	"Activo":true,
+	"ZonaGeografica":"CentroSur",
+	"EnergiaSuministrada":160771
+	}
+	]
+},
+{
+"NombreZona":"Noreste",
+"Radio":15900,
+"Transformadores":[
+	{
+    "Nombre":"T7",
+	"Activo":true,
+	"ZonaGeografica":"Noreste",
+	"EnergiaSuministrada":171203
+	},
+	{
+    "Nombre":"T8",
+	"Activo":true,
+	"ZonaGeografica":"Noreste",
+	"EnergiaSuministrada":198321
+	}
+	]
+},
+{
+"NombreZona":"Suroeste",
+"Radio":17900,
+"Transformadores":[
+	{
+	"Nombre":"T9",
+	"Activo":true,
+	"ZonaGeografica":"Suroeste",
+	"EnergiaSuministrada":387344
+	}
+	]
+},
+{
+"NombreZona":"Sureste",
+"Radio":18300,
+"Transformadores":[
+	{
+	"Nombre":"T10",
+	"Activo":true,
+	"ZonaGeografica":"Sureste",
+	"EnergiaSuministrada":399639
+	}
+	]
+}
+]
