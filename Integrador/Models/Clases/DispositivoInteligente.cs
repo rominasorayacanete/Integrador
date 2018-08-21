@@ -13,6 +13,11 @@ namespace Integrador.Models
         public bool ModoAhorroDeEnergia { get; set; }
         public virtual TipoDispositivo TipoDispositivo { get; set; }
 
+        public DispositivoInteligente(TipoDispositivo _tipoDispositivo)
+        {
+            TipoDispositivo = _tipoDispositivo;
+        }
+
         public virtual void ActivarModoAhorroDeEnergia()
         {
             if (!ModoAhorroDeEnergia)

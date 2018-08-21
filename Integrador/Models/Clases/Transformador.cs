@@ -8,7 +8,7 @@ namespace Integrador.Models.Clases
     public class Transformador
     {
         private ZonaGeografica zonaGeografica { get; set; }
-        private int energiaSuministrada { get; set; }
+        public int energiaSuministrada { get; set; }
 
         public Transformador(ZonaGeografica _zonaGeografica, int _energiaSuministrada)
         {

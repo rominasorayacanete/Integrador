@@ -11,7 +11,6 @@ namespace Integrador.Models.Clases.Tipos
         private int min = 90;
         private int max = 360;
 
-        public usosMensualesEstablecidos(int min, int max);
 
     }
 }

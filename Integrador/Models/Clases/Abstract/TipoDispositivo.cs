@@ -8,17 +8,10 @@ namespace Integrador.Models.Interface
 {
     abstract public class TipoDispositivo
     {
-        public int usoMensualMax;
-        public int usoMensualMin;
-
-        public int UsoMensualMax { get => usoMensualMax; set => usoMensualMax = value; }
-        public int UsoMensualMin { get => usoMensualMin; set => usoMensualMin = value; }
-
-        public usosMensualesEstablecidos(int usoMin, int usoMax)
-        {
-            set.UsoMensualMax = usoMax;
-            set.UsoMensualMin = usoMin;
-        }
+        public virtual double Consumo { get; set;}
+        public virtual int UsoMensualMax { get; set; }
+        public virtual int UsoMensualMin { get; set; }
+        public virtual string EquipoConcreto { get; set; }
 
         public virtual void BajarTemperatura()
         {

@@ -22,7 +22,7 @@ namespace Integrador.Models.Clases
 
             foreach (Transformador t in transformadores)
             {
-                consumoTotal += t.energiaSuministrada();
+                consumoTotal += t.energiaSuministrada;
             }
 
             return consumoTotal;

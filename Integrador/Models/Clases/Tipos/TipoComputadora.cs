@@ -8,9 +8,8 @@ namespace Integrador.Models.Clases.Tipos
 {
     class TipoComputadora : TipoDispositivo
     {
-        private int min = 60;
-        private int max = 360;
-
-        public usosMensualesEstablecidos(int min, int max);
+        public override int UsoMensualMin { get; set; } = 60;
+        public override int UsoMensualMax { get; set; } = 360;
+        public override string EquipoConcreto { get; set; } = "De escritorio";
     }
 }

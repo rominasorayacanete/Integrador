@@ -212,6 +212,8 @@
     <Compile Include="Models\Clases\DispositivoInteligente.cs" />
     <Compile Include="Models\Clases\IdentityModels.cs" />
     <Compile Include="Models\Clases\Regla.cs" />
+    <Compile Include="Models\Clases\Tipos\TipoComputadora.cs" />
+    <Compile Include="Models\Clases\Tipos\TipoLampara.cs" />
     <Compile Include="Models\Clases\Tipos\TipoLavarropas.cs" />
     <Compile Include="Models\Clases\Tipos\TipoAireAcondicionado.cs" />
     <Compile Include="Models\Clases\Tipos\TipoHeladera.cs" />
@@ -219,8 +221,16 @@
     <Compile Include="Models\Clases\Abstract\TipoDispositivo.cs" />
     <Compile Include="Models\Clases\ManageViewModels.cs" />
     <Compile Include="Models\Clases\Sensor.cs" />
+    <Compile Include="Models\Clases\Tipos\TipoMicroondas.cs" />
+    <Compile Include="Models\Clases\Tipos\TipoPlancha.cs" />
+    <Compile Include="Models\Clases\Tipos\TipoTelevisor.cs" />
+    <Compile Include="Models\Clases\Tipos\TipoVentilador.cs" />
+    <Compile Include="Models\Clases\Transformador.cs" />
     <Compile Include="Models\Clases\Usuario.cs" />
+    <Compile Include="Models\Clases\ZonaGeografica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DeviceService.cs" />
+    <Compile Include="Services\SimplexService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Integrador.Models;
+using Integrador.Services;
 
 namespace Integrador.Controllers
 {
@@ -25,7 +26,11 @@ namespace Integrador.Controllers
 
         public ActionResult Contact()
         {
+            SimplexService service = new SimplexService();
+            var objeto = service.CreateCSV();
             ViewBag.Message = "Your contact page.";
+            ViewBag.Objeto = objeto;
+
 
             return View();
         }

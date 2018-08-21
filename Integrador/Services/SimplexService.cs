@@ -17,31 +17,23 @@ namespace Integrador.Services
     public class SimplexService
     {
         private static readonly HttpClient client = new HttpClient();
+        private static DeviceService deviceService = new DeviceService();
 
-        public object CreateCSV()
+        public object CreateCSV()  // -> CreateCSV(Cliente cliente)
         {
+            // Instancia de cliente ->  Mock Temporals
 
-            // Instancia de dispositivo Heladera
-            TipoComputadora tipoComputadora = new TipoComputadora();
-            TipoHeladera tipoHeladera = new TipoHeladera();
-            TipoLavarropas tipoLavarropas = new TipoLavarropas();
-            DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
-            DispositivoInteligente d2 = new DispositivoInteligente(tipoHeladera);
-            DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);
+            List<DispositivoInteligente> listado = this.MockCliente(); //-> Reemplazar por cliente.DispositivosInteligentes;
 
-            // Instancia de cliente
-            Cliente cliente = new Cliente();
-            cliente.AgregarDispositivoInteligente(d1);
-            cliente.AgregarDispositivoInteligente(d2);
-            cliente.AgregarDispositivoInteligente(d3);
-            int cantDispostivos = cliente.getDispositivoInteligentes().Count;
-            if (cantDispostivos < 0)
+            int cantDispostivos = listado.Count;
+            if (cantDispostivos > 0)
             {
                 // Instancia de array contendor 
                 IDictionary<Object, Object> jsonArr = new Dictionary<Object, Object>();
                 List<int> varsArray = new List<int>();
+                
                 // Agregamos todos los dispositivos 
-                foreach (object dispositivo in cliente.getDispositivoInteligentes())
+                foreach (object dispositivo in listado)
                 {
                     varsArray.Add(1);
                 }
@@ -51,8 +43,18 @@ namespace Integrador.Services
                 List<IDictionary<Object, Object>> restriciones = new List<IDictionary<Object, Object>>();
 
                 IDictionary<Object, Object> firstRestriction = new Dictionary<Object, Object>();
-                List<double> values = new List<double>() { 440640, 0.06, 0.875, 0.18 };
-                firstRestriction.Add("values", values ); // -> TODO: ver como obtener los values 
+                List<double> values = new List<double>() { 440640 }; // -> 440640 se deja de primera
+
+                listado.Reverse();
+
+                foreach (DispositivoInteligente dispositivo in listado)
+                {
+                    values.Add(deviceService.findConsumo(dispositivo.TipoDispositivo.EquipoConcreto));
+                }
+
+                listado.Reverse();
+
+                firstRestriction.Add("values", values );
                 firstRestriction.Add("operator", "<=");
 
                 // Agregamos la primer restriccion
@@ -61,31 +63,31 @@ namespace Integrador.Services
                 int devicePosition = cantDispostivos;
 
                 // Creamos las demás restricciones 
-                foreach (object dispositivo in cliente.getDispositivoInteligentes())
+                foreach (DispositivoInteligente dispositivo in listado)
                 {
                     // Inicializo un array con 0 en todas las posiciones 
-                    int[] restriccionPositiva = new int[cantDispostivos];
+                    int[] restriccionPositiva = new int[cantDispostivos + 1];
                     for (int i = 0; i < restriccionPositiva.Length; i++) { restriccionPositiva[i] = 0; }
 
-                    int[] restriccionNegativa = new int[cantDispostivos];
+                    int[] restriccionNegativa = new int[cantDispostivos + 1];
                     for (int i = 0; i < restriccionNegativa.Length; i++) { restriccionNegativa[i] = 0; }
 
                     // Seteo el valor de la restriccion 
-                    restriccionPositiva[0] = 90; // ->  TODO: obtener el valor de la restriccion
-                    restriccionPositiva[0] = 180; // ->  TODO: obtener el valor de la restriccion
+                    restriccionPositiva[0] = dispositivo.TipoDispositivo.UsoMensualMin;
+                    restriccionNegativa[0] = dispositivo.TipoDispositivo.UsoMensualMax; 
 
-                    // Seteo el valor del dispositivo
-                    restriccionPositiva[devicePosition] = 1; // ->  TODO: obtener el valor de la restriccion
-                    restriccionNegativa[devicePosition] = 1; // ->  TODO: obtener el valor de la restriccion
+                    // Seteo '1' segun la ubicacion del dispositivo
+                    restriccionPositiva[devicePosition] = 1; 
+                    restriccionNegativa[devicePosition] = 1;
 
                     // Seteo de las 2 restriccions por dispositivo
                     IDictionary<Object, Object> restriccion1 = new Dictionary<Object, Object>();
-                    restriccion1.Add("values", restriccionPositiva); // -> TODO: ver como obtener los values 
-                    restriccion1.Add("operator", ">="); // -> TODO: ver como obtener el operador
+                    restriccion1.Add("values", restriccionPositiva);
+                    restriccion1.Add("operator", ">=");
 
                     IDictionary<Object, Object> restriccion2 = new Dictionary<Object, Object>();
-                    restriccion2.Add("values", restriccionNegativa); // -> TODO: ver como obtener los values 
-                    restriccion2.Add("operator", ">="); // -> TODO: ver como obtener el operador
+                    restriccion2.Add("values", restriccionNegativa); 
+                    restriccion2.Add("operator", "<=");
 
                     // Agregamos las restricciones
                     restriciones.Add(restriccion1);
@@ -96,20 +98,53 @@ namespace Integrador.Services
                 }
                 jsonArr.Add("restrictions", restriciones);
 
-                // Creación de una instancia de la clase WebClient
-                // La clase WebClient proporciona métodos comunes para enviar y recibir datos de un recurso identificado por un URI.
-                var myWebClient = new WebClient();
+                // HTTP POST
+                List<float> httpResult = this.SendJson(jsonArr);
+                
+                // Formateo la informacion
+                IDictionary<Object, Object> resultado = new Dictionary<Object, Object>();
+                int l = 0;
+                foreach (DispositivoInteligente dispositivo in listado)
+                {
+                    resultado.Add(dispositivo.TipoDispositivo.EquipoConcreto, httpResult[l]);
+                    l++;
+                }
 
-                // En la colección de headers debe indicarse el tipo de argumento que se enviará
-                myWebClient.Headers.Add("Content-Type", "application/json");
+                return JsonConvert.SerializeObject(resultado);
 
-                // Carga de datos
-                var sURI = "https://dds-simplexapi.herokuapp.com/consultar";
-                var json = JsonConvert.SerializeObject(jsonArr);
-                // búsqueda de los datos
-                return myWebClient.UploadString(sURI, json);
             }
             throw new ArgumentException("No existen dispositivos");
         }
+
+        private List<float> SendJson(IDictionary<Object, Object> jsonArr)
+        {
+            var myWebClient = new WebClient();
+
+            myWebClient.Headers.Add("Content-Type", "application/json");
+            var sURI = "https://dds-simplexapi.herokuapp.com/consultar";
+            var json = JsonConvert.SerializeObject(jsonArr);
+            return JsonConvert.DeserializeObject<List<float>>(myWebClient.UploadString(sURI, json));
+
+        }
+
+        private List<DispositivoInteligente> MockCliente()
+        {
+            // Instancia de dispositivo Heladera
+            TipoComputadora tipoComputadora = new TipoComputadora();
+            TipoHeladera tipoHeladera = new TipoHeladera();
+            TipoLavarropas tipoLavarropas = new TipoLavarropas();
+            DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
+            DispositivoInteligente d2 = new DispositivoInteligente(tipoHeladera);
+            DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);
+
+            // Instancia de cliente
+            List<DispositivoInteligente> listado = new List<DispositivoInteligente>();
+            listado.Add(d1);
+            listado.Add(d2);
+            listado.Add(d3);
+
+            return listado;
+        }
+
     }
 }

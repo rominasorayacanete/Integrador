@@ -10,6 +10,10 @@ namespace Integrador.Models.Clases.Tipos
     {
         private int intensidad;
 
+        public override int UsoMensualMin { get; set; } = 90;
+        public override int UsoMensualMax { get; set; } = 180;
+        public override string EquipoConcreto { get; set; } = "Con freezer";
+
         public void BajarIntesidad(int _intensidad)
         {
             intensidad -= _intensidad;
