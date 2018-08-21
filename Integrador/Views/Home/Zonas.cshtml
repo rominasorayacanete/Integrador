@@ -1,0 +1,33 @@
+﻿@using Integrador.Models;
+@{
+    ViewBag.Title = "Zonas";
+}
+
+
+<h2><u>Transformadores por zona</u></h2><br>
+
+@{
+    foreach (ZonaGeografica item in ViewBag.Zonas)
+    {
+
+
+        <u><strong>Zona :</strong></u><code> @item.NombreZona</code><br>
+        <u><strong>Radio de cobertura :</strong></u> @item.Radio<span>&nbsp;mtrs</span>
+
+        <br><br>
+
+        foreach (var item1 in item.Transformadores)
+        {
+            <u>TRANSFORMADOR &nbsp; @item1.Nombre</u>
+            <ul style="list-style-type:circle">
+
+                <li>Activo : @item1.Activo</li>
+                <!--<li>Zona : @item1.ZonaGeografica</li>-->
+                <li>Energia que suministra : @item1.EnergiaSuministrada&nbsp;kW</li>
+                <!--<li>ConsumoTotal : @item.ConsumoTotal()</li>-->
+            </ul>
+            <br>
+        }
+        <br><br>
+    }
+}
