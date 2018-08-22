@@ -7,22 +7,24 @@ namespace Integrador.Models.Clases
 {
     public class ZonaGeografica
     {
-        private List<Transformador> transformadores { get; set; }
-        private int radio { get; set; }
+        public List<Transformador> Transformadores { get; set; }
+        public int Radio { get; set; }
+        public string NombreZona { get; set; }
 
-        public ZonaGeografica(int _radio)
+        public ZonaGeografica(int _radio, string _NombreZona)
         {
-            transformadores = new List<Transformador>();
-            radio = _radio;
+            Transformadores = new List<Transformador>();
+            Radio = _radio;
+            NombreZona = _NombreZona;
         }
 
         public int ConsumoTotal()
         {
             int consumoTotal = 0;
 
-            foreach (Transformador t in transformadores)
+            foreach (Transformador t in Transformadores)
             {
-                consumoTotal += t.energiaSuministrada;
+                consumoTotal += t.EnergiaSuministrada;
             }
 
             return consumoTotal;

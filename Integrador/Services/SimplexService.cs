@@ -18,7 +18,7 @@ namespace Integrador.Services
     {
         private static readonly HttpClient client = new HttpClient();
         private static DeviceService deviceService = new DeviceService();
-
+        protected static System.Timers.Timer timer = new System.Timers.Timer(5000); // This will raise the event every one minute.
 
         public object executeSimplex(Cliente cliente)
         {
@@ -170,6 +170,14 @@ namespace Integrador.Services
             cliente.AgregarDispositivoInteligente(d5);
 
             return cliente;
+        }
+
+        static void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Mi vieja mula ya no es lo que era");
+            SimplexService simplexService = new SimplexService();
+            Cliente cliente = simplexService.MockCliente();
+            simplexService.executeSimplex(cliente);
         }
 
     }
