@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Integrador.Models.Clases;
 using System.Linq;
 using System.Web;
 
@@ -8,13 +9,13 @@ namespace Integrador.Models
     public class Cliente : Usuario
     {
         private Categoria categoria { get; set; }
-        private List <DispositivoEstandar> dispositivos;
-        private List <DispositivoInteligente> dispositivosInteligentes;
+        private List <DispositivoEstandar> dispositivos { get; set; } = new List<DispositivoEstandar>();
+        private List<DispositivoInteligente> dispositivosInteligentes { get; set; } = new List<DispositivoInteligente>();
         private DateTime fechaAltaServicio { get; set; }
-        private int numeroDocumento { get; set;}
-        private int puntos { get; set; }
-        private int telefono { get; set; }
-        private string tipoDocumento { get; set; }
+        public int numeroDocumento { get; set;}
+        public int puntos { get; set; }
+        public int telefono { get; set; }
+        public string tipoDocumento { get; set; }
         private ZonaGeografica zonaHogar { get; set; }
 
 
@@ -26,6 +27,11 @@ namespace Integrador.Models
             adaptador.AgregarDispositivo(dispositivo);
             // Persistencia del ModuloAdaptador
             puntos += 10;
+        }
+
+        public List<DispositivoInteligente> GetDispositivoInteligentes()
+        {
+            return this.dispositivosInteligentes;
         }
 
         public void AgregarDispositivo(DispositivoEstandar dispositivo)
