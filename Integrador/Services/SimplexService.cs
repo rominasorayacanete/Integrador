@@ -130,9 +130,10 @@ namespace Integrador.Services
         private List<DispositivoInteligente> MockCliente()
         {
             // Instancia de dispositivo Heladera
-            TipoComputadora tipoComputadora = new TipoComputadora();
-            TipoHeladera tipoHeladera = new TipoHeladera();
-            TipoLavarropas tipoLavarropas = new TipoLavarropas();
+            TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
+            TipoHeladera tipoHeladera = new TipoHeladera("Sin freezer");
+            TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
+
             DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
             DispositivoInteligente d2 = new DispositivoInteligente(tipoHeladera);
             DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);

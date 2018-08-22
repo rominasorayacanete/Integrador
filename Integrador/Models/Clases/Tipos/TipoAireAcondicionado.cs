@@ -8,20 +8,19 @@ namespace Integrador.Models.Clases.Tipos
 {
     class TipoAireAcondicionado : TipoDispositivo
     {
-        private int min = 90;
-        private int max = 360;
-        private int temperatura;
+        public override int UsoMensualMin { get; set; } = 90;
+        public override int UsoMensualMax { get; set; } = 360;
+        private int Temperatura { get; set; }
 
-        public int Temperatura { get => temperatura; set => temperatura = value; }
+        public TipoAireAcondicionado(string _EquipoConcreto, int _Temperatura)
+        {
+            EquipoConcreto = _EquipoConcreto;
+            Temperatura = _Temperatura;
+        }
 
         public override void BajarTemperatura()
         {
-            // funcionalidad
-            temperatura -= 1;
-        }
-
-        public override void BajarIntensidad()
-        {
+            Temperatura -= 1;
         }
 
     }
