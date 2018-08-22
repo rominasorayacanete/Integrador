@@ -13,6 +13,7 @@ namespace Integrador.Models.Interface
         public virtual int UsoMensualMin { get; set; }
         public virtual string EquipoConcreto { get; set; }
 
+
         public virtual void BajarTemperatura()
         {
             throw new NotImplementedException();

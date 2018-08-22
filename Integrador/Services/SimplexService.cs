@@ -19,11 +19,12 @@ namespace Integrador.Services
         private static readonly HttpClient client = new HttpClient();
         private static DeviceService deviceService = new DeviceService();
 
-        public object CreateCSV()  // -> CreateCSV(Cliente cliente)
+
+        public object executeSimplex(Cliente cliente)
         {
             // Instancia de cliente ->  Mock Temporals
 
-            List<DispositivoInteligente> listado = this.MockCliente(); //-> Reemplazar por cliente.DispositivosInteligentes;
+            List<DispositivoInteligente> listado = cliente.GetDispositivoInteligentes(); //-> Reemplazar por cliente.DispositivosInteligentes;
 
             int cantDispostivos = listado.Count;
             if (cantDispostivos > 0)
@@ -110,7 +111,7 @@ namespace Integrador.Services
                     l++;
                 }
 
-                return JsonConvert.SerializeObject(resultado);
+                return resultado;
 
             }
             throw new ArgumentException("No existen dispositivos");
@@ -127,9 +128,8 @@ namespace Integrador.Services
 
         }
 
-        private List<DispositivoInteligente> MockCliente()
+        public List<DispositivoInteligente> MockListado()
         {
-            // Instancia de dispositivo Heladera
             TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
             TipoHeladera tipoHeladera = new TipoHeladera("Sin freezer");
             TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
@@ -137,14 +137,39 @@ namespace Integrador.Services
             DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
             DispositivoInteligente d2 = new DispositivoInteligente(tipoHeladera);
             DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);
-
-            // Instancia de cliente
+            
             List<DispositivoInteligente> listado = new List<DispositivoInteligente>();
             listado.Add(d1);
             listado.Add(d2);
             listado.Add(d3);
 
             return listado;
+        }
+
+        public Cliente MockCliente()
+        {
+            // Instancia de dispositivo Heladera
+            TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
+            TipoLampara tipoLampara = new TipoLampara("De 11 W");
+            TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
+            TipoMicroondas tipoMicroondas = new TipoMicroondas("Convencional");
+            TipoPlancha tipoPlancha = new TipoPlancha("A vapor");
+
+            DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
+            DispositivoInteligente d2 = new DispositivoInteligente(tipoLampara);
+            DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);
+            DispositivoInteligente d4 = new DispositivoInteligente(tipoMicroondas);
+            DispositivoInteligente d5 = new DispositivoInteligente(tipoPlancha);
+
+            // Instancia de cliente
+            Cliente cliente = new Cliente();
+            cliente.AgregarDispositivoInteligente(d1);
+            cliente.AgregarDispositivoInteligente(d2);
+            cliente.AgregarDispositivoInteligente(d3);
+            cliente.AgregarDispositivoInteligente(d4);
+            cliente.AgregarDispositivoInteligente(d5);
+
+            return cliente;
         }
 
     }

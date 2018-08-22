@@ -8,7 +8,6 @@ namespace Integrador.Models
 {
     public class DispositivoInteligente : Dispositivo
     {
-
         public bool Encendido { get; set; }
         public bool ModoAhorroDeEnergia { get; set; }
         public virtual TipoDispositivo TipoDispositivo { get; set; }

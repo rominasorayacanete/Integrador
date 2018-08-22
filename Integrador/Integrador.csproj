@@ -299,6 +299,8 @@
     <Content Include="Views\Home\LoadData.cshtml" />
     <Content Include="Views\Home\ListDevice.cshtml" />
     <Content Include="Views\Home\List.cshtml" />
+    <Content Include="Views\Home\Zonas.cshtml" />
+    <Content Include="Views\Home\Simplex.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

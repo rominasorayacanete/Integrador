@@ -6,12 +6,12 @@ using System.Web;
 
 namespace Integrador.Models
 {
-    public class ModuloAdaptador : DispositivoInteligente
+    public class ModuloAdaptador
     {
-        public override TipoDispositivo TipoDispositivo { get; set; }
+        public  TipoDispositivo TipoDispositivo { get; set; }
         private DispositivoEstandar Dispositivo;
 
-        public override void ActivarModoAhorroDeEnergia()
+        public  void ActivarModoAhorroDeEnergia()
         {
             /*
              *
@@ -20,7 +20,7 @@ namespace Integrador.Models
              */
         }
 
-        public override void Apagar()
+        public  void Apagar()
         {
             /*
              *
@@ -29,12 +29,12 @@ namespace Integrador.Models
              */
         }
 
-        public override float EnergiaConsumidaUltimasNHoras(int horas)
+        public  float EnergiaConsumidaUltimasNHoras(int horas)
         {
             return Dispositivo.ConsumoPorHora * horas;
         }
 
-        public override void Encender()
+        public  void Encender()
         {
             /*
              *
@@ -43,14 +43,14 @@ namespace Integrador.Models
              */
         }
 
-        public override bool EstaEncendido()
+        public  bool EstaEncendido()
         {
-            return Encendido == true ? true : false ; 
+            return true == true ? true : false ; 
         }
 
-        public override bool EstaApagado()
+        public  bool EstaApagado()
         {
-            return Encendido == false ? true : false;
+            return true == false ? true : false;
         }
 
         public void AgregarDispositivo(DispositivoEstandar dispositivo)

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Integrador.Models;
+using Integrador.Models.Clases;
 using Integrador.Services;
 
 namespace Integrador.Controllers
@@ -24,14 +25,21 @@ namespace Integrador.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        [Authorize]
+        public ActionResult Simplex()
         {
-            SimplexService service = new SimplexService();
-            var objeto = service.CreateCSV();
-            ViewBag.Message = "Your contact page.";
-            ViewBag.Objeto = objeto;
+            try
+            {
 
+                SimplexService service = new SimplexService();
+                Cliente cliente = service.MockCliente();
+                var objeto = service.executeSimplex(cliente);
+                ViewBag.Objeto = objeto;
 
+            } catch
+            {
+                ViewBag.Objeto = "No se pudo ejecutar el metodo simplex";
+            }
             return View();
         }
 
