@@ -8,7 +8,7 @@ namespace Integrador.Models.Clases
     public class Transformador
     {
         public string Nombre { get; set; }
-        public string ZonaGeografica { get; set; }
+        public ZonaGeografica ZonaGeografica { get; set; }
         public Boolean Activo { get; set; }
         public int EnergiaSuministrada { get; set; }
 
