@@ -7,17 +7,21 @@ namespace Integrador.Models.Clases
 {
     public class Transformador
     {
-        public string Nombre { get; set; }
+        public String Nombre { get; set; }
         public ZonaGeografica ZonaGeografica { get; set; }
         public Boolean Activo { get; set; }
-        public int EnergiaSuministrada { get; set; }
+        public float EnergiaSuministrada { get; set; }
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
 
-        public Transformador(String _zonaGeografica, int _energiaSuministrada, string _nombre, Boolean _Activo)
+        public Transformador(String _Nombre, ZonaGeografica _ZonaGeografica, Boolean _Activo, float _EnergiaSuministrada, double _Latitud, double _Longitud)
         {
-            Activo = _Activo;
-            Nombre = _nombre;
-            ZonaGeografica = _zonaGeografica;
-            EnergiaSuministrada = _energiaSuministrada;
+            Nombre = _Nombre;
+            ZonaGeografica = _ZonaGeografica;
+            Activo = _Activo;           
+            EnergiaSuministrada = _EnergiaSuministrada;
+            Latutud = _Latitud;
+            Longitud = _Longitud;
         }
     }
 }
