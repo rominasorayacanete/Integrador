@@ -6,8 +6,10 @@
 	{
 	"Nombre":"T1",
 	"Activo":true,
-	"ZonaGeografica":"Noroeste",
-	"EnergiaSuministrada":402685
+	"ZonaGeografica":{"NombreZona":"Noroeste","Radio":20500},
+	"EnergiaSuministrada":402685,
+	"Latitud":-34.5550886,
+	"Longitud":-58.4879849	
 	}
 	]
 },
@@ -18,20 +20,26 @@
 	{
     "Nombre":"T2",
 	"Activo":true,
-	"ZonaGeografica":"CentroNorte",
-	"EnergiaSuministrada":266445
+	"ZonaGeografica":{"NombreZona":"CentroNorte","Radio":35000},
+	"EnergiaSuministrada":266445,
+	"Latitud":-34.5808077,
+	"Longitud":-58.5022721
 	},
 	{
         "Nombre":"T3",
 	"Activo":true,
-	"ZonaGeografica":"CentroNorte",
-	"EnergiaSuministrada":345976
+	"ZonaGeografica":{"NombreZona":"CentroNorte","Radio":35000},
+	"EnergiaSuministrada":345976,
+	"Latitud":-34.5880858,
+	"Longitud":-58.4673822
 	},
 	{
     "Nombre":"T4",
 	"Activo":true,
-	"ZonaGeografica":"CentroNorte",
-	"EnergiaSuministrada":254633
+	"ZonaGeografica":{"NombreZona":"CentroNorte","Radio":35000},
+	"EnergiaSuministrada":254633,
+	"Latitud":-34.5889185,
+	"Longitud":-58.4249762
 	}
 	]
 },
@@ -42,14 +50,18 @@
 	{
     "Nombre":"T5",
 	"Activo":true,
-	"ZonaGeografica":"CentroSur",
-	"EnergiaSuministrada":158453
+	"ZonaGeografica":{"NombreZona":"CentroSur","Radio":14500},	
+	"EnergiaSuministrada":158453.67,
+	"Latitud":-34.6055194,
+	"Longitud":-58.4922945
 	},
 	{
     "Nombre":"T6",
 	"Activo":true,
-	"ZonaGeografica":"CentroSur",
-	"EnergiaSuministrada":160771
+	"ZonaGeografica":{"NombreZona":"CentroSur","Radio":14500},
+	"EnergiaSuministrada":160771.43,
+	"Latitud":-34.6066519,
+	"Longitud":-58.4483067
 	}
 	]
 },
@@ -60,14 +72,18 @@
 	{
     "Nombre":"T7",
 	"Activo":true,
-	"ZonaGeografica":"Noreste",
-	"EnergiaSuministrada":171203
+	"ZonaGeografica":{"NombreZona":"Noreste","Radio":15900},
+	"EnergiaSuministrada":171203.98,
+	"Latitud":-34.5596464,
+	"Longitud":-58.4273453
 	},
 	{
     "Nombre":"T8",
 	"Activo":true,
-	"ZonaGeografica":"Noreste",
-	"EnergiaSuministrada":198321
+	"ZonaGeografica":{"NombreZona":"Noreste","Radio":15900},
+	"EnergiaSuministrada":198321,
+	"Latitud":-34.5744547,
+	"Longitud":-58.4082164
 	}
 	]
 },
@@ -78,8 +94,10 @@
 	{
 	"Nombre":"T9",
 	"Activo":true,
-	"ZonaGeografica":"Suroeste",
-	"EnergiaSuministrada":387344
+	"ZonaGeografica":{"NombreZona":"Suroeste","Radio":17900},
+	"EnergiaSuministrada":387344,
+	"Latitud":-34.6183406,
+	"Longitud":-58.5075724
 	}
 	]
 },
@@ -90,8 +108,10 @@
 	{
 	"Nombre":"T10",
 	"Activo":true,
-	"ZonaGeografica":"Sureste",
-	"EnergiaSuministrada":399639
+	"ZonaGeografica":{"NombreZona":"Sureste","Radio":18300},
+	"EnergiaSuministrada":399639,
+	"Latitud":-34.6097578,
+	"Longitud":-58.4076118
 	}
 	]
 }
