@@ -17,6 +17,8 @@ namespace Integrador.Models
         public int telefono { get; set; }
         public string tipoDocumento { get; set; }
         private ZonaGeografica zonaHogar { get; set; }
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
 
 
         public void AdaptarDispositivo(DispositivoEstandar dispositivo)
