@@ -10,12 +10,16 @@ namespace Integrador.Models.Clases
         public List<Transformador> Transformadores { get; set; }
         public int Radio { get; set; }
         public string NombreZona { get; set; }
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
 
-        public ZonaGeografica(int _radio, string _NombreZona)
+        public ZonaGeografica(int _Radio, string _NombreZona, double _Latitud, double Longitud)
         {
             Transformadores = new List<Transformador>();
-            Radio = _radio;
+            Radio = _Radio;
             NombreZona = _NombreZona;
+            Latitud = _Latitud;
+            Longitud = _Longitud;
         }
 
         public int ConsumoTotal()
