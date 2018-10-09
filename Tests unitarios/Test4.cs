@@ -1,15 +1,14 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestUnitarios
+namespace Tests_unitarios
 {
     [TestClass]
-    public class TestUnitario4
+    public class Test4
     {
         [TestMethod]
         public void TestMethod1()
         {
-            
         }
     }
 }
