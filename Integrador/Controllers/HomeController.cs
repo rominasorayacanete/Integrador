@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Integrador.Models;
 using Integrador.Models.Clases;
 using Integrador.Services;
+using Integrador.ORM;
 
 namespace Integrador.Controllers
 {
@@ -20,6 +21,15 @@ namespace Integrador.Controllers
 
         public ActionResult About()
         {
+            Integrador.ORM.Regla regla = new ORM.Regla();
+            regla.idRegla = 123;
+
+            using(var db = new IntegradorDB())
+            {
+                db.Regla.Add(regla);
+                db.SaveChanges();
+            }
+
             ViewBag.Message = "Your application description page.";
 
             return View();
@@ -60,7 +70,7 @@ namespace Integrador.Controllers
             try
             {
                 string str = (new StreamReader(archivo.InputStream)).ReadToEnd();
-                var categorias = JsonConvert.DeserializeObject<List<Categoria>>(str);
+                var categorias = JsonConvert.DeserializeObject<List<Integrador.Models.Categoria>>(str);
                 ViewBag.List = categorias;
                 return View("~/Views/Home/List.cshtml");
             }
@@ -82,7 +92,7 @@ namespace Integrador.Controllers
             try
             {
                 string str = (new StreamReader(archivo.InputStream)).ReadToEnd();
-                var dispositivos = JsonConvert.DeserializeObject<List<Dispositivo>>(str);
+                var dispositivos = JsonConvert.DeserializeObject<List<Integrador.Models.Dispositivo>>(str);
                 ViewBag.List = dispositivos;
                 return View("~/Views/Home/ListDevice.cshtml");
             }
