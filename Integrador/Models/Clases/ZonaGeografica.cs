@@ -13,7 +13,7 @@ namespace Integrador.Models.Clases
         public double Latitud { get; set; }
         public double Longitud { get; set; }
 
-        public ZonaGeografica(int _Radio, string _NombreZona, double _Latitud, double Longitud)
+        public ZonaGeografica(int _Radio, string _NombreZona, double _Latitud, double _Longitud)
         {
             Transformadores = new List<Transformador>();
             Radio = _Radio;
@@ -22,9 +22,9 @@ namespace Integrador.Models.Clases
             Longitud = _Longitud;
         }
 
-        public int ConsumoTotal()
+        public float ConsumoTotal()
         {
-            int consumoTotal = 0;
+            float consumoTotal = 0;
 
             foreach (Transformador t in Transformadores)
             {

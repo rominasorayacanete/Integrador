@@ -20,7 +20,7 @@ namespace Integrador.Models.Clases
             ZonaGeografica = _ZonaGeografica;
             Activo = _Activo;           
             EnergiaSuministrada = _EnergiaSuministrada;
-            Latutud = _Latitud;
+            Latitud = _Latitud;
             Longitud = _Longitud;
         }
     }
