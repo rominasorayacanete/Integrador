@@ -7,7 +7,7 @@ namespace Tests_unitarios
     public class Test3
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CrearNuevaReglaNuevaCondicion_Persistirla_VerificarModificacion()
         {
         }
     }
