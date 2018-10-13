@@ -18,6 +18,13 @@ namespace Integrador.ORM
 
         public bool? Activo { get; set; }
 
-        public int? EnergiaSuministrada { get; set; }
+        [Column(TypeName = "numeric")]
+        public decimal? Longitud { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? Latitud { get; set; }
+
+        [Column(TypeName = "numeric")]
+        public decimal? EnergiaSuministrada { get; set; }
     }
 }

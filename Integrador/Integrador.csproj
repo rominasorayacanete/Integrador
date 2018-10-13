@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -236,9 +237,9 @@
     <Compile Include="Models\Clases\ZonaGeografica.cs" />
     <Compile Include="ORM\Actuador.cs" />
     <Compile Include="ORM\Categoria.cs" />
+    <Compile Include="ORM\DBContext.cs" />
     <Compile Include="ORM\Dispositivo.cs" />
     <Compile Include="ORM\DispositivoInteligente.cs" />
-    <Compile Include="ORM\IntegradorDB.cs" />
     <Compile Include="ORM\Regla.cs" />
     <Compile Include="ORM\TipoDispositivo.cs" />
     <Compile Include="ORM\Transformador.cs" />
@@ -249,10 +250,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Integrador.mdf" />
-    <Content Include="App_Data\Integrador_log.ldf">
-      <DependentUpon>Integrador.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -316,8 +313,11 @@
     <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Home\Zonas.cshtml" />
     <Content Include="Views\Home\Simplex.cshtml" />
+    <Content Include="Views\Usuario\Login.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

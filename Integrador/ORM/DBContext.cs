@@ -5,10 +5,10 @@ namespace Integrador.ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class IntegradorDB : DbContext
+    public partial class DBContext : DbContext
     {
-        public IntegradorDB()
-            : base("name=IntegradorDB")
+        public DBContext()
+            : base("name=DBContext")
         {
         }
 
@@ -48,6 +48,18 @@ namespace Integrador.ORM
             modelBuilder.Entity<Transformador>()
                 .Property(e => e.ZonaGeografica)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Transformador>()
+                .Property(e => e.Longitud)
+                .HasPrecision(18, 8);
+
+            modelBuilder.Entity<Transformador>()
+                .Property(e => e.Latitud)
+                .HasPrecision(18, 8);
+
+            modelBuilder.Entity<Transformador>()
+                .Property(e => e.EnergiaSuministrada)
+                .HasPrecision(10, 2);
 
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.Nombre)

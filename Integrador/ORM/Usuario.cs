@@ -22,10 +22,14 @@ namespace Integrador.ORM
         public string Domicilio { get; set; }
 
         [Key]
-        [StringLength(30)]
+        [Required(ErrorMessage = "Nombre de usuario requerido"), StringLength(30)]
+        [Display(Name = "Nombre de usuario")]
         public string Nombre_usuario { get; set; }
 
         [StringLength(30)]
+        [Required(ErrorMessage = "La contraseña es requerida")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
         public string Contrasenia { get; set; }
 
         public int? Nro_Documento { get; set; }
