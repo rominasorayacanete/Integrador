@@ -172,13 +172,6 @@ namespace Integrador.Services
             return cliente;
         }
 
-        static void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("Mi vieja mula ya no es lo que era");
-            SimplexService simplexService = new SimplexService();
-            Cliente cliente = simplexService.MockCliente();
-            simplexService.executeSimplex(cliente);
-        }
 
     }
 }
