@@ -25,11 +25,11 @@ namespace Integrador.Controllers
         {
             using (DBContext db = new DBContext())
             {
-                var usr = db.Usuario.Where(u => u.Nombre_usuario == usuario.Nombre_usuario && u.Contrasenia == usuario.Contrasenia).FirstOrDefault();
+                var usr = db.Usuario.Where(u => u.username == usuario.username && u.password == usuario.password).FirstOrDefault();
                 if (usr != null)
                 {
-                    Session["Username"] = usr.Nombre_usuario.ToString();
-                    ViewBag.Username = usr.Nombre_usuario.ToString();
+                    Session["Username"] = usr.username.ToString();
+                    ViewBag.Username = usr.username.ToString();
                     return RedirectToAction("LoggedIn");
                 }
                 else
