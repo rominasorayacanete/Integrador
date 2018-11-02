@@ -6,18 +6,20 @@ namespace Integrador.ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Dispositivo")]
+    [Table("Template_Dispositivo")]
     public partial class Dispositivo
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int id { get; set; }
 
         [StringLength(30)]
-        public string NombreGenerico { get; set; }
+        public string nombre_generico { get; set; }
 
         [Column(TypeName = "numeric")]
-        public decimal? ConsumoHora { get; set; }
+        public decimal? consumo_hora { get; set; }
 
-        public bool? Encendido { get; set; }
+        public bool? encendido { get; set; }
+
+        public bool? inteligente { get; set; }
     }
 }

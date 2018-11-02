@@ -1,0 +1,28 @@
+﻿@model Integrador.ORM.Dispositivo
+
+@{
+    ViewBag.Title = "Dispositivo";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    @using (Html.BeginForm("Import", "Dispositivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            @ViewBag.Error
+            <br />
+            JSON File <input type="file" name="jsonFile" />
+            <br />
+            <input type="submit" value="Import" />
+        </div>
+    }
+
+</body>
+</html>

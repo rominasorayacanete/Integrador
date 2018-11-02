@@ -20,6 +20,7 @@ namespace Integrador.ORM
         public virtual DbSet<TipoDispositivo> TipoDispositivo { get; set; }
         public virtual DbSet<Transformador> Transformador { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<ZonaGeografica> ZonaGeografica { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,7 +30,7 @@ namespace Integrador.ORM
                 .Map(m => m.ToTable("Regla_X_Actuador").MapLeftKey("actuador").MapRightKey("regla"));
 
             modelBuilder.Entity<Dispositivo>()
-                .Property(e => e.NombreGenerico)
+                .Property(e => e.nombre_generico)
                 .IsUnicode(false);
 
             modelBuilder.Entity<TipoDispositivo>()
@@ -62,27 +63,11 @@ namespace Integrador.ORM
                 .HasPrecision(10, 2);
 
             modelBuilder.Entity<Usuario>()
-                .Property(e => e.Nombre)
+                .Property(e => e.username)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Usuario>()
-                .Property(e => e.Apellido)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Usuario>()
-                .Property(e => e.Tipo_Documento)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Usuario>()
-                .Property(e => e.Domicilio)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Usuario>()
-                .Property(e => e.Nombre_usuario)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Usuario>()
-                .Property(e => e.Contrasenia)
+                .Property(e => e.password)
                 .IsUnicode(false);
         }
     }
