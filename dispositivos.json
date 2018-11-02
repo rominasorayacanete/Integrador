@@ -1,14 +1,14 @@
 [
 	{
-	 "Id" : 1,
-	 "NombreGenerico" : "Dispositivo 1",
-	 "ConsumoHora" : 1000,
-	 "Encendido" : true
+	 "id" : 1,
+	 "nombre_generico" : "Dispositivo 1",
+	 "consumo_hora" : 1000,
+	 "encendido" : true
 	},
 	{
-	 "Id" : 1,
-	 "NombreGenerico" : "Dispositivo 2.0",
-	 "ConsumoHora" : 40,
-	 "Encendido" : false
+	 "id" : 1,
+	 "nombre_generico" : "Dispositivo 2.0",
+	 "consumo_hora" : 40,
+	 "encendido" : false
 	}
 ]
