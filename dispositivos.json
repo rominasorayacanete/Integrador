@@ -6,7 +6,7 @@
 	 "encendido" : true
 	},
 	{
-	 "id" : 1,
+	 "id" : 2,
 	 "nombre_generico" : "Dispositivo 2.0",
 	 "consumo_hora" : 40,
 	 "encendido" : false
