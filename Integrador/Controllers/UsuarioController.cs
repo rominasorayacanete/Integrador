@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Integrador.ORM;
+using Integrador.Services;
 
 namespace Integrador.Controllers
 {
@@ -23,6 +24,7 @@ namespace Integrador.Controllers
         [HttpPost]
         public ActionResult Login(Usuario usuario)
         {
+            UserService userService = new UserService();
             using (DBContext db = new DBContext())
             {
                 var usr = db.Usuario.Where(u => u.username == usuario.username && u.password == usuario.password).FirstOrDefault();
@@ -30,6 +32,7 @@ namespace Integrador.Controllers
                 {
                     Session["Username"] = usr.username.ToString();
                     ViewBag.Username = usr.username.ToString();
+                    userService.CheckUser(usr);
                     return RedirectToAction("LoggedIn");
                 }
                 else
