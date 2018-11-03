@@ -111,12 +111,12 @@ namespace Integrador.Controllers
             try
             {
                 string str = (new StreamReader(archivo.InputStream)).ReadToEnd();
-                var zonas = JsonConvert.DeserializeObject<List<ORM.Zona_Geografica>>(str);
+                var zonas = JsonConvert.DeserializeObject<List<ORM.ZonaGeografica>>(str);
                 using(var db = new DBContext())
                 {
                     foreach(var zona in zonas)
                     {
-                        db.Zona_Geografica.Add(zona);
+                        db.ZonaGeografica.Add(zona);
 
                     }
                     db.SaveChanges();

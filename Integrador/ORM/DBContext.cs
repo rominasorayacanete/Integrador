@@ -20,6 +20,7 @@ namespace Integrador.ORM
         public virtual DbSet<TipoDispositivo> TipoDispositivo { get; set; }
         public virtual DbSet<Transformador> Transformador { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<ZonaGeografica> ZonaGeografica { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -42,47 +43,27 @@ namespace Integrador.ORM
                 .HasForeignKey(e => e.dispositivo);
 
             modelBuilder.Entity<Transformador>()
-                .Property(e => e.Nombre)
+                .Property(e => e.nombre)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Transformador>()
-                .Property(e => e.ZonaGeografica)
-                .IsUnicode(false);
+                .Property(e => e.zona_id);
 
             modelBuilder.Entity<Transformador>()
-                .Property(e => e.Longitud)
-                .HasPrecision(18, 8);
+                .Property(e => e.longitud);
 
             modelBuilder.Entity<Transformador>()
-                .Property(e => e.Latitud)
-                .HasPrecision(18, 8);
+                .Property(e => e.latitud);
 
             modelBuilder.Entity<Transformador>()
-                .Property(e => e.EnergiaSuministrada)
-                .HasPrecision(10, 2);
+                .Property(e => e.energia_suministrada);
 
             modelBuilder.Entity<Usuario>()
-                .Property(e => e.Nombre)
+                .Property(e => e.username)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Usuario>()
-                .Property(e => e.Apellido)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Usuario>()
-                .Property(e => e.Tipo_Documento)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Usuario>()
-                .Property(e => e.Domicilio)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Usuario>()
-                .Property(e => e.Nombre_usuario)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Usuario>()
-                .Property(e => e.Contrasenia)
+                .Property(e => e.password)
                 .IsUnicode(false);
         }
     }
