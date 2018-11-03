@@ -10,21 +10,15 @@ namespace Integrador.ORM
     public partial class Transformador
     {
         [Key]
-        [StringLength(30)]
-        public string Nombre { get; set; }
+        public int id { get; set; }
 
-        [StringLength(30)]
-        public string ZonaGeografica { get; set; }
-
-        public bool? Activo { get; set; }
-
-        [Column(TypeName = "numeric")]
-        public decimal? Longitud { get; set; }
-
-        [Column(TypeName = "numeric")]
-        public decimal? Latitud { get; set; }
-
-        [Column(TypeName = "numeric")]
-        public decimal? EnergiaSuministrada { get; set; }
+        public string nombre { get; set; }
+        public bool activo { get; set; }
+        public float energia_suministrada { get; set; }
+        public float latitud { get; set; }
+        public float longitud { get; set; }
+        
+        [ForeignKey("Zona_Geografica")]
+        public int zona_id { get; set; }
     }
 }

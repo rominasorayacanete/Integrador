@@ -9,10 +9,18 @@
     [Table("Zona_Geografica")]
     public partial class ZonaGeografica
     {
+<<<<<<< HEAD
         [Key]
         public int id { get; set; } 
 
         public int radio { get; set; }
         public string nombre_zona { get; set; }
+=======
+        public int id { get; set; }
+        public int radio { get; set; }
+        public string nombre_zona { get; set; }
+
+        public ICollection<Transformador> transformadores { get; set; }
+>>>>>>> Entrega4
     }
 }
