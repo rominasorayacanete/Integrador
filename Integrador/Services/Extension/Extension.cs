@@ -9,7 +9,7 @@ namespace Integrador.Services.Extension
     {
         public const float RadioTierraKm = 6378.0F;
 
-        public static float DistanciaKm(this float posDestinoLat, float posDestinoLong, float posOrigenLat, float posOrigenLong)
+        public static float DistanciaKm(this double posDestinoLat, double posDestinoLong, double posOrigenLat, double posOrigenLong)
         {
             var difLatitud = (posDestinoLat - posOrigenLat).EnRadianes();
             var difLongitud = (posDestinoLong - posOrigenLong).EnRadianes();
@@ -24,7 +24,7 @@ namespace Integrador.Services.Extension
 
         }
 
-        static float EnRadianes(this float valor)
+        static double EnRadianes(this double valor)
         {
             return Convert.ToSingle(Math.PI / 180) * valor;
         }

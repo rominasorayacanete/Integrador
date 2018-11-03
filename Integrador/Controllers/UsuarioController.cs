@@ -32,7 +32,7 @@ namespace Integrador.Controllers
                 {
                     Session["Username"] = usr.username.ToString();
                     ViewBag.Username = usr.username.ToString();
-                    userService.CheckUser(usr);
+                    userService.CheckUser(usr.id);
                     return RedirectToAction("LoggedIn");
                 }
                 else

@@ -18,14 +18,15 @@ namespace Integrador.Services
 {
     public class UserService
     {
-        public void CheckUser(ORM.Usuario usuario)
+        public void CheckUser(int userId)
         {
+            Console.WriteLine("akljdkajkdjakd");
             using (var db = new DBContext())
             {
                 var cliente = db.Cliente
-                    .Where(c => c.Usuario == usuario)
+                    .Where(c => c.Usuario.id == userId)
                     .FirstOrDefault();
-                if (cliente != null && cliente.Transformador1 != null){
+                if (cliente != null && cliente.transformador_id != null){
                     this.setTransformador(cliente.id);
                 }
             }
@@ -51,8 +52,10 @@ namespace Integrador.Services
                     var distancia = Extension.Extension.DistanciaKm(transformadorLat, transformadorLong, clienteLat, clienteLong);
                     distancias.Add(trans, distancia);
                 }
+                Console.WriteLine("Transformadores totales : " + distancias.Count());
                 Transformador transformadorCercano = distancias.FirstOrDefault(x => x.Value == distancias.Values.Min()).Key;
-                cliente.Transformador1 = transformadorCercano;
+                Console.WriteLine("Transformadores elegido : " + transformadorCercano.id);
+                cliente.Transformador = transformadorCercano;
                 db.SaveChanges();
             }
 
