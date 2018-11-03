@@ -44,7 +44,7 @@ namespace Integrador.Controllers
             {
 
                 SimplexService service = new SimplexService();
-                Cliente cliente = service.MockCliente();
+                Models.Cliente cliente = service.MockCliente();
                 var objeto = service.executeSimplex(cliente);
                 ViewBag.Objeto = objeto;
 
@@ -111,7 +111,19 @@ namespace Integrador.Controllers
             try
             {
                 string str = (new StreamReader(archivo.InputStream)).ReadToEnd();
-                var zonas = JsonConvert.DeserializeObject<List<ZonaGeografica>>(str);
+                var zonas = JsonConvert.DeserializeObject<List<ORM.Zona_Geografica>>(str);
+                using(var db = new DBContext())
+                {
+                    foreach(var zona in zonas)
+                    {
+                        db.Zona_Geografica.Add(zona);
+
+                    }
+                    db.SaveChanges();
+                }
+
+
+
                 ViewBag.Zonas = zonas;
                 return View("~/Views/Home/Zonas.cshtml");
             }

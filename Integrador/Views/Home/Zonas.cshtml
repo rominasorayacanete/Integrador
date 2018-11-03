@@ -1,4 +1,5 @@
 ﻿@using Integrador.Models.Clases;
+@using Integrador.ORM;
 @{
     ViewBag.Title = "Zonas";
 }
@@ -7,24 +8,23 @@
 <h2><u>Transformadores por zona</u></h2><br>
 
 @{
-    foreach (ZonaGeografica item in ViewBag.Zonas)
+    foreach (Zona_Geografica item in ViewBag.Zonas)
     {
 
 
-        <u><strong>Zona :</strong></u><code> @item.NombreZona</code><br>
-        <u><strong>Radio de cobertura :</strong></u> @item.Radio<span>&nbsp;mtrs</span>
+        <u><strong>Zona :</strong></u><code> @item.nombre_zona</code><br>
+        <u><strong>Radio de cobertura :</strong></u> @item.radio<span>&nbsp;mtrs</span>
 
         <br><br>
 
-        foreach (var item1 in item.Transformadores)
+        foreach (var item1 in item.Transformador)
         {
-            <u>TRANSFORMADOR &nbsp; @item1.Nombre</u>
+            <u>TRANSFORMADOR &nbsp; @item1.nombre</u>
             <ul style="list-style-type:circle">
 
-                <li>Activo : @item1.Activo</li>
-                <!--<li>Zona : @item1.ZonaGeografica</li>-->
-                <li>Energia que suministra : @item1.EnergiaSuministrada&nbsp;kW</li>
-                <!--<li>ConsumoTotal : @item.ConsumoTotal()</li>-->
+                <li>Activo : @item1.activo</li>
+                <!--<li>Zona : @item1.zona_id</li>-->
+                <li>Energia que suministra : @item1.energia_suministrada&nbsp;kW</li>
             </ul>
             <br>
         }
