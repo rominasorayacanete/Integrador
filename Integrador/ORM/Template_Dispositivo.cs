@@ -8,18 +8,16 @@ namespace Integrador.ORM
 
     public partial class Template_Dispositivo
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 
         [Required]
         [StringLength(30)]
-        public string nombre_generico { get; set; }
+        public string nombre { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal? consumo_hora { get; set; }
+        public bool inteligente { get; set; }
 
-        public bool? encendido { get; set; }
+        public bool bajo_consumo { get; set; }
 
-        public bool? inteligente { get; set; }
+        public int consumo { get; set; }
     }
 }

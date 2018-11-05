@@ -16,7 +16,9 @@ namespace Integrador.ORM
             Cliente = new HashSet<Cliente>();
         }
 
-        [Key]
+        public int id { get; set; }
+
+        [Required]
         [StringLength(15)]
         public string username { get; set; }
 

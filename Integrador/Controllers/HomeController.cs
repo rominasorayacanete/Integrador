@@ -117,12 +117,9 @@ namespace Integrador.Controllers
                     foreach(var zona in zonas)
                     {
                         db.Zona_Geografica.Add(zona);
-
-                    }
-                    db.SaveChanges();
+                        db.SaveChanges();
+                    }               
                 }
-
-
 
                 ViewBag.Zonas = zonas;
                 return View("~/Views/Home/Zonas.cshtml");

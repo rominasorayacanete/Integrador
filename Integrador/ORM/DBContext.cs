@@ -39,10 +39,6 @@ namespace Integrador.ORM
                 .Property(e => e.id_sistema)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Administrador>()
-                .Property(e => e.usuario)
-                .IsUnicode(false);
-
             modelBuilder.Entity<Categoria>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
@@ -69,10 +65,6 @@ namespace Integrador.ORM
                 .IsUnicode(false);
 
             modelBuilder.Entity<Cliente>()
-                .Property(e => e.usuario)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Cliente>()
                 .HasMany(e => e.Dispositivo)
                 .WithOptional(e => e.Cliente)
                 .HasForeignKey(e => e.cliente_id);
@@ -91,6 +83,10 @@ namespace Integrador.ORM
                 .HasForeignKey(e => e.dispositivo_id);
 
             modelBuilder.Entity<Regla>()
+                .Property(e => e.condicion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Regla>()
                 .HasMany(e => e.Sensor)
                 .WithOptional(e => e.Regla)
                 .HasForeignKey(e => e.regla_id);
@@ -100,16 +96,17 @@ namespace Integrador.ORM
                 .IsUnicode(false);
 
             modelBuilder.Entity<Template_Dispositivo>()
-                .Property(e => e.nombre_generico)
+                .Property(e => e.nombre)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Template_Dispositivo>()
-                .Property(e => e.consumo_hora)
-                .HasPrecision(18, 0);
 
             modelBuilder.Entity<Transformador>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Transformador>()
+                .HasMany(e => e.Cliente)
+                .WithOptional(e => e.Transformador)
+                .HasForeignKey(e => e.transformador_id);
 
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.username)
@@ -125,22 +122,17 @@ namespace Integrador.ORM
 
             modelBuilder.Entity<Usuario>()
                 .HasMany(e => e.Administrador)
-                .WithOptional(e => e.Usuario1)
-                .HasForeignKey(e => e.usuario);
+                .WithOptional(e => e.Usuario)
+                .HasForeignKey(e => e.usuario_id);
 
             modelBuilder.Entity<Usuario>()
                 .HasMany(e => e.Cliente)
-                .WithOptional(e => e.Usuario1)
-                .HasForeignKey(e => e.usuario);
+                .WithOptional(e => e.Usuario)
+                .HasForeignKey(e => e.usuario_id);
 
             modelBuilder.Entity<Zona_Geografica>()
                 .Property(e => e.nombre_zona)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Zona_Geografica>()
-                .HasMany(e => e.Cliente)
-                .WithOptional(e => e.Zona_Geografica)
-                .HasForeignKey(e => e.zona_id);
 
             modelBuilder.Entity<Zona_Geografica>()
                 .HasMany(e => e.Transformador)

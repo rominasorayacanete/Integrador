@@ -1,0 +1,24 @@
+[
+{
+"nombre_zona":"CABA",
+"radio":20,
+"latitud":-54.1232313,
+"longitud":-24.989898,
+"Transformador":[
+	{
+	"nombre":"T40",
+	"activo":true,
+	"energia_suministrada":1283,
+	"latitud":-34.5550886,
+	"longitud":-58.4879849	
+	},
+	{
+	"nombre":"T20",
+	"activo":false,
+	"energia_suministrada":2000,
+	"latitud":-11.5550886,
+	"longitud":-58.4879849	
+	},
+	]
+}
+]

@@ -9,6 +9,12 @@ namespace Integrador.ORM
     [Table("Transformador")]
     public partial class Transformador
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Transformador()
+        {
+            Cliente = new HashSet<Cliente>();
+        }
+
         public int id { get; set; }
 
         [Required]
@@ -24,6 +30,9 @@ namespace Integrador.ORM
         public double longitud { get; set; }
 
         public int? zona_id { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cliente> Cliente { get; set; }
 
         public virtual Zona_Geografica Zona_Geografica { get; set; }
     }

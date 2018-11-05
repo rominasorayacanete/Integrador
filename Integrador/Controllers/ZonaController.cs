@@ -33,14 +33,26 @@ namespace Integrador.Controllers
                 string data = streamReader.ReadToEnd();
                 List<Zona_Geografica> zonas = JsonConvert.DeserializeObject<List<Zona_Geografica>>(data);
                 zonas.ForEach(z => {
-                   Zona_Geografica zona = new Zona_Geografica()
+                    Zona_Geografica zona = new Zona_Geografica()
                     {
                         id = z.id,
                         radio = z.radio,
-                        nombre_zona = z.nombre_zona
+                        nombre_zona = z.nombre_zona,
+                        latitud = z.latitud,
+                        longitud = z.longitud
                     };
+
                     db.Zona_Geografica.Add(zona);
                     db.SaveChanges();
+
+                    foreach (Transformador t in z.Transformador)
+                    {
+                        t.zona_id = zona.id;
+                        db.Transformador.Add(t);
+                        db.SaveChanges();
+                    }
+
+                    
                 });
                 ViewBag.Success = "Success";
             }

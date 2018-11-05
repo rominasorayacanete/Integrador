@@ -15,9 +15,8 @@ namespace Integrador.ORM
         [StringLength(15)]
         public string id_sistema { get; set; }
 
-        [StringLength(15)]
-        public string usuario { get; set; }
+        public int? usuario_id { get; set; }
 
-        public virtual Usuario Usuario1 { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }
