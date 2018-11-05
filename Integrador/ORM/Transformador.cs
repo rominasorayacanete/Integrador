@@ -9,16 +9,22 @@ namespace Integrador.ORM
     [Table("Transformador")]
     public partial class Transformador
     {
-        [Key]
         public int id { get; set; }
 
+        [Required]
+        [StringLength(15)]
         public string nombre { get; set; }
+
         public bool activo { get; set; }
-        public float energia_suministrada { get; set; }
-        public float latitud { get; set; }
-        public float longitud { get; set; }
-        
-        [ForeignKey("Zona_Geografica")]
-        public int zona_id { get; set; }
+
+        public double energia_suministrada { get; set; }
+
+        public double latitud { get; set; }
+
+        public double longitud { get; set; }
+
+        public int? zona_id { get; set; }
+
+        public virtual Zona_Geografica Zona_Geografica { get; set; }
     }
 }

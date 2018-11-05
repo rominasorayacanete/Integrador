@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-4">
         <h2>Cargar dispositivos</h2>
-        @using (Html.BeginForm("Import", "Dispositivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Cargar", "Dispositivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div>
                 @ViewBag.Error

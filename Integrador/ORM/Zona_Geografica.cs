@@ -6,30 +6,27 @@ namespace Integrador.ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Categoria")]
-    public partial class Categoria
+    public partial class Zona_Geografica
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Categoria()
+        public Zona_Geografica()
         {
             Cliente = new HashSet<Cliente>();
+            Transformador = new HashSet<Transformador>();
         }
 
         public int id { get; set; }
 
+        public int radio { get; set; }
+
         [Required]
-        [StringLength(25)]
-        public string nombre { get; set; }
-
-        public double? consumo_minimo { get; set; }
-
-        public double? consumo_maximo { get; set; }
-
-        public double cargo_fijo { get; set; }
-
-        public double cargo_variable { get; set; }
+        [StringLength(15)]
+        public string nombre_zona { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cliente> Cliente { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transformador> Transformador { get; set; }
     }
 }

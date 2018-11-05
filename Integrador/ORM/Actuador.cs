@@ -15,15 +15,15 @@ namespace Integrador.ORM
             Regla = new HashSet<Regla>();
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idActuador { get; set; }
+        public int id { get; set; }
 
-        public int? accion { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string accion { get; set; }
 
-        public int? dispositivo { get; set; }
+        public int? dispositivo_id { get; set; }
 
-        public virtual TipoDispositivo TipoDispositivo { get; set; }
+        public virtual Dispositivo Dispositivo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Regla> Regla { get; set; }

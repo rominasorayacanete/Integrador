@@ -47,6 +47,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -122,12 +128,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -238,15 +238,17 @@
     <Compile Include="Models\Clases\Usuario.cs" />
     <Compile Include="Models\Clases\ZonaGeografica.cs" />
     <Compile Include="ORM\Actuador.cs" />
+    <Compile Include="ORM\Administrador.cs" />
     <Compile Include="ORM\Categoria.cs" />
+    <Compile Include="ORM\Cliente.cs" />
     <Compile Include="ORM\DBContext.cs" />
     <Compile Include="ORM\Dispositivo.cs" />
-    <Compile Include="ORM\DispositivoInteligente.cs" />
     <Compile Include="ORM\Regla.cs" />
-    <Compile Include="ORM\TipoDispositivo.cs" />
+    <Compile Include="ORM\Sensor.cs" />
+    <Compile Include="ORM\Template_Dispositivo.cs" />
     <Compile Include="ORM\Transformador.cs" />
     <Compile Include="ORM\Usuario.cs" />
-    <Compile Include="ORM\ZonaGeografica.cs" />
+    <Compile Include="ORM\Zona_Geografica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DeviceService.cs" />
     <Compile Include="Services\SimplexService.cs" />

@@ -13,50 +13,103 @@ namespace Integrador.ORM
         }
 
         public virtual DbSet<Actuador> Actuador { get; set; }
+        public virtual DbSet<Administrador> Administrador { get; set; }
         public virtual DbSet<Categoria> Categoria { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Dispositivo> Dispositivo { get; set; }
-        public virtual DbSet<DispositivoInteligente> DispositivoInteligente { get; set; }
         public virtual DbSet<Regla> Regla { get; set; }
-        public virtual DbSet<TipoDispositivo> TipoDispositivo { get; set; }
+        public virtual DbSet<Sensor> Sensor { get; set; }
+        public virtual DbSet<Template_Dispositivo> Template_Dispositivo { get; set; }
         public virtual DbSet<Transformador> Transformador { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
-        public virtual DbSet<ZonaGeografica> ZonaGeografica { get; set; }
+        public virtual DbSet<Zona_Geografica> Zona_Geografica { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Actuador>()
+                .Property(e => e.accion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Actuador>()
                 .HasMany(e => e.Regla)
                 .WithMany(e => e.Actuador)
-                .Map(m => m.ToTable("Regla_X_Actuador").MapLeftKey("actuador").MapRightKey("regla"));
+                .Map(m => m.ToTable("Actuador_Regla").MapLeftKey("actuador_id").MapRightKey("regla_id"));
+
+            modelBuilder.Entity<Administrador>()
+                .Property(e => e.id_sistema)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Administrador>()
+                .Property(e => e.usuario)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Categoria>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Categoria>()
+                .HasMany(e => e.Cliente)
+                .WithOptional(e => e.Categoria)
+                .HasForeignKey(e => e.categoria_id);
+
+            modelBuilder.Entity<Cliente>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Cliente>()
+                .Property(e => e.apellido)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Cliente>()
+                .Property(e => e.tipo_doc)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Cliente>()
+                .Property(e => e.domicilio)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Cliente>()
+                .Property(e => e.usuario)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Cliente>()
+                .HasMany(e => e.Dispositivo)
+                .WithOptional(e => e.Cliente)
+                .HasForeignKey(e => e.cliente_id);
 
             modelBuilder.Entity<Dispositivo>()
                 .Property(e => e.nombre_generico)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TipoDispositivo>()
-                .Property(e => e.EquipoConcreto)
+            modelBuilder.Entity<Dispositivo>()
+                .Property(e => e.tipo_dispositivo)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<TipoDispositivo>()
+            modelBuilder.Entity<Dispositivo>()
                 .HasMany(e => e.Actuador)
-                .WithOptional(e => e.TipoDispositivo)
-                .HasForeignKey(e => e.dispositivo);
+                .WithOptional(e => e.Dispositivo)
+                .HasForeignKey(e => e.dispositivo_id);
+
+            modelBuilder.Entity<Regla>()
+                .HasMany(e => e.Sensor)
+                .WithOptional(e => e.Regla)
+                .HasForeignKey(e => e.regla_id);
+
+            modelBuilder.Entity<Sensor>()
+                .Property(e => e.magnitud)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Template_Dispositivo>()
+                .Property(e => e.nombre_generico)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Template_Dispositivo>()
+                .Property(e => e.consumo_hora)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<Transformador>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Transformador>()
-                .Property(e => e.zona_id);
-
-            modelBuilder.Entity<Transformador>()
-                .Property(e => e.longitud);
-
-            modelBuilder.Entity<Transformador>()
-                .Property(e => e.latitud);
-
-            modelBuilder.Entity<Transformador>()
-                .Property(e => e.energia_suministrada);
 
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.username)
@@ -65,6 +118,34 @@ namespace Integrador.ORM
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.password)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Usuario>()
+                .Property(e => e.email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Usuario>()
+                .HasMany(e => e.Administrador)
+                .WithOptional(e => e.Usuario1)
+                .HasForeignKey(e => e.usuario);
+
+            modelBuilder.Entity<Usuario>()
+                .HasMany(e => e.Cliente)
+                .WithOptional(e => e.Usuario1)
+                .HasForeignKey(e => e.usuario);
+
+            modelBuilder.Entity<Zona_Geografica>()
+                .Property(e => e.nombre_zona)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Zona_Geografica>()
+                .HasMany(e => e.Cliente)
+                .WithOptional(e => e.Zona_Geografica)
+                .HasForeignKey(e => e.zona_id);
+
+            modelBuilder.Entity<Zona_Geografica>()
+                .HasMany(e => e.Transformador)
+                .WithOptional(e => e.Zona_Geografica)
+                .HasForeignKey(e => e.zona_id);
         }
     }
 }

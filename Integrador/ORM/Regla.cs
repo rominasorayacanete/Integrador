@@ -12,14 +12,19 @@ namespace Integrador.ORM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Regla()
         {
+            Sensor = new HashSet<Sensor>();
             Actuador = new HashSet<Actuador>();
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int idRegla { get; set; }
+        public int id { get; set; }
 
-        public bool? reglaCumplida { get; set; }
+        public bool? regla_cumplida { get; set; }
+
+        [StringLength(250)]
+        public string condicion { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sensor> Sensor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Actuador> Actuador { get; set; }

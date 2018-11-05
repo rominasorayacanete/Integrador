@@ -13,14 +13,14 @@
 </head>
 <body>
 
-    @using (Html.BeginForm("Import", "Dispositivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Cargar", "Dispositivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div>
             @ViewBag.Error
             <br />
             JSON File <input type="file" name="jsonFile" />
             <br />
-            <input type="submit" value="Import" />
+            <input type="submit" value="Cargar" />
         </div>
     }
 

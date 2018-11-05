@@ -31,15 +31,15 @@ namespace Integrador.Controllers
                 jsonFile.SaveAs(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
                 StreamReader streamReader = new StreamReader(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
                 string data = streamReader.ReadToEnd();
-                List<ZonaGeografica> zonas = JsonConvert.DeserializeObject<List<ZonaGeografica>>(data);
+                List<Zona_Geografica> zonas = JsonConvert.DeserializeObject<List<Zona_Geografica>>(data);
                 zonas.ForEach(z => {
-                   ZonaGeografica zona = new ZonaGeografica()
+                   Zona_Geografica zona = new Zona_Geografica()
                     {
                         id = z.id,
                         radio = z.radio,
                         nombre_zona = z.nombre_zona
                     };
-                    db.ZonaGeografica.Add(zona);
+                    db.Zona_Geografica.Add(zona);
                     db.SaveChanges();
                 });
                 ViewBag.Success = "Success";
