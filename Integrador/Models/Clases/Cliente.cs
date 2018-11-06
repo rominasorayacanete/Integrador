@@ -16,7 +16,7 @@ namespace Integrador.Models
         public int puntos { get; set; }
         public int telefono { get; set; }
         public string tipoDocumento { get; set; }
-        private ZonaGeografica zonaHogar { get; set; }
+        private ZonaGeografica ZonaGeografica { get; set; }
         public double Latitud { get; set; }
         public double Longitud { get; set; }
 
