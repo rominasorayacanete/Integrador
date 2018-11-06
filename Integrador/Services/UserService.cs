@@ -18,9 +18,41 @@ namespace Integrador.Services
 {
     public class UserService
     {
+
+        public ORM.Usuario findUserByUsername(string username)
+        {
+            using (var db = new DBContext())
+            {
+                return db.Usuario
+                    .Where(u => u.username == username)
+                    .FirstOrDefault();
+            }
+        }
+
+        public void createNewUser(ORM.Usuario usuario)
+        {
+            using (var db = new DBContext())
+            {
+                db.Usuario.Add(usuario);
+                db.SaveChanges();
+            }
+        }
+
+        public void updateUser(ORM.Usuario usuario)
+        {
+            using (var db = new DBContext())
+            {
+                var usr = db.Usuario.SingleOrDefault(u => u.id == usuario.id);
+                if (usr != null)
+                {
+                    usr = usuario;
+                    db.SaveChanges();
+                }
+            }
+        }
+
         public void CheckUser(int userId)
         {
-            Console.WriteLine("akljdkajkdjakd");
             using (var db = new DBContext())
             {
                 var cliente = db.Cliente
@@ -52,9 +84,9 @@ namespace Integrador.Services
                     var distancia = Extension.Extension.DistanciaKm(transformadorLat, transformadorLong, clienteLat, clienteLong);
                     distancias.Add(trans, distancia);
                 }
-                Console.WriteLine("Transformadores totales : " + distancias.Count());
+                System.Diagnostics.Debug.WriteLine("Transformadores totales : " + distancias.Count());
                 Transformador transformadorCercano = distancias.FirstOrDefault(x => x.Value == distancias.Values.Min()).Key;
-                Console.WriteLine("Transformadores elegido : " + transformadorCercano.id);
+                System.Diagnostics.Debug.WriteLine("Transformadores elegido : " + transformadorCercano.id);
                 cliente.Transformador = transformadorCercano;
                 db.SaveChanges();
             }
