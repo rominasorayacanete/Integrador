@@ -1,5 +1,7 @@
-CREATE TABLE Usuario (
-  username varchar(15) PRIMARY KEY,
+CREATE TABLE Usuario
+ (
+  id INT PRIMARY KEY NOT NULL IDentity,
+  username varchar(15) NOT NULL UNIQUE,
   password varchar(15) NOT NULL,
   email varchar(25) NOT NULL UNIQUE,
   fecha_alta_sistema datetime,
@@ -8,13 +10,15 @@ CREATE TABLE Usuario (
 CREATE TABLE Administrador (
   id INT PRIMARY KEY NOT NULL IDentity,
   id_sistema varchar(15) NOT NULL UNIQUE,
-  usuario VARCHAR(15) FOREIGN KEY REFERENCES Usuario(username)
+  usuario_id INT FOREIGN KEY REFERENCES Usuario(id)
 );
 
 CREATE TABLE Zona_Geografica 
 (
   id INT PRIMARY KEY NOT NULL IDentity,
   radio int NOT NULL,
+  longitud float,
+  latitud float,
   nombre_zona varchar(15) NOT NULL
 );
 
@@ -46,13 +50,12 @@ CREATE TABLE Cliente (
   domicilio varchar(30),
   puntos int,
   telefono int,
-  longitud numeric(18,2),
-  latitud numeric(18,2),
-  zona_id INT FOREIGN KEY REFERENCES Zona_Geografica(id),
+  longitud float,
+  latitud float,
+  transformador_id INT FOREIGN KEY REFERENCES Transformador(id),
   categoria_id INT FOREIGN KEY REFERENCES Categoria(id),
-  usuario VARCHAR(15) FOREIGN KEY REFERENCES Usuario(username)
+  usuario_id INT FOREIGN KEY REFERENCES Usuario(id)
 );
-
 
 CREATE TABLE Dispositivo (
   id INT PRIMARY KEY NOT NULL IDentity,
@@ -70,15 +73,6 @@ CREATE TABLE Dispositivo (
 );
 
 
-CREATE TABLE Template_Dispositivo
-(
-  id INT PRIMARY KEY NOT NULL,
-  nombre_generico varchar(30) NOT NULL,
-  consumo_hora numeric(18,0),
-  encendido bit,
-  inteligente bit
-);
-
 CREATE TABLE Actuador
 (
   id INT PRIMARY KEY NOT NULL IDentity,
@@ -90,7 +84,8 @@ CREATE TABLE Regla
 (
   id INT PRIMARY KEY IDentity,
   regla_cumplida bit,
-  condicion NVARCHAR(250)
+  condicion varchar(250),
+  sensor INT,
 );
 
 CREATE TABLE Actuador_Regla
@@ -108,12 +103,39 @@ CREATE TABLE Sensor
 (
   id INT PRIMARY KEY NOT NULL IDentity,
   magnitud varchar(15) NOT NULL,
-  regla_id INT FOREIGN KEY REFERENCES Regla(id)
 );
 
 -- Dispositivos editables
 
+CREATE TABLE Template_Dispositivo
+(
+  id INT PRIMARY KEY NOT NULL IDentity,
+  nombre varchar(30) NOT NULL,
+  inteligente bit NOT NULL,
+  bajo_consumo bit NOT NULL,
+  consumo int NOT NULL
+);
 
+CREATE TABLE Operacion (
+	oper_id INT IDENTITY NOT NULL,
+	oper_dispositivo INT,
+	oper_descripcion NVARCHAR(255),
+	oper_fecha DATETIME
+);
+
+ALTER TABLE Operacion
+ADD CONSTRAINT PK_OPERACION PRIMARY KEY (oper_id)
+GO
+
+ALTER TABLE Operacion
+ADD CONSTRAINT FK_OPERACION_OPER_DISPOSITIVO FOREIGN KEY (oper_dispositivo)
+REFERENCES Dispositivo(Id)
+GO
+
+ALTER TABLE Regla
+ADD CONSTRAINT FK_REGLA_SENSOR FOREIGN KEY (sensor)
+REFERENCES Sensor(id)
+GO
 
 
 -- Inserts 
@@ -209,17 +231,30 @@ INSERT INTO Categoria (nombre,consumo_minimo,consumo_maximo,cargo_fijo, cargo_va
 INSERT INTO Usuario (username,password,email,fecha_alta_sistema) VALUES ('admin1','admin1','admin1@gentlemen.com',getdate());
 INSERT INTO Usuario (username,password,email,fecha_alta_sistema) VALUES ('cliente1','cliente1','cliente1@gentlemen.com',getdate());
 
-INSERT INTO Cliente (nombre,apellido,tipo_doc,nro_doc,domicilio,puntos,telefono,zona_id,categoria_id,usuario)
+INSERT INTO Cliente (nombre,apellido,tipo_doc,nro_doc,domicilio,puntos,telefono,transformador_id,categoria_id,usuario_id,latitud,longitud)
  VALUES 
  ('Juan','Gonzalez','DNI','10101010','Calle falsa 123',20,1123933666,
- (SELECT id FROM Zona_Geografica WHERE (nombre_zona = 'Sureste')),
+ null,
  (SELECT id FROM Categoria WHERE (nombre = 'R1')),
- (SELECT username FROM Usuario WHERE (email = 'cliente1@gentlemen.com')));
+ (SELECT id FROM Usuario WHERE (email = 'cliente1@gentlemen.com')),-34.6183406,-58.5075724);
 
-INSERT INTO Administrador (id_sistema,usuario) VALUES ('Admin1-2018',(SELECT username FROM Usuario WHERE (email = 'admin1@gentlemen.com')));
+INSERT INTO Administrador (id_sistema,usuario_id) VALUES ('Admin1-2018',(SELECT id FROM Usuario WHERE (email = 'admin1@gentlemen.com')))
+GO
 
+-- Triggers
 
+CREATE TRIGGER OperacionSobreDispositivo
+ON Dispositivo
+FOR INSERT, UPDATE 
+AS
+BEGIN
+	DECLARE @dispositivo INT
 
+	SELECT @dispositivo = id FROM inserted
 
-
-
+	IF (SELECT encendido FROM inserted) = 1
+		INSERT INTO Operacion (oper_dispositivo, oper_descripcion, oper_fecha) VALUES (@dispositivo, 'encendido', GETDATE())
+	ELSE
+		INSERT INTO Operacion (oper_dispositivo, oper_descripcion, oper_fecha) VALUES (@dispositivo, 'apagado', GETDATE())
+END
+GO		

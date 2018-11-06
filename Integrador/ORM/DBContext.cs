@@ -17,6 +17,7 @@ namespace Integrador.ORM
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Dispositivo> Dispositivo { get; set; }
+        public virtual DbSet<Operacion> Operacion { get; set; }
         public virtual DbSet<Regla> Regla { get; set; }
         public virtual DbSet<Sensor> Sensor { get; set; }
         public virtual DbSet<Template_Dispositivo> Template_Dispositivo { get; set; }
@@ -82,18 +83,23 @@ namespace Integrador.ORM
                 .WithOptional(e => e.Dispositivo)
                 .HasForeignKey(e => e.dispositivo_id);
 
+            modelBuilder.Entity<Dispositivo>()
+                .HasMany(e => e.Operacion)
+                .WithOptional(e => e.Dispositivo)
+                .HasForeignKey(e => e.oper_dispositivo);
+
             modelBuilder.Entity<Regla>()
                 .Property(e => e.condicion)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Regla>()
-                .HasMany(e => e.Sensor)
-                .WithOptional(e => e.Regla)
-                .HasForeignKey(e => e.regla_id);
-
             modelBuilder.Entity<Sensor>()
                 .Property(e => e.magnitud)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Sensor>()
+                .HasMany(e => e.Regla)
+                .WithOptional(e => e.Sensor1)
+                .HasForeignKey(e => e.sensor);
 
             modelBuilder.Entity<Template_Dispositivo>()
                 .Property(e => e.nombre)

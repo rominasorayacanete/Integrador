@@ -10,7 +10,7 @@ namespace Tests_unitarios
     public class Test2
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CasoDePrueba2()
         {
             using(DBContext db = new DBContext())
             {
@@ -22,8 +22,24 @@ namespace Tests_unitarios
 
         public string CambiarNombre(DBContext db)
         {
-            var query = from d in db.Dispositivo select d;
-            var dispositivo = query.FirstOrDefault();
+            var queryDispositivo = from d in db.Dispositivo select d;
+            var dispositivo = queryDispositivo.FirstOrDefault();
+
+            foreach (Operacion op in dispositivo.Operacion)
+            {
+                if(op.oper_descripcion == "encendido" && (((DateTime.Now.Year - op.oper_fecha.Year) * 12) + DateTime.Now.Month - op.oper_fecha.Month) == 0)
+                {
+                    Console.WriteLine("El dispositivo " + dispositivo.id + " fue encendido en: \n");
+                    Console.WriteLine(op.oper_fecha);
+                }
+
+                if (op.oper_descripcion == "apagado" && (((DateTime.Now.Year - op.oper_fecha.Year) * 12) + DateTime.Now.Month - op.oper_fecha.Month) == 0)
+                {
+                    Console.WriteLine("El dispositivo " + dispositivo.id + " fue apagado en: \n");
+                    Console.WriteLine(op.oper_fecha);
+                }
+            }
+
             string nombreGrabado = dispositivo.nombre_generico = "NuevoNombre";
             db.SaveChanges();
             return nombreGrabado;

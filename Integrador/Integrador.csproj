@@ -243,6 +243,7 @@
     <Compile Include="ORM\Cliente.cs" />
     <Compile Include="ORM\DBContext.cs" />
     <Compile Include="ORM\Dispositivo.cs" />
+    <Compile Include="ORM\Operacion.cs" />
     <Compile Include="ORM\Regla.cs" />
     <Compile Include="ORM\Sensor.cs" />
     <Compile Include="ORM\Template_Dispositivo.cs" />
