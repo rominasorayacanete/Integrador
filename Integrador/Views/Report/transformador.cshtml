@@ -1,0 +1,33 @@
+﻿<body>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="container">
+                <h3> Generar reporte transformador</h3>
+                <div id="createForm">
+                    @using (Html.BeginForm("ReporteTransformador", "Report", new { username = ViewBag.Username }, FormMethod.Post, new { @class = "form-singup" }))
+                    {
+                        <select name="transformadorId" id="transformadorId" class="form-control">
+
+                            @foreach (var item in ViewBag.Transformadores)
+                            {
+                                <option value="@item.id">@item.nombre</option>
+                            }
+                        </select>
+                        <select name="periodo" id="periodo" class="form-control">
+                            <option value="30">Mensual</option>
+                            <option value="90">Trimestral</option>
+                            <option value="365">Anual</option>
+                        </select>
+                        <input type="submit" value="Guardar" class="btn btn-info btn-block mt-1" />
+                    }
+                </div>
+                <div class="text-center">
+                    @Html.ActionLink("Volver", "Index", "Report")
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</body>
+</html>

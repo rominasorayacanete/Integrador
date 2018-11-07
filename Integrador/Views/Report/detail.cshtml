@@ -1,0 +1,16 @@
+﻿<body>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+                <h3> Reporte</h3>
+                    <h4>@ViewBag.Nombre </h4>
+                    <h4>Periodo @ViewBag.Periodo días</h4>
+                    <h4>Consumo total @ViewBag.Consumo </h4>
+                <div class="text-center">
+                    @Html.ActionLink("Volver", "Index", "Report")
+                </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</body>
+</html>

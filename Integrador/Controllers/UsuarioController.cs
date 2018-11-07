@@ -31,6 +31,7 @@ namespace Integrador.Controllers
                 if (usr != null)
                 {
                     Session["Username"] = usr.username;
+                    Session["UserId"] = usr.id;
                     ViewBag.Username = usr.username.ToString();
                     userService.CheckUser(usr.id);
                     if (userService.isAdmin(usr))

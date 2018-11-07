@@ -1,0 +1,112 @@
+﻿@model Integrador.ORM.Dispositivo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Dispositivo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_generico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_generico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.consumo_hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumo_hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.encendido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.encendido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modo_ahorro_energia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modo_ahorro_energia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.consumo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_mensual_max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_mensual_max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_mensual_min)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_mensual_min)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inteligente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inteligente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_dispositivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_dispositivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_estimado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_estimado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
