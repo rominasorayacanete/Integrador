@@ -205,6 +205,8 @@
     <Compile Include="Controllers\TransformadorsController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ZonaController.cs" />
+    <Compile Include="DAL\IntegradorContext.cs" />
+    <Compile Include="DAL\IntegradorInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -241,7 +243,9 @@
     <Compile Include="Models\Clases\Transformador.cs" />
     <Compile Include="Models\Clases\Usuario.cs" />
     <Compile Include="Models\Clases\ZonaGeografica.cs" />
-    <Compile Include="Models\dispositivoReporte.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="ORM\Actuador.cs" />
     <Compile Include="ORM\Administrador.cs" />
     <Compile Include="ORM\Categoria.cs" />
@@ -264,6 +268,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Integrador.dll" />
+    <Content Include="bin\Integrador.pdb" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -271,11 +277,15 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\gentlemen.jpg" />
+    <Content Include="obj\Debug\Integrador.csproj.FileListAbsolute.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
+    <Content Include="obj\Debug\Integrador.csproj.CoreCompileInputs.cache" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
