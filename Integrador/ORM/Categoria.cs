@@ -9,19 +9,27 @@ namespace Integrador.ORM
     [Table("Categoria")]
     public partial class Categoria
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Categoria()
+        {
+            Cliente = new HashSet<Cliente>();
+        }
 
-        [Column(TypeName = "numeric")]
-        public decimal? ConsumoMinimo { get; set; }
+        public int id { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal? ConsumoMaximo { get; set; }
+        [Required]
+        [StringLength(25)]
+        public string nombre { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal? CargoFijo { get; set; }
+        public double? consumo_minimo { get; set; }
 
-        [Column(TypeName = "numeric")]
-        public decimal? CargoVariable { get; set; }
+        public double? consumo_maximo { get; set; }
+
+        public double cargo_fijo { get; set; }
+
+        public double cargo_variable { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cliente> Cliente { get; set; }
     }
 }

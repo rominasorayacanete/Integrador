@@ -9,31 +9,33 @@ namespace Integrador.ORM
     [Table("Usuario")]
     public partial class Usuario
     {
-        [StringLength(30)]
-        public string Nombre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Usuario()
+        {
+            Administrador = new HashSet<Administrador>();
+            Cliente = new HashSet<Cliente>();
+        }
 
-        [StringLength(30)]
-        public string Apellido { get; set; }
+        public int id { get; set; }
 
-        [StringLength(30)]
-        public string Tipo_Documento { get; set; }
+        [Required]
+        [StringLength(15)]
+        public string username { get; set; }
 
-        [StringLength(30)]
-        public string Domicilio { get; set; }
+        [Required]
+        [StringLength(15)]
+        public string password { get; set; }
 
-        [Key]
-        [Required(ErrorMessage = "Nombre de usuario requerido"), StringLength(30)]
-        [Display(Name = "Nombre de usuario")]
-        public string Nombre_usuario { get; set; }
+        [Required]
+        [StringLength(25)]
+        public string email { get; set; }
 
-        [StringLength(30)]
-        [Required(ErrorMessage = "La contraseña es requerida")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Contraseña")]
-        public string Contrasenia { get; set; }
+        public DateTime? fecha_alta_sistema { get; set; }
 
-        public int? Nro_Documento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Administrador> Administrador { get; set; }
 
-        public int? Telefono { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cliente> Cliente { get; set; }
     }
 }

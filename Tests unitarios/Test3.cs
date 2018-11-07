@@ -7,8 +7,9 @@ namespace Tests_unitarios
     public class Test3
     {
         [TestMethod]
-        public void CrearNuevaReglaNuevaCondicion_Persistirla_VerificarModificacion()
+        public void CasoDePrueba3()
         {
+
         }
     }
 }

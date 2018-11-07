@@ -6,11 +6,11 @@ namespace Integrador.ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Actuador")]
-    public partial class Actuador
+    [Table("Sensor")]
+    public partial class Sensor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Actuador()
+        public Sensor()
         {
             Regla = new HashSet<Regla>();
         }
@@ -18,12 +18,8 @@ namespace Integrador.ORM
         public int id { get; set; }
 
         [Required]
-        [StringLength(255)]
-        public string accion { get; set; }
-
-        public int? dispositivo_id { get; set; }
-
-        public virtual Dispositivo Dispositivo { get; set; }
+        [StringLength(15)]
+        public string magnitud { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Regla> Regla { get; set; }

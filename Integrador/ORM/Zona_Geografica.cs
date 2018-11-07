@@ -6,26 +6,27 @@ namespace Integrador.ORM
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Actuador")]
-    public partial class Actuador
+    public partial class Zona_Geografica
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Actuador()
+        public Zona_Geografica()
         {
-            Regla = new HashSet<Regla>();
+            Transformador = new HashSet<Transformador>();
         }
 
         public int id { get; set; }
 
+        public int radio { get; set; }
+
+        public double? longitud { get; set; }
+
+        public double? latitud { get; set; }
+
         [Required]
-        [StringLength(255)]
-        public string accion { get; set; }
-
-        public int? dispositivo_id { get; set; }
-
-        public virtual Dispositivo Dispositivo { get; set; }
+        [StringLength(15)]
+        public string nombre_zona { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Regla> Regla { get; set; }
+        public virtual ICollection<Transformador> Transformador { get; set; }
     }
 }
