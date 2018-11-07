@@ -21,19 +21,7 @@ namespace Integrador.Controllers
 
         public ActionResult About()
         {
-            /*
-            Integrador.ORM.Regla regla = new ORM.Regla();
-            regla.idRegla = 123;
-
-            using(var db = new IntegradorDB())
-            {
-                db.Regla.Add(regla);
-                db.SaveChanges();
-            }
-            */
-
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 

@@ -198,7 +198,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\Template_DispositivoController.cs" />
+    <Compile Include="Controllers\TransformadorsController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -236,6 +238,7 @@
     <Compile Include="Models\Clases\Transformador.cs" />
     <Compile Include="Models\Clases\Usuario.cs" />
     <Compile Include="Models\Clases\ZonaGeografica.cs" />
+    <Compile Include="Models\Datetime.cs" />
     <Compile Include="ORM\Actuador.cs" />
     <Compile Include="ORM\Administrador.cs" />
     <Compile Include="ORM\Categoria.cs" />
@@ -327,6 +330,12 @@
     <Content Include="Views\Template_Dispositivo\Details.cshtml" />
     <Content Include="Views\Template_Dispositivo\Edit.cshtml" />
     <Content Include="Views\Template_Dispositivo\Index.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Transformadors\Create.cshtml" />
+    <Content Include="Views\Transformadors\Delete.cshtml" />
+    <Content Include="Views\Transformadors\Details.cshtml" />
+    <Content Include="Views\Transformadors\Edit.cshtml" />
+    <Content Include="Views\Transformadors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,7 +29,6 @@
                             <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
                             <li>@Html.ActionLink("Cargar Datos", "LoadData", "Home")</li>
                             <li>@Html.ActionLink("Ejecutar Simplex", "Simplex", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
                         }
                     }
                     
@@ -37,6 +36,7 @@
                         if (Session["Role"] == "Admin")
                         {
                             <li>@Html.ActionLink("Dispositivos", "Index", "Template_Dispositivo")</li>
+                            <li>@Html.ActionLink("Reportes", "Index", "Report")</li>
                         }
                     }
                 </ul>

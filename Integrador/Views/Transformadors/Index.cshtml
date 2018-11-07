@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Integrador.ORM.Transformador>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Período</h2>
+
+
+<form action="/Transformadors/Details" method="get">
+    <select id="id" name="id">
+        @{
+            foreach (var item in Model)
+            {
+                <option value="item.id" customAttribute="item.SomethingSpecial">
+                    Transformador : @item.nombre
+                </option>
+            }
+        }
+    </select>
+
+    <select id="periodo" name="periodo">
+        <option value="7" customAttribute="item.SomethingSpecial">Semanal</option>
+        <option value="30" customAttribute="item.SomethingSpecial">Mensual</option>
+        <option value="90" customAttribute="item.SomethingSpecial">Trimestral</option>
+        <option value="365" customAttribute="item.SomethingSpecial">Anual</option>
+    </select>
+    <button type="submit">Calcular consumo</button>
+</form>
