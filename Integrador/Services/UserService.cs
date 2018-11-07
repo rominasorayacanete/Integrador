@@ -51,6 +51,19 @@ namespace Integrador.Services
             }
         }
 
+        public bool isAdmin(ORM.Usuario usuario)
+        {
+            using (var db = new DBContext())
+            {
+                var admin = db.Administrador.SingleOrDefault(a => a.Usuario.id == usuario.id);
+                if (admin != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
         public void CheckUser(int userId)
         {
             using (var db = new DBContext())

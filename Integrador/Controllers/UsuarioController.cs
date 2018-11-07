@@ -30,9 +30,13 @@ namespace Integrador.Controllers
                 var usr = db.Usuario.Where(u => u.username == usuario.username && u.password == usuario.password).FirstOrDefault();
                 if (usr != null)
                 {
-                    Session["Username"] = usr.username.ToString();
+                    Session["Username"] = usr.username;
                     ViewBag.Username = usr.username.ToString();
                     userService.CheckUser(usr.id);
+                    if (userService.isAdmin(usr))
+                    {
+                        Session["Role"] = "Admin";
+                    }
                     return RedirectToAction("LoggedIn");
                 }
                 else
@@ -53,6 +57,12 @@ namespace Integrador.Controllers
             {
                 return RedirectToAction("Login");
             }
+        }
+
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index","Home");
         }
     }
 }

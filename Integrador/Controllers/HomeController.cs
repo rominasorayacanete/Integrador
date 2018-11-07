@@ -37,7 +37,6 @@ namespace Integrador.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult Simplex()
         {
             try
@@ -60,7 +59,6 @@ namespace Integrador.Controllers
             return View();
         }
 
-        [Authorize]
         public ActionResult LoadData()
         {
             return View();
