@@ -20,10 +20,13 @@ namespace Integrador.ORM
 
         [Required]
         [StringLength(15)]
+        [Display(Name = "Usuario")]
         public string username { get; set; }
 
         [Required]
         [StringLength(15)]
+        [Display(Name ="Contraseña")]
+        [DataType(DataType.Password)]
         public string password { get; set; }
 
         [Required]

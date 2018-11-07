@@ -17,7 +17,7 @@ namespace Integrador.ORM
         [StringLength(255)]
         public string oper_descripcion { get; set; }
 
-        public DateTime oper_fecha { get; set; }
+        public DateTime? oper_fecha { get; set; }
 
         public virtual Dispositivo Dispositivo { get; set; }
     }

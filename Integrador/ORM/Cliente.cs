@@ -38,9 +38,9 @@ namespace Integrador.ORM
 
         public int? telefono { get; set; }
 
-        public double? longitud { get; set; }
+        public double longitud { get; set; }
 
-        public double? latitud { get; set; }
+        public double latitud { get; set; }
 
         public int? transformador_id { get; set; }
 
