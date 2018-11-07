@@ -241,7 +241,6 @@
     <Compile Include="Models\Clases\Transformador.cs" />
     <Compile Include="Models\Clases\Usuario.cs" />
     <Compile Include="Models\Clases\ZonaGeografica.cs" />
-    <Compile Include="Models\dispositivoReporte.cs" />
     <Compile Include="ORM\Actuador.cs" />
     <Compile Include="ORM\Administrador.cs" />
     <Compile Include="ORM\Categoria.cs" />

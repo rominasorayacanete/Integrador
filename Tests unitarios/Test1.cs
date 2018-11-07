@@ -8,9 +8,6 @@ namespace Tests_unitarios
     [TestClass]
     public class Test1
     {
-        /*Crear 1 usuario nuevo. Persistirlo. Recuperarlo, modificar la geolocalización y
-            grabarlo. Recuperarlo y evaluar que el cambio se haya realizado
-            */
         [TestMethod]
         public void Test_CrearUsuarioModificarlo_ObtenerUsuarioModificado()
         {
