@@ -1,68 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
-using Integrador.Models.Clases;
-using System.Linq;
-using System.Web;
 
 namespace Integrador.Models
 {
     public class Cliente : Usuario
     {
-        private Categoria categoria { get; set; }
-        private List <DispositivoEstandar> dispositivos { get; set; } = new List<DispositivoEstandar>();
-        private List<DispositivoInteligente> dispositivosInteligentes { get; set; } = new List<DispositivoInteligente>();
-        private DateTime fechaAltaServicio { get; set; }
-        public int numeroDocumento { get; set;}
-        public int puntos { get; set; }
-        public int telefono { get; set; }
-        public string tipoDocumento { get; set; }
-        private ZonaGeografica ZonaGeografica { get; set; }
-        public double Latitud { get; set; }
-        public double Longitud { get; set; }
+        private int Puntos { get; set; }
+        private double Latitud { get; set; }
+        private double Longitud { get; set; }
+        private Categoria Categoria { get; set; }
+        private Zona_Geografica Zona_Geografica { get; set; }
+        private List<DispositivoEstandar> Dispositivos { get; set; }
+        private List<DispositivoInteligente> DispositivosInteligentes { get; set; }
 
 
         public void AdaptarDispositivo(DispositivoEstandar dispositivo)
         {
-            this.dispositivos = new List<DispositivoEstandar>();
-            this.dispositivosInteligentes = new List<DispositivoInteligente>();
+            Dispositivos = new List<DispositivoEstandar>();
+            DispositivosInteligentes = new List<DispositivoInteligente>();
             ModuloAdaptador adaptador = new ModuloAdaptador();
             adaptador.AgregarDispositivo(dispositivo);
             // Persistencia del ModuloAdaptador
-            puntos += 10;
+            Puntos += 10;
         }
 
-        public List<DispositivoInteligente> GetDispositivoInteligentes()
-        {
-            return this.dispositivosInteligentes;
-        }
+        public List<DispositivoInteligente> GetDispositivoInteligentes() => DispositivosInteligentes;      
 
         public void AgregarDispositivo(DispositivoEstandar dispositivo)
         {
-            dispositivos.Add(dispositivo);
+            Dispositivos.Add(dispositivo);
         }
 
         public void AgregarDispositivoInteligente(DispositivoInteligente dispositivo)
         {
-            dispositivosInteligentes.Add(dispositivo);
+            DispositivosInteligentes.Add(dispositivo);
         }
 
-        public int cantidadDispositivos() => dispositivos.Count + dispositivosInteligentes.Count;
+        public int CantidadDispositivos() => Dispositivos.Count + DispositivosInteligentes.Count;
 
         public bool tieneDispositivosEncendidos()
         {
-            foreach (DispositivoInteligente d in dispositivosInteligentes)
+            foreach (DispositivoInteligente d in DispositivosInteligentes)
             {
-                if (d.EstaEncendido()) return true;
+                return d.EstaEncendido();
             }
 
             return false;
         }
 
-        public int cantidadDispositivosEncendidos()
+        public int CantidadDispositivosEncendidos()
         {
             int cant = 0;
 
-            foreach (DispositivoInteligente d in dispositivosInteligentes)
+            foreach (DispositivoInteligente d in DispositivosInteligentes)
             {
                 if (d.EstaEncendido()) cant++;
             }
@@ -74,13 +64,12 @@ namespace Integrador.Models
         {
             int cant = 0;
 
-            foreach (DispositivoInteligente d in dispositivosInteligentes)
+            foreach (DispositivoInteligente d in DispositivosInteligentes)
             {
                 if (d.EstaApagado()) cant++;
             }
 
             return cant;
         }
-
     }
 }

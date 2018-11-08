@@ -210,39 +210,39 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Clases\Acciones\AccionApagar.cs" />
-    <Compile Include="Models\Clases\Acciones\AccionBajarIntensidad.cs" />
-    <Compile Include="Models\Clases\Acciones\AccionBajarTemperatura.cs" />
-    <Compile Include="Models\Clases\AccountViewModels.cs" />
-    <Compile Include="Models\Clases\Actuador.cs" />
-    <Compile Include="Models\Clases\Categoria.cs" />
-    <Compile Include="Models\Clases\Cliente.cs" />
-    <Compile Include="Models\Clases\Dispositivo.cs" />
-    <Compile Include="Models\Clases\Interface\IActuadorObserver.cs" />
-    <Compile Include="Models\Clases\Interface\IReglaObserver.cs" />
-    <Compile Include="Models\Clases\Interface\IReglaSubject.cs" />
-    <Compile Include="Models\Clases\Interface\ISensorSubject.cs" />
-    <Compile Include="Models\Clases\ModuloAdaptador.cs" />
-    <Compile Include="Models\Clases\DispositivoEstandar.cs" />
-    <Compile Include="Models\Clases\DispositivoInteligente.cs" />
-    <Compile Include="Models\Clases\IdentityModels.cs" />
-    <Compile Include="Models\Clases\Regla.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoComputadora.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoLampara.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoLavarropas.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoAireAcondicionado.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoHeladera.cs" />
-    <Compile Include="Models\Clases\Interface\Accion.cs" />
-    <Compile Include="Models\Clases\Abstract\TipoDispositivo.cs" />
-    <Compile Include="Models\Clases\ManageViewModels.cs" />
-    <Compile Include="Models\Clases\Sensor.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoMicroondas.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoPlancha.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoTelevisor.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoVentilador.cs" />
-    <Compile Include="Models\Clases\Transformador.cs" />
-    <Compile Include="Models\Clases\Usuario.cs" />
-    <Compile Include="Models\Clases\ZonaGeografica.cs" />
+    <Compile Include="Models\Acciones\AccionApagar.cs" />
+    <Compile Include="Models\Acciones\AccionBajarIntensidad.cs" />
+    <Compile Include="Models\Acciones\AccionBajarTemperatura.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Actuador.cs" />
+    <Compile Include="Models\Administrador.cs" />
+    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Dispositivo.cs" />
+    <Compile Include="Models\Interface\IActuadorObserver.cs" />
+    <Compile Include="Models\Interface\IReglaObserver.cs" />
+    <Compile Include="Models\Interface\IReglaSubject.cs" />
+    <Compile Include="Models\Interface\ISensorSubject.cs" />
+    <Compile Include="Models\ModuloAdaptador.cs" />
+    <Compile Include="Models\DispositivoEstandar.cs" />
+    <Compile Include="Models\DispositivoInteligente.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Regla.cs" />
+    <Compile Include="Models\Tipos\TipoComputadora.cs" />
+    <Compile Include="Models\Tipos\TipoLampara.cs" />
+    <Compile Include="Models\Tipos\TipoLavarropas.cs" />
+    <Compile Include="Models\Tipos\TipoAireAcondicionado.cs" />
+    <Compile Include="Models\Tipos\TipoHeladera.cs" />
+    <Compile Include="Models\Interface\Accion.cs" />
+    <Compile Include="Models\Abstract\TipoDispositivo.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Sensor.cs" />
+    <Compile Include="Models\Tipos\TipoMicroondas.cs" />
+    <Compile Include="Models\Tipos\TipoPlancha.cs" />
+    <Compile Include="Models\Tipos\TipoTelevisor.cs" />
+    <Compile Include="Models\Tipos\TipoVentilador.cs" />
+    <Compile Include="Models\Transformador.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -286,6 +286,10 @@
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
     <Content Include="obj\Debug\Integrador.csproj.CoreCompileInputs.cache" />
+    <Content Include="JSONFiles\dispositivos.json" />
+    <Content Include="JSONFiles\zonas&amp;transformadores.json" />
+    <Content Include="JSONFiles\zonas&amp;transformadores.json %281%29.json" />
+    <Content Include="JSONFiles\zonas&amp;transformadores.json.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -362,7 +366,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="JSONFiles\" />
     <Folder Include="Views\Zona\" />
   </ItemGroup>
   <ItemGroup>

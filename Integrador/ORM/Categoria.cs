@@ -15,19 +15,19 @@ namespace Integrador.ORM
             Cliente = new HashSet<Cliente>();
         }
 
-        public int id { get; set; }
+        [Key]
+        public int cate_id { get; set; }
 
-        [Required]
-        [StringLength(25)]
-        public string nombre { get; set; }
+        [StringLength(255)]
+        public string cate_nombre { get; set; }
 
-        public double? consumo_minimo { get; set; }
+        public double? cate_consumo_minimo { get; set; }
 
-        public double? consumo_maximo { get; set; }
+        public double? cate_consumo_maximo { get; set; }
 
-        public double cargo_fijo { get; set; }
+        public double? cate_cargo_fijo { get; set; }
 
-        public double cargo_variable { get; set; }
+        public double? cate_cargo_variable { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cliente> Cliente { get; set; }

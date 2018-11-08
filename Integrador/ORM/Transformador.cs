@@ -9,30 +9,21 @@ namespace Integrador.ORM
     [Table("Transformador")]
     public partial class Transformador
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Transformador()
-        {
-            Cliente = new HashSet<Cliente>();
-        }
+        [Key]
+        public int tran_id { get; set; }
 
-        public int id { get; set; }
+        [StringLength(255)]
+        public string tran_nombre { get; set; }
 
-        [Required]
-        [StringLength(15)]
-        public string nombre { get; set; }
+        public bool? tran_activo { get; set; }
 
-        public bool activo { get; set; }
+        public double? tran_energia_suministrada { get; set; }
 
-        public double energia_suministrada { get; set; }
+        public double? tran_latitud { get; set; }
 
-        public double latitud { get; set; }
+        public double? tran_longitud { get; set; }
 
-        public double longitud { get; set; }
-
-        public int? zona_id { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cliente> Cliente { get; set; }
+        public int? tran_zona { get; set; }
 
         public virtual Zona_Geografica Zona_Geografica { get; set; }
     }

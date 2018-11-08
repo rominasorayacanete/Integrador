@@ -28,91 +28,79 @@ namespace Integrador.ORM
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Actuador>()
-                .Property(e => e.accion)
+                .Property(e => e.actu_accion)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Actuador>()
                 .HasMany(e => e.Regla)
                 .WithMany(e => e.Actuador)
-                .Map(m => m.ToTable("Actuador_Regla").MapLeftKey("actuador_id").MapRightKey("regla_id"));
+                .Map(m => m.ToTable("Actuador_X_Regla").MapLeftKey("actuador").MapRightKey("regla"));
 
             modelBuilder.Entity<Administrador>()
-                .Property(e => e.id_sistema)
+                .Property(e => e.username)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Categoria>()
-                .Property(e => e.nombre)
+                .Property(e => e.cate_nombre)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Categoria>()
                 .HasMany(e => e.Cliente)
                 .WithOptional(e => e.Categoria)
-                .HasForeignKey(e => e.categoria_id);
+                .HasForeignKey(e => e.clie_categoria)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Cliente>()
-                .Property(e => e.nombre)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Cliente>()
-                .Property(e => e.apellido)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Cliente>()
-                .Property(e => e.tipo_doc)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Cliente>()
-                .Property(e => e.domicilio)
+                .Property(e => e.username)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Cliente>()
                 .HasMany(e => e.Dispositivo)
                 .WithOptional(e => e.Cliente)
-                .HasForeignKey(e => e.cliente_id);
+                .HasForeignKey(e => e.disp_cliente)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Dispositivo>()
-                .Property(e => e.nombre_generico)
+                .Property(e => e.disp_nombre_generico)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Dispositivo>()
-                .Property(e => e.tipo_dispositivo)
+                .Property(e => e.disp_tipo_dispositivo)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Dispositivo>()
                 .HasMany(e => e.Actuador)
                 .WithOptional(e => e.Dispositivo)
-                .HasForeignKey(e => e.dispositivo_id);
+                .HasForeignKey(e => e.actu_dispositivo)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Dispositivo>()
                 .HasMany(e => e.Operacion)
                 .WithOptional(e => e.Dispositivo)
-                .HasForeignKey(e => e.oper_dispositivo);
+                .HasForeignKey(e => e.oper_dispositivo)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Regla>()
-                .Property(e => e.condicion)
+                .Property(e => e.regl_condicion)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Sensor>()
-                .Property(e => e.magnitud)
+                .Property(e => e.sens_magnitud)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Sensor>()
                 .HasMany(e => e.Regla)
-                .WithOptional(e => e.Sensor1)
-                .HasForeignKey(e => e.sensor);
+                .WithOptional(e => e.Sensor)
+                .HasForeignKey(e => e.regl_sensor)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Template_Dispositivo>()
-                .Property(e => e.nombre)
+                .Property(e => e.temp_nombre)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Transformador>()
-                .Property(e => e.nombre)
+                .Property(e => e.tran_nombre)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Transformador>()
-                .HasMany(e => e.Cliente)
-                .WithOptional(e => e.Transformador)
-                .HasForeignKey(e => e.transformador_id);
 
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.username)
@@ -123,27 +111,46 @@ namespace Integrador.ORM
                 .IsUnicode(false);
 
             modelBuilder.Entity<Usuario>()
-                .Property(e => e.email)
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Usuario>()
+                .Property(e => e.apellido)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Usuario>()
+                .Property(e => e.tipo_documento)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Usuario>()
+                .Property(e => e.domicilio)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Usuario>()
                 .HasMany(e => e.Administrador)
                 .WithOptional(e => e.Usuario)
-                .HasForeignKey(e => e.usuario_id);
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Usuario>()
                 .HasMany(e => e.Cliente)
                 .WithOptional(e => e.Usuario)
-                .HasForeignKey(e => e.usuario_id);
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Zona_Geografica>()
-                .Property(e => e.nombre_zona)
+                .Property(e => e.zona_nombre)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Zona_Geografica>()
+                .HasMany(e => e.Cliente)
+                .WithOptional(e => e.Zona_Geografica)
+                .HasForeignKey(e => e.clie_zona)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Zona_Geografica>()
                 .HasMany(e => e.Transformador)
                 .WithOptional(e => e.Zona_Geografica)
-                .HasForeignKey(e => e.zona_id);
+                .HasForeignKey(e => e.tran_zona)
+                .WillCascadeOnDelete();
         }
     }
 }

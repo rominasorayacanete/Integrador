@@ -9,13 +9,11 @@ namespace Integrador.ORM
     [Table("Administrador")]
     public partial class Administrador
     {
-        public int id { get; set; }
+        [Key]
+        public int id_sistema { get; set; }
 
-        [Required]
-        [StringLength(15)]
-        public string id_sistema { get; set; }
-
-        public int? usuario_id { get; set; }
+        [StringLength(255)]
+        public string username { get; set; }
 
         public virtual Usuario Usuario { get; set; }
     }

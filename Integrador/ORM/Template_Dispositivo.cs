@@ -8,16 +8,18 @@ namespace Integrador.ORM
 
     public partial class Template_Dispositivo
     {
-        public int id { get; set; }
+        [Key]
+        public int temp_id { get; set; }
 
-        [Required]
-        [StringLength(30)]
-        public string nombre { get; set; }
+        [StringLength(255)]
+        public string temp_nombre { get; set; }
 
-        public bool inteligente { get; set; }
+        public bool? temp_inteligente { get; set; }
 
-        public bool bajo_consumo { get; set; }
+        public bool? temp_bajo_consumo { get; set; }
 
-        public int consumo { get; set; }
+        public int? temp_consumo { get; set; }
+
+        public int? temp_dispositivo { get; set; }
     }
 }
