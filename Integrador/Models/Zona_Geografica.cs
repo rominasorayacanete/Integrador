@@ -12,7 +12,6 @@ namespace Integrador.Models
         public double Latitud { get; set; }
         public double Longitud { get; set; }
         public List<Transformador> Transformadores { get; set; }
-        public List<Cliente> Clientes { get; set; }
 
         public float ConsumoTotal()
         {
