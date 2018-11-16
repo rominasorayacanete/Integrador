@@ -16,24 +16,30 @@ namespace Integrador.ORM
             Cliente = new HashSet<Cliente>();
         }
 
-        public int id { get; set; }
-
-        [Required]
-        [StringLength(15)]
-        [Display(Name = "Usuario")]
+        [Key]
+        [StringLength(255)]
         public string username { get; set; }
 
-        [Required]
-        [StringLength(15)]
-        [Display(Name ="Contraseña")]
-        [DataType(DataType.Password)]
+        [StringLength(255)]
         public string password { get; set; }
 
-        [Required]
-        [StringLength(25)]
-        public string email { get; set; }
+        [StringLength(255)]
+        public string nombre { get; set; }
+
+        [StringLength(255)]
+        public string apellido { get; set; }
+
+        [StringLength(5)]
+        public string tipo_documento { get; set; }
+
+        public int? nro_documento { get; set; }
 
         public DateTime? fecha_alta_sistema { get; set; }
+
+        [StringLength(255)]
+        public string domicilio { get; set; }
+
+        public int? telefono { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Administrador> Administrador { get; set; }

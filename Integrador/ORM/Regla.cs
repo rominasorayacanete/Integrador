@@ -15,16 +15,17 @@ namespace Integrador.ORM
             Actuador = new HashSet<Actuador>();
         }
 
-        public int id { get; set; }
+        [Key]
+        public int regl_id { get; set; }
 
-        public bool? regla_cumplida { get; set; }
+        public bool? regl_cumplida { get; set; }
 
-        [StringLength(250)]
-        public string condicion { get; set; }
+        [StringLength(255)]
+        public string regl_condicion { get; set; }
 
-        public int? sensor { get; set; }
+        public int? regl_sensor { get; set; }
 
-        public virtual Sensor Sensor1 { get; set; }
+        public virtual Sensor Sensor { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Actuador> Actuador { get; set; }

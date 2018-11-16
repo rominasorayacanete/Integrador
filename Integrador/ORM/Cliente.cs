@@ -15,42 +15,25 @@ namespace Integrador.ORM
             Dispositivo = new HashSet<Dispositivo>();
         }
 
-        public int id { get; set; }
+        [Key]
+        public int clie_id { get; set; }
 
-        [Required]
-        [StringLength(25)]
-        public string nombre { get; set; }
+        public int? clie_puntos { get; set; }
 
-        [Required]
-        [StringLength(25)]
-        public string apellido { get; set; }
+        public double? clie_latitud { get; set; }
 
-        [Required]
-        [StringLength(15)]
-        public string tipo_doc { get; set; }
+        public double? clie_longitud { get; set; }
 
-        public int nro_doc { get; set; }
+        public int? clie_categoria { get; set; }
 
-        [StringLength(30)]
-        public string domicilio { get; set; }
+        public int? clie_zona { get; set; }
 
-        public int? puntos { get; set; }
-
-        public int? telefono { get; set; }
-
-        public double longitud { get; set; }
-
-        public double latitud { get; set; }
-
-        public int? transformador_id { get; set; }
-
-        public int? categoria_id { get; set; }
-
-        public int? usuario_id { get; set; }
+        [StringLength(255)]
+        public string username { get; set; }
 
         public virtual Categoria Categoria { get; set; }
 
-        public virtual Transformador Transformador { get; set; }
+        public virtual Zona_Geografica Zona_Geografica { get; set; }
 
         public virtual Usuario Usuario { get; set; }
 

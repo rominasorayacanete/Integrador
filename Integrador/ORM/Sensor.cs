@@ -15,11 +15,11 @@ namespace Integrador.ORM
             Regla = new HashSet<Regla>();
         }
 
-        public int id { get; set; }
+        [Key]
+        public int sens_id { get; set; }
 
-        [Required]
-        [StringLength(15)]
-        public string magnitud { get; set; }
+        [StringLength(255)]
+        public string sens_magnitud { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Regla> Regla { get; set; }

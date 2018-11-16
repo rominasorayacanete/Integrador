@@ -3,24 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Integrador.Models.Clases
+namespace Integrador.Models
 {
-    public class ZonaGeografica
+    public class Zona_Geografica
     {
-        public List<Transformador> Transformadores { get; set; }
         public int Radio { get; set; }
         public string NombreZona { get; set; }
         public double Latitud { get; set; }
         public double Longitud { get; set; }
-
-        public ZonaGeografica(int _Radio, string _NombreZona, double _Latitud, double _Longitud)
-        {
-            Transformadores = new List<Transformador>();
-            Radio = _Radio;
-            NombreZona = _NombreZona;
-            Latitud = _Latitud;
-            Longitud = _Longitud;
-        }
+        public List<Transformador> Transformadores { get; set; }
 
         public float ConsumoTotal()
         {

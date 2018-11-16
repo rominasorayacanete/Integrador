@@ -9,7 +9,7 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hola " + Session["Username"] + "!", "Index", "Home")
+            @Html.ActionLink(Session["Username"].ToString(), "Index", "Home")
         </li>
         <li>@Html.ActionLink("Salir", "LogOut", "Usuario")</li>
     </ul>

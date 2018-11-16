@@ -15,13 +15,13 @@ namespace Integrador.ORM
             Regla = new HashSet<Regla>();
         }
 
-        public int id { get; set; }
+        [Key]
+        public int actu_id { get; set; }
 
-        [Required]
         [StringLength(255)]
-        public string accion { get; set; }
+        public string actu_accion { get; set; }
 
-        public int? dispositivo_id { get; set; }
+        public int? actu_dispositivo { get; set; }
 
         public virtual Dispositivo Dispositivo { get; set; }
 

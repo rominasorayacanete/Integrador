@@ -85,9 +85,9 @@ namespace Integrador.Services
                 var cliente = db.Cliente
                     .Where(c => c.id == clienteId)
                     .FirstOrDefault();
-                IDictionary<Transformador, float> distancias = new Dictionary<Transformador, float>();
+                IDictionary<ORM.Transformador, float> distancias = new Dictionary<ORM.Transformador, float>();
 
-                foreach (Transformador trans in transformadores)
+                foreach (ORM.Transformador trans in transformadores)
                 {
                     var transformadorLat = trans.latitud;
                     var transformadorLong = trans.longitud;
@@ -98,7 +98,7 @@ namespace Integrador.Services
                     distancias.Add(trans, distancia);
                 }
                 System.Diagnostics.Debug.WriteLine("Transformadores totales : " + distancias.Count());
-                Transformador transformadorCercano = distancias.FirstOrDefault(x => x.Value == distancias.Values.Min()).Key;
+                ORM.Transformador transformadorCercano = distancias.FirstOrDefault(x => x.Value == distancias.Values.Min()).Key;
                 System.Diagnostics.Debug.WriteLine("Transformadores elegido : " + transformadorCercano.id);
                 cliente.Transformador = transformadorCercano;
                 db.SaveChanges();
