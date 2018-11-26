@@ -1,4 +1,4 @@
-﻿using Integrador.Models.Interface;
+﻿using Integrador.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace Integrador.Models.Clases.Acciones
     {
         public void Accionar(DispositivoInteligente dispositivo)
         {
-            dispositivo.TipoDispositivo.BajarTemperatura();
+            dispositivo.MarcaDispositivo.BajarTemperatura();
         }
     }
 }

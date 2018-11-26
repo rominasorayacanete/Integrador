@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Integrador.Models.Interface
+namespace Integrador.Models.Abstract
 {
     interface IAccion
     {

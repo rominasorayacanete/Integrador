@@ -1,4 +1,4 @@
-﻿using Integrador.Models.Interface;
+﻿using Integrador.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ namespace Integrador.Models
 {
     public class ModuloAdaptador
     {
-        public  TipoDispositivo TipoDispositivo { get; set; }
+        public  MarcaDispositivo MarcaDispositivo { get; set; }
         private DispositivoEstandar Dispositivo;
 
         public  void ActivarModoAhorroDeEnergia()

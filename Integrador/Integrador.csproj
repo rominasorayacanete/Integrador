@@ -222,6 +222,7 @@
     <Compile Include="Models\Clases\Interface\IReglaObserver.cs" />
     <Compile Include="Models\Clases\Interface\IReglaSubject.cs" />
     <Compile Include="Models\Clases\Interface\ISensorSubject.cs" />
+    <Compile Include="Models\Clases\MarcaLG.cs" />
     <Compile Include="Models\Clases\ModuloAdaptador.cs" />
     <Compile Include="Models\Clases\DispositivoEstandar.cs" />
     <Compile Include="Models\Clases\DispositivoInteligente.cs" />
@@ -229,13 +230,13 @@
     <Compile Include="Models\Clases\Regla.cs" />
     <Compile Include="Models\Clases\Tipos\TipoComputadora.cs" />
     <Compile Include="Models\Clases\Tipos\TipoLampara.cs" />
-    <Compile Include="Models\Clases\Tipos\TipoLavarropas.cs" />
     <Compile Include="Models\Clases\Tipos\TipoAireAcondicionado.cs" />
     <Compile Include="Models\Clases\Tipos\TipoHeladera.cs" />
     <Compile Include="Models\Clases\Interface\Accion.cs" />
-    <Compile Include="Models\Clases\Abstract\TipoDispositivo.cs" />
+    <Compile Include="Models\Clases\Abstract\MarcaDispositivo.cs" />
     <Compile Include="Models\Clases\ManageViewModels.cs" />
     <Compile Include="Models\Clases\Sensor.cs" />
+    <Compile Include="Models\Clases\Tipos\TipoLavarropas.cs" />
     <Compile Include="Models\Clases\Tipos\TipoMicroondas.cs" />
     <Compile Include="Models\Clases\Tipos\TipoPlancha.cs" />
     <Compile Include="Models\Clases\Tipos\TipoTelevisor.cs" />

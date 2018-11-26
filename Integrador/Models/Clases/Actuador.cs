@@ -1,6 +1,6 @@
 ﻿using Integrador.Models.Clases;
 using Integrador.Models.Clases.Interface;
-using Integrador.Models.Interface;
+using Integrador.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;

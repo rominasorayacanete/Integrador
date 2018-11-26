@@ -50,7 +50,7 @@ namespace Integrador.Services
 
                 foreach (DispositivoInteligente dispositivo in listado)
                 {
-                    values.Add(deviceService.findConsumo(dispositivo.TipoDispositivo.EquipoConcreto));
+                    values.Add(deviceService.findConsumo(dispositivo.MarcaDispositivo.EquipoConcreto));
                 }
 
                 listado.Reverse();
@@ -74,8 +74,8 @@ namespace Integrador.Services
                     for (int i = 0; i < restriccionNegativa.Length; i++) { restriccionNegativa[i] = 0; }
 
                     // Seteo el valor de la restriccion 
-                    restriccionPositiva[0] = dispositivo.TipoDispositivo.UsoMensualMin;
-                    restriccionNegativa[0] = dispositivo.TipoDispositivo.UsoMensualMax; 
+                    restriccionPositiva[0] = dispositivo.MarcaDispositivo.UsoMensualMin;
+                    restriccionNegativa[0] = dispositivo.MarcaDispositivo.UsoMensualMax; 
 
                     // Seteo '1' segun la ubicacion del dispositivo
                     restriccionPositiva[devicePosition] = 1; 
@@ -107,7 +107,7 @@ namespace Integrador.Services
                 int l = 0;
                 foreach (DispositivoInteligente dispositivo in listado)
                 {
-                    resultado.Add(dispositivo.TipoDispositivo.EquipoConcreto, httpResult[l]);
+                    resultado.Add(dispositivo.MarcaDispositivo.EquipoConcreto, httpResult[l]);
                     l++;
                 }
 

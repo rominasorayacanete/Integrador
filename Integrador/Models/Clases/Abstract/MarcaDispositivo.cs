@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Integrador.Models.Interface
+namespace Integrador.Models.Abstract
 {
-    abstract public class TipoDispositivo
+    abstract public class MarcaDispositivo
     {
-        public virtual double Consumo { get; set;}
+        public virtual double Consumo { get; set; }
         public virtual int UsoMensualMax { get; set; }
         public virtual int UsoMensualMin { get; set; }
         public virtual string EquipoConcreto { get; set; }

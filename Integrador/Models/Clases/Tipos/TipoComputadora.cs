@@ -1,4 +1,4 @@
-﻿using Integrador.Models.Interface;
+﻿using Integrador.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Integrador.Models.Clases.Tipos
 {
-    class TipoComputadora : TipoDispositivo
+    class TipoComputadora : MarcaDispositivo
     {
         public override int UsoMensualMin { get; set; } = 60;
         public override int UsoMensualMax { get; set; } = 360;

@@ -1,4 +1,4 @@
-﻿using Integrador.Models.Interface;
+﻿using Integrador.Models.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,11 @@ namespace Integrador.Models
     {
         public bool Encendido { get; set; }
         public bool ModoAhorroDeEnergia { get; set; }
-        public virtual TipoDispositivo TipoDispositivo { get; set; }
+        public virtual MarcaDispositivo MarcaDispositivo { get; set; }
 
-        public DispositivoInteligente(TipoDispositivo _tipoDispositivo)
+        public DispositivoInteligente(MarcaDispositivo _MarcaDispositivo)
         {
-            TipoDispositivo = _tipoDispositivo;
+            MarcaDispositivo = _MarcaDispositivo;
         }
 
         public virtual void ActivarModoAhorroDeEnergia()
