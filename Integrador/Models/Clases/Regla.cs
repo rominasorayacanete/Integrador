@@ -6,41 +6,35 @@ using System.Web;
 
 namespace Integrador.Models.Clases
 {
-    public class Regla : IReglaObserver, IReglaSubject
+    public class Regla 
     {
 
-        private bool reglaCumplida { get; set; }
-        private List<Actuador> actuadores;
-
-
-        public Regla()
-        {
-            this.actuadores = new List<Actuador>();
-            this.reglaCumplida = false;
-        }
+        public int Id { get; set; }
+        public bool ReglaCumplida { get; set; }
+        public virtual List<Actuador> Actuadores { get; set; }
 
         public bool SeCumple()
         {
-            return this.reglaCumplida;
+            return this.ReglaCumplida;
         }
 
         public void Attach(Actuador actuador)
         {
-            if (!actuadores.Contains(actuador))
-                actuadores.Add(actuador);
+            if (!Actuadores.Contains(actuador))
+                Actuadores.Add(actuador);
         }
 
 
         public void Detach(Actuador actuador)
         {
-            if (actuadores.Contains(actuador))
-                actuadores.Remove(actuador);
+            if (Actuadores.Contains(actuador))
+                Actuadores.Remove(actuador);
         }
 
 
         public void NotifyAllObservers()
         {
-            foreach(Actuador actuador in actuadores)
+            foreach(Actuador actuador in Actuadores)
            {
                 actuador.Update();
             }

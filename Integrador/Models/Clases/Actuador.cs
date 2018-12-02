@@ -5,45 +5,47 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Integrador.Models
 {
-    public class Actuador : IActuadorObserver
+    public class Actuador
     {
 
-        private DispositivoInteligente dispositivo;
-        private List<Regla> reglasRequeridas;
-        private IAccion accion;
+        public int Id { get; set; }
 
-        public Actuador(List<Regla> reglasRequeridas)
-        {
-            this.reglasRequeridas = new List<Regla>();
-        }
+        [Required]
+        [StringLength(255)]
+        public string Accion { get; set; }
 
-        public void Update()
-        {
-            if (SeCumplenTodasLasReglas(reglasRequeridas))
-            {
-                accion.Accionar(dispositivo);
-            }
-        }
+        public virtual Dispositivo Dispositivo { get; set; }
 
-        public bool SeCumplenTodasLasReglas(List<Regla> reglasRequeridas)
-        {
-            foreach(Regla regla in reglasRequeridas)
-           {
-                if (!regla.SeCumple())
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        public virtual List<Regla> Reglas { get; set; }
+        
 
-        public void Update(bool estadoRegla)
-        {
-            throw new NotImplementedException();
-        }
-    }//end of class Actuador//
- }
+         public void Update()
+          {
+              if (SeCumplenTodasLasReglas())
+              {
+                  //accion.Accionar(dispositivo);
+              }
+          }
+          public bool SeCumplenTodasLasReglas()
+          {
+              foreach(Regla regla in this.Reglas)
+             {
+                  if (!regla.SeCumple())
+                  {
+                      return false;
+                  }
+              }
+              return true;
+          }
+
+          public void Update(bool estadoRegla)
+          {
+              throw new NotImplementedException();
+          }
+    }
+}
 

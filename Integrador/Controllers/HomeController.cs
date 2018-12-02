@@ -9,6 +9,7 @@ using Integrador.Models;
 using Integrador.Models.Clases;
 using Integrador.Services;
 using Integrador.ORM;
+using Integrador.DAL;
 
 namespace Integrador.Controllers
 {
@@ -21,6 +22,30 @@ namespace Integrador.Controllers
 
         public ActionResult About()
         {
+            using (var db = new Context())
+            {
+                var usuario = new Models.Usuario
+                {
+                    Username = "cliente1",
+                    Password = "cliente1",
+                    Email = "pepo@pepo.com",
+                    FechaAltaSistema = DateTime.Now
+                };
+                db.Usuarios.Add(usuario);
+
+                var cliente = new Models.Cliente
+                {
+                    Nombre = "Cliente1",
+                    Apellido = "App Cliente",
+                    Usuario = usuario,
+                    TipoDoc = "DNI",
+                    NroDoc = 1010101,
+
+                };
+                //db.Clientes.Add(cliente);
+                db.SaveChanges();
+            }
+
             ViewBag.Message = "Your application description page.";
             return View();
         }
@@ -32,8 +57,8 @@ namespace Integrador.Controllers
 
                 SimplexService service = new SimplexService();
                 Models.Cliente cliente = service.MockCliente();
-                var objeto = service.executeSimplex(cliente);
-                ViewBag.Objeto = objeto;
+             //   var objeto = service.executeSimplex(cliente);
+              //  ViewBag.Objeto = objeto;
 
             } catch
             {

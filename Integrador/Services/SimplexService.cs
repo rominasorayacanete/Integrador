@@ -16,6 +16,7 @@ namespace Integrador.Services
 {
     public class SimplexService
     {
+        /*
         private static readonly HttpClient client = new HttpClient();
         private static DeviceService deviceService = new DeviceService();
         protected static System.Timers.Timer timer = new System.Timers.Timer(5000); // This will raise the event every one minute.
@@ -114,8 +115,9 @@ namespace Integrador.Services
                 return resultado;
 
             }
-            throw new ArgumentException("No existen dispositivos");
+            throw new ArgumentException("No existen dispositivos")
         }
+    */
 
         private List<float> SendJson(IDictionary<Object, Object> jsonArr)
         {
@@ -163,12 +165,12 @@ namespace Integrador.Services
 
             // Instancia de cliente
             Cliente cliente = new Cliente();
-            cliente.AgregarDispositivoInteligente(d1);
+            /*cliente.AgregarDispositivoInteligente(d1);
             cliente.AgregarDispositivoInteligente(d2);
             cliente.AgregarDispositivoInteligente(d3);
             cliente.AgregarDispositivoInteligente(d4);
             cliente.AgregarDispositivoInteligente(d5);
-
+            */
             return cliente;
         }
 

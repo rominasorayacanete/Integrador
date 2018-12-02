@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Integrador.Models
 {
-    public class DispositivoInteligente : Dispositivo
+    public class DispositivoInteligente
     {
         public bool Encendido { get; set; }
         public bool ModoAhorroDeEnergia { get; set; }
@@ -43,7 +43,7 @@ namespace Integrador.Models
 
         public virtual float EnergiaConsumidaUltimasNHoras(int horas)
         {
-            return ConsumoPorHora * horas;
+            return 2020 * horas;
         }
 
         public virtual void Encender()

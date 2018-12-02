@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Integrador.Models.Clases
+namespace Integrador.Models
 {
     public class Administrador
     {
-        public DateTime fechaAltaSistema { get; set; }
-        public int idSistema { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-        public int MesesComoAdministrador()
-        {
-            return Math.Abs((DateTime.Now.Month - fechaAltaSistema.Month) + 12 * (DateTime.Now.Year - fechaAltaSistema.Year));
-        }
+        [Required]
+        [StringLength(15)]
+        public string IdSistema { get; set; }
+
+        [Required]
+        public virtual Usuario Usuario { get; set; }
     }
 }

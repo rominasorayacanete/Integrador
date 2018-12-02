@@ -7,17 +7,17 @@ using Integrador.Models;
 
 namespace Integrador.DAL
 {
-    public class IntegradorInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<IntegradorContext>
+    public class IntegradorInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<Context>
     {
-        protected override void Seed(IntegradorContext context)
+        protected override void Seed(Context context)
         {
-            var categorias = new List<Categoria>
-            {
-            new Categoria{ConsumoMaximo=100,ConsumoMinimo=10,CargoFijo=20,CargoVariable=10},
-            new Categoria{ConsumoMaximo=200,ConsumoMinimo=20,CargoFijo=40,CargoVariable=20},
-            };
+            List<Usuario> usuarios = new List<Usuario>();
 
-            categorias.ForEach(s => context.Categorias.Add(s));
+            Usuario user1 = new Usuario { Username = "admin1", Password = "admin1", Email = "admin@admin1.com", FechaAltaSistema = new DateTime() };
+
+            usuarios.Add(user1);
+
+            usuarios.ForEach(u => context.Usuarios.Add(u));
             context.SaveChanges();
         }
     }

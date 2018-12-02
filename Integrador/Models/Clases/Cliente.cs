@@ -3,27 +3,55 @@ using System.Collections.Generic;
 using Integrador.Models.Clases;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace Integrador.Models
 {
-    public class Cliente : Usuario
+    public class Cliente
     {
-        private Categoria categoria { get; set; }
-        private List <DispositivoEstandar> dispositivos { get; set; } = new List<DispositivoEstandar>();
-        private List<DispositivoInteligente> dispositivosInteligentes { get; set; } = new List<DispositivoInteligente>();
-        private DateTime fechaAltaServicio { get; set; }
-        public int numeroDocumento { get; set;}
-        public int puntos { get; set; }
-        public int telefono { get; set; }
-        public string tipoDocumento { get; set; }
-        private ZonaGeografica ZonaGeografica { get; set; }
-        public double Latitud { get; set; }
+
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [StringLength(25)]
+        public string Nombre { get; set; }
+
+        [Required]
+        [StringLength(25)]
+        public string Apellido { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        public string TipoDoc { get; set; }
+
+        public int NroDoc { get; set; }
+
+        [StringLength(30)]
+        public string Domicilio { get; set; }
+
+        public int Puntos { get; set; }
+
+        public int Telefono { get; set; }
+
         public double Longitud { get; set; }
 
+        public double Latitud { get; set; }
+
+        public virtual Categoria Categoria { get; set; }
+
+        public virtual Transformador Transformador { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
+
+        public virtual List<Dispositivo> Dispositivos { get; set; }
+
+
+        /*
 
         public void AdaptarDispositivo(DispositivoEstandar dispositivo)
         {
-            this.dispositivos = new List<DispositivoEstandar>();
+            this.Dispositivos = new List<DispositivoEstandar>();
             this.dispositivosInteligentes = new List<DispositivoInteligente>();
             ModuloAdaptador adaptador = new ModuloAdaptador();
             adaptador.AgregarDispositivo(dispositivo);
@@ -81,6 +109,7 @@ namespace Integrador.Models
 
             return cant;
         }
+        */
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,24 +8,28 @@ namespace Integrador.Models.Clases
 {
     public class ZonaGeografica
     {
-        public List<Transformador> Transformadores { get; set; }
+
+        public int Id { get; set; }
+
+        [Required]
         public int Radio { get; set; }
+
+        [Required]
+        [StringLength(15)]
         public string NombreZona { get; set; }
+
+        [Required]
         public double Latitud { get; set; }
+
+        [Required]
         public double Longitud { get; set; }
 
-        public ZonaGeografica(int _Radio, string _NombreZona, double _Latitud, double _Longitud)
-        {
-            Transformadores = new List<Transformador>();
-            Radio = _Radio;
-            NombreZona = _NombreZona;
-            Latitud = _Latitud;
-            Longitud = _Longitud;
-        }
+        public virtual List<Transformador> Transformadores { get; set; }
 
-        public float ConsumoTotal()
+
+        public double ConsumoTotal()
         {
-            float consumoTotal = 0;
+            double consumoTotal = 0;
 
             foreach (Transformador t in Transformadores)
             {
