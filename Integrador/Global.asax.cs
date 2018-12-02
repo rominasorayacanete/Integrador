@@ -28,7 +28,7 @@ namespace Integrador
         {
             SimplexService simplexService = new SimplexService();
             Cliente cliente = simplexService.MockCliente();
-            simplexService.executeSimplex(cliente);
+           // simplexService.executeSimplex(cliente);
         }
     }
 }
