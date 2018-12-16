@@ -205,16 +205,50 @@
     <Compile Include="Controllers\TransformadorsController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ZonaController.cs" />
-    <Compile Include="DAL\IntegradorContext.cs" />
+    <Compile Include="DAL\Context.cs" />
     <Compile Include="DAL\IntegradorInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812022153298_InitialCreate.cs" />
+    <Compile Include="Migrations\201812022153298_InitialCreate.Designer.cs">
+      <DependentUpon>201812022153298_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812022221108_AddAdmin.cs" />
+    <Compile Include="Migrations\201812022221108_AddAdmin.Designer.cs">
+      <DependentUpon>201812022221108_AddAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812022328390_AddCli.cs" />
+    <Compile Include="Migrations\201812022328390_AddCli.Designer.cs">
+      <DependentUpon>201812022328390_AddCli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812022331463_AddClientes.cs" />
+    <Compile Include="Migrations\201812022331463_AddClientes.Designer.cs">
+      <DependentUpon>201812022331463_AddClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812022332424_AddCategorias.cs" />
+    <Compile Include="Migrations\201812022332424_AddCategorias.Designer.cs">
+      <DependentUpon>201812022332424_AddCategorias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812022334597_AddTransformadores.cs" />
+    <Compile Include="Migrations\201812022334597_AddTransformadores.Designer.cs">
+      <DependentUpon>201812022334597_AddTransformadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812022335435_AddZonas.cs" />
+    <Compile Include="Migrations\201812022335435_AddZonas.Designer.cs">
+      <DependentUpon>201812022335435_AddZonas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812022349286_AddDispositivos.cs" />
+    <Compile Include="Migrations\201812022349286_AddDispositivos.Designer.cs">
+      <DependentUpon>201812022349286_AddDispositivos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Clases\Acciones\AccionApagar.cs" />
     <Compile Include="Models\Clases\Acciones\AccionBajarIntensidad.cs" />
     <Compile Include="Models\Clases\Acciones\AccionBajarTemperatura.cs" />
     <Compile Include="Models\Clases\AccountViewModels.cs" />
     <Compile Include="Models\Clases\Actuador.cs" />
+    <Compile Include="Models\Clases\Administrador.cs" />
     <Compile Include="Models\Clases\Categoria.cs" />
     <Compile Include="Models\Clases\Cliente.cs" />
     <Compile Include="Models\Clases\Dispositivo.cs" />
@@ -244,6 +278,7 @@
     <Compile Include="Models\Clases\Transformador.cs" />
     <Compile Include="Models\Clases\Usuario.cs" />
     <Compile Include="Models\Clases\ZonaGeografica.cs" />
+    <Compile Include="Models\Operacion.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -361,6 +396,7 @@
     <Content Include="Views\Report\detail.cshtml" />
     <Content Include="Views\Report\hogar.cshtml" />
     <Content Include="Views\Report\transformador.cshtml" />
+    <Content Include="Views\Transformadors\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -379,6 +415,32 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812022153298_InitialCreate.resx">
+      <DependentUpon>201812022153298_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812022221108_AddAdmin.resx">
+      <DependentUpon>201812022221108_AddAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812022328390_AddCli.resx">
+      <DependentUpon>201812022328390_AddCli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812022331463_AddClientes.resx">
+      <DependentUpon>201812022331463_AddClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812022332424_AddCategorias.resx">
+      <DependentUpon>201812022332424_AddCategorias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812022334597_AddTransformadores.resx">
+      <DependentUpon>201812022334597_AddTransformadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812022335435_AddZonas.resx">
+      <DependentUpon>201812022335435_AddZonas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812022349286_AddDispositivos.resx">
+      <DependentUpon>201812022349286_AddDispositivos.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

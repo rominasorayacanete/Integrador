@@ -21,6 +21,14 @@ namespace Integrador.Controllers
             return View(transformador.ToList());
         }
 
+        public ActionResult Map()
+        {
+            // Codigo para obtener los transformadores
+            //return View(transformador.ToList());
+
+            return View();
+        }
+
         // GET: Transformadors/Details/5
         [HttpGet]
         public ActionResult Details(int id, int periodo)
