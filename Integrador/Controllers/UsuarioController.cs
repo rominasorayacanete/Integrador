@@ -25,19 +25,23 @@ namespace Integrador.Controllers
         public ActionResult Login(Usuario usuario)
         {
             UserService userService = new UserService();
+
             using (DBContext db = new DBContext())
             {
                 var usr = db.Usuario.Where(u => u.username == usuario.username && u.password == usuario.password).FirstOrDefault();
+
                 if (usr != null)
                 {
                     Session["Username"] = usr.username;
                     Session["UserId"] = usr.id;
                     ViewBag.Username = usr.username.ToString();
                     userService.CheckUser(usr.id);
+
                     if (userService.isAdmin(usr))
                     {
                         Session["Role"] = "Admin";
                     }
+
                     return RedirectToAction("LoggedIn");
                 }
                 else
