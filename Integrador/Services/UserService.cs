@@ -11,99 +11,81 @@ using System.Text;
 using System.IO;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
-using Integrador.ORM;
 using Integrador.Services.Extension;
+using Integrador.DAL;
+using Integrador.Models.Clases;
 
 namespace Integrador.Services
 {
     public class UserService
     {
+        private Context db = new Context();
 
-        public ORM.Usuario findUserByUsername(string username)
+        public Usuario findUserByUsername(string username)
         {
-            using (var db = new DBContext())
-            {
-                return db.Usuario
-                    .Where(u => u.username == username)
-                    .FirstOrDefault();
-            }
+            return db.Usuarios
+                .Where(u => u.Username == username)
+                .FirstOrDefault();
         }
 
-        public void createNewUser(ORM.Usuario usuario)
+        public void createNewUser(Usuario usuario)
         {
-            using (var db = new DBContext())
+            db.Usuarios.Add(usuario);
+            db.SaveChanges();
+        }
+
+        public void updateUser(Usuario usuario)
+        {
+            var usr = db.Usuarios.SingleOrDefault(u => u.Id == usuario.Id);
+            if (usr != null)
             {
-                db.Usuario.Add(usuario);
+                usr = usuario;
                 db.SaveChanges();
             }
         }
 
-        public void updateUser(ORM.Usuario usuario)
+        public bool isAdmin(Models.Usuario usuario)
         {
-            using (var db = new DBContext())
+            var admin = db.Administradores.SingleOrDefault(a => a.Usuario.Id == usuario.Id);
+            if (admin != null)
             {
-                var usr = db.Usuario.SingleOrDefault(u => u.id == usuario.id);
-                if (usr != null)
-                {
-                    usr = usuario;
-                    db.SaveChanges();
-                }
+                return true;
             }
-        }
-
-        public bool isAdmin(ORM.Usuario usuario)
-        {
-            using (var db = new DBContext())
-            {
-                var admin = db.Administrador.SingleOrDefault(a => a.Usuario.id == usuario.id);
-                if (admin != null)
-                {
-                    return true;
-                }
-                return false;
-            }
+            return false;
         }
 
         public void CheckUser(int userId)
         {
-            using (var db = new DBContext())
-            {
-                var cliente = db.Cliente
-                    .Where(c => c.Usuario.id == userId)
-                    .FirstOrDefault();
-                if (cliente != null && cliente.transformador_id != null){
-                    this.setTransformador(cliente.id);
-                }
+            var cliente = db.Clientes
+                .Where(c => c.Usuario.Id == userId)
+                .FirstOrDefault();
+            if (cliente != null && cliente.Transformador != null){
+                this.setTransformador(cliente.Id);
             }
-
         }
         public void setTransformador(int clienteId)
         {
-            using (var db = new DBContext())
+            var transformadores = db.Transformadores;
+            var cliente = db.Clientes
+                .Where(c => c.Id == clienteId)
+                .FirstOrDefault();
+            IDictionary<Transformador, float> distancias = new Dictionary<Transformador, float>();
+
+            foreach (Transformador trans in transformadores)
             {
-                var transformadores = db.Transformador;
-                var cliente = db.Cliente
-                    .Where(c => c.id == clienteId)
-                    .FirstOrDefault();
-                IDictionary<Transformador, float> distancias = new Dictionary<Transformador, float>();
+                var transformadorLat = trans.Latitud;
+                var transformadorLong = trans.Longitud;
+                var clienteLat = cliente.Latitud;
+                var clienteLong = cliente.Longitud;
 
-                foreach (Transformador trans in transformadores)
-                {
-                    var transformadorLat = trans.latitud;
-                    var transformadorLong = trans.longitud;
-                    var clienteLat = cliente.latitud;
-                    var clienteLong = cliente.longitud;
-
-                    var distancia = Extension.Extension.DistanciaKm(transformadorLat, transformadorLong, clienteLat, clienteLong);
-                    distancias.Add(trans, distancia);
-                }
-                System.Diagnostics.Debug.WriteLine("Transformadores totales : " + distancias.Count());
-                Transformador transformadorCercano = distancias.FirstOrDefault(x => x.Value == distancias.Values.Min()).Key;
-                System.Diagnostics.Debug.WriteLine("Transformadores elegido : " + transformadorCercano.id);
-                cliente.Transformador = transformadorCercano;
-                db.SaveChanges();
+                var distancia = Extension.Extension.DistanciaKm(transformadorLat, transformadorLong, clienteLat, clienteLong);
+                distancias.Add(trans, distancia);
             }
-
+            System.Diagnostics.Debug.WriteLine("Transformadores totales : " + distancias.Count());
+            Transformador transformadorCercano = distancias.FirstOrDefault(x => x.Value == distancias.Values.Min()).Key;
+            System.Diagnostics.Debug.WriteLine("Transformadores elegido : " + transformadorCercano.Id);
+            cliente.Transformador = transformadorCercano;
+            db.SaveChanges();
         }
     }
 }

@@ -6,6 +6,28 @@
 
 <h2>Transformadores disponibles</h2>
 
+@{
+    if (Session["Username"] != null)
+    {
+        if (Session["Role"] == "Admin")
+        {
+            <div class="col-md-4">
+                <h2>Cargar Zonas</h2>
+                @using (Html.BeginForm("MostrarZonas", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <p>
+                        <input class="form-control-file" type="file" id="archivo" name="archivo" size="23" />
+                    </p>
+                    <p>
+                        <input class="btn btn-warning" type="submit" value="Select" />
+                    </p>
+                }
+            </div>
+        }
+    }
+
+}
+
 
 <div class="row">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -33,7 +55,7 @@
         var array = @Html.Raw(Json.Encode(@ViewBag.transformadores));
         for (var i = 0; i < array.length; i++){
             var marker = L.marker([array[i].Latitud, array[i].Longitud]).addTo(mapa).bindPopup(array[i].Nombre);
-        }  
+        }
 
         var polygon = L.polygon([
             [-34.697878, -58.468897],

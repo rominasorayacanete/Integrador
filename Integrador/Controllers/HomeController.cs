@@ -15,6 +15,8 @@ namespace Integrador.Controllers
 {
     public class HomeController : Controller
     {
+        private Context db = new Context();
+
         public ActionResult Index()
         {
             return View();
@@ -22,30 +24,6 @@ namespace Integrador.Controllers
 
         public ActionResult About()
         {
-            using (var db = new Context())
-            {
-                var usuario = new Models.Usuario
-                {
-                    Username = "cliente1",
-                    Password = "cliente1",
-                    Email = "pepo@pepo.com",
-                    FechaAltaSistema = DateTime.Now
-                };
-                db.Usuarios.Add(usuario);
-
-                var cliente = new Models.Cliente
-                {
-                    Nombre = "Cliente1",
-                    Apellido = "App Cliente",
-                    Usuario = usuario,
-                    TipoDoc = "DNI",
-                    NroDoc = 1010101,
-
-                };
-                //db.Clientes.Add(cliente);
-                db.SaveChanges();
-            }
-
             ViewBag.Message = "Your application description page.";
             return View();
         }
@@ -119,27 +97,15 @@ namespace Integrador.Controllers
         [HttpPost]
         public ActionResult MostrarZonas(HttpPostedFileBase archivo)
         {
-            try
+            string str = (new StreamReader(archivo.InputStream)).ReadToEnd();
+            var zonas = JsonConvert.DeserializeObject<List<ZonaGeografica>>(str);
+            foreach(var zona in zonas)
             {
-                string str = (new StreamReader(archivo.InputStream)).ReadToEnd();
-                var zonas = JsonConvert.DeserializeObject<List<ORM.Zona_Geografica>>(str);
-                using(var db = new DBContext())
-                {
-                    foreach(var zona in zonas)
-                    {
-                        db.Zona_Geografica.Add(zona);
-                        db.SaveChanges();
-                    }               
-                }
-
-                ViewBag.Zonas = zonas;
-                return View("~/Views/Home/Zonas.cshtml");
+                db.ZonaGeograficas.Add(zona);
             }
-            catch
-            {
-                return View("~/Views/Home/Index.cshtml");
-            }
-
+            db.SaveChanges();
+            ViewBag.Zonas = zonas;
+            return View("~/Views/Transformador/Map.cshtml");
         }
 
     }
