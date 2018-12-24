@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -26,6 +27,7 @@ namespace Integrador.Models.Clases
         [Required]
         public double Longitud { get; set; }
 
+        [NotMapped]
         public virtual ZonaGeografica ZonaGeografica { get; set; }
     }
 }
