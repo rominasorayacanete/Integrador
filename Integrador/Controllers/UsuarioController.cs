@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Integrador.ORM;
+using Integrador.DAL;
+using Integrador.Models;
 using Integrador.Services;
 
 namespace Integrador.Controllers
 {
     public class UsuarioController : Controller
     {
+        private Context db = new Context();
+
         // GET: Usuario
         public ActionResult Index()
         {
@@ -26,30 +29,27 @@ namespace Integrador.Controllers
         {
             UserService userService = new UserService();
 
-            using (DBContext db = new DBContext())
+            var usr = db.Usuarios.Where(u => u.Username == usuario.Username && u.Password == usuario.Password).FirstOrDefault();
+
+            if (usr != null)
             {
-                var usr = db.Usuario.Where(u => u.username == usuario.username && u.password == usuario.password).FirstOrDefault();
+                Session["Username"] = usr.Username;
+                Session["UserId"] = usr.Id;
+                ViewBag.Username = usr.Username.ToString();
+                userService.CheckUser(usr.Id);
 
-                if (usr != null)
+                if (userService.isAdmin(usr))
                 {
-                    Session["Username"] = usr.username;
-                    Session["UserId"] = usr.id;
-                    ViewBag.Username = usr.username.ToString();
-                    userService.CheckUser(usr.id);
-
-                    if (userService.isAdmin(usr))
-                    {
-                        Session["Role"] = "Admin";
-                    }
-
-                    return RedirectToAction("LoggedIn");
+                    Session["Role"] = "Admin";
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Nombre de usuario o contraseña incorrectos, intente de nuevo.");
-                }
+
+                return RedirectToAction("LoggedIn");
             }
-                return View();
+            else
+            {
+                ModelState.AddModelError("", "Nombre de usuario o contraseña incorrectos, intente de nuevo.");
+            }
+            return View();
         }
 
         public ActionResult LoggedIn()

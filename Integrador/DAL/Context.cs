@@ -17,6 +17,8 @@ namespace Integrador.DAL
         public DbSet<Transformador> Transformadores { get; set; }
         public DbSet<ZonaGeografica> ZonaGeograficas { get; set; }
         public DbSet<Dispositivo> Dispositivos { get; set; }
+        public DbSet<Operacion> Operaciones { get; set; }
+        public DbSet<TemplateDispositivo> TemplateDispositivos { get; set; }
        
     }
 }

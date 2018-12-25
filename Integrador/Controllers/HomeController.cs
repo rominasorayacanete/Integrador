@@ -25,6 +25,13 @@ namespace Integrador.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
+
+            Models.Usuario admin1 = new Models.Usuario {Username = "admin1", Password = "admin1", Email="admi2@2.com", FechaAltaSistema = DateTime.Now};
+            Models.Administrador admin = new Models.Administrador {IdSistema = "1828k", Usuario = admin1 };
+            db.Usuarios.Add(admin1);
+            db.Administradores.Add(admin);
+
+            db.SaveChanges();
             return View();
         }
 

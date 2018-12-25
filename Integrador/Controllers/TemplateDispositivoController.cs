@@ -6,111 +6,112 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Integrador.ORM;
+using Integrador.DAL;
+using Integrador.Models;
 
 namespace Integrador.Controllers
 {
-    public class Template_DispositivoController : Controller
+    public class TemplateDispositivoController : Controller
     {
-        private DBContext db = new DBContext();
+        private Context db = new Context();
 
-        // GET: Template_Dispositivo
+        // GET: TemplateDispositivo
         public ActionResult Index()
         {
-            return View(db.Template_Dispositivo.ToList());
+            return View(db.TemplateDispositivos.ToList());
         }
 
-        // GET: Template_Dispositivo/Details/5
+        // GET: TemplateDispositivo/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Template_Dispositivo template_Dispositivo = db.Template_Dispositivo.Find(id);
-            if (template_Dispositivo == null)
+            TemplateDispositivo templateDispositivo = db.TemplateDispositivos.Find(id);
+            if (templateDispositivo == null)
             {
                 return HttpNotFound();
             }
-            return View(template_Dispositivo);
+            return View(templateDispositivo);
         }
 
-        // GET: Template_Dispositivo/Create
+        // GET: TemplateDispositivo/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Template_Dispositivo/Create
+        // POST: TemplateDispositivo/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre,inteligente,bajo_consumo,consumo")] Template_Dispositivo template_Dispositivo)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Inteligente,BajoConsumo,Consumo")] TemplateDispositivo templateDispositivo)
         {
             if (ModelState.IsValid)
             {
-                db.Template_Dispositivo.Add(template_Dispositivo);
+                db.TemplateDispositivos.Add(templateDispositivo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(template_Dispositivo);
+            return View(templateDispositivo);
         }
 
-        // GET: Template_Dispositivo/Edit/5
+        // GET: TemplateDispositivo/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Template_Dispositivo template_Dispositivo = db.Template_Dispositivo.Find(id);
-            if (template_Dispositivo == null)
+            TemplateDispositivo templateDispositivo = db.TemplateDispositivos.Find(id);
+            if (templateDispositivo == null)
             {
                 return HttpNotFound();
             }
-            return View(template_Dispositivo);
+            return View(templateDispositivo);
         }
 
-        // POST: Template_Dispositivo/Edit/5
+        // POST: TemplateDispositivo/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,inteligente,bajo_consumo,consumo")] Template_Dispositivo template_Dispositivo)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Inteligente,BajoConsumo,Consumo")] TemplateDispositivo templateDispositivo)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(template_Dispositivo).State = EntityState.Modified;
+                db.Entry(templateDispositivo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(template_Dispositivo);
+            return View(templateDispositivo);
         }
 
-        // GET: Template_Dispositivo/Delete/5
+        // GET: TemplateDispositivo/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Template_Dispositivo template_Dispositivo = db.Template_Dispositivo.Find(id);
-            if (template_Dispositivo == null)
+            TemplateDispositivo templateDispositivo = db.TemplateDispositivos.Find(id);
+            if (templateDispositivo == null)
             {
                 return HttpNotFound();
             }
-            return View(template_Dispositivo);
+            return View(templateDispositivo);
         }
 
-        // POST: Template_Dispositivo/Delete/5
+        // POST: TemplateDispositivo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Template_Dispositivo template_Dispositivo = db.Template_Dispositivo.Find(id);
-            db.Template_Dispositivo.Remove(template_Dispositivo);
+            TemplateDispositivo templateDispositivo = db.TemplateDispositivos.Find(id);
+            db.TemplateDispositivos.Remove(templateDispositivo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
