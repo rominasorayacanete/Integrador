@@ -212,6 +212,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MongoContext.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -259,6 +260,18 @@
     <Compile Include="Migrations\201812022349286_AddDispositivos.cs" />
     <Compile Include="Migrations\201812022349286_AddDispositivos.Designer.cs">
       <DependentUpon>201812022349286_AddDispositivos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812241534264_Initial.cs" />
+    <Compile Include="Migrations\201812241534264_Initial.Designer.cs">
+      <DependentUpon>201812241534264_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812251120404_OperacionYTemplateDispositivo.cs" />
+    <Compile Include="Migrations\201812251120404_OperacionYTemplateDispositivo.Designer.cs">
+      <DependentUpon>201812251120404_OperacionYTemplateDispositivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812251136045_ConsumoToDouble.cs" />
+    <Compile Include="Migrations\201812251136045_ConsumoToDouble.Designer.cs">
+      <DependentUpon>201812251136045_ConsumoToDouble.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201812281431570_AddPostClass.cs" />
     <Compile Include="Migrations\201812281431570_AddPostClass.Designer.cs">
@@ -475,6 +488,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812022349286_AddDispositivos.resx">
       <DependentUpon>201812022349286_AddDispositivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812241534264_Initial.resx">
+      <DependentUpon>201812241534264_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812251120404_OperacionYTemplateDispositivo.resx">
+      <DependentUpon>201812251120404_OperacionYTemplateDispositivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812251136045_ConsumoToDouble.resx">
+      <DependentUpon>201812251136045_ConsumoToDouble.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812281431570_AddPostClass.resx">
       <DependentUpon>201812281431570_AddPostClass.cs</DependentUpon>
