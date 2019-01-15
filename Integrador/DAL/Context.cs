@@ -19,6 +19,6 @@ namespace Integrador.DAL
         public DbSet<Dispositivo> Dispositivos { get; set; }
         public DbSet<Operacion> Operaciones { get; set; }
         public DbSet<TemplateDispositivo> TemplateDispositivos { get; set; }
-       
+        public DbSet<LogType> LogTypes { get; set; }
     }
 }

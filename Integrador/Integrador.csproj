@@ -273,9 +273,17 @@
     <Compile Include="Migrations\201812251136045_ConsumoToDouble.Designer.cs">
       <DependentUpon>201812251136045_ConsumoToDouble.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812281431570_AddPostClass.cs" />
-    <Compile Include="Migrations\201812281431570_AddPostClass.Designer.cs">
-      <DependentUpon>201812281431570_AddPostClass.cs</DependentUpon>
+    <Compile Include="Migrations\201901131620201_fix-datetime.cs" />
+    <Compile Include="Migrations\201901131620201_fix-datetime.Designer.cs">
+      <DependentUpon>201901131620201_fix-datetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901132156128_Fix.cs" />
+    <Compile Include="Migrations\201901132156128_Fix.Designer.cs">
+      <DependentUpon>201901132156128_Fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901152129003_fix dispositivo entity.cs" />
+    <Compile Include="Migrations\201901152129003_fix dispositivo entity.Designer.cs">
+      <DependentUpon>201901152129003_fix dispositivo entity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Clases\Acciones\AccionApagar.cs" />
@@ -291,6 +299,7 @@
     <Compile Include="Models\Clases\Interface\IReglaObserver.cs" />
     <Compile Include="Models\Clases\Interface\IReglaSubject.cs" />
     <Compile Include="Models\Clases\Interface\ISensorSubject.cs" />
+    <Compile Include="Models\Clases\Log\LogType.cs" />
     <Compile Include="Models\Clases\MarcaLG.cs" />
     <Compile Include="Models\Clases\ModuloAdaptador.cs" />
     <Compile Include="Models\Clases\DispositivoEstandar.cs" />
@@ -314,7 +323,7 @@
     <Compile Include="Models\Clases\Transformador.cs" />
     <Compile Include="Models\Clases\Usuario.cs" />
     <Compile Include="Models\Clases\ZonaGeografica.cs" />
-    <Compile Include="Models\Operacion.cs" />
+    <Compile Include="Models\Clases\Log\Operacion.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -334,6 +343,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Extension\Extension.cs" />
     <Compile Include="Services\ClienteService.cs" />
+    <Compile Include="Services\DispositivoService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\DeviceService.cs" />
     <Compile Include="Services\SimplexService.cs" />
@@ -498,8 +508,14 @@
     <EmbeddedResource Include="Migrations\201812251136045_ConsumoToDouble.resx">
       <DependentUpon>201812251136045_ConsumoToDouble.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812281431570_AddPostClass.resx">
-      <DependentUpon>201812281431570_AddPostClass.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901131620201_fix-datetime.resx">
+      <DependentUpon>201901131620201_fix-datetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901132156128_Fix.resx">
+      <DependentUpon>201901132156128_Fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901152129003_fix dispositivo entity.resx">
+      <DependentUpon>201901152129003_fix dispositivo entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

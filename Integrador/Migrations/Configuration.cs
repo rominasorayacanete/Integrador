@@ -53,13 +53,22 @@ namespace Integrador.Migrations
             transformadores.ForEach(t => context.Transformadores.Add(t));
 
             // Set Usuarios
-           
+
+        
             // Set Administrador
-           
+
             // Administrador admin = new Administrador { IdSistema = "100SSB", Usuario = userAdmin };
             //context.Administradores.Add(admin);
             // Set Cliente
             // Cliente cliente = new Cliente { Nombre = "Juan", Apellido = "Gonzalez" , TipoDoc = "DNI" , NroDoc = 10101010, Telefono = 12345678, Puntos = 0 };
+
+            Dispositivo dispositivo1 = new Dispositivo
+            {
+                NombreGenerico = "Aire acondicionado",
+                Inteligente = true,
+                Marca = "LG",
+            };
+
 
             context.SaveChanges();
 

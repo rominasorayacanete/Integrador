@@ -7,13 +7,13 @@ namespace Integrador.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddPostClass : IMigrationMetadata
+    public sealed partial class fixdispositivoentity : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddPostClass));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(fixdispositivoentity));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812281431570_AddPostClass"; }
+            get { return "201901152129003_fix dispositivo entity"; }
         }
         
         string IMigrationMetadata.Source

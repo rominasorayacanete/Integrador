@@ -11,7 +11,7 @@ namespace Integrador.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(50)]
         public string NombreGenerico { get; set; }
 
         public int ConsumoPorHora { get; set; }
@@ -24,7 +24,7 @@ namespace Integrador.Models
 
         public bool Inteligente { get; set; }
 
-        [StringLength(15)]
+        [StringLength(50)]
         public string Marca { get; set; }
 
         public virtual List<Actuador> Actuadores { get; set; }

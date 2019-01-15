@@ -1,54 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Text.RegularExpressions;
+﻿using System.Linq;
 using Integrador.Models;
-using Integrador.Models.Clases.Tipos;
-using System.Net;
-using Newtonsoft.Json;
-using System.Text;
-using System.IO;
-using System.Net.Http;
-using Newtonsoft.Json.Linq;
-using Integrador.ORM;
-using Integrador.Services.Extension;
+using Integrador.DAL;
 
 namespace Integrador.Services
 {
     public class ClienteService
     {
+        private Context db = new Context();
 
-        public ORM.Cliente findUserByUserId(int userId)
+        public Cliente findClientByUserId(int userId)
         {
-            using (var db = new DBContext())
-            {
-                return db.Cliente
-                    .Where(c => c.usuario_id == userId)
-                    .FirstOrDefault();
-            }
+            return db.Clientes
+                .Where(c => c.Usuario.Id == userId)
+                .FirstOrDefault();
         }
 
-        public void createNewCliente(ORM.Cliente cliente)
+        public void createNewCliente(Cliente cliente)
         {
-            using (var db = new DBContext())
+            db.Clientes.Add(cliente);
+            db.SaveChanges();
+        }
+
+        public void updateGeoCliente(Cliente cliente, double latitud, double longitud)
+        {
+            var cli = db.Clientes.SingleOrDefault(c => c.Id== cliente.Id);
+            if (cli != null)
             {
-                db.Cliente.Add(cliente);
+                cli.Latitud = latitud;
+                cli.Longitud = longitud;
                 db.SaveChanges();
-            }
-        }
-
-        public void updateGeoCliente(ORM.Cliente cliente, double latitud, double longitud)
-        {
-            using (var db = new DBContext())
-            {
-                var cli = db.Cliente.SingleOrDefault(c => c.id == cliente.id);
-                if (cli != null)
-                {
-                    cli.latitud = latitud;
-                    cli.longitud = longitud;
-                    db.SaveChanges();
-                }
             }
         }
     }

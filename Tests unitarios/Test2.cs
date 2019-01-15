@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Integrador.ORM;
 using System.Data.Entity;
 using System.Linq;
+using Integrador.Services;
+using Integrador.Models;
 
 namespace Tests_unitarios
 {
@@ -10,46 +11,40 @@ namespace Tests_unitarios
     public class Test2
     {
         [TestMethod]
-        public void CasoDePrueba2()
+        public void MostrarDispositivo_EditarNombre_DebeCoincidir()
         {
-            using(DBContext db = new DBContext())
+            DispositivoService dispositivoService = new DispositivoService();
+
+            var Seed = DateTime.Now.ToString("HHmmss");
+            var name = "Dispo1" + Seed;
+
+            Dispositivo dispositivo1 = new Dispositivo
             {
-                string nombreGrabado = CambiarNombre(db);
-                string nombrePersistido = NombrePersistido(db);
-                Assert.AreEqual(nombreGrabado, nombrePersistido);
-            }
+                NombreGenerico = name,
+                Consumo = 100,
+                Inteligente = true,
+                Marca = "LG",
+                ConsumoPorHora = 200,
+                UsoMensualMax = 1000,
+                UsoMensualMin = 10
+            };
+
+            dispositivoService.createNewDispositivo(dispositivo1);
+
+            var dispositivoRecuperado = dispositivoService.findDispositivoByName(name);
+
+            // TODO : Mostar el log de veces encendido Console.Write()
+
+            Assert.AreEqual(name, dispositivoRecuperado.NombreGenerico);
+
+            var changeName = "DispoTestCambioNombre" + Seed;
+            dispositivoRecuperado.NombreGenerico = changeName;
+            dispositivoService.cambiarNombre(dispositivoRecuperado, changeName);
+
+            var finalDisp = dispositivoService.findDispositivoByName(changeName);
+
+            Assert.AreEqual(changeName, finalDisp.NombreGenerico);
         }
 
-        public string CambiarNombre(DBContext db)
-        {
-            var queryDispositivo = from d in db.Dispositivo select d;
-            var dispositivo = queryDispositivo.FirstOrDefault();
-
-            foreach (Operacion op in dispositivo.Operacion)
-            {
-                if(op.oper_descripcion == "encendido" && (((DateTime.Now.Year - op.oper_fecha.Year) * 12) + DateTime.Now.Month - op.oper_fecha.Month) == 0)
-                {
-                    Console.WriteLine("El dispositivo " + dispositivo.id + " fue encendido en: \n");
-                    Console.WriteLine(op.oper_fecha);
-                }
-
-                if (op.oper_descripcion == "apagado" && (((DateTime.Now.Year - op.oper_fecha.Year) * 12) + DateTime.Now.Month - op.oper_fecha.Month) == 0)
-                {
-                    Console.WriteLine("El dispositivo " + dispositivo.id + " fue apagado en: \n");
-                    Console.WriteLine(op.oper_fecha);
-                }
-            }
-
-            string nombreGrabado = dispositivo.nombre_generico = "NuevoNombre";
-            db.SaveChanges();
-            return nombreGrabado;
-        }
-
-        public string NombrePersistido(DBContext db)
-        {
-            var query = from d in db.Dispositivo select d;
-            var dispositivo = query.FirstOrDefault();
-            return dispositivo.nombre_generico;
-        }
     }
 }
