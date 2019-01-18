@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Integrador.ORM;
 using System.IO;
 using Newtonsoft.Json;
+using Integrador.Services;
 
 namespace Integrador.Controllers
 {
@@ -13,6 +14,7 @@ namespace Integrador.Controllers
     {
 
         private DBContext db = new DBContext();
+        private ZonaService zonaService = new ZonaService();
 
         public ActionResult Index()
         {
@@ -31,33 +33,18 @@ namespace Integrador.Controllers
                 jsonFile.SaveAs(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
                 StreamReader streamReader = new StreamReader(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
                 string data = streamReader.ReadToEnd();
-                List<Zona_Geografica> zonas = JsonConvert.DeserializeObject<List<Zona_Geografica>>(data);
-                zonas.ForEach(z => {
-                    Zona_Geografica zona = new Zona_Geografica()
-                    {
-                        id = z.id,
-                        radio = z.radio,
-                        nombre_zona = z.nombre_zona,
-                        latitud = z.latitud,
-                        longitud = z.longitud
-                    };
+                try
+                {
+                    zonaService.CargarJson(data);
+                    ViewBag.Success = "Success";
 
-                    db.Zona_Geografica.Add(zona);
-                    db.SaveChanges();
-
-                    foreach (Transformador t in z.Transformador)
-                    {
-                        t.zona_id = zona.id;
-                        db.Transformador.Add(t);
-                        db.SaveChanges();
-                    }
-
-                    
-                });
-                ViewBag.Success = "Success";
+                }
+                catch
+                {
+                    ViewBag.Success = "Fail";
+                }
             }
-
-            return View("~/Views/Home/Index.cshtml");
+            return View("~/Views/Transformador/Map.cshtml");
         }
     }
 }
