@@ -7,13 +7,13 @@ namespace Integrador.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Fix : IMigrationMetadata
+    public sealed partial class fixlog : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Fix));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(fixlog));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901132156128_Fix"; }
+            get { return "201901202000395_fix log"; }
         }
         
         string IMigrationMetadata.Source
