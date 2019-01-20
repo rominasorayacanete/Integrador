@@ -1,0 +1,106 @@
+﻿@model Integrador.ORM.Dispositivo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dispositivo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_generico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_generico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.consumo_hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumo_hora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.encendido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.encendido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modo_ahorro_energia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modo_ahorro_energia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.consumo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_mensual_max)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_mensual_max)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_mensual_min)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_mensual_min)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inteligente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inteligente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_dispositivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_dispositivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uso_estimado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uso_estimado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

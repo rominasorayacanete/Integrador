@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "List";
+}
+<h2><u>Dispositivos</u></h2><br>
+@{
+    <div>
+
+        <select name="Dispositivos" size=4>
+            @foreach (var item in ViewBag.List)
+            {
+                <option> @item.NombreGenerico</option>
+            }
+
+        </select>
+
+    </div>
+}

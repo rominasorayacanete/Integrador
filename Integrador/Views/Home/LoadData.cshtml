@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "LoadData";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Cargar Zonas</h2>
+        @using (Html.BeginForm("MostrarZonas", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <p>
+                <input class="form-control-file" type="file" id="archivo" name="archivo" size="23" />
+            </p>
+            <p>
+                <input class="btn btn-warning" type="submit" value="Select" />
+            </p>
+        }
+    </div>
+    <div class="col-md-4">
+        <h2>Cargar Dispositivos</h2>
+        @using (Html.BeginForm("ShowDevice", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <p>
+                <input class="form-control-file" type="file" id="archivo" name="archivo" size="23" />
+            </p>
+            <p>
+                <input class="btn btn-info" type="submit" value="Upload file" />
+            </p>
+        }
+    </div>
+    <div class="col-md-4">
+        <h2>Cargar Categorias</h2>
+        @using (Html.BeginForm("ShowCategories", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <p>
+                <input class="form-control-file" type="file" id="archivo" name="archivo" size="23" />
+            </p>
+            <p>
+                <input class="btn btn-danger" type="submit" value="Upload file" />
+            </p>
+        }
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>

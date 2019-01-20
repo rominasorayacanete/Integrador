@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Integrador.ORM.Dispositivo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_generico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.consumo_hora)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.encendido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modo_ahorro_energia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.consumo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.uso_mensual_max)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.uso_mensual_min)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.inteligente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo_dispositivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.uso_estimado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cliente.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_generico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.consumo_hora)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.encendido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modo_ahorro_energia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.consumo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.uso_mensual_max)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.uso_mensual_min)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.inteligente)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_dispositivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.uso_estimado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

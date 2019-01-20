@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Map";
+}
+
+<h2>Map</h2>
+
+<h2>Transformadores disponibles</h2>
+
+@{
+    if (Session["Username"] != null)
+    {
+        if (Session["Role"] == "Admin")
+        {
+            <div class="col-md-4">
+                <h2>Cargar Zonas</h2>
+                @using (Html.BeginForm("MostrarZonas", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <p>
+                        <input class="form-control-file" type="file" id="archivo" name="archivo" size="23" />
+                    </p>
+                    <p>
+                        <input class="btn btn-warning" type="submit" value="Select" />
+                    </p>
+                }
+            </div>
+        }
+    }
+
+}
+
+
+<div class="row">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+</div>
+
+<div id="mapa" style="height: 500px"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        mapa = L.map('mapa', {
+            center: [-34.598313, -58.463745],
+            zoom: 10,
+            minZoom: 4,
+            maxZoom: 17,
+            zoomControl: true
+        });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: ''
+        }).addTo(mapa);
+
+
+             var sampleTags = new Array();
+        var array = @Html.Raw(Json.Encode(@ViewBag.transformadores));
+        for (var i = 0; i < array.length; i++){
+            var marker = L.marker([array[i].Latitud, array[i].Longitud]).addTo(mapa).bindPopup(array[i].Nombre);
+        }
+
+        var polygon = L.polygon([
+            [-34.697878, -58.468897],
+            [-34.686919, -58.486813],
+            [-34.651905, -58.530758],
+            [-34.614052, -58.529385],
+            [-34.552432, -58.499172],
+            [-34.533202, -58.46484],
+            [-34.582965, -58.381756],
+            [-34.634075, -58.35159],
+            [-34.65924, -58.418313]
+        ], {
+                color: 'red',
+                fillColor: 'blue',
+                fillOpacity: 0.1,
+                radius: 500
+            }).addTo(mapa).on('click', onMapClick);
+        function onMapClick(e) {
+            alert("Latitud y Longitud: " + e.latlng);
+        }
+    });
+</script>
+

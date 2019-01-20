@@ -1,10 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - Gentlemen aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -12,29 +13,55 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header row">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <ul class="nav navbar-nav">
+                    <li><a style="pointer-events:none; color:white">SGE Sistema de Gestion Energética</a></li>
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "About", "Home")</li>
+                    <li>@Html.ActionLink("Transformadores", "Map", "Transformador")</li>
+                </ul>
             </div>
+            @Html.Partial("_LoginPartial")
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    @{
+                        if (Session["Username"] != null)
+                        {
+                            if (Session["Role"] != "Admin")
+                            {
+                                <li>@Html.ActionLink("Mis puntos", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Mis dispositivo", "Index", "DispositivoCliente")</li>
+                                <li>@Html.ActionLink("Mis reglas", "Simplex", "Home")</li>
+                                <li>@Html.ActionLink("Mis Consumos", "Index", "DispositivoCliente")</li>
+                                <li>@Html.ActionLink("Estado de mi hogar", "Index", "DispositivoCliente")</li>
+                                <li>@Html.ActionLink("Mi optimo consumo", "Index", "DispositivoCliente")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Dispositivos", "Index", "TemplateDispositivo")</li>
+                                <li>@Html.ActionLink("Reportes", "Index", "Report")</li>
+                            }
+                        }
+                    }
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
+        <hr />
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        <footer class="container">
+            <div class="row">
+                <span class="col-sm-10">SGE - 2018</span>
+                <span class="col-sm-2">Datos de Contacto</span>
+            </div>
         </footer>
     </div>
 
