@@ -135,16 +135,17 @@ namespace Integrador.Services
             TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
             TipoHeladera tipoHeladera = new TipoHeladera("Sin freezer");
             TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
-
+            /*
             DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
             DispositivoInteligente d2 = new DispositivoInteligente(tipoHeladera);
             DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);
-            
+           */ 
             List<DispositivoInteligente> listado = new List<DispositivoInteligente>();
+            /*
             listado.Add(d1);
             listado.Add(d2);
             listado.Add(d3);
-
+            */
             return listado;
         }
 
@@ -156,13 +157,13 @@ namespace Integrador.Services
             TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
             TipoMicroondas tipoMicroondas = new TipoMicroondas("Convencional");
             TipoPlancha tipoPlancha = new TipoPlancha("A vapor");
-
+/*
             DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
             DispositivoInteligente d2 = new DispositivoInteligente(tipoLampara);
             DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);
             DispositivoInteligente d4 = new DispositivoInteligente(tipoMicroondas);
             DispositivoInteligente d5 = new DispositivoInteligente(tipoPlancha);
-
+            */
             // Instancia de cliente
             Cliente cliente = new Cliente();
             /*cliente.AgregarDispositivoInteligente(d1);

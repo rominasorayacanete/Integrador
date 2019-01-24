@@ -10,6 +10,11 @@ namespace Integrador.Models
     public class Cliente
     {
 
+        public Cliente()
+        {
+            this.Dispositivos = new List<Dispositivo>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -46,6 +51,15 @@ namespace Integrador.Models
 
         public virtual List<Dispositivo> Dispositivos { get; set; }
 
+        public int ConsumoHogar()
+        {
+            var total = 0;
+            foreach(Dispositivo dispositivo in Dispositivos)
+            {
+                total = +dispositivo.Consumo;
+            }
+            return total;
+        }
 
         /*
 
@@ -85,19 +99,17 @@ namespace Integrador.Models
 
             return false;
         }
-
         public int cantidadDispositivosEncendidos()
         {
             int cant = 0;
 
-            foreach (DispositivoInteligente d in dispositivosInteligentes)
+            foreach (Dispositivo d in Dispositivos)
             {
-                if (d.EstaEncendido()) cant++;
+                if (d.Encendido()) cant++;
             }
 
             return cant;
         }
-
         public int cantidadDispositivosApagados()
         {
             int cant = 0;

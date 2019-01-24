@@ -32,5 +32,10 @@ namespace Integrador.Models
 
         public virtual List<Operacion> Operaciones { get; set; }
 
+        public Dispositivo()
+        {
+
+        }
+
     }
 }

@@ -1,20 +1,23 @@
 ﻿using Integrador.Models.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace Integrador.Models
 {
-    public class DispositivoInteligente
+    public partial  class DispositivoInteligente : Dispositivo
     {
         public bool Encendido { get; set; }
         public bool ModoAhorroDeEnergia { get; set; }
+
+        [NotMapped]
         public virtual MarcaDispositivo MarcaDispositivo { get; set; }
 
-        public DispositivoInteligente(MarcaDispositivo _MarcaDispositivo)
+        public DispositivoInteligente()
         {
-            MarcaDispositivo = _MarcaDispositivo;
+
         }
 
         public virtual void ActivarModoAhorroDeEnergia()
