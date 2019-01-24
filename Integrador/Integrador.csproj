@@ -229,62 +229,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812022153298_InitialCreate.cs" />
-    <Compile Include="Migrations\201812022153298_InitialCreate.Designer.cs">
-      <DependentUpon>201812022153298_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812022221108_AddAdmin.cs" />
-    <Compile Include="Migrations\201812022221108_AddAdmin.Designer.cs">
-      <DependentUpon>201812022221108_AddAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812022328390_AddCli.cs" />
-    <Compile Include="Migrations\201812022328390_AddCli.Designer.cs">
-      <DependentUpon>201812022328390_AddCli.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812022331463_AddClientes.cs" />
-    <Compile Include="Migrations\201812022331463_AddClientes.Designer.cs">
-      <DependentUpon>201812022331463_AddClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812022332424_AddCategorias.cs" />
-    <Compile Include="Migrations\201812022332424_AddCategorias.Designer.cs">
-      <DependentUpon>201812022332424_AddCategorias.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812022334597_AddTransformadores.cs" />
-    <Compile Include="Migrations\201812022334597_AddTransformadores.Designer.cs">
-      <DependentUpon>201812022334597_AddTransformadores.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812022335435_AddZonas.cs" />
-    <Compile Include="Migrations\201812022335435_AddZonas.Designer.cs">
-      <DependentUpon>201812022335435_AddZonas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812022349286_AddDispositivos.cs" />
-    <Compile Include="Migrations\201812022349286_AddDispositivos.Designer.cs">
-      <DependentUpon>201812022349286_AddDispositivos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812241534264_Initial.cs" />
-    <Compile Include="Migrations\201812241534264_Initial.Designer.cs">
-      <DependentUpon>201812241534264_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251120404_OperacionYTemplateDispositivo.cs" />
-    <Compile Include="Migrations\201812251120404_OperacionYTemplateDispositivo.Designer.cs">
-      <DependentUpon>201812251120404_OperacionYTemplateDispositivo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251136045_ConsumoToDouble.cs" />
-    <Compile Include="Migrations\201812251136045_ConsumoToDouble.Designer.cs">
-      <DependentUpon>201812251136045_ConsumoToDouble.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901131620201_fix-datetime.cs" />
-    <Compile Include="Migrations\201901131620201_fix-datetime.Designer.cs">
-      <DependentUpon>201901131620201_fix-datetime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901152129003_fix dispositivo entity.cs" />
-    <Compile Include="Migrations\201901152129003_fix dispositivo entity.Designer.cs">
-      <DependentUpon>201901152129003_fix dispositivo entity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901202000395_fix log.cs" />
-    <Compile Include="Migrations\201901202000395_fix log.Designer.cs">
-      <DependentUpon>201901202000395_fix log.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Clases\Acciones\AccionApagar.cs" />
     <Compile Include="Models\Clases\Acciones\AccionBajarIntensidad.cs" />
@@ -299,13 +243,13 @@
     <Compile Include="Models\Clases\Interface\IReglaObserver.cs" />
     <Compile Include="Models\Clases\Interface\IReglaSubject.cs" />
     <Compile Include="Models\Clases\Interface\ISensorSubject.cs" />
-    <Compile Include="Models\Clases\Log\LogType.cs" />
-    <Compile Include="Models\Clases\Log\Operacion.cs" />
+    <Compile Include="Models\Clases\LogType.cs" />
     <Compile Include="Models\Clases\MarcaLG.cs" />
     <Compile Include="Models\Clases\ModuloAdaptador.cs" />
     <Compile Include="Models\Clases\DispositivoEstandar.cs" />
     <Compile Include="Models\Clases\DispositivoInteligente.cs" />
     <Compile Include="Models\Clases\IdentityModels.cs" />
+    <Compile Include="Models\Clases\Operacion.cs" />
     <Compile Include="Models\Clases\Regla.cs" />
     <Compile Include="Models\Clases\TemplateDispositivo.cs" />
     <Compile Include="Models\Clases\Tipos\TipoComputadora.cs" />
@@ -360,6 +304,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\buenos_aires.jpg" />
+    <Content Include="Images\electricidad.jpg" />
     <Content Include="Images\gentlemen.jpg" />
     <Content Include="obj\Debug\Integrador.csproj.FileListAbsolute.txt" />
     <Content Include="Scripts\bootstrap.js" />
@@ -381,7 +327,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Views\Home\Gentlemen.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -475,50 +420,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812022153298_InitialCreate.resx">
-      <DependentUpon>201812022153298_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812022221108_AddAdmin.resx">
-      <DependentUpon>201812022221108_AddAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812022328390_AddCli.resx">
-      <DependentUpon>201812022328390_AddCli.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812022331463_AddClientes.resx">
-      <DependentUpon>201812022331463_AddClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812022332424_AddCategorias.resx">
-      <DependentUpon>201812022332424_AddCategorias.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812022334597_AddTransformadores.resx">
-      <DependentUpon>201812022334597_AddTransformadores.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812022335435_AddZonas.resx">
-      <DependentUpon>201812022335435_AddZonas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812022349286_AddDispositivos.resx">
-      <DependentUpon>201812022349286_AddDispositivos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812241534264_Initial.resx">
-      <DependentUpon>201812241534264_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251120404_OperacionYTemplateDispositivo.resx">
-      <DependentUpon>201812251120404_OperacionYTemplateDispositivo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251136045_ConsumoToDouble.resx">
-      <DependentUpon>201812251136045_ConsumoToDouble.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901131620201_fix-datetime.resx">
-      <DependentUpon>201901131620201_fix-datetime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901152129003_fix dispositivo entity.resx">
-      <DependentUpon>201901152129003_fix dispositivo entity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901202000395_fix log.resx">
-      <DependentUpon>201901202000395_fix log.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
