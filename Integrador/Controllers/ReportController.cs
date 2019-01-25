@@ -1,4 +1,5 @@
-﻿using Integrador.ORM;
+﻿using Integrador.DAL;
+using Integrador.ORM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Integrador.Controllers
 {
     public class ReportController : Controller
     {
-        private DBContext db = new DBContext();
+        private Context context = new Context();
 
         public ActionResult Index()
         {
@@ -18,59 +19,61 @@ namespace Integrador.Controllers
 
         public ActionResult Transformador()
         {
-            ViewBag.Transformadores = db.Transformador.ToList();
+            ViewBag.Transformadores = context.Transformadores.ToList();
             return View();
         }
 
         public ActionResult ReporteTransformador(int transformadorId, int periodo)
         {
-            var transformador = db.Transformador
-                   .Where(t => t.id == transformadorId)
+            var transformador = context.Transformadores
+                   .Where(t => t.Id == transformadorId)
                    .FirstOrDefault();
             
-            ViewBag.Consumo = transformador.energia_suministrada * periodo;
-            ViewBag.Nombre = "Transformador " + transformador.nombre;
+            ViewBag.Consumo = transformador.EnergiaSuministrada * periodo;
+            ViewBag.Nombre = "Transformador " + transformador.Nombre;
             ViewBag.Periodo = periodo;
             return View("~/Views/Report/detail.cshtml");
         }
 
         public ActionResult Hogar()
         {
-            ViewBag.Hogares = db.Cliente.ToList();
+            ViewBag.Hogares = context.Clientes.ToList();
             return View();
         }
 
         public ActionResult ReporteHogar(int clienteId, int periodo)
         {
-            var cliente = db.Cliente
-                   .Where(c => c.id == clienteId)
+            var cliente = context.Clientes
+                   .Where(c => c.Id == clienteId)
                    .FirstOrDefault();
+
             int consumoTotal = 0;
-            foreach (var dispositivo in cliente.Dispositivo)
+
+            foreach (var dispositivo in cliente.Dispositivos)
             {
-                consumoTotal += dispositivo.consumo;
+                consumoTotal += dispositivo.Consumo;
             }
 
             ViewBag.Consumo = consumoTotal * periodo;
-            ViewBag.Nombre = "Hogar de " + cliente.nombre + " " + cliente.apellido;
+            ViewBag.Nombre = "Hogar de " + cliente.Nombre + " " + cliente.Apellido;
             ViewBag.Periodo = periodo;
             return View("~/Views/Report/detail.cshtml");
         }
 
         public ActionResult Dispositivo()
         {
-            ViewBag.Dispositivos = db.Dispositivo.ToList();
+            ViewBag.Dispositivos = context.Dispositivos.ToList();
             return View();
         }
 
         public ActionResult ReporteDispositivo(int dispositivoId, int periodo)
         {
-            var dispositivo =  db.Dispositivo
-                   .Where(d => d.id == dispositivoId)
+            var dispositivo =  context.Dispositivos
+                   .Where(d => d.Id == dispositivoId)
                    .FirstOrDefault();
 
-            ViewBag.Consumo = dispositivo.consumo * periodo;
-            ViewBag.Nombre = "Dispositivo " + dispositivo.nombre_generico;
+            ViewBag.Consumo = dispositivo.Consumo * periodo;
+            ViewBag.Nombre = "Dispositivo " + dispositivo.NombreGenerico;
             ViewBag.Periodo = periodo;
             return View("~/Views/Report/detail.cshtml");
         }
