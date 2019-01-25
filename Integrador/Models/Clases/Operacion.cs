@@ -9,6 +9,7 @@ namespace Integrador.Models.Clases
 {
     public class Operacion
     {
+        [Key]
         public int Id { get; set; }
 
         public virtual Dispositivo Dispositivo { get; set; }
@@ -23,6 +24,5 @@ namespace Integrador.Models.Clases
         public string Descripcion { get; set; }
 
         public DateTime Fecha { get; set; }
-
     }
 }

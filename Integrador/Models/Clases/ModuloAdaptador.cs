@@ -31,7 +31,7 @@ namespace Integrador.Models
 
         public  float EnergiaConsumidaUltimasNHoras(int horas)
         {
-            return Dispositivo.ConsumoPorHora * horas;
+            return Dispositivo.Consumo * horas;
         }
 
         public  void Encender()

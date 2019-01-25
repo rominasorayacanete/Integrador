@@ -22,7 +22,6 @@
                 <ul class="nav navbar-nav">
                     <li><a style="pointer-events:none; color:white">SGE Sistema de Gestion Energética</a></li>
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "About", "Home")</li>
                     <li>@Html.ActionLink("Transformadores", "Map", "Transformador")</li>
                 </ul>
             </div>
@@ -31,23 +30,24 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @{
-                        if (Session["Username"] != null)
-                        {
-                            if (Session["Role"] != "Admin")
-                            {
-                                <li>@Html.ActionLink("Mis puntos", "Index", "Home")</li>
-                                <li>@Html.ActionLink("Mis dispositivo", "Index", "DispositivoCliente")</li>
-                                <li>@Html.ActionLink("Mis reglas", "Simplex", "Home")</li>
-                                <li>@Html.ActionLink("Mis Consumos", "Index", "DispositivoCliente")</li>
-                                <li>@Html.ActionLink("Estado de mi hogar", "Index", "DispositivoCliente")</li>
-                                <li>@Html.ActionLink("Mi optimo consumo", "Index", "DispositivoCliente")</li>
-                            }
-                            else
-                            {
-                                <li>@Html.ActionLink("Dispositivos", "Index", "TemplateDispositivo")</li>
-                                <li>@Html.ActionLink("Reportes", "Index", "Report")</li>
-                            }
-                        }
+        if (Session["Username"] != null)
+        {
+            if (Session["Role"] != "Admin")
+            {
+                <li>@Html.ActionLink("Mis puntos", "Index", "Home")</li>
+                <li>@Html.ActionLink("Mis dispositivo", "Index", "DispositivoCliente")</li>
+                <li>@Html.ActionLink("Mis reglas", "Simplex", "Home")</li>
+                <li>@Html.ActionLink("Mis Consumos", "Index", "DispositivoCliente")</li>
+                <li>@Html.ActionLink("Estado de mi hogar", "Index", "DispositivoCliente")</li>
+                <li>@Html.ActionLink("Mi optimo consumo", "Index", "DispositivoCliente")</li>
+}
+else
+{
+                <li>@Html.ActionLink("Hogares", "Index", "Clientes")</li>
+                <li>@Html.ActionLink("Dispositivos", "Index", "TemplateDispositivo")</li>
+                <li>@Html.ActionLink("Reportes", "Index", "Report")</li>
+}
+}
                     }
                 </ul>
             </div>

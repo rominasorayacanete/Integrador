@@ -92,7 +92,7 @@ namespace Integrador.Services
             throw new Exception("El dispositivo " + _dispositivo.Id + " ya se encuentra en modo ahorro de energia.");
         }
 
-        public void AdaptarDispositivo(DispositivoInteligente _dispositivo)
+        public void AdaptarDispositivo(Dispositivo _dispositivo)
         {
             var disp = this.getDispositivo(_dispositivo);
             var inteligente = disp.Inteligente;
@@ -106,14 +106,14 @@ namespace Integrador.Services
             throw new Exception("El dispositivo " + _dispositivo.Id + " ya es inteligente.");
         }
 
-        private DispositivoInteligente getDispositivo(DispositivoInteligente _dispositivo)
+        private DispositivoInteligente getDispositivo(Dispositivo _dispositivo)
         {
-            var dipositivo = db.DispositivosInteligentes.SingleOrDefault(d => d == _dispositivo);
+       /*     var dipositivo = db.DispositivosInteligentes.SingleOrDefault(d => d == _dispositivo);
             if (dipositivo != null)
             {
                 return dipositivo;
             }
-            throw new Exception("Error - No se encontro el dispositivo con Id " + _dispositivo.Id);
+         */   throw new Exception("Error - No se encontro el dispositivo con Id " + _dispositivo.Id);
         }
 
     }

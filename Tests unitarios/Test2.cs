@@ -18,13 +18,11 @@ namespace Tests_unitarios
             var Seed = DateTime.Now.ToString("HHmmss");
             var name = "Dispo1" + Seed;
 
-            Dispositivo dispositivo1 = new Dispositivo
+            DispositivoInteligente dispositivo1 = new DispositivoInteligente
             {
                 NombreGenerico = name,
                 Consumo = 100,
                 Inteligente = true,
-                Marca = "LG",
-                ConsumoPorHora = 200,
                 UsoMensualMax = 1000,
                 UsoMensualMin = 10
             };

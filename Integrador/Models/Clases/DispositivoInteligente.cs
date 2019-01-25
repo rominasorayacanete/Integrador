@@ -9,11 +9,18 @@ namespace Integrador.Models
 {
     public partial  class DispositivoInteligente : Dispositivo
     {
-        public bool Encendido { get; set; }
-        public bool ModoAhorroDeEnergia { get; set; }
+        public bool Encendido { get; set; } = false;
 
-        [NotMapped]
-        public virtual MarcaDispositivo MarcaDispositivo { get; set; }
+        public bool ModoAhorroDeEnergia { get; set; } = false;
+
+        public override bool Inteligente
+        {
+            get
+            {
+                return true;
+            }
+            set { }
+        }
 
         public DispositivoInteligente()
         {
@@ -61,14 +68,5 @@ namespace Integrador.Models
             }
         }
 
-        public virtual bool EstaEncendido()
-        {
-            return Encendido == true ? true : false ; 
-        }
-
-        public virtual bool EstaApagado()
-        {
-            return Encendido == false ? true : false;
-        }
     }
 }

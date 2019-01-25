@@ -1,4 +1,5 @@
 ﻿using Integrador.Models;
+using Integrador.Models.Abstract;
 using Integrador.Models.Clases;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,16 @@ namespace Integrador.DAL
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
+
         public DbSet<Transformador> Transformadores { get; set; }
         public DbSet<ZonaGeografica> ZonaGeograficas { get; set; }
+
+        public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Dispositivo> Dispositivos { get; set; }
         public DbSet<DispositivoInteligente> DispositivosInteligentes { get; set; }
+        public DbSet<DispositivoEstandar> DispositivoEstandar { get; set; }
+        public DbSet<MarcaDispositivo> MarcaDispositivo { get; set; }
         public DbSet<Operacion> Operaciones { get; set; }
         public DbSet<TemplateDispositivo> TemplateDispositivos { get; set; }
-        public DbSet<LogType> LogTypes { get; set; }
     }
 }
