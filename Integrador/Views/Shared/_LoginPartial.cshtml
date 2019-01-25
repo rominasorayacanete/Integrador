@@ -1,7 +1,7 @@
 ﻿@if (Session["Username"] == null)
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Ingresar", "Login", "Usuario")</li>
+        <li>@Html.ActionLink("Iniciar sesión", "Login", "Usuario")</li>
     </ul>
 }
 
@@ -12,16 +12,16 @@ else
         @if (Session["Role"] == "Admin")
     {
         <li>
-            @Html.ActionLink("Admin " + Session["Username"], "Index", "Home")
+            @Html.ActionLink((string)Session["Username"], "Index", "Home")
         </li>
 }
 else
 {
     <li>
-        @Html.ActionLink("Cliente " + Session["Username"], "Index", "Home")
+        @Html.ActionLink((string)Session["Username"], "Index", "Home")
     </li>
 }
-        <li>@Html.ActionLink(" ", "LogOut", new { Controller = "Usuario"}, new { @class = "glyphicon glyphicon-off", @style = "padding-top: 12px" })</li>
+        <li>@Html.ActionLink("Cerrar sesión", "LogOut", new { Controller = "Usuario"})</li>
     </ul>
     
 
