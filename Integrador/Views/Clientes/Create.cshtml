@@ -1,18 +1,18 @@
 ﻿@model Integrador.Models.Cliente
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Agregar hogar";
 }
 
-<h2>Create</h2>
-
+<div class="jumbotron" style="background-color: indigo; color: whitesmoke">
+    <h1>Agregar hogar</h1>
+</div>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Cliente</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TipoDoc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="TipoDoc">Tipo de documento</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TipoDoc, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TipoDoc, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NroDoc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="NroDoc">Nro. de documento</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NroDoc, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NroDoc, "", new { @class = "text-danger" })
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="Telefono">Teléfono</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
@@ -89,14 +89,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Agregar" class="btn btn-default" style="background-color: indigo; color: white"/>
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a lista", "Index")
 </div>
 
 @section Scripts {

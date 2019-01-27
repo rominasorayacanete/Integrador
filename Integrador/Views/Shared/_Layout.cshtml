@@ -20,7 +20,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>
+                        <a href="~/Home">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </a>
+                    </li>
                     <li>@Html.ActionLink("Mapa de transformadores", "Map", "Transformador")</li>
                 </ul>
             </div>

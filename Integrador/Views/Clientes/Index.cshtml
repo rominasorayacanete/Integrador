@@ -1,66 +1,65 @@
 ﻿@model IEnumerable<Integrador.Models.Cliente>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hogares";
 }
 
-<h2>Listado de Hogares</h2>
+<div class="jumbotron" style="background-color: indigo; color: whitesmoke">
+    <h1>Hogares</h1>
+</div>
+
+<p>@Html.ActionLink("Agregar", "Create")</p>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Apellido
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Apellido)
+            Tipo de documento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TipoDoc)
+            Nro. de documento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NroDoc)
+            Puntos
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Puntos)
-        </th>
-        <th>
-            Consumo Hogar
+            Consumo
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoDoc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NroDoc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Puntos)
-        </td>
-        <td>
-            @item.ConsumoHogar() Kwh
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoDoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NroDoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Puntos)
+            </td>
+            <td>
+                @item.ConsumoHogar() Kwh
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
