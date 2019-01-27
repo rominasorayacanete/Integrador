@@ -10,12 +10,15 @@ using Integrador.Models.Clases;
 using Integrador.Services;
 using Integrador.ORM;
 using Integrador.DAL;
+using MongoDemo.App_Start;
+using MongoDB.Bson;
 
 namespace Integrador.Controllers
 {
     public class HomeController : Controller
     {
         private Context db = new Context();
+        private MongoContext mongo = new MongoContext();
 
         public ActionResult Index()
         {
@@ -26,10 +29,13 @@ namespace Integrador.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            Models.Usuario admin1 = new Models.Usuario {Username = "admin1", Password = "admin1", Email="admi2@2.com", FechaAltaSistema = DateTime.Now};
-            Models.Administrador admin = new Models.Administrador {IdSistema = "1828k", Usuario = admin1 };
-            db.Usuarios.Add(admin1);
-            db.Administradores.Add(admin);
+            var collection = mongo.database.GetCollection<BsonDocument>("foo");
+
+            var document = new BsonDocument
+            {
+                { "name", "MongoDB" },
+            };
+            collection.InsertOne(document);
 
             db.SaveChanges();
             return View();

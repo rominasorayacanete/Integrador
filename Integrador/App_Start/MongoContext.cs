@@ -11,8 +11,8 @@ namespace MongoDemo.App_Start
         
         public MongoContext()
         {
-            var mongoClient = new MongoClient(ConfigurationManager.AppSettings["Diegobevilacqua1"]);
-
+            _client = new MongoClient("mongodb+srv://gentlemen:gentlemen@gentlemen-mqayu.azure.mongodb.net/test?retryWrites=true");
+            database = _client.GetDatabase("foo");
         }
     }
 }

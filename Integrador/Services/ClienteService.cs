@@ -15,6 +15,15 @@ namespace Integrador.Services
                 .FirstOrDefault();
         }
 
+
+        public Cliente FindById(int clienteId)
+        {
+            return db.Clientes
+            .Where(c => c.Id == clienteId)
+            .FirstOrDefault();
+        }
+
+
         public void createNewCliente(Cliente cliente)
         {
             db.Clientes.Add(cliente);

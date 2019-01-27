@@ -15,5 +15,12 @@ namespace Integrador.Services
         {
             return db.Transformadores;
         }
+
+        public Transformador FindById(int transformadorId)
+        {
+            return db.Transformadores
+                  .Where(t => t.Id == transformadorId)
+                  .FirstOrDefault();
+        }
     }
 }

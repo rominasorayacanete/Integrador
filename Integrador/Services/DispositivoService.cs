@@ -29,6 +29,15 @@ namespace Integrador.Services
                 .FirstOrDefault();
         }
 
+        public Dispositivo FindById(int dispositivoId)
+        {
+            return db.Dispositivos
+                 .Where(d => d.Id == dispositivoId)
+                 .FirstOrDefault();
+        }
+
+      
+
         public void createNewDispositivo(Dispositivo dispositivo)
         {
             db.Dispositivos.Add(dispositivo);

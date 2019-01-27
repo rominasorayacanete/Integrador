@@ -1,5 +1,6 @@
 ﻿using Integrador.DAL;
 using Integrador.ORM;
+using Integrador.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,10 @@ namespace Integrador.Controllers
     public class ReportController : Controller
     {
         private Context context = new Context();
+        private ReportService reportService = new ReportService();
+        private TransformadorService transformadorService  = new TransformadorService();
+        private ClienteService clienteService = new ClienteService();
+        private DispositivoService dispositivoService = new DispositivoService();
 
         public ActionResult Index()
         {
@@ -25,13 +30,26 @@ namespace Integrador.Controllers
 
         public ActionResult ReporteTransformador(int transformadorId, int periodo)
         {
-            var transformador = context.Transformadores
-                   .Where(t => t.Id == transformadorId)
-                   .FirstOrDefault();
-            
+            var transformador = transformadorService.FindById(transformadorId);
+
+            string SearchName = "Transformador" + transformador.Id + periodo;
+            var mongoReport = reportService.ExistReport(SearchName, periodo);
+
+            if (mongoReport != null)
+            {
+                ViewBag.Consumo = mongoReport.Value;
+                ViewBag.Nombre = "Transformador Mongo " + mongoReport.DisplayName;
+                ViewBag.Periodo = mongoReport.Periodo;
+                ViewBag.Mongo = "Este reporte ha sido generado a travez de MongoDB!";
+                return View("~/Views/Report/detail.cshtml");
+            }
+
             ViewBag.Consumo = transformador.EnergiaSuministrada * periodo;
             ViewBag.Nombre = "Transformador " + transformador.Nombre;
             ViewBag.Periodo = periodo;
+
+            reportService.SaveReport(SearchName, transformador.Nombre, periodo, transformador.EnergiaSuministrada * periodo);
+
             return View("~/Views/Report/detail.cshtml");
         }
 
@@ -43,20 +61,27 @@ namespace Integrador.Controllers
 
         public ActionResult ReporteHogar(int clienteId, int periodo)
         {
-            var cliente = context.Clientes
-                   .Where(c => c.Id == clienteId)
-                   .FirstOrDefault();
 
-            int consumoTotal = 0;
+            var cliente = clienteService.FindById(clienteId);
 
-            foreach (var dispositivo in cliente.Dispositivos)
+            string SearchName = "Hogar" + cliente.Id + periodo;
+            var mongoReport = reportService.ExistReport(SearchName, periodo);
+
+            if (mongoReport != null)
             {
-                consumoTotal += dispositivo.Consumo;
+                ViewBag.Consumo = mongoReport.Value;
+                ViewBag.Nombre = "Hogar " + mongoReport.DisplayName;
+                ViewBag.Periodo = mongoReport.Periodo;
+                ViewBag.Mongo = "Este reporte ha sido generado a travez de MongoDB!";
+                return View("~/Views/Report/detail.cshtml");
             }
 
-            ViewBag.Consumo = consumoTotal * periodo;
+            ViewBag.Consumo = cliente.ConsumoHogar() * periodo;
             ViewBag.Nombre = "Hogar de " + cliente.Nombre + " " + cliente.Apellido;
             ViewBag.Periodo = periodo;
+
+            reportService.SaveReport(SearchName, cliente.Nombre, periodo, cliente.ConsumoHogar() * periodo);
+
             return View("~/Views/Report/detail.cshtml");
         }
 
@@ -68,13 +93,26 @@ namespace Integrador.Controllers
 
         public ActionResult ReporteDispositivo(int dispositivoId, int periodo)
         {
-            var dispositivo =  context.Dispositivos
-                   .Where(d => d.Id == dispositivoId)
-                   .FirstOrDefault();
+            var dispositivo = dispositivoService.FindById(dispositivoId);
+
+            string SearchName = "Dispositivo" + dispositivo.Id + periodo;
+            var mongoReport = reportService.ExistReport(SearchName, periodo);
+
+            if (mongoReport != null)
+            {
+                ViewBag.Consumo = mongoReport.Value;
+                ViewBag.Nombre = "Dispositivo " + mongoReport.DisplayName;
+                ViewBag.Periodo = mongoReport.Periodo;
+                ViewBag.Mongo = "Este reporte ha sido generado a travez de MongoDB!";
+                return View("~/Views/Report/detail.cshtml");
+            }
 
             ViewBag.Consumo = dispositivo.Consumo * periodo;
             ViewBag.Nombre = "Dispositivo " + dispositivo.NombreGenerico;
             ViewBag.Periodo = periodo;
+
+            reportService.SaveReport(SearchName, dispositivo.NombreGenerico , periodo, dispositivo.Consumo * periodo);
+
             return View("~/Views/Report/detail.cshtml");
         }
     }
