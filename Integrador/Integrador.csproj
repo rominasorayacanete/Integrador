@@ -313,6 +313,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\buenos_aires.jpg" />
+    <Content Include="Images\bulb-light.jpg" />
     <Content Include="Images\casa.jpg" />
     <Content Include="Images\electricidad.jpg" />
     <Content Include="Images\gentlemen.jpg" />
