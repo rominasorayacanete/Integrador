@@ -1,11 +1,11 @@
 ﻿@model Integrador.Models.TemplateDispositivo
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar dispositivo";
 }
 
 <div class="jumbotron" style="background-color: indigo; color: whitesmoke">
-    <h1>Eliminar hogar</h1>
+    <h1>Eliminar dispositivo</h1>
 </div>
 
 <div>
@@ -19,7 +19,7 @@
         <dd>
             @Html.DisplayFor(model => model.Nombre)
         </dd>
-
+        <br>
         <dt>
             @Html.DisplayNameFor(model => model.Inteligente)
         </dt>
@@ -27,15 +27,15 @@
         <dd>
             @Html.DisplayFor(model => model.Inteligente)
         </dd>
-
+        <br>
         <dt>
-            @Html.DisplayNameFor(model => model.BajoConsumo)
+            <label class="control-label col-md-offset-5" for="BajoConsumo">Bajo consumo</label>
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.BajoConsumo)
         </dd>
-
+        <br>
         <dt>
             @Html.DisplayNameFor(model => model.Consumo)
         </dt>
@@ -43,14 +43,14 @@
         <dd>
             @Html.DisplayFor(model => model.Consumo)
         </dd>
-
+        <br>
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            <input type="submit" value="Eliminar" class="btn btn-default" style="background-color: indigo; color: whitesmoke"/> |
             @Html.ActionLink("Volver a lista", "Index")
         </div>
     }

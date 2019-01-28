@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BajoConsumo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="TipoDoc">Bajo consumo</label>
             <div class="col-md-10">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.BajoConsumo)
@@ -54,14 +54,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" style="background-color: indigo; color: whitesmoke"/>
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver a lista", "Index")
 </div>
 
 @section Scripts {
