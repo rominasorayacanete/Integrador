@@ -6,23 +6,28 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Integrador.ORM;
+using Integrador.DAL;
+using Integrador.Models;
+using Integrador.Models.Clases.Helper;
 
-namespace Integrador.Controllers
+namespace Integrador.Controllers.Dispositivos
 {
     public class DispositivoClienteController : Controller
     {
-        private DBContext db = new DBContext();
+        private Context db = new Context();
 
         // GET: DispositivoCliente
         public ActionResult Index()
         {
-            var userId = Convert.ToInt16(Session["UserId"]); ;
-            var cliente = db.Cliente
-                .Where(c => c.Usuario.id == userId)
-                .FirstOrDefault();
-            var dispositivo = db.Dispositivo.Where(d => d.Cliente.id == cliente.id);
-            return View(dispositivo.ToList());
+            var _dispositivoInteligentes = db.DispositivosInteligentes.ToList();
+            var _dispositivosEstandar = db.DispositivoEstandar.ToList();
+            var listado = new ListadoDispositivos
+            {
+                DispositivosEstandar = _dispositivosEstandar,
+                DispositivosInteligente = _dispositivoInteligentes
+            };
+
+            return View(listado);
         }
 
         // GET: DispositivoCliente/Details/5
@@ -32,7 +37,7 @@ namespace Integrador.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dispositivo dispositivo = db.Dispositivo.Find(id);
+            Dispositivo dispositivo = db.Dispositivos.Find(id);
             if (dispositivo == null)
             {
                 return HttpNotFound();
@@ -43,7 +48,6 @@ namespace Integrador.Controllers
         // GET: DispositivoCliente/Create
         public ActionResult Create()
         {
-            ViewBag.cliente_id = new SelectList(db.Cliente, "id", "nombre");
             return View();
         }
 
@@ -52,21 +56,15 @@ namespace Integrador.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre_generico,consumo_hora,encendido,modo_ahorro_energia,consumo,uso_mensual_max,uso_mensual_min,inteligente,tipo_dispositivo,uso_estimado")] Dispositivo dispositivo)
+        public ActionResult Create([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin")] Dispositivo dispositivo)
         {
             if (ModelState.IsValid)
             {
-                var userId = Convert.ToInt16(Session["UserId"]); ;
-                var cliente = db.Cliente
-                    .Where(c => c.Usuario.id == userId)
-                    .FirstOrDefault();
-                dispositivo.cliente_id = cliente.id;
-                db.Dispositivo.Add(dispositivo);
+                db.Dispositivos.Add(dispositivo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cliente_id = new SelectList(db.Cliente, "id", "nombre", dispositivo.cliente_id);
             return View(dispositivo);
         }
 
@@ -77,12 +75,11 @@ namespace Integrador.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dispositivo dispositivo = db.Dispositivo.Find(id);
+            Dispositivo dispositivo = db.Dispositivos.Find(id);
             if (dispositivo == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.cliente_id = new SelectList(db.Cliente, "id", "nombre", dispositivo.cliente_id);
             return View(dispositivo);
         }
 
@@ -91,7 +88,7 @@ namespace Integrador.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,cliente_id,nombre_generico,consumo_hora,encendido,modo_ahorro_energia,consumo,uso_mensual_max,uso_mensual_min,inteligente,tipo_dispositivo,uso_estimado")] Dispositivo dispositivo)
+        public ActionResult Edit([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin")] Dispositivo dispositivo)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +96,6 @@ namespace Integrador.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.cliente_id = new SelectList(db.Cliente, "id", "nombre", dispositivo.cliente_id);
             return View(dispositivo);
         }
 
@@ -110,7 +106,7 @@ namespace Integrador.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dispositivo dispositivo = db.Dispositivo.Find(id);
+            Dispositivo dispositivo = db.Dispositivos.Find(id);
             if (dispositivo == null)
             {
                 return HttpNotFound();
@@ -123,8 +119,8 @@ namespace Integrador.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Dispositivo dispositivo = db.Dispositivo.Find(id);
-            db.Dispositivo.Remove(dispositivo);
+            Dispositivo dispositivo = db.Dispositivos.Find(id);
+            db.Dispositivos.Remove(dispositivo);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,4 +1,4 @@
-﻿@model Integrador.Models.Dispositivo
+﻿@model Integrador.Models.DispositivoInteligente
 
 @{
     ViewBag.Title = "Delete";
@@ -9,7 +9,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Dispositivo</h4>
+    <h4>DispositivoInteligente</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -44,6 +44,22 @@
             @Html.DisplayFor(model => model.UsoMensualMin)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Encendido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Encendido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModoAhorroDeEnergia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModoAhorroDeEnergia)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
@@ -51,7 +67,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente")
         </div>
     }
 </div>
