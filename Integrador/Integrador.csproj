@@ -217,12 +217,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\ConsumoPeriodoController.cs" />
     <Compile Include="Controllers\DispositivoController.cs" />
     <Compile Include="Controllers\Dispositivos\DispositivoClienteController.cs" />
     <Compile Include="Controllers\Dispositivos\DispositivoEstandarController.cs" />
     <Compile Include="Controllers\Dispositivos\DispositivoInteligenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedicionesController.cs" />
+    <Compile Include="Controllers\ReglaController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TemplateDispositivoController.cs" />
     <Compile Include="Controllers\TransformadorController.cs" />
@@ -430,11 +433,15 @@
     <Content Include="Views\DispositivoCliente\Details.cshtml" />
     <Content Include="Views\DispositivoCliente\Edit.cshtml" />
     <Content Include="Views\DispositivoCliente\Index.cshtml" />
+    <Content Include="Views\Estado_Hogar\Index.cshtml" />
+    <Content Include="Views\Mediciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="JSONFiles\" />
     <Folder Include="Models\Clases\Log\" />
+    <Folder Include="Views\ConsumoPeriodo\" />
+    <Folder Include="Views\Regla\" />
     <Folder Include="Views\Zona\" />
   </ItemGroup>
   <ItemGroup>
