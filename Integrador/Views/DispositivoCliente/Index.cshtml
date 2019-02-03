@@ -9,7 +9,7 @@
 <br />
 <h4 style="margin-top:2.3em">Dispositivos Inteligentes</h4>
 <p>
-    @Html.ActionLink("+ Agregar", "Create", "DispositivoInteligente", new { @title = "Nuevo dispositivo Inteligente" })
+    @Html.ActionLink("Agregar", "Create", "DispositivoInteligente", new { @title = "Nuevo dispositivo Inteligente" })
 </p>
 <table class="table">
     <tr>
@@ -64,7 +64,7 @@
                 @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
             </td>
             <td>
-                @Html.ActionLink("X", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
             </td>
         </tr>
     }
@@ -75,7 +75,7 @@
 <h4>Dispositivos Estandar</h4>
 
 <p>
-    @Html.ActionLink("+ Agregar", "Create", "DispositivoEstandar", new { @title = "Nuevo dispositivo" })
+    @Html.ActionLink("Agregar", "Create", "DispositivoEstandar", new { @title = "Nuevo dispositivo" })
 </p>
 <table class="table">
     <tr>
@@ -123,7 +123,7 @@
                 @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
             </td>
             <td>
-                @Html.ActionLink("X", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
             </td>
         </tr>
     }

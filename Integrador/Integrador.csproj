@@ -216,6 +216,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DispositivoController.cs" />
     <Compile Include="Controllers\Dispositivos\DispositivoClienteController.cs" />
@@ -430,11 +431,13 @@
     <Content Include="Views\DispositivoCliente\Details.cshtml" />
     <Content Include="Views\DispositivoCliente\Edit.cshtml" />
     <Content Include="Views\DispositivoCliente\Index.cshtml" />
+    <Content Include="Views\Pop-ups\Puntaje.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="JSONFiles\" />
     <Folder Include="Models\Log\" />
+    <Folder Include="Views\Cliente\" />
     <Folder Include="Views\Zona\" />
   </ItemGroup>
   <ItemGroup>
