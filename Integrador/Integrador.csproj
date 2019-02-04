@@ -290,7 +290,7 @@
     <Compile Include="Services\TransformadorService.cs" />
     <Compile Include="Services\OperacionService.cs" />
     <Compile Include="Services\ZonaService.cs" />
-    <Compile Include="Services\Extension\Extension.cs" />
+    <Compile Include="Services\Extension.cs" />
     <Compile Include="Services\ClienteService.cs" />
     <Compile Include="Services\DispositivoService.cs" />
     <Compile Include="Services\UserService.cs" />
