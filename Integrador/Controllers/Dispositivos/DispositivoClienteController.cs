@@ -56,16 +56,16 @@ namespace Integrador.Controllers.Dispositivos
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin")] Dispositivo dispositivo)
+        public ActionResult Create([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin,Encendido,ModoAhorroDeEnergia")] DispositivoInteligente dispositivoInteligente)
         {
             if (ModelState.IsValid)
             {
-                db.Dispositivos.Add(dispositivo);
+                db.Dispositivos.Add(dispositivoInteligente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(dispositivo);
+            return View(dispositivoInteligente);
         }
 
         // GET: DispositivoCliente/Edit/5
