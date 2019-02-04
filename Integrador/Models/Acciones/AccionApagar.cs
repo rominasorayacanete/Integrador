@@ -6,11 +6,11 @@ using System.Web;
 
 namespace Integrador.Models.Clases.Acciones
 {
-    public class AccionApagar : IAccion
-    {
-        public void Accionar(DispositivoInteligente dispositivo)
-        {
-            dispositivo.Apagar();
-        }
-    }
+    //public class AccionApagar : IAccion
+    //{
+    //    public void Accionar(DispositivoInteligente dispositivo)
+    //    {
+    //        dispositivo.Apagar();
+    //    }
+    //}
 }

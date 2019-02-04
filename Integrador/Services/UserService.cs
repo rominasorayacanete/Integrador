@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Text.RegularExpressions;
 using Integrador.Models;
-using Integrador.Models.Clases.Tipos;
 using System.Net;
 using Newtonsoft.Json;
 using System.Text;
@@ -46,7 +45,7 @@ namespace Integrador.Services
 
         public bool isAdmin(Models.Usuario usuario)
         {
-            var admin = db.Administradores.SingleOrDefault(a => a.Usuario.Id == usuario.Id);
+            var admin = db.Administradores.SingleOrDefault(a => a.Id == usuario.Id);
             if (admin != null)
             {
                 return true;
@@ -57,7 +56,7 @@ namespace Integrador.Services
         public void CheckUser(int userId)
         {
             var cliente = db.Clientes
-                .Where(c => c.Usuario.Id == userId)
+                .Where(c => c.Id == userId)
                 .FirstOrDefault();
             if (cliente != null && cliente.Transformador != null){
                 this.setTransformador(cliente.Id);

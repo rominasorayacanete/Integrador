@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using Integrador.DAL;
-using Integrador.Models.Clases;
+using Integrador.Models;
 
 namespace Integrador.Services
 {
@@ -22,7 +22,7 @@ namespace Integrador.Services
                     Longitud = z.Longitud
                 };
 
-                db.ZonaGeograficas.Add(zona);
+                db.ZonasGeograficas.Add(zona);
                 db.SaveChanges();
 
                 foreach (Transformador t in z.Transformadores)

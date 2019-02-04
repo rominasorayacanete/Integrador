@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using Integrador.DAL;
-using Integrador.Models.Clases;
+using Integrador.Models;
 using System.Data.Entity;
 using System.Linq;
 

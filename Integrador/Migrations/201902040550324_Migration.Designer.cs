@@ -7,13 +7,13 @@ namespace Integrador.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class migrations : IMigrationMetadata
+    public sealed partial class Migration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(migrations));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Migration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901260212173_migrations"; }
+            get { return "201902040550324_Migration"; }
         }
         
         string IMigrationMetadata.Source

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Text.RegularExpressions;
 using Integrador.Models;
-using Integrador.Models.Clases.Tipos;
 using System.Net;
 using Newtonsoft.Json;
 using System.Text;
@@ -132,9 +131,7 @@ namespace Integrador.Services
 
         public List<DispositivoInteligente> MockListado()
         {
-            TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
-            TipoHeladera tipoHeladera = new TipoHeladera("Sin freezer");
-            TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
+            
             /*
             DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
             DispositivoInteligente d2 = new DispositivoInteligente(tipoHeladera);
@@ -152,11 +149,7 @@ namespace Integrador.Services
         public Cliente MockCliente()
         {
             // Instancia de dispositivo Heladera
-            TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
-            TipoLampara tipoLampara = new TipoLampara("De 11 W");
-            TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
-            TipoMicroondas tipoMicroondas = new TipoMicroondas("Convencional");
-            TipoPlancha tipoPlancha = new TipoPlancha("A vapor");
+
 /*
             DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
             DispositivoInteligente d2 = new DispositivoInteligente(tipoLampara);

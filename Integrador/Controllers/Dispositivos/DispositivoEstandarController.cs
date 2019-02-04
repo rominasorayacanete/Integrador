@@ -22,7 +22,7 @@ namespace Integrador.Controllers.Dispositivos
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
+            DispositivoEstandar dispositivoEstandar = db.DispositivosEstandar.Find(id);
             if (dispositivoEstandar == null)
             {
                 return HttpNotFound();
@@ -45,7 +45,7 @@ namespace Integrador.Controllers.Dispositivos
         {
             if (ModelState.IsValid)
             {
-                db.DispositivoEstandar.Add(dispositivoEstandar);
+                db.DispositivosEstandar.Add(dispositivoEstandar);
                 db.SaveChanges();
                 return RedirectToAction("Index","DispositivoCliente");
             }
@@ -60,7 +60,7 @@ namespace Integrador.Controllers.Dispositivos
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
+            DispositivoEstandar dispositivoEstandar = db.DispositivosEstandar.Find(id);
             if (dispositivoEstandar == null)
             {
                 return HttpNotFound();
@@ -91,7 +91,7 @@ namespace Integrador.Controllers.Dispositivos
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
+            DispositivoEstandar dispositivoEstandar = db.DispositivosEstandar.Find(id);
             if (dispositivoEstandar == null)
             {
                 return HttpNotFound();
@@ -104,7 +104,7 @@ namespace Integrador.Controllers.Dispositivos
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
+            DispositivoEstandar dispositivoEstandar = db.DispositivosEstandar.Find(id);
             db.Dispositivos.Remove(dispositivoEstandar);
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente");

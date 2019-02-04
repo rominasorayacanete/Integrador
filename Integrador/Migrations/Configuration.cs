@@ -9,7 +9,7 @@ namespace Integrador.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Integrador.DAL.Context context)

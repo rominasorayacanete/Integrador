@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
-using Integrador.Models.Clases;
+using Integrador.Models;
 
 namespace Integrador.Controllers
 {

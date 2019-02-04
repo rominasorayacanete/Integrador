@@ -233,9 +233,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901260406024_Migration.cs" />
-    <Compile Include="Migrations\201901260406024_Migration.Designer.cs">
-      <DependentUpon>201901260406024_Migration.cs</DependentUpon>
+    <Compile Include="Migrations\201902040550324_Migration.cs" />
+    <Compile Include="Migrations\201902040550324_Migration.Designer.cs">
+      <DependentUpon>201902040550324_Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Acciones\AccionApagar.cs" />
@@ -243,8 +243,10 @@
     <Compile Include="Models\Acciones\AccionBajarTemperatura.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Actuador.cs" />
+    <Compile Include="Models\Adaptador.cs" />
     <Compile Include="Models\Administrador.cs" />
     <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Domicilio.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Dispositivo.cs" />
     <Compile Include="Models\DispositivoEstandar.cs" />
@@ -254,8 +256,6 @@
     <Compile Include="Models\Interface\IReglaSubject.cs" />
     <Compile Include="Models\Interface\ISensorSubject.cs" />
     <Compile Include="Models\LogType.cs" />
-    <Compile Include="Models\MarcaLG.cs" />
-    <Compile Include="Models\ModuloAdaptador.cs" />
     <Compile Include="Models\DispositivoInteligente.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Operacion.cs" />
@@ -441,8 +441,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901260406024_Migration.resx">
-      <DependentUpon>201901260406024_Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902040550324_Migration.resx">
+      <DependentUpon>201902040550324_Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

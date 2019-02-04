@@ -1,5 +1,4 @@
-﻿using Integrador.Models.Abstract;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +7,27 @@ namespace Integrador.Models
 {
     public class DispositivoEstandar : Dispositivo
     {
-
-        public override bool Inteligente
+        public int UsoEstimado { get; set; }
+        public Adaptador Adaptador { get; set; }
+        
+        public void Encenderse()
         {
-            get
-            {
-                return false;
-            }
-            set { }
+            Adaptador.Encenderse();
         }
 
-        public int UsoEstimado { get; set; }
+        public void Apagarse()
+        {
+            Adaptador.Apagarse();
+        }
+
+        public void _ModoAhorro()
+        {
+            Adaptador._ModoAhorro();
+        }
+
+        public float EnergiaConsumida(int horas)
+        {
+            return Adaptador.EnergiaConsumida(horas);
+        }
     }
 }

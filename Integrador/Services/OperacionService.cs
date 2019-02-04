@@ -12,16 +12,16 @@ namespace Integrador.Services
     {
         private Context db = new Context();
 
-        public double ConsumosRango(DateTime Desde, DateTime Hasta, Dispositivo dispositivo)
-        {
-            List<Operacion> operaciones = db.Operaciones
-                .Where(o => (o.Fecha >= Desde && o.Fecha <= Hasta) 
-                && o.Dispositivo == dispositivo 
-                && (o.Tipo == "apagar" || o.Tipo == "encender"))
-                .ToList();
+        //public double ConsumosRango(DateTime Desde, DateTime Hasta, Dispositivo dispositivo)
+        //{
+        //    List<Operacion> operaciones = db.Operaciones
+        //        .Where(o => (o.Fecha >= Desde && o.Fecha <= Hasta) 
+        //        && o.Dispositivo == dispositivo 
+        //        && (o.Tipo == "apagar" || o.Tipo == "encender"))
+        //        .ToList();
 
-            return (operaciones.Count() * dispositivo.Consumo) / 2;
-        }
+        //    return (operaciones.Count() * dispositivo.Consumo) / 2;
+        //}
 
         public void RegistrarOperacionApagar(DispositivoInteligente _dispositivo)
         {

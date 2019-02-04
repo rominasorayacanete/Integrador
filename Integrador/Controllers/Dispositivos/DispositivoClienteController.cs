@@ -20,7 +20,7 @@ namespace Integrador.Controllers.Dispositivos
         public ActionResult Index()
         {
             var _dispositivoInteligentes = db.DispositivosInteligentes.ToList();
-            var _dispositivosEstandar = db.DispositivoEstandar.ToList();
+            var _dispositivosEstandar = db.DispositivosEstandar.ToList();
             var listado = new ListadoDispositivos
             {
                 DispositivosEstandar = _dispositivosEstandar,

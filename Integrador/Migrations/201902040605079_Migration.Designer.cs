@@ -13,7 +13,7 @@ namespace Integrador.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201901260406024_Migration"; }
+            get { return "201902040605079_Migration"; }
         }
         
         string IMigrationMetadata.Source

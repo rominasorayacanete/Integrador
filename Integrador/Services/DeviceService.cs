@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Text.RegularExpressions;
 using Integrador.Models;
-using Integrador.Models.Clases.Tipos;
 using System.Net;
 using Newtonsoft.Json;
 using System.Text;

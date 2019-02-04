@@ -114,7 +114,7 @@ namespace Integrador.Controllers
             var zonas = JsonConvert.DeserializeObject<List<ZonaGeografica>>(str);
             foreach(var zona in zonas)
             {
-                db.ZonaGeograficas.Add(zona);
+                db.ZonasGeograficas.Add(zona);
             }
             db.SaveChanges();
             ViewBag.Zonas = zonas;

@@ -11,7 +11,7 @@ namespace Integrador.Services
         public Cliente findClientByUserId(int userId)
         {
             return db.Clientes
-                .Where(c => c.Usuario.Id == userId)
+                .Where(c => c.Id == userId)
                 .FirstOrDefault();
         }
 
@@ -30,7 +30,7 @@ namespace Integrador.Services
             db.SaveChanges();
         }
 
-        public void updateGeoCliente(Cliente cliente, double latitud, double longitud)
+        public void updateGeoCliente(Cliente cliente, float latitud, float longitud)
         {
             var cli = db.Clientes.SingleOrDefault(c => c.Id == cliente.Id);
             if (cli != null)
@@ -43,19 +43,19 @@ namespace Integrador.Services
 
         public string NombreCliente(string username)
         {
-            var cliente = db.Clientes.FirstOrDefault(c => c.Usuario.Username == username);
+            var cliente = db.Clientes.FirstOrDefault(c => c.Username == username);
             return cliente.Nombre;
         }
 
         public string ApellidoCliente(string username)
         {
-            var cliente = db.Clientes.FirstOrDefault(c => c.Usuario.Username == username);
+            var cliente = db.Clientes.FirstOrDefault(c => c.Username == username);
             return cliente.Apellido;
         }
 
         public int PuntosCliente(string username)
         {
-            var cliente = db.Clientes.FirstOrDefault(c => c.Usuario.Username == username);
+            var cliente = db.Clientes.FirstOrDefault(c => c.Username == username);
             return cliente.Puntos;
         }
     }

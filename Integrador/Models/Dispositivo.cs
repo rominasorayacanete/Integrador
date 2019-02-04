@@ -9,34 +9,13 @@ using System.Web;
 
 namespace Integrador.Models
 {
-    public abstract class Dispositivo
+    public class Dispositivo
     {
         [Key]
         public int Id { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string NombreGenerico { get; set; }
-
-        public int Consumo { get; set; }
-
-        public int UsoMensualMax { get; set; }
-
-        public int UsoMensualMin { get; set; }
-
-        public abstract bool Inteligente { get; set; }
-
-        public virtual List<Actuador> Actuadores { get; set; }
-
-        public virtual List<Operacion> Operaciones { get; set; }
-
-        public virtual MarcaDispositivo MarcaDispositivo { get; set; }
-
-        public Dispositivo()
-        {
-            this.Operaciones = new List<Operacion>();
-            this.Actuadores = new List<Actuador>();
-        }
-
+        public string Nombre { get; set; }
+        public float ConsumoPorHora { get; set; }
+        public bool Encendido { get; set; }
+        public Cliente Cliente { get; set; }
     }
 }

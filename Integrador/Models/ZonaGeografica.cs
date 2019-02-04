@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Integrador.Models.Clases
+namespace Integrador.Models
 {
     public class ZonaGeografica
     {

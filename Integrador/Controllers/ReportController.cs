@@ -59,31 +59,31 @@ namespace Integrador.Controllers
             return View();
         }
 
-        public ActionResult ReporteHogar(int clienteId, int periodo)
-        {
+        //public ActionResult ReporteHogar(int clienteId, int periodo)
+        //{
 
-            var cliente = clienteService.FindById(clienteId);
+        //    var cliente = clienteService.FindById(clienteId);
 
-            string SearchName = "Hogar" + cliente.Id + periodo;
-            var mongoReport = reportService.ExistReport(SearchName, periodo);
+        //    string SearchName = "Hogar" + cliente.Id + periodo;
+        //    var mongoReport = reportService.ExistReport(SearchName, periodo);
 
-            if (mongoReport != null)
-            {
-                ViewBag.Consumo = mongoReport.Value;
-                ViewBag.Nombre = "Hogar " + mongoReport.DisplayName;
-                ViewBag.Periodo = mongoReport.Periodo;
-                ViewBag.Mongo = "Este reporte ha sido generado a travez de MongoDB!";
-                return View("~/Views/Report/detail.cshtml");
-            }
+        //    if (mongoReport != null)
+        //    {
+        //        ViewBag.Consumo = mongoReport.Value;
+        //        ViewBag.Nombre = "Hogar " + mongoReport.DisplayName;
+        //        ViewBag.Periodo = mongoReport.Periodo;
+        //        ViewBag.Mongo = "Este reporte ha sido generado a travez de MongoDB!";
+        //        return View("~/Views/Report/detail.cshtml");
+        //    }
 
-            ViewBag.Consumo = cliente.ConsumoHogar() * periodo;
-            ViewBag.Nombre = "Hogar de " + cliente.Nombre + " " + cliente.Apellido;
-            ViewBag.Periodo = periodo;
+        //    ViewBag.Consumo = cliente.ConsumoHogar() * periodo;
+        //    ViewBag.Nombre = "Hogar de " + cliente.Nombre + " " + cliente.Apellido;
+        //    ViewBag.Periodo = periodo;
 
-            reportService.SaveReport(SearchName, cliente.Nombre, periodo, cliente.ConsumoHogar() * periodo);
+        //    reportService.SaveReport(SearchName, cliente.Nombre, periodo, cliente.ConsumoHogar() * periodo);
 
-            return View("~/Views/Report/detail.cshtml");
-        }
+        //    return View("~/Views/Report/detail.cshtml");
+        //}
 
         public ActionResult Dispositivo()
         {
@@ -107,11 +107,11 @@ namespace Integrador.Controllers
                 return View("~/Views/Report/detail.cshtml");
             }
 
-            ViewBag.Consumo = dispositivo.Consumo * periodo;
-            ViewBag.Nombre = "Dispositivo " + dispositivo.NombreGenerico;
+            //ViewBag.Consumo = dispositivo.Consumo * periodo;
+            ViewBag.Nombre = "Dispositivo " + dispositivo.Nombre;
             ViewBag.Periodo = periodo;
 
-            reportService.SaveReport(SearchName, dispositivo.NombreGenerico , periodo, dispositivo.Consumo * periodo);
+            //reportService.SaveReport(SearchName, dispositivo.Nombre , periodo, dispositivo.Consumo * periodo);
 
             return View("~/Views/Report/detail.cshtml");
         }
