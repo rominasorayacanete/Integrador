@@ -26,32 +26,33 @@
                         </a>
                     </li>
                     <li>@Html.ActionLink("Mapa de transformadores", "Map", "Transformador")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
                 </ul>
             </div>
             @Html.Partial("_LoginPartial")
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @{
-                        if (Session["Username"] != null)
-                        {
-                            if (Session["Role"] != "Admin")
-                            {
-                                <li>@Html.ActionLink("Estado de mi hogar", "Index", "Mediciones")</li>
-                                <li>@Html.ActionLink("Consumo por período", "Index", "ConsumoPeriodo")</li>
-                                <li>@Html.ActionLink("Nuevo dispositivo", "Index", "Dispositivo")</li>
-                                <li>@Html.ActionLink("Ejecutar algoritmo simplex", "Index", "Simplex")</li>
-                                <li>@Html.ActionLink("Reglas", "Index", "Regla")</li>
-                                <li>@Html.ActionLink("Dispositivos", "Index", "DispositivoCliente")</li>
-                            }
-                            else
-                            {
-                                <li>@Html.ActionLink("Hogares", "Index", "Clientes")</li>
-                                <li>@Html.ActionLink("Dispositivos", "Index", "TemplateDispositivo")</li>
-                                <li>@Html.ActionLink("Reportes", "Index", "Report")</li>
-                            }
-                        }
-                    }
+@{
+        if (Session["Username"] != null)
+        {
+            if (Session["Role"] != "Admin")
+            {
+                <li>@Html.ActionLink("Mi puntaje", "Puntaje", "Cliente")</li>
+                <li>@Html.ActionLink("Mis dispositivos", "Index", "DispositivoCliente")</li>
+                <li>@Html.ActionLink("Mis reglas", "Simplex", "Home")</li>
+                <li>@Html.ActionLink("Mis consumos", "Index", "DispositivoCliente")</li>
+                <li>@Html.ActionLink("Estado de mi hogar", "Index", "DispositivoCliente")</li>
+                <li>@Html.ActionLink("Calcular mi consumo óptimo", "Index", "DispositivoCliente")</li>
+            }
+            else
+            {
+                <li>@Html.ActionLink("Hogares", "Index", "Clientes")</li>
+                <li>@Html.ActionLink("Dispositivos", "Index", "TemplateDispositivo")</li>
+                <li>@Html.ActionLink("Reportes", "Index", "Report")</li>
+            }
+        }
+}
                 </ul>
             </div>
         </div>

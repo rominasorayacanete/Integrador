@@ -3,13 +3,14 @@
 }
 
 <div class="jumbotron" style="background-color: indigo; color: whitesmoke">
-    @if(Session["Role"] != "Admin" && Session["Username"] != null)
+    @if (Session["Username"] != null && Session["Role"] != "Admin")
     {
-        <br>   
+        <br>
     }
     <h1>Sistema de Gestión Energética</h1>
     <p class="lead">SGE es un sistema inspirado en la gestión energética de los clientes industriales y residenciales, cuyo objetivo es lograr que estos últimos logren convertir su casa o departamento en un "hogar eficiente".</p>
-</div>
+    <!-- <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p> -->
+    </div>
 
 <div class="row">
     <div class="col-md-4">
