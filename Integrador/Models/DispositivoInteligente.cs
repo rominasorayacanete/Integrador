@@ -29,38 +29,31 @@ namespace Integrador.Models
 
         public override void ActivarModoAhorro()
         {
-            if (!ModoAhorroDeEnergia)
-            {
-                ModoAhorroDeEnergia = true;
-            }
-            else
+            if (ModoAhorroDeEnergia == true)
             {
                 throw new Exception("El dispositivo ya se encuentra en modo ahorro de energía.");
             }
+            ModoAhorroDeEnergia = true;
         }
 
         public override void Apagar()
         {
-            if (Encendido)
+            if (Encendido == false)
             {
-                Encendido = false;
+                throw new Exception("Este dispositivo ya se encuentra en apagado");
             }
-            else
-            {
-                throw new Exception("El dispositivo ya está apagado.");
-            }
+            Encendido = false;
+
         }
 
         public override void Encender()
         {
-            if (Encendido)
+            if (Encendido == true)
             {
-                Encendido = true;
+                throw new Exception("Este dispositivo ya se encuentra en encendido");
             }
-            else
-            {
-                throw new Exception("El dispositivo ya está encendido.");
-            }
+            Encendido = true;
+         
         }
 
     }

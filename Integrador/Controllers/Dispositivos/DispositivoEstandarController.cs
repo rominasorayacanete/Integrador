@@ -152,6 +152,21 @@ namespace Integrador.Controllers.Dispositivos
             return RedirectToAction("Index", "DispositivoCliente");
         }
 
+        [ActionName("Adaptar")]
+        public ActionResult Adaptar(int? id)
+        {
+            DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
+            if (dispositivoEstandar == null)
+            {
+                return HttpNotFound();
+            }
+            ModuloAdaptador adaptador = new ModuloAdaptador();
+            dispositivoEstandar.Adaptar(adaptador);
+            // Agregar trackeo
+            db.SaveChanges();
+            return RedirectToAction("Index", "DispositivoCliente");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

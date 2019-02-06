@@ -22,6 +22,15 @@ namespace Integrador.Models
 
         public int UsoEstimado { get; set; }
 
+        public void Adaptar(ModuloAdaptador adaptador)
+        {
+            if (ModuloAdaptador != null)
+            {
+                throw new Exception("Este dispositivo ya se encuentra adaptado");
+            }
+            ModuloAdaptador = adaptador;
+        }
+
         public override void ActivarModoAhorro()
         {
             if (ModuloAdaptador != null)

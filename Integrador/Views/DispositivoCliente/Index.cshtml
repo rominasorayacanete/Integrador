@@ -92,7 +92,10 @@
             Uso mensual mínimo
         </th>
         <th>
-            Adaptado
+            Encendido
+        </th>
+        <th>
+            Modo ahorro de energía
         </th>
         <th>
             Marca
@@ -101,31 +104,44 @@
     </tr>
     @foreach (var item in Model.DispositivosEstandar)
     {
-        <tr>
-            <td>
-                <a href="@Url.Action("Details", "DispositivoEstandar", new { id = item.Id })">
-                    @Html.DisplayFor(modelItem => item.NombreGenerico)
-                </a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Consumo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inteligente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
-            </td>
-            <td>
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            <a href="@Url.Action("Details", "DispositivoEstandar", new { id = item.Id })">
+                @Html.DisplayFor(modelItem => item.NombreGenerico)
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Consumo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsoMensualMax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsoMensualMin)
+        </td>
+        @if (item.ModuloAdaptador == null)
+        {
+        <td>
+            N/A
+        </td>
+        <td>
+            N/A
+        </td>
+        } else {
+        <td>
+            @Html.DisplayFor(modelItem => item.ModuloAdaptador.Encendido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModuloAdaptador.ModoAhorroDeEnergia)
+        </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
+        </td>
+        <td>
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
+        </td>
+    </tr>
     }
 
 </table>
