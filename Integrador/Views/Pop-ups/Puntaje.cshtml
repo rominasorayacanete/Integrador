@@ -1,0 +1,42 @@
+﻿@using Integrador.Services;
+
+@{ 
+    ViewBag.Title = "Puntaje";
+}
+<br>
+<br>
+<br>
+
+<h2>Mi puntaje</h2>
+    <p>SGE otorga puntos a sus clientes cada vez que inscriben al sistema un dispositivo inteligente o adaptan un dispositivo estándar.</p>
+    <br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Ver mi puntaje
+    </button>
+
+@{ 
+    ClienteService clienteService = new ClienteService();
+
+    string nombre = clienteService.NombreCliente(Session["Username"].ToString());
+    string apellido = clienteService.ApellidoCliente(Session["Username"].ToString());
+    int puntos = clienteService.PuntosCliente(Session["Username"].ToString());
+}
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Puntaje</h3>
+                </div>
+                <div class="modal-body">
+                    @nombre @apellido, usted acumula @puntos puntos.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+

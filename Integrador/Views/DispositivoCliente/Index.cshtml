@@ -9,27 +9,27 @@
 <br />
 <h4 style="margin-top:2.3em">Dispositivos Inteligentes</h4>
 <p>
-    @Html.ActionLink("+ Agregar", "Create", "DispositivoInteligente")
+    @Html.ActionLink("Agregar", "Create", "DispositivoInteligente", new { @title = "Nuevo dispositivo Inteligente" })
 </p>
 <table class="table">
     <tr>
         <th>
-            Nombre Generico
+            Nombre genérico
         </th>
         <th>
             Consumo
         </th>
         <th>
-            Uso Mensual Maximo
+            Uso mensual máximo
         </th>
         <th>
-            Uso Mensual Minimo
+            Uso mensual mínimo
         </th>
         <th>
             Encendido
         </th>
         <th>
-            Modo Ahorro energia
+            Modo ahorro de energía
         </th>
         <th>
             Marca
@@ -64,7 +64,7 @@
                 @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
             </td>
             <td>
-                @Html.ActionLink("X", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
             </td>
         </tr>
     }
@@ -72,30 +72,27 @@
 </table>
 <hr />
 
-<h4>Dispositivos Estandar</h4>
+<h4>Dispositivos Estándar</h4>
 
 <p>
-    @Html.ActionLink("+ Agregar", "Create", "DispositivoEstandar")
+    @Html.ActionLink("Agregar", "Create", "DispositivoEstandar", new { @title = "Nuevo dispositivo" })
 </p>
 <table class="table">
     <tr>
-        <th style="font-size:0.9em">
-            Nombre Generico
+        <th>
+            Nombre genérico
         </th>
         <th>
             Consumo
         </th>
         <th>
-            Uso Mensual Maximo
+            Uso mensual máximo
         </th>
         <th>
-            Uso Mensual Minimo
+            Uso mensual mínimo
         </th>
         <th>
-            Encendido
-        </th>
-        <th>
-            Modo Ahorro energia
+            Adaptado
         </th>
         <th>
             Marca
@@ -119,31 +116,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UsoMensualMin)
             </td>
-            @if (item.ModuloAdaptador != null)
-            {
-                
             <td>
-                @Html.DisplayFor(modelItem => item.ModuloAdaptador.Encendido)
+                @Html.DisplayFor(modelItem => item.Inteligente)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModuloAdaptador.ModoAhorroDeEnergia)
-            </td>
-            }
-            else
-            {
-            <td>
-                N/A
-            </td>
-            <td>
-                N/A
-            </td>
-            }
-            
             <td>
                 @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
             </td>
-             <td>
-                @Html.ActionLink("X", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
             </td>
         </tr>
     }

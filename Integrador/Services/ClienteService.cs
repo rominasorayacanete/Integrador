@@ -32,13 +32,31 @@ namespace Integrador.Services
 
         public void updateGeoCliente(Cliente cliente, double latitud, double longitud)
         {
-            var cli = db.Clientes.SingleOrDefault(c => c.Id== cliente.Id);
+            var cli = db.Clientes.SingleOrDefault(c => c.Id == cliente.Id);
             if (cli != null)
             {
                 cli.Latitud = latitud;
                 cli.Longitud = longitud;
                 db.SaveChanges();
             }
+        }
+
+        public string NombreCliente(string username)
+        {
+            var cliente = db.Clientes.FirstOrDefault(c => c.Usuario.Username == username);
+            return cliente.Nombre;
+        }
+
+        public string ApellidoCliente(string username)
+        {
+            var cliente = db.Clientes.FirstOrDefault(c => c.Usuario.Username == username);
+            return cliente.Apellido;
+        }
+
+        public int PuntosCliente(string username)
+        {
+            var cliente = db.Clientes.FirstOrDefault(c => c.Usuario.Username == username);
+            return cliente.Puntos;
         }
     }
 }
