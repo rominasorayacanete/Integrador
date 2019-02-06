@@ -62,6 +62,25 @@
     </dl>
 </div>
 <p>
+    @if (Model.Encendido)
+    {
+        using (Html.BeginForm())
+        {
+            @Ajax.ActionLink("Apagar", "Apagar", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
+        }
+    }
+    else
+    {
+        using (Html.BeginForm())
+        {
+            @Ajax.ActionLink("Encender", "Encender", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
+        }
+    }
+    <span>|</span>
+    @using (Html.BeginForm())
+    {
+        @Ajax.ActionLink("Modo ahorro", "ActivarAhorro", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
+    }
     @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente")
 </p>

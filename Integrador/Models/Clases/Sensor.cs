@@ -1,6 +1,7 @@
 ﻿using Integrador.Models.Clases.Interface;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,9 +9,12 @@ namespace Integrador.Models.Clases
 {
     public class Sensor : ISensorSubject
     {
+        [Key]
+        public int Id;
 
-        private string magnitud;
-        private List<IReglaObserver> reglas;
+        public string magnitud;
+
+        public List<IReglaObserver> reglas;
 
         public Sensor(string magnitud)
         {
@@ -21,7 +25,6 @@ namespace Integrador.Models.Clases
         public void Obtenermagnitud()
         {
             this.magnitud = "Magnitud4";
-            // Metodo para obtener la magnitud del sensor
             this.NotifyAllObservers(magnitud);
         }
 
@@ -48,6 +51,6 @@ namespace Integrador.Models.Clases
             }
         }
 
-    } //end of class Sensor//
+    }
 
 }

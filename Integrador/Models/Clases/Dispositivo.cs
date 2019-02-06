@@ -38,5 +38,12 @@ namespace Integrador.Models
             this.Actuadores = new List<Actuador>();
         }
 
+        public abstract void Encender();
+
+        public abstract void Apagar();
+
+        public abstract void ActivarModoAhorro();
+
+
     }
 }

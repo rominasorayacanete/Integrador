@@ -10,7 +10,9 @@ namespace Integrador.Models.Clases
     {
 
         public int Id { get; set; }
-        public bool ReglaCumplida { get; set; }
+        public bool ReglaCumplida { get; set; } = false;
+        public string Condicion { get; set; }
+
         public virtual List<Actuador> Actuadores { get; set; }
 
         public bool SeCumple()

@@ -14,6 +14,7 @@ namespace Integrador.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "Integrador.DAL.Context";
         }
 
@@ -80,6 +81,17 @@ namespace Integrador.Migrations
                 Consumo = 100,
                 UsoMensualMax = 1000,
                 UsoMensualMin = 100,
+            };
+
+            ModuloAdaptador adaptador = new ModuloAdaptador();
+
+            DispositivoEstandar d3 = new DispositivoEstandar
+            {
+                NombreGenerico = "Lampara  No smart",
+                Consumo = 50,
+                UsoMensualMax = 500,
+                UsoMensualMin = 120,
+                ModuloAdaptador = adaptador,
             };
 
             dispositivos.Add(d1);

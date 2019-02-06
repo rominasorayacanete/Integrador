@@ -9,7 +9,7 @@
 <br />
 <h4 style="margin-top:2.3em">Dispositivos Inteligentes</h4>
 <p>
-    @Html.ActionLink("+ Agregar", "Create", "DispositivoInteligente", new { @title = "Nuevo dispositivo Inteligente" })
+    @Html.ActionLink("+ Agregar", "Create", "DispositivoInteligente")
 </p>
 <table class="table">
     <tr>
@@ -75,7 +75,7 @@
 <h4>Dispositivos Estandar</h4>
 
 <p>
-    @Html.ActionLink("+ Agregar", "Create", "DispositivoEstandar", new { @title = "Nuevo dispositivo" })
+    @Html.ActionLink("+ Agregar", "Create", "DispositivoEstandar")
 </p>
 <table class="table">
     <tr>
@@ -92,7 +92,10 @@
             Uso Mensual Minimo
         </th>
         <th>
-            Adaptado
+            Encendido
+        </th>
+        <th>
+            Modo Ahorro energia
         </th>
         <th>
             Marca
@@ -116,13 +119,30 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UsoMensualMin)
             </td>
+            @if (item.ModuloAdaptador != null)
+            {
+                
             <td>
-                @Html.DisplayFor(modelItem => item.Inteligente)
+                @Html.DisplayFor(modelItem => item.ModuloAdaptador.Encendido)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuloAdaptador.ModoAhorroDeEnergia)
+            </td>
+            }
+            else
+            {
+            <td>
+                N/A
+            </td>
+            <td>
+                N/A
+            </td>
+            }
+            
             <td>
                 @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
             </td>
-            <td>
+             <td>
                 @Html.ActionLink("X", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
             </td>
         </tr>

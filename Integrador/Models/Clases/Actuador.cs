@@ -20,7 +20,6 @@ namespace Integrador.Models
 
         public virtual Dispositivo Dispositivo { get; set; }
 
-        public virtual List<Regla> Reglas { get; set; }
         
 
          public void Update()
@@ -32,14 +31,14 @@ namespace Integrador.Models
           }
           public bool SeCumplenTodasLasReglas()
           {
-              foreach(Regla regla in this.Reglas)
+        /*      foreach(Regla regla in this.Reglas)
              {
                   if (!regla.SeCumple())
                   {
                       return false;
                   }
               }
-              return true;
+          */    return true;
           }
 
           public void Update(bool estadoRegla)

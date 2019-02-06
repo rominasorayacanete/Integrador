@@ -110,6 +110,48 @@ namespace Integrador.Controllers.Dispositivos
             return RedirectToAction("Index", "DispositivoCliente");
         }
 
+        [ActionName("Apagar")]
+        public ActionResult Apagar(int? id)
+        {
+            DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
+            if (dispositivoEstandar == null)
+            {
+                return HttpNotFound();
+            }
+            dispositivoEstandar.Apagar();
+            // Agregar trackeo
+            db.SaveChanges();
+            return RedirectToAction("Index", "DispositivoCliente");
+        }
+
+        [ActionName("Encender")]
+        public ActionResult Encender(int? id)
+        {
+            DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
+            if (dispositivoEstandar == null)
+            {
+                return HttpNotFound();
+            }
+            dispositivoEstandar.Encender();
+            // Agregar trackeo
+            db.SaveChanges();
+            return RedirectToAction("Index", "DispositivoCliente");
+        }
+
+        [ActionName("ActivarAhorro")]
+        public ActionResult ActivarAhorro(int? id)
+        {
+            DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
+            if (dispositivoEstandar == null)
+            {
+                return HttpNotFound();
+            }
+            dispositivoEstandar.ActivarModoAhorro();
+            // Agregar trackeo
+            db.SaveChanges();
+            return RedirectToAction("Index", "DispositivoCliente");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

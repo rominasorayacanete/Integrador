@@ -27,7 +27,7 @@ namespace Integrador.Models
 
         }
 
-        public virtual void ActivarModoAhorroDeEnergia()
+        public override void ActivarModoAhorro()
         {
             if (!ModoAhorroDeEnergia)
             {
@@ -39,7 +39,7 @@ namespace Integrador.Models
             }
         }
 
-        public virtual void Apagar()
+        public override void Apagar()
         {
             if (Encendido)
             {
@@ -51,12 +51,7 @@ namespace Integrador.Models
             }
         }
 
-        public virtual float EnergiaConsumidaUltimasNHoras(int horas)
-        {
-            return 2020 * horas;
-        }
-
-        public virtual void Encender()
+        public override void Encender()
         {
             if (Encendido)
             {
