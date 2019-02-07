@@ -224,6 +224,7 @@
     <Compile Include="Controllers\Dispositivos\DispositivoInteligenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Registro\OperacionesController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TemplateDispositivoController.cs" />
     <Compile Include="Controllers\TransformadorController.cs" />
@@ -432,6 +433,11 @@
     <Content Include="Views\DispositivoCliente\Edit.cshtml" />
     <Content Include="Views\DispositivoCliente\Index.cshtml" />
     <Content Include="Views\Pop-ups\Puntaje.cshtml" />
+    <Content Include="Views\Operaciones\Create.cshtml" />
+    <Content Include="Views\Operaciones\Delete.cshtml" />
+    <Content Include="Views\Operaciones\Details.cshtml" />
+    <Content Include="Views\Operaciones\Edit.cshtml" />
+    <Content Include="Views\Operaciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

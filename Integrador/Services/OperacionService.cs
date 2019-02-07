@@ -23,43 +23,43 @@ namespace Integrador.Services
             return (operaciones.Count() * dispositivo.Consumo) / 2;
         }
 
-        public void RegistrarOperacionApagar(DispositivoInteligente _dispositivo)
+        public Operacion RegistrarOperacionApagar(Dispositivo _dispositivo)
         {
             var descripcion = "Dispositivo " + _dispositivo.Id + " fue apagado.";
-            this.CrearOperacion(_dispositivo, "apagar", descripcion);
+            return this.CrearOperacion(_dispositivo, "apagar", descripcion);
         }
 
 
-        public void RegistrarOperacionEncender(DispositivoInteligente _dispositivo)
+        public Operacion RegistrarOperacionEncender(Dispositivo _dispositivo)
         {
             var descripcion = "Dispositivo " + _dispositivo.Id + " fue encendido.";
-            this.CrearOperacion(_dispositivo, "encender", descripcion);
+            return this.CrearOperacion(_dispositivo, "encender", descripcion);
         }
 
 
-        public void RegistrarOperacionAhorro(DispositivoInteligente _dispositivo)
+        public Operacion RegistrarOperacionAhorro(Dispositivo _dispositivo)
         {
             var descripcion = "Dispositivo " + _dispositivo.Id + " cambio a modo ahorro de energia";
-            this.CrearOperacion(_dispositivo, "ahorro-energia", descripcion);
+            return this.CrearOperacion(_dispositivo, "ahorro-energia", descripcion);
         }
 
 
-        public void RegistrarOperacionConvertir(Dispositivo _dispositivo)
+        public Operacion RegistrarOperacionConvertir(Dispositivo _dispositivo)
         {
             var descripcion = "Dispositivo " + _dispositivo.Id + " fue convertido a inteligente.";
-            this.CrearOperacion(_dispositivo, "convertir", descripcion);
+            return this.CrearOperacion(_dispositivo, "convertir", descripcion);
         }
 
-        private void CrearOperacion(Dispositivo _dispositivo, string _tipo, string _descripcion)
+        private Operacion CrearOperacion(Dispositivo _dispositivo, string _tipo, string _descripcion)
         {
-            Operacion operacion = new Operacion()
+             Operacion operacion = new Operacion()
             {
                 Descripcion = _descripcion,
-                Fecha = new System.DateTime(),
+                Fecha = DateTime.Now,
                 Tipo = _tipo,
                 Dispositivo = _dispositivo
             };
-            db.Operaciones.Add(operacion);
+            return operacion;
         }
 
     }

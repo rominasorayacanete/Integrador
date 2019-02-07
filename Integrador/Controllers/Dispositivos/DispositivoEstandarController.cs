@@ -8,12 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Services;
 
 namespace Integrador.Controllers.Dispositivos
 {
     public class DispositivoEstandarController : Controller
     {
         private Context db = new Context();
+        private OperacionService operacionService = new OperacionService();
+        private ClienteService clienteService = new ClienteService();
 
         // GET: DispositivoEstandar/Details/5
         public ActionResult Details(int? id)
@@ -45,9 +48,11 @@ namespace Integrador.Controllers.Dispositivos
         {
             if (ModelState.IsValid)
             {
+                var id = Convert.ToInt32(Session["ClientId"].ToString());
+                dispositivoEstandar.ClienteID = id;
                 db.DispositivoEstandar.Add(dispositivoEstandar);
                 db.SaveChanges();
-                return RedirectToAction("Index","DispositivoCliente");
+                return RedirectToAction("Index","DispositivoCliente", new { id });
             }
 
             return View(dispositivoEstandar);
@@ -77,9 +82,10 @@ namespace Integrador.Controllers.Dispositivos
         {
             if (ModelState.IsValid)
             {
+                var id = Convert.ToInt32(Session["ClientId"].ToString());
                 db.Entry(dispositivoEstandar).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "DispositivoCliente");
+                return RedirectToAction("Index", "DispositivoCliente", new { id });
             }
             return View(dispositivoEstandar);
         }
@@ -104,57 +110,76 @@ namespace Integrador.Controllers.Dispositivos
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
             DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
             db.Dispositivos.Remove(dispositivoEstandar);
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("Apagar")]
         public ActionResult Apagar(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
             if (dispositivoEstandar == null)
             {
                 return HttpNotFound();
             }
             dispositivoEstandar.Apagar();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionEncender(dispositivoEstandar);
+            dispositivoEstandar.Operaciones.Add(operacion);
+
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("Encender")]
         public ActionResult Encender(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
             if (dispositivoEstandar == null)
             {
                 return HttpNotFound();
             }
             dispositivoEstandar.Encender();
+            // Registro
+            var operacion = operacionService.RegistrarOperacionEncender(dispositivoEstandar);
+            dispositivoEstandar.Operaciones.Add(operacion);
+
             // Agregar trackeo
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("ActivarAhorro")]
         public ActionResult ActivarAhorro(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
             if (dispositivoEstandar == null)
             {
                 return HttpNotFound();
             }
             dispositivoEstandar.ActivarModoAhorro();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionAhorro(dispositivoEstandar);
+            dispositivoEstandar.Operaciones.Add(operacion);
+
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("Adaptar")]
         public ActionResult Adaptar(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
             if (dispositivoEstandar == null)
             {
@@ -162,9 +187,13 @@ namespace Integrador.Controllers.Dispositivos
             }
             ModuloAdaptador adaptador = new ModuloAdaptador();
             dispositivoEstandar.Adaptar(adaptador);
-            // Agregar trackeo
+            dispositivoEstandar.Cliente.SumarPuntos(10);
+            // Registro
+            var operacion = operacionService.RegistrarOperacionConvertir(dispositivoEstandar);
+            dispositivoEstandar.Operaciones.Add(operacion);
+
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         protected override void Dispose(bool disposing)

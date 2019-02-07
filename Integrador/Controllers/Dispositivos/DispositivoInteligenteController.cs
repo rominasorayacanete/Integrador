@@ -8,12 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Services;
 
 namespace Integrador.Controllers.Dispositivos
 {
     public class DispositivoInteligenteController : Controller
     {
         private Context db = new Context();
+        private OperacionService operacionService = new OperacionService();
 
         // GET: DispositivoInteligente/Details/5
         public ActionResult Details(int? id)
@@ -45,9 +47,11 @@ namespace Integrador.Controllers.Dispositivos
         {
             if (ModelState.IsValid)
             {
+                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
                 db.DispositivosInteligentes.Add(dispositivoInteligente);
+             //   dispositivoInteligente.Cliente.SumarPuntos(15);
                 db.SaveChanges();
-                return RedirectToAction("Index", "DispositivoCliente");
+                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
             }
 
             return View(dispositivoInteligente);
@@ -77,9 +81,11 @@ namespace Integrador.Controllers.Dispositivos
         {
             if (ModelState.IsValid)
             {
+                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
                 db.Entry(dispositivoInteligente).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "DispositivoCliente");
+                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
             }
             return View(dispositivoInteligente);
         }
@@ -104,52 +110,69 @@ namespace Integrador.Controllers.Dispositivos
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             db.Dispositivos.Remove(dispositivoInteligente);
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("Apagar")]
         public ActionResult Apagar(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             if (dispositivoInteligente == null)
             {
                 return HttpNotFound();
             }
             dispositivoInteligente.Apagar();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionApagar(dispositivoInteligente);
+            dispositivoInteligente.Operaciones.Add(operacion);
+
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("Encender")]
         public ActionResult Encender(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             if (dispositivoInteligente == null)
             {
                 return HttpNotFound();
             }
             dispositivoInteligente.Encender();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionEncender(dispositivoInteligente);
+            dispositivoInteligente.Operaciones.Add(operacion);
+
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("ActivarAhorro")]
         public ActionResult ActivarAhorro(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             if (dispositivoInteligente == null)
             {
                 return HttpNotFound();
             }
             dispositivoInteligente.ActivarModoAhorro();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionAhorro(dispositivoInteligente);
+            dispositivoInteligente.Operaciones.Add(operacion);
+
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         protected override void Dispose(bool disposing)

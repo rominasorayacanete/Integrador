@@ -32,6 +32,10 @@ namespace Integrador.Models
 
         public virtual MarcaDispositivo MarcaDispositivo { get; set; }
 
+        [ForeignKey("Cliente")]
+        public int? ClienteID { get; set; }
+        public virtual Cliente Cliente { get; set; }
+
         public Dispositivo()
         {
             this.Operaciones = new List<Operacion>();
