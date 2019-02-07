@@ -8,12 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Services;
 
 namespace Integrador.Controllers.Dispositivos
 {
     public class DispositivoEstandarController : Controller
     {
         private Context db = new Context();
+        private OperacionService operacionService = new OperacionService();
 
         // GET: DispositivoEstandar/Details/5
         public ActionResult Details(int? id)
@@ -119,7 +121,10 @@ namespace Integrador.Controllers.Dispositivos
                 return HttpNotFound();
             }
             dispositivoEstandar.Apagar();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionEncender(dispositivoEstandar);
+            dispositivoEstandar.Operaciones.Add(operacion);
+
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente");
         }
@@ -133,6 +138,10 @@ namespace Integrador.Controllers.Dispositivos
                 return HttpNotFound();
             }
             dispositivoEstandar.Encender();
+            // Registro
+            var operacion = operacionService.RegistrarOperacionEncender(dispositivoEstandar);
+            dispositivoEstandar.Operaciones.Add(operacion);
+
             // Agregar trackeo
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente");
@@ -147,7 +156,10 @@ namespace Integrador.Controllers.Dispositivos
                 return HttpNotFound();
             }
             dispositivoEstandar.ActivarModoAhorro();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionAhorro(dispositivoEstandar);
+            dispositivoEstandar.Operaciones.Add(operacion);
+
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente");
         }
@@ -162,7 +174,11 @@ namespace Integrador.Controllers.Dispositivos
             }
             ModuloAdaptador adaptador = new ModuloAdaptador();
             dispositivoEstandar.Adaptar(adaptador);
-            // Agregar trackeo
+
+            // Registro
+            var operacion = operacionService.RegistrarOperacionConvertir(dispositivoEstandar);
+            dispositivoEstandar.Operaciones.Add(operacion);
+
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente");
         }

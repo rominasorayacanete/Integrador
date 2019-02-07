@@ -8,12 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Services;
 
 namespace Integrador.Controllers.Dispositivos
 {
     public class DispositivoInteligenteController : Controller
     {
         private Context db = new Context();
+        private OperacionService operacionService = new OperacionService();
 
         // GET: DispositivoInteligente/Details/5
         public ActionResult Details(int? id)
@@ -119,7 +121,10 @@ namespace Integrador.Controllers.Dispositivos
                 return HttpNotFound();
             }
             dispositivoInteligente.Apagar();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionApagar(dispositivoInteligente);
+            dispositivoInteligente.Operaciones.Add(operacion);
+
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente");
         }
@@ -133,7 +138,10 @@ namespace Integrador.Controllers.Dispositivos
                 return HttpNotFound();
             }
             dispositivoInteligente.Encender();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionEncender(dispositivoInteligente);
+            dispositivoInteligente.Operaciones.Add(operacion);
+
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente");
         }
@@ -147,7 +155,10 @@ namespace Integrador.Controllers.Dispositivos
                 return HttpNotFound();
             }
             dispositivoInteligente.ActivarModoAhorro();
-            // Agregar trackeo
+            // Registro
+            var operacion = operacionService.RegistrarOperacionAhorro(dispositivoInteligente);
+            dispositivoInteligente.Operaciones.Add(operacion);
+
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente");
         }
