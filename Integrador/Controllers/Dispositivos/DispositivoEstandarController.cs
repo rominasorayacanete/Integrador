@@ -174,7 +174,7 @@ namespace Integrador.Controllers.Dispositivos
             }
             ModuloAdaptador adaptador = new ModuloAdaptador();
             dispositivoEstandar.Adaptar(adaptador);
-
+            dispositivoEstandar.Cliente.SumarPuntos(10);
             // Registro
             var operacion = operacionService.RegistrarOperacionConvertir(dispositivoEstandar);
             dispositivoEstandar.Operaciones.Add(operacion);

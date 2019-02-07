@@ -32,6 +32,8 @@ namespace Integrador.Models
 
         public virtual MarcaDispositivo MarcaDispositivo { get; set; }
 
+        public virtual Cliente Cliente { get; set; }
+
         public Dispositivo()
         {
             this.Operaciones = new List<Operacion>();

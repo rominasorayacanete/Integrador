@@ -48,6 +48,7 @@ namespace Integrador.Controllers.Dispositivos
             if (ModelState.IsValid)
             {
                 db.DispositivosInteligentes.Add(dispositivoInteligente);
+             //   dispositivoInteligente.Cliente.SumarPuntos(15);
                 db.SaveChanges();
                 return RedirectToAction("Index", "DispositivoCliente");
             }

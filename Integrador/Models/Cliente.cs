@@ -51,6 +51,16 @@ namespace Integrador.Models
 
         public virtual List<Dispositivo> Dispositivos { get; set; }
 
+        public string NombreRegistro()
+        {
+            return Nombre + " " + Apellido + "-" + Id;
+        }
+
+        public void SumarPuntos(int puntos)
+        {
+            Puntos += puntos;
+        }
+
         public int ConsumoHogar()
         {
             var total = 0;
