@@ -47,10 +47,11 @@ namespace Integrador.Controllers.Dispositivos
         {
             if (ModelState.IsValid)
             {
+                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
                 db.DispositivosInteligentes.Add(dispositivoInteligente);
              //   dispositivoInteligente.Cliente.SumarPuntos(15);
                 db.SaveChanges();
-                return RedirectToAction("Index", "DispositivoCliente");
+                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
             }
 
             return View(dispositivoInteligente);
@@ -80,9 +81,11 @@ namespace Integrador.Controllers.Dispositivos
         {
             if (ModelState.IsValid)
             {
+                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
                 db.Entry(dispositivoInteligente).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "DispositivoCliente");
+                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
             }
             return View(dispositivoInteligente);
         }
@@ -107,15 +110,19 @@ namespace Integrador.Controllers.Dispositivos
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             db.Dispositivos.Remove(dispositivoInteligente);
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("Apagar")]
         public ActionResult Apagar(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             if (dispositivoInteligente == null)
             {
@@ -127,12 +134,14 @@ namespace Integrador.Controllers.Dispositivos
             dispositivoInteligente.Operaciones.Add(operacion);
 
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("Encender")]
         public ActionResult Encender(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             if (dispositivoInteligente == null)
             {
@@ -144,12 +153,14 @@ namespace Integrador.Controllers.Dispositivos
             dispositivoInteligente.Operaciones.Add(operacion);
 
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("ActivarAhorro")]
         public ActionResult ActivarAhorro(int? id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             if (dispositivoInteligente == null)
             {
@@ -161,7 +172,7 @@ namespace Integrador.Controllers.Dispositivos
             dispositivoInteligente.Operaciones.Add(operacion);
 
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         protected override void Dispose(bool disposing)

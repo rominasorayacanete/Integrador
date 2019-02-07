@@ -42,6 +42,11 @@ namespace Integrador.Controllers
                 {
                     Session["Role"] = "Admin";
                 }
+                else
+                {
+                    Session["ClientId"] = userService.GetClientId(usr);
+
+                }
 
                 return RedirectToAction("LoggedIn");
             }

@@ -17,10 +17,11 @@ namespace Integrador.Controllers.Dispositivos
         private Context db = new Context();
 
         // GET: DispositivoCliente
-        public ActionResult Index()
+        [ActionName("Index")]
+        public ActionResult Index(int? id)
         {
-            var _dispositivoInteligentes = db.DispositivosInteligentes.ToList();
-            var _dispositivosEstandar = db.DispositivoEstandar.ToList();
+            var _dispositivoInteligentes = db.DispositivosInteligentes.Where(d => d.Cliente.Id == id).ToList();
+            var _dispositivosEstandar = db.DispositivoEstandar.Where(d => d.Cliente.Id == id).ToList();
             var listado = new ListadoDispositivos
             {
                 DispositivosEstandar = _dispositivosEstandar,

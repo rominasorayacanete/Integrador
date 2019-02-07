@@ -54,6 +54,15 @@ namespace Integrador.Services
             return false;
         }
 
+        public int GetClientId(Usuario user)
+        {
+            var cliente = db.Clientes
+                .Where(c => c.Usuario.Id == user.Id)
+                .FirstOrDefault();
+
+            return cliente.Id;
+        }
+
         public void CheckUser(int userId)
         {
             var cliente = db.Clientes
