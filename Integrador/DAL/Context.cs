@@ -1,44 +1,35 @@
-﻿namespace Integrador.DAL
-{
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-    using Integrador.Models;
+﻿using Integrador.Models;
+using Integrador.Models.Abstract;
+using Integrador.Models.Clases;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
 
+namespace Integrador.DAL
+{
     public class Context : DbContext
     {
-        // El contexto se ha configurado para usar una cadena de conexión 'Context' del archivo 
-        // de configuración de la aplicación (App.config o Web.config). De forma predeterminada, 
-        // esta cadena de conexión tiene como destino la base de datos 'Integrador.DAL.Context' de la instancia LocalDb. 
-        // 
-        // Si desea tener como destino una base de datos y/o un proveedor de base de datos diferente, 
-        // modifique la cadena de conexión 'Context'  en el archivo de configuración de la aplicación.
-        public Context()
-            : base("name=Context")
-        {
-        }
+        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Administrador> Administradores { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
-        // Agregue un DbSet para cada tipo de entidad que desee incluir en el modelo. Para obtener más información 
-        // sobre cómo configurar y usar un modelo Code First, vea http://go.microsoft.com/fwlink/?LinkId=390109.
+        public DbSet<Transformador> Transformadores { get; set; }
+        public DbSet<ZonaGeografica> ZonaGeograficas { get; set; }
 
-        public virtual DbSet<Usuario> Usuarios { get; set; }
-        public virtual DbSet<Administrador> Administradores { get; set; }
-        public virtual DbSet<Cliente> Clientes { get; set; }
-        public virtual DbSet<Categoria> Categorias { get; set; }
-        public virtual DbSet<Dispositivo> Dispositivos { get; set; }
-        public virtual DbSet<DispositivoEstandar> DispositivosEstandar { get; set; }
-        public virtual DbSet<DispositivoInteligente> DispositivosInteligentes { get; set; }
-        public virtual DbSet<Adaptador> Adaptadores { get; set; }
-        public virtual DbSet<Domicilio> Domicilios { get; set; }
-        public virtual DbSet<ZonaGeografica> ZonasGeograficas { get; set; }
-        public virtual DbSet<Transformador> Transformadores { get; set; }
-        public virtual DbSet<Operacion> Operaciones { get; set; }
-        public virtual DbSet<TemplateDispositivo> TemplateDispositivos { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Dispositivo> Dispositivos { get; set; }
+        public DbSet<DispositivoInteligente> DispositivosInteligentes { get; set; }
+        public DbSet<DispositivoEstandar> DispositivoEstandar { get; set; }
+        public DbSet<MarcaDispositivo> MarcaDispositivo { get; set; }
+        public DbSet<Operacion> Operaciones { get; set; }
+        public DbSet<TemplateDispositivo> TemplateDispositivos { get; set; }
+        public DbSet<ModuloAdaptador> ModulosAdaptadores { get; set; }
+
+        public DbSet<Regla> Reglas { get; set; }
+        public DbSet<Sensor> Sensores { get; set; }
+        public DbSet<Actuador> Actuadores { get; set; }
+
     }
-
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
 }

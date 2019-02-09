@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Integrador.Models
 {
-    public class Actuador
+    public class Actuador : IActuadorObserver
     {
 
         public int Id { get; set; }
@@ -19,20 +19,20 @@ namespace Integrador.Models
         public string Accion { get; set; }
 
         public virtual Dispositivo Dispositivo { get; set; }
+        public virtual List<Regla> ReglasRequeridas { get; set; }
 
-        public virtual List<Regla> Reglas { get; set; }
-        
-
-         public void Update()
+        public void Update()
           {
               if (SeCumplenTodasLasReglas())
               {
-                  //accion.Accionar(dispositivo);
+                // Listado de todo lo que puede hacer con respecto a la accion
+                //accion.Accionar(dispositivo)
+                    Dispositivo.Encender();
               }
           }
           public bool SeCumplenTodasLasReglas()
           {
-              foreach(Regla regla in this.Reglas)
+              foreach(Regla regla in ReglasRequeridas)
              {
                   if (!regla.SeCumple())
                   {

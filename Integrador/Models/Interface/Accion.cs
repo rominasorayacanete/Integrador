@@ -8,6 +8,6 @@ namespace Integrador.Models.Abstract
 {
     interface IAccion
     {
-        void Accionar(DispositivoInteligente dispositivo);
+        void Accionar(Dispositivo dispositivo);
     }
 }

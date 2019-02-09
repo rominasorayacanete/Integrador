@@ -224,6 +224,8 @@
     <Compile Include="Controllers\Dispositivos\DispositivoInteligenteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Registro\OperacionesController.cs" />
+    <Compile Include="Controllers\Reglas\ReglasController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TemplateDispositivoController.cs" />
     <Compile Include="Controllers\TransformadorController.cs" />
@@ -233,39 +235,49 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902040550324_Migration.cs" />
-    <Compile Include="Migrations\201902040550324_Migration.Designer.cs">
-      <DependentUpon>201902040550324_Migration.cs</DependentUpon>
+    <Compile Include="Migrations\201901260406024_Migration.cs" />
+    <Compile Include="Migrations\201901260406024_Migration.Designer.cs">
+      <DependentUpon>201901260406024_Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Acciones\AccionApagar.cs" />
     <Compile Include="Models\Acciones\AccionBajarIntensidad.cs" />
     <Compile Include="Models\Acciones\AccionBajarTemperatura.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Actuador.cs" />
-    <Compile Include="Models\Adaptador.cs" />
+    <Compile Include="Models\Marcas\MarcaSony.cs" />
+    <Compile Include="Models\Marcas\MarcaSamsung.cs" />
+    <Compile Include="Models\Reglas\Actuador.cs" />
     <Compile Include="Models\Administrador.cs" />
     <Compile Include="Models\Categoria.cs" />
-    <Compile Include="Models\Domicilio.cs" />
     <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\Dispositivo.cs" />
-    <Compile Include="Models\DispositivoEstandar.cs" />
+    <Compile Include="Models\Dispositivos\Dispositivo.cs" />
+    <Compile Include="Models\Dispositivos\DispositivoEstandar.cs" />
     <Compile Include="Models\Helper\ListadoDispositivos.cs" />
     <Compile Include="Models\Interface\IActuadorObserver.cs" />
     <Compile Include="Models\Interface\IReglaObserver.cs" />
     <Compile Include="Models\Interface\IReglaSubject.cs" />
     <Compile Include="Models\Interface\ISensorSubject.cs" />
-    <Compile Include="Models\LogType.cs" />
-    <Compile Include="Models\DispositivoInteligente.cs" />
+    <Compile Include="Models\Marcas\MarcaLG.cs" />
+    <Compile Include="Models\Dispositivos\ModuloAdaptador.cs" />
+    <Compile Include="Models\Dispositivos\DispositivoInteligente.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Operacion.cs" />
+    <Compile Include="Models\Log\Operacion.cs" />
     <Compile Include="Models\Report.cs" />
-    <Compile Include="Models\Regla.cs" />
-    <Compile Include="Models\TemplateDispositivo.cs" />
+    <Compile Include="Models\Reglas\Regla.cs" />
+    <Compile Include="Models\Dispositivos\TemplateDispositivo.cs" />
+    <Compile Include="Models\Tipos\TipoComputadora.cs" />
+    <Compile Include="Models\Tipos\TipoLampara.cs" />
+    <Compile Include="Models\Tipos\TipoAireAcondicionado.cs" />
+    <Compile Include="Models\Tipos\TipoHeladera.cs" />
     <Compile Include="Models\Interface\Accion.cs" />
-    <Compile Include="Models\Abstract\MarcaDispositivo.cs" />
+    <Compile Include="Models\Marcas\MarcaDispositivo.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Sensor.cs" />
+    <Compile Include="Models\Reglas\Sensor.cs" />
+    <Compile Include="Models\Tipos\TipoLavarropas.cs" />
+    <Compile Include="Models\Tipos\TipoMicroondas.cs" />
+    <Compile Include="Models\Tipos\TipoPlancha.cs" />
+    <Compile Include="Models\Tipos\TipoTelevisor.cs" />
+    <Compile Include="Models\Tipos\TipoVentilador.cs" />
     <Compile Include="Models\Transformador.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\ZonaGeografica.cs" />
@@ -290,7 +302,7 @@
     <Compile Include="Services\TransformadorService.cs" />
     <Compile Include="Services\OperacionService.cs" />
     <Compile Include="Services\ZonaService.cs" />
-    <Compile Include="Services\Extension.cs" />
+    <Compile Include="Services\Extension\Extension.cs" />
     <Compile Include="Services\ClienteService.cs" />
     <Compile Include="Services\DispositivoService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -423,9 +435,22 @@
     <Content Include="Views\DispositivoCliente\Edit.cshtml" />
     <Content Include="Views\DispositivoCliente\Index.cshtml" />
     <Content Include="Views\Pop-ups\Puntaje.cshtml" />
+    <Content Include="Views\Operaciones\Create.cshtml" />
+    <Content Include="Views\Operaciones\Delete.cshtml" />
+    <Content Include="Views\Operaciones\Details.cshtml" />
+    <Content Include="Views\Operaciones\Edit.cshtml" />
+    <Content Include="Views\Operaciones\Index.cshtml" />
+    <Content Include="Views\Reglas\Create.cshtml" />
+    <Content Include="Views\Reglas\Delete.cshtml" />
+    <Content Include="Views\Reglas\Details.cshtml" />
+    <Content Include="Views\Reglas\Edit.cshtml" />
+    <Content Include="Views\Reglas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="JSONFiles\" />
+    <Folder Include="Views\Cliente\" />
+    <Folder Include="Views\Zona\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -441,8 +466,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902040550324_Migration.resx">
-      <DependentUpon>201902040550324_Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901260406024_Migration.resx">
+      <DependentUpon>201901260406024_Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

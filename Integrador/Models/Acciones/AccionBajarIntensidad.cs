@@ -6,11 +6,11 @@ using System.Web;
 
 namespace Integrador.Models.Clases.Acciones
 {
-    //public class AccionBajarIntesidad : IAccion
-    //{
-    //    public void Accionar(DispositivoInteligente dispositivo)
-    //    {
-    //        dispositivo.MarcaDispositivo.BajarIntensidad();
-    //    }
-    //}
+    public class AccionBajarIntesidad : IAccion
+    {
+        public void Accionar(Dispositivo dispositivo)
+        {
+           // dispositivo.MarcaDispositivo.BajarIntensidad();
+        }
+    }
 }

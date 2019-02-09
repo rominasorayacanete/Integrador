@@ -7,126 +7,111 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
-using Integrador.Models;
-using Integrador.Services;
-using Integrador.Models.Clases.Helper;
+using Integrador.Models.Clases;
 
-namespace Integrador.Controllers.Dispositivos
+namespace Integrador.Controllers.Registro
 {
-    public class DispositivoClienteController : Controller
+    public class OperacionesController : Controller
     {
         private Context db = new Context();
 
-        // GET: DispositivoCliente
-        [ActionName("Index")]
-        public ActionResult Index(int? id)
+        // GET: Operaciones
+        public ActionResult Index()
         {
-            var _dispositivoInteligentes = db.DispositivosInteligentes.Where(d => d.Cliente.Id == id).ToList();
-            var _dispositivosEstandar = db.DispositivoEstandar.Where(d => d.Cliente.Id == id).ToList();
-            var listado = new ListadoDispositivos
-            {
-                DispositivosEstandar = _dispositivosEstandar,
-                DispositivosInteligente = _dispositivoInteligentes
-            };
-
-            return View(listado);
+            return View(db.Operaciones.Where(o => o.Tipo == "ahorro-energia").ToList());
         }
 
-        // GET: DispositivoCliente/Details/5
+        // GET: Operaciones/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dispositivo dispositivo = db.Dispositivos.Find(id);
-            if (dispositivo == null)
+            Operacion operacion = db.Operaciones.Find(id);
+            if (operacion == null)
             {
                 return HttpNotFound();
             }
-            return View(dispositivo);
+            return View(operacion);
         }
 
-        // GET: DispositivoCliente/Create
+        // GET: Operaciones/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: DispositivoCliente/Create
+        // POST: Operaciones/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin,Encendido,ModoAhorroDeEnergia")] DispositivoInteligente dispositivoInteligente)
+        public ActionResult Create([Bind(Include = "Id,Tipo,Descripcion,Fecha")] Operacion operacion)
         {
             if (ModelState.IsValid)
             {
-                db.Dispositivos.Add(dispositivoInteligente);
+                db.Operaciones.Add(operacion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(dispositivoInteligente);
+            return View(operacion);
         }
 
-        // GET: DispositivoCliente/Edit/5
+        // GET: Operaciones/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dispositivo dispositivo = db.Dispositivos.Find(id);
-            if (dispositivo == null)
+            Operacion operacion = db.Operaciones.Find(id);
+            if (operacion == null)
             {
                 return HttpNotFound();
             }
-            return View(dispositivo);
+            return View(operacion);
         }
 
-        // POST: DispositivoCliente/Edit/5
+        // POST: Operaciones/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin")] Dispositivo dispositivo)
+        public ActionResult Edit([Bind(Include = "Id,Tipo,Descripcion,Fecha")] Operacion operacion)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dispositivo).State = EntityState.Modified;
+                db.Entry(operacion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(dispositivo);
+            return View(operacion);
         }
 
-        // GET: DispositivoCliente/Delete/5
+        // GET: Operaciones/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Dispositivo dispositivo = db.Dispositivos.Find(id);
-            if (dispositivo == null)
+            Operacion operacion = db.Operaciones.Find(id);
+            if (operacion == null)
             {
                 return HttpNotFound();
             }
-            return View(dispositivo);
+            return View(operacion);
         }
 
-        // POST: DispositivoCliente/Delete/5
+        // POST: Operaciones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Dispositivo dispositivo = db.Dispositivos.Find(id);
-
-            OperacionService operacionService = new OperacionService();
-            operacionService.EliminarOperacionesDispositivo(id);
-
-            db.Dispositivos.Remove(dispositivo);
+            Operacion operacion = db.Operaciones.Find(id);
+            db.Operaciones.Remove(operacion);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
