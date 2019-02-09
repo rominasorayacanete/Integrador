@@ -101,7 +101,6 @@ namespace Integrador.Migrations
                 Consumo = 100,
                 UsoMensualMax = 1000,
                 UsoMensualMin = 100,
-                MarcaDispositivo = new MarcaSony()
             };
 
             ModuloAdaptador adaptador = new ModuloAdaptador();
@@ -113,7 +112,6 @@ namespace Integrador.Migrations
                 UsoMensualMax = 500,
                 UsoMensualMin = 120,
                 ModuloAdaptador = adaptador,
-                MarcaDispositivo = new MarcaSony()
             };
 
             dispositivos.Add(d1);
