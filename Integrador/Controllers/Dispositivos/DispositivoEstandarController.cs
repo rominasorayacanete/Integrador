@@ -55,7 +55,7 @@ namespace Integrador.Controllers.Dispositivos
                 return RedirectToAction("Index","DispositivoCliente", new { id });
             }
 
-            return View(dispositivoEstandar);
+            return View("/DispostivoEstandar/Create.cshtml");
         }
 
         // GET: DispositivoEstandar/Edit/5
