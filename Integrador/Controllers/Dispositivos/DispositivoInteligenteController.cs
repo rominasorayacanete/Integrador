@@ -24,7 +24,9 @@ namespace Integrador.Controllers.Dispositivos
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
+
             if (dispositivoInteligente == null)
             {
                 return HttpNotFound();
@@ -111,6 +113,9 @@ namespace Integrador.Controllers.Dispositivos
         public ActionResult DeleteConfirmed(int id)
         {
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+
+            OperacionService operacionService = new OperacionService();
+            operacionService.EliminarOperacionesDispositivo(id);
 
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             db.Dispositivos.Remove(dispositivoInteligente);

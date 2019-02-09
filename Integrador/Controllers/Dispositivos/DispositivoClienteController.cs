@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Services;
 using Integrador.Models.Clases.Helper;
 
 namespace Integrador.Controllers.Dispositivos
@@ -121,6 +122,10 @@ namespace Integrador.Controllers.Dispositivos
         public ActionResult DeleteConfirmed(int id)
         {
             Dispositivo dispositivo = db.Dispositivos.Find(id);
+
+            OperacionService operacionService = new OperacionService();
+            operacionService.EliminarOperacionesDispositivo(id);
+
             db.Dispositivos.Remove(dispositivo);
             db.SaveChanges();
             return RedirectToAction("Index");

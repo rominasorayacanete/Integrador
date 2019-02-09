@@ -10,7 +10,7 @@
     <h2>Dispositivos inteligentes</h2>
 </div>
 <p>
-    @Html.ActionLink("Agregar", "Create", "DispositivoInteligente", new { @title = "Nuevo dispositivo Inteligente" })
+    @Html.ActionLink("Agregar", "Create", "DispositivoInteligente")
 </p>
 <table class="table">
     <tr>
@@ -78,7 +78,7 @@
 </div>
 
 <p>
-    @Html.ActionLink("Agregar", "Create", "DispositivoEstandar", new { @title = "Nuevo dispositivo estándar"})
+    @Html.ActionLink("Agregar", "Create", "DispositivoEstandar")
 </p>
 <table class="table">
     <tr>
@@ -95,13 +95,13 @@
             Uso mensual mínimo
         </th>
         <th>
+            Uso estimado
+        </th>
+        <th>
             Encendido
         </th>
         <th>
             Modo ahorro de energía
-        </th>
-        <th>
-            Marca
         </th>
         <th></th>
     </tr>
@@ -122,21 +122,26 @@
         <td>
             @Html.DisplayFor(modelItem => item.UsoMensualMin)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsoEstimado)
+        </td>
         @if (item.ModuloAdaptador == null)
         {
-        <td>
-            N/A
-        </td>
-        <td>
-            N/A
-        </td>
-        } else {
-        <td>
-            @Html.DisplayFor(modelItem => item.ModuloAdaptador.Encendido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModuloAdaptador.ModoAhorroDeEnergia)
-        </td>
+            <td>
+                N/A
+            </td>
+            <td>
+                N/A
+            </td>
+        }
+        else
+        { 
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuloAdaptador.Encendido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuloAdaptador.ModoAhorroDeEnergia)
+            </td>
         }
         <td>
             @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
