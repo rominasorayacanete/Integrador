@@ -26,6 +26,25 @@ namespace Integrador.Migrations
             OperacionService operacionService = new OperacionService();
 
 
+            // Set Categorias
+            List<Categoria> categorias = new List<Categoria>();
+            Categoria categoria1 = new Categoria {Nombre = "R1", ConsumoMaximo = 150, CargoFijo = 18.76, CargoVariable = 0.644};
+            Categoria categoria2 = new Categoria {Nombre = "R2", ConsumoMinimo = 150 , ConsumoMaximo = 325, CargoFijo = 35.32, CargoVariable = 0.644};
+            Categoria categoria3 = new Categoria {Nombre = "R3", ConsumoMinimo = 325 , ConsumoMaximo = 400, CargoFijo = 60.71, CargoVariable = 0.681};
+            Categoria categoria4 = new Categoria {Nombre = "R4", ConsumoMinimo = 400 , ConsumoMaximo = 450, CargoFijo = 71.74, CargoVariable = 0.724};
+            Categoria categoria5 = new Categoria {Nombre = "R5", ConsumoMinimo = 450 , ConsumoMaximo = 500, CargoFijo = 110.38, CargoVariable = 0.789};
+            Categoria categoria6 = new Categoria {Nombre = "R6", ConsumoMinimo = 500 , ConsumoMaximo = 600, CargoFijo = 220.24, CargoVariable = 0.802};
+            Categoria categoria7 = new Categoria {Nombre = "R7", ConsumoMinimo = 600, CargoFijo = 443.16, CargoVariable = 0.841 };
+
+            categorias.Add(categoria1);
+            categorias.Add(categoria2);
+            categorias.Add(categoria3);
+            categorias.Add(categoria4);
+            categorias.Add(categoria5);
+            categorias.Add(categoria6);
+            categorias.Add(categoria7);
+            categorias.ForEach(c => context.Categorias.Add(c));
+
             // Set ZonaGeografica
             List<ZonaGeografica> zonasGeograficas = new List<ZonaGeografica>();
 
@@ -73,7 +92,8 @@ namespace Integrador.Migrations
                 UsoMensualMax = 2000,
                 UsoMensualMin = 200,
                 Encendido = true,
-                ModoAhorroDeEnergia = true
+                ModoAhorroDeEnergia = true,
+                MarcaDispositivo = new MarcaSamsung()
             };
             DispositivoEstandar d2 = new DispositivoEstandar
             {
@@ -81,6 +101,7 @@ namespace Integrador.Migrations
                 Consumo = 100,
                 UsoMensualMax = 1000,
                 UsoMensualMin = 100,
+                MarcaDispositivo = new MarcaSony()
             };
 
             ModuloAdaptador adaptador = new ModuloAdaptador();
@@ -92,18 +113,13 @@ namespace Integrador.Migrations
                 UsoMensualMax = 500,
                 UsoMensualMin = 120,
                 ModuloAdaptador = adaptador,
+                MarcaDispositivo = new MarcaSony()
             };
 
             dispositivos.Add(d1);
             dispositivos.Add(d2);
 
             dispositivos.ForEach(d => context.Dispositivos.Add(d));
-
-
-            // Set Historial
-            //       operacionService.RegistrarOperacionEncender(d1);
-            //       operacionService.RegistrarOperacionAhorro(d1);
-            //      operacionService.RegistrarOperacionApagar(d1);
 
             // Set Administrador
 

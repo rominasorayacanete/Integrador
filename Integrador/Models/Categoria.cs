@@ -11,16 +11,14 @@ namespace Integrador.Models
 
         public int Id { get; set; }
 
-        [Required]
+        public string Nombre { get; set; }
+
         public float ConsumoMinimo { get; set; }
 
-        [Required]
         public float ConsumoMaximo { get; set; }
 
-        [Required]
-        public float CargoFijo { get; set; }
+        public double CargoFijo { get; set; }
 
-        [Required]
-        public float CargoVariable { get; set; }
+        public double CargoVariable { get; set; }
     }
 }

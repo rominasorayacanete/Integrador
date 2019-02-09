@@ -11,25 +11,10 @@ namespace Integrador.Models.Abstract
     {
         [Key]
         public virtual double Id { get; set; }
-        public virtual double Consumo { get; set; }
-        public virtual int UsoMensualMax { get; set; }
-        public virtual int UsoMensualMin { get; set; }
-        public virtual string EquipoConcreto { get; set; }
+        public abstract string Nombre { get; set; }
 
-
-        public virtual void BajarTemperatura()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void BajarIntensidad()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void CambiarModo(string _modo)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void BajarTemperatura();
+        public abstract void BajarIntensidad();
+        public abstract void CambiarModo();
     }
 }

@@ -132,14 +132,15 @@ namespace Integrador.Services
 
         public List<DispositivoInteligente> MockListado()
         {
+            /*
             TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
             TipoHeladera tipoHeladera = new TipoHeladera("Sin freezer");
             TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
-            /*
+            
             DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
             DispositivoInteligente d2 = new DispositivoInteligente(tipoHeladera);
             DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);
-           */ 
+           */
             List<DispositivoInteligente> listado = new List<DispositivoInteligente>();
             /*
             listado.Add(d1);
@@ -152,12 +153,13 @@ namespace Integrador.Services
         public Cliente MockCliente()
         {
             // Instancia de dispositivo Heladera
+            /*
             TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
             TipoLampara tipoLampara = new TipoLampara("De 11 W");
             TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
             TipoMicroondas tipoMicroondas = new TipoMicroondas("Convencional");
             TipoPlancha tipoPlancha = new TipoPlancha("A vapor");
-/*
+
             DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
             DispositivoInteligente d2 = new DispositivoInteligente(tipoLampara);
             DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);

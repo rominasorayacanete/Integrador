@@ -244,6 +244,8 @@
     <Compile Include="Models\Acciones\AccionBajarIntensidad.cs" />
     <Compile Include="Models\Acciones\AccionBajarTemperatura.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Marcas\MarcaSony.cs" />
+    <Compile Include="Models\Marcas\MarcaSamsung.cs" />
     <Compile Include="Models\Reglas\Actuador.cs" />
     <Compile Include="Models\Administrador.cs" />
     <Compile Include="Models\Categoria.cs" />

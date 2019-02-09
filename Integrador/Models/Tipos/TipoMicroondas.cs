@@ -6,16 +6,8 @@ using System.Web;
 
 namespace Integrador.Models.Clases.Tipos
 {
-    class TipoMicroondas : MarcaDispositivo
+    class TipoMicroondas
     {
-        public override int UsoMensualMin { get; set; } = 3;
-        public override int UsoMensualMax { get; set; } = 15;
-        public override string EquipoConcreto { get; set; }
-
-        public TipoMicroondas(string _EquipoConcreto)
-        {
-            EquipoConcreto = _EquipoConcreto;
-        }
 
     }
 }

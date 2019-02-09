@@ -6,11 +6,9 @@ using Integrador.Models.Abstract;
 
 namespace Integrador.Models.Clases
 {
-    public class MarcaLG : MarcaDispositivo
+    public class MarcaSony : MarcaDispositivo
     {
-        public int Intensidad { get; set; }
-
-        public override string Nombre { get; set; } = "LG";
+        public override string Nombre { get; set; } = "Sony";
 
         public override void BajarTemperatura()
         {
