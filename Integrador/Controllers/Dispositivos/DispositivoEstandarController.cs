@@ -193,7 +193,7 @@ namespace Integrador.Controllers.Dispositivos
             dispositivoEstandar.Operaciones.Add(operacion);
 
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+            return RedirectToAction("Index", "DispositivoCliente");
         }
 
         protected override void Dispose(bool disposing)

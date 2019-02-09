@@ -24,7 +24,9 @@ namespace Integrador.Controllers.Dispositivos
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
+
             if (dispositivoInteligente == null)
             {
                 return HttpNotFound();
@@ -49,9 +51,8 @@ namespace Integrador.Controllers.Dispositivos
             {
                 var clientId = Convert.ToInt32(Session["ClientId"].ToString());
                 db.DispositivosInteligentes.Add(dispositivoInteligente);
-             //   dispositivoInteligente.Cliente.SumarPuntos(15);
                 db.SaveChanges();
-                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+                return RedirectToAction("Index", "DispositivoCliente");
             }
 
             return View(dispositivoInteligente);
@@ -85,7 +86,7 @@ namespace Integrador.Controllers.Dispositivos
 
                 db.Entry(dispositivoInteligente).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+                return RedirectToAction("Index", "DispositivoCliente");
             }
             return View(dispositivoInteligente);
         }
@@ -97,7 +98,9 @@ namespace Integrador.Controllers.Dispositivos
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
+
             if (dispositivoInteligente == null)
             {
                 return HttpNotFound();
@@ -112,10 +115,13 @@ namespace Integrador.Controllers.Dispositivos
         {
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
 
+            OperacionService operacionService = new OperacionService();
+            operacionService.EliminarOperacionesDispositivo(id);
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             db.Dispositivos.Remove(dispositivoInteligente);
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+            return RedirectToAction("Index", "DispositivoCliente");
         }
 
         [ActionName("Apagar")]
@@ -134,7 +140,7 @@ namespace Integrador.Controllers.Dispositivos
             dispositivoInteligente.Operaciones.Add(operacion);
 
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+            return RedirectToAction("Index", "DispositivoCliente");
         }
 
         [ActionName("Encender")]
@@ -153,7 +159,7 @@ namespace Integrador.Controllers.Dispositivos
             dispositivoInteligente.Operaciones.Add(operacion);
 
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+            return RedirectToAction("Index", "DispositivoCliente");
         }
 
         [ActionName("ActivarAhorro")]
@@ -172,7 +178,7 @@ namespace Integrador.Controllers.Dispositivos
             dispositivoInteligente.Operaciones.Add(operacion);
 
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+            return RedirectToAction("Index", "DispositivoCliente");
         }
 
         protected override void Dispose(bool disposing)

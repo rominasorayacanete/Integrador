@@ -62,5 +62,15 @@ namespace Integrador.Services
             return operacion;
         }
 
+        public void EliminarOperacionesDispositivo(int id) {
+            foreach (Operacion operacion in db.Operaciones)
+            {
+                if (operacion.Dispositivo.Id == id)
+                    db.Operaciones.Remove(operacion);
+            }
+
+            db.SaveChanges();
+        }
+
     }
 }
