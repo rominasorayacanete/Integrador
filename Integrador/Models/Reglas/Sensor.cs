@@ -10,42 +10,42 @@ namespace Integrador.Models.Clases
     public class Sensor : ISensorSubject
     {
         [Key]
-        public int Id;
+        public int Id { get; set; }
 
-        public string magnitud;
+        public string Magnitud { get; set; }
 
-        public List<IReglaObserver> reglas;
+        public List<IReglaObserver> Reglas { get; set; }
 
         public Sensor(string magnitud)
         {
-            this.reglas = new List<IReglaObserver>();
+            this.Reglas = new List<IReglaObserver>();
         }
 
 
         public void Obtenermagnitud()
         {
-            this.magnitud = "Magnitud4";
-            this.NotifyAllObservers(magnitud);
+            this.Magnitud = "Magnitud4";
+            this.NotifyAllObservers(Magnitud);
         }
 
 
         public void Attach(IReglaObserver regla)
         {
-            if (!reglas.Contains(regla))
-                reglas.Add(regla);
+            if (!Reglas.Contains(regla))
+                Reglas.Add(regla);
         }
 
 
         public void Detach(IReglaObserver regla)
         {
-            if (reglas.Contains(regla))
-                reglas.Remove(regla);
+            if (Reglas.Contains(regla))
+                Reglas.Remove(regla);
         }
 
 
         public void NotifyAllObservers(string magnitud)
         {
-            foreach(IReglaObserver regla in reglas)
+            foreach(IReglaObserver regla in Reglas)
            {
                 regla.Update(magnitud);
             }

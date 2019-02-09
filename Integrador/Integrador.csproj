@@ -225,6 +225,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Registro\OperacionesController.cs" />
+    <Compile Include="Controllers\Reglas\ReglasController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TemplateDispositivoController.cs" />
     <Compile Include="Controllers\TransformadorController.cs" />
@@ -437,6 +438,11 @@
     <Content Include="Views\Operaciones\Details.cshtml" />
     <Content Include="Views\Operaciones\Edit.cshtml" />
     <Content Include="Views\Operaciones\Index.cshtml" />
+    <Content Include="Views\Reglas\Create.cshtml" />
+    <Content Include="Views\Reglas\Delete.cshtml" />
+    <Content Include="Views\Reglas\Details.cshtml" />
+    <Content Include="Views\Reglas\Edit.cshtml" />
+    <Content Include="Views\Reglas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
