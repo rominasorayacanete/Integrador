@@ -93,7 +93,6 @@ namespace Integrador.Migrations
                 UsoMensualMin = 200,
                 Encendido = true,
                 ModoAhorroDeEnergia = true,
-                MarcaDispositivo = new MarcaSamsung()
             };
             DispositivoEstandar d2 = new DispositivoEstandar
             {
