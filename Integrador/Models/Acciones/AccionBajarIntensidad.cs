@@ -8,9 +8,9 @@ namespace Integrador.Models.Clases.Acciones
 {
     public class AccionBajarIntesidad : IAccion
     {
-        public void Accionar(DispositivoInteligente dispositivo)
+        public void Accionar(Dispositivo dispositivo)
         {
-            dispositivo.MarcaDispositivo.BajarIntensidad();
+           // dispositivo.MarcaDispositivo.BajarIntensidad();
         }
     }
 }

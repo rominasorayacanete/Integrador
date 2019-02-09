@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Integrador.Models.Clases
 {
-    public class Regla 
+    public class Regla : IReglaSubject , IReglaObserver
     {
 
         public int Id { get; set; }

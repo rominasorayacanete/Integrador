@@ -27,8 +27,9 @@ namespace Integrador.DAL
         public DbSet<TemplateDispositivo> TemplateDispositivos { get; set; }
         public DbSet<ModuloAdaptador> ModulosAdaptadores { get; set; }
 
-       // public DbSet<Reglas2> Reglas2 { get; set; }
-        //public DbSet<Sensor> Sensor { get; set; }
+        public DbSet<Regla> Reglas { get; set; }
+        public DbSet<Sensor> Sensores { get; set; }
+        public DbSet<Actuador> Actuadores { get; set; }
 
     }
 }
