@@ -1,18 +1,20 @@
 ﻿@model Integrador.Models.DispositivoEstandar
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle del dispositivo estándar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="jumbotron" style="background-color: indigo; color: whitesmoke; padding-bottom: 15px">
+    <h2>Detalle del dispositivo estándar</h2>
+</div>
 
 <div>
-    <h4>DispositivoEstandar</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NombreGenerico)
+            <label>Nombre</label>
         </dt>
 
         <dd>
@@ -20,7 +22,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Consumo)
+            <label>Consumo</label>
         </dt>
 
         <dd>
@@ -28,7 +30,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UsoMensualMax)
+            <label>Uso mensual máximo</label>
         </dt>
 
         <dd>
@@ -36,7 +38,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UsoMensualMin)
+            <label>Uso mensual mínimo</label>
         </dt>
 
         <dd>
@@ -44,7 +46,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UsoEstimado)
+            <label>Uso estimado</label>
         </dt>
 
         <dd>
@@ -79,7 +81,7 @@
     else
     {
         @Html.ActionLink("Adaptar", "Adaptar", new { id = Model.Id })
-    }|
+    } |
     @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente")
 </p>

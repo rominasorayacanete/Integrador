@@ -102,7 +102,7 @@ namespace Integrador.Controllers.Dispositivos
             {
                 return HttpNotFound();
             }
-            return View(dispositivoEstandar);
+            return View("~/Views/DispositivoEstandar/Delete.cshtml");
         }
 
         // POST: DispositivoEstandar/Delete/5

@@ -2,12 +2,13 @@
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Mis dispositivos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br />
-<h4 style="margin-top:2.3em">Dispositivos Inteligentes</h4>
+<div class="jumbotron mt-4" style="background-color: indigo; color: whitesmoke; padding-bottom: 20px; padding-left: 25px">
+    <h2>Dispositivos inteligentes</h2>
+</div>
 <p>
     @Html.ActionLink("Agregar", "Create", "DispositivoInteligente", new { @title = "Nuevo dispositivo Inteligente" })
 </p>
@@ -72,10 +73,12 @@
 </table>
 <hr />
 
-<h4>Dispositivos Estándar</h4>
+<div class="jumbotron mt-4" style="background-color: indigo; color: whitesmoke; padding-bottom: 18px; padding-left: 25px; padding-top: 15px">
+    <h2>Dispositivos estándar</h2>
+</div>
 
 <p>
-    @Html.ActionLink("Agregar", "Create", "DispositivoEstandar")
+    @Html.ActionLink("Agregar", "Create", "DispositivoEstandar", new { @title = "Nuevo dispositivo estándar"})
 </p>
 <table class="table">
     <tr>
@@ -139,7 +142,7 @@
             @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
         </td>
         <td>
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
+            @Html.ActionLink("Eliminar", "Delete", "DispositivoEstandar", new { id = item.Id }, new { @title = "Eliminar" })
         </td>
     </tr>
     }
