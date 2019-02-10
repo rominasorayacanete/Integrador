@@ -13,6 +13,7 @@ using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using Integrador.DAL;
 using Integrador.Models.Helper;
+using System.Web.Mvc;
 
 namespace Integrador.Services
 {
@@ -23,13 +24,16 @@ namespace Integrador.Services
         public void CrearNuevoDispositivoEstandar(int clientId, DispositivoConcreto dispositivoConcreto)
         {
             var templateDispostivo = db.TemplateDispositivos.Find(dispositivoConcreto.IdDispositivo);
+            UsoMaxYMin MaxYMin = this.GetMinAndMaxUsage(templateDispostivo.Tipo);
             DispositivoEstandar dispositivoEstandar = new DispositivoEstandar
             {
                 NombreGenerico = templateDispostivo.EquipoConcreto,
                 Inteligente = false,
                 ClienteID = clientId,
                 Consumo = templateDispostivo.Consumo,
-                UsoEstimado = dispositivoConcreto.UsoAproximado
+                UsoEstimado = dispositivoConcreto.UsoAproximado,
+                UsoMensualMax = MaxYMin.Maximo,
+                UsoMensualMin = MaxYMin.Minimo
             };
             db.DispositivoEstandar.Add(dispositivoEstandar);
             db.SaveChanges();
@@ -40,16 +44,60 @@ namespace Integrador.Services
         public void CrearNuevoDispositivoInteligente(int clientId, DispositivoConcreto dispositivoConcreto)
         {
             var templateDispostivo = db.TemplateDispositivos.Find(dispositivoConcreto.IdDispositivo);
+            UsoMaxYMin MaxYMin = this.GetMinAndMaxUsage(templateDispostivo.Tipo);
             DispositivoInteligente dispositivoInteligente = new DispositivoInteligente
             {
                 NombreGenerico = templateDispostivo.EquipoConcreto,
                 Inteligente = true,
                 ClienteID = clientId,
-                Consumo = templateDispostivo.Consumo
+                Consumo = templateDispostivo.Consumo,
+                UsoMensualMax = MaxYMin.Maximo,
+                UsoMensualMin = MaxYMin.Minimo
             };
             db.DispositivosInteligentes.Add(dispositivoInteligente);
             db.SaveChanges();
             return;
+        }
+
+        private UsoMaxYMin GetMinAndMaxUsage(string tipoDispositivo)
+        {
+            UsoMaxYMin values = new UsoMaxYMin();
+            switch (tipoDispositivo)
+            {
+                case "Aire Acondicionado":
+                    values.Maximo = 90; 
+                    values.Minimo = 360; 
+                    break;
+                case "Lámpara":
+                    values.Maximo = 90;
+                    values.Minimo = 360;
+                    break;
+                case "Televisor":
+                    values.Maximo = 90;
+                    values.Minimo = 360;
+                    break;
+                case "Lavarropas":
+                    values.Maximo = 6;
+                    values.Minimo = 30;
+                    break;
+                case "Microondas":
+                    values.Maximo = 3;
+                    values.Minimo = 15;
+                    break;
+                case "Plancha":
+                    values.Maximo = 3;
+                    values.Minimo = 30;
+                    break;
+                case "Ventilador":
+                    values.Maximo = 120;
+                    values.Minimo = 360;
+                    break;
+                default :
+                    values.Maximo = 10;
+                    values.Minimo = 200;
+                    break;
+            }
+            return values;
         }
 
         public double findConsumo(string NombreDispositivo)

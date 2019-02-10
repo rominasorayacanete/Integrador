@@ -26,8 +26,8 @@ namespace Integrador
 
         static void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            SimplexService simplexService = new SimplexService();
-            Cliente cliente = simplexService.MockCliente();
+           // SimplexService simplexService = new SimplexService();
+           // Cliente cliente = simplexService.MockCliente();
            // simplexService.executeSimplex(cliente);
         }
     }

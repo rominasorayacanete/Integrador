@@ -16,14 +16,12 @@ namespace Integrador.Services
 {
     public class SimplexService
     {
-        /*
         private static readonly HttpClient client = new HttpClient();
         private static DeviceService deviceService = new DeviceService();
         protected static System.Timers.Timer timer = new System.Timers.Timer(5000); // This will raise the event every one minute.
 
         public object executeSimplex(Cliente cliente)
         {
-
             List<Dispositivo> listado = cliente.GetDispositivos();
 
             int cantDispostivos = listado.Count;
@@ -48,9 +46,10 @@ namespace Integrador.Services
 
                 listado.Reverse();
 
-                foreach (DispositivoInteligente dispositivo in listado)
+                foreach (Dispositivo dispositivo in listado)
                 {
-                    values.Add(deviceService.findConsumo(dispositivo.MarcaDispositivo.EquipoConcreto));
+                    values.Add(dispositivo.Consumo); 
+                    // Se puede agarrar directamente el consumo del dispositivo, lo dejamos asi porque la data ya esta cargada
                 }
 
                 listado.Reverse();
@@ -64,7 +63,7 @@ namespace Integrador.Services
                 int devicePosition = cantDispostivos;
 
                 // Creamos las demás restricciones 
-                foreach (DispositivoInteligente dispositivo in listado)
+                foreach (Dispositivo dispositivo in listado)
                 {
                     // Inicializo un array con 0 en todas las posiciones 
                     int[] restriccionPositiva = new int[cantDispostivos + 1];
@@ -74,8 +73,8 @@ namespace Integrador.Services
                     for (int i = 0; i < restriccionNegativa.Length; i++) { restriccionNegativa[i] = 0; }
 
                     // Seteo el valor de la restriccion 
-                    restriccionPositiva[0] = dispositivo.MarcaDispositivo.UsoMensualMin;
-                    restriccionNegativa[0] = dispositivo.MarcaDispositivo.UsoMensualMax; 
+                    restriccionPositiva[0] = dispositivo.UsoMensualMin;
+                    restriccionNegativa[0] = dispositivo.UsoMensualMax; 
 
                     // Seteo '1' segun la ubicacion del dispositivo
                     restriccionPositiva[devicePosition] = 1; 
@@ -105,18 +104,17 @@ namespace Integrador.Services
                 // Formateo la informacion
                 IDictionary<Object, Object> resultado = new Dictionary<Object, Object>();
                 int l = 0;
-                foreach (DispositivoInteligente dispositivo in listado)
+                foreach (Dispositivo dispositivo in listado)
                 {
-                    resultado.Add(dispositivo.MarcaDispositivo.EquipoConcreto, httpResult[l]);
+                    resultado.Add(dispositivo.NombreGenerico, httpResult[l]);
                     l++;
                 }
 
                 return resultado;
 
             }
-            throw new ArgumentException("No existen dispositivos")
+            throw new ArgumentException("No existen dispositivos");
         }
-    */
 
         private List<float> SendJson(IDictionary<Object, Object> jsonArr)
         {
@@ -128,54 +126,5 @@ namespace Integrador.Services
             return JsonConvert.DeserializeObject<List<float>>(myWebClient.UploadString(sURI, json));
 
         }
-
-        public List<DispositivoInteligente> MockListado()
-        {
-            /*
-            TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
-            TipoHeladera tipoHeladera = new TipoHeladera("Sin freezer");
-            TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
-            
-            DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
-            DispositivoInteligente d2 = new DispositivoInteligente(tipoHeladera);
-            DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);
-           */
-            List<DispositivoInteligente> listado = new List<DispositivoInteligente>();
-            /*
-            listado.Add(d1);
-            listado.Add(d2);
-            listado.Add(d3);
-            */
-            return listado;
-        }
-
-        public Cliente MockCliente()
-        {
-            // Instancia de dispositivo Heladera
-            /*
-            TipoComputadora tipoComputadora = new TipoComputadora("De escritorio");
-            TipoLampara tipoLampara = new TipoLampara("De 11 W");
-            TipoLavarropas tipoLavarropas = new TipoLavarropas("Automático de 5 kg con calentamiento de agua");
-            TipoMicroondas tipoMicroondas = new TipoMicroondas("Convencional");
-            TipoPlancha tipoPlancha = new TipoPlancha("A vapor");
-
-            DispositivoInteligente d1 = new DispositivoInteligente(tipoComputadora);
-            DispositivoInteligente d2 = new DispositivoInteligente(tipoLampara);
-            DispositivoInteligente d3 = new DispositivoInteligente(tipoLavarropas);
-            DispositivoInteligente d4 = new DispositivoInteligente(tipoMicroondas);
-            DispositivoInteligente d5 = new DispositivoInteligente(tipoPlancha);
-            */
-            // Instancia de cliente
-            Cliente cliente = new Cliente();
-            /*cliente.AgregarDispositivoInteligente(d1);
-            cliente.AgregarDispositivoInteligente(d2);
-            cliente.AgregarDispositivoInteligente(d3);
-            cliente.AgregarDispositivoInteligente(d4);
-            cliente.AgregarDispositivoInteligente(d5);
-            */
-            return cliente;
-        }
-
-
     }
 }

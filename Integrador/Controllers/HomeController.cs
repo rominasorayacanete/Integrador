@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using Integrador.Models;
 using Integrador.Models.Clases;
 using Integrador.Services;
-using Integrador.ORM;
 using Integrador.DAL;
 using MongoDemo.App_Start;
 using MongoDB.Bson;
@@ -19,6 +18,8 @@ namespace Integrador.Controllers
     {
         private Context db = new Context();
         private MongoContext mongo = new MongoContext();
+        private SimplexService simplexService = new SimplexService();
+        private ClienteService clienteService = new ClienteService();
 
         public ActionResult Index()
         {
@@ -41,20 +42,14 @@ namespace Integrador.Controllers
             return View();
         }
 
+        [ActionName("Simplex")]
         public ActionResult Simplex()
         {
-            try
-            {
-
-                SimplexService service = new SimplexService();
-                Models.Cliente cliente = service.MockCliente();
-             //   var objeto = service.executeSimplex(cliente);
-              //  ViewBag.Objeto = objeto;
-
-            } catch
-            {
-                ViewBag.Objeto = "No se pudo ejecutar el metodo simplex";
-            }
+                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+                Cliente cliente = clienteService.FindById(clientId);
+                var objeto = simplexService.executeSimplex(cliente);
+                ViewBag.Objeto = objeto;
+          
             return View();
         }
 
