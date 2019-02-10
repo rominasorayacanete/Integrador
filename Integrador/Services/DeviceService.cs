@@ -11,11 +11,31 @@ using System.Text;
 using System.IO;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
+using Integrador.DAL;
+using Integrador.Models.Helper;
 
 namespace Integrador.Services
 {
     public class DeviceService
     {
+        private Context db = new Context();
+
+        public void CrearNuevoDispositivoEstandar(int clientId, DispositivoConcreto dispositivoConcreto)
+        {
+            var templateDispostivo = db.TemplateDispositivos.Find(dispositivoConcreto.IdDispositivo);
+            DispositivoEstandar dispositivoEstandar = new DispositivoEstandar
+            {
+                NombreGenerico = templateDispostivo.EquipoConcreto,
+                Inteligente = false,
+                ClienteID = clientId,
+                Consumo = templateDispostivo.Consumo,
+                UsoEstimado = dispositivoConcreto.UsoAproximado
+            };
+            db.DispositivoEstandar.Add(dispositivoEstandar);
+            db.SaveChanges();
+            return;
+        }
+
         public double findConsumo(string NombreDispositivo)
         {
             var json = "{\"De 3500 frigorás\":{\"EsInteligente\":true,\"EsDeBajoConsumo\":false,\"Consumo\":1.613}," +

@@ -47,13 +47,13 @@
                 </a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Consumo)
+                @Html.DisplayFor(modelItem => item.Consumo) kWh
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMax)
+                @Html.DisplayFor(modelItem => item.UsoMensualMax) hs
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMin)
+                @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Encendido)
@@ -114,16 +114,16 @@
             </a>
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Consumo)
+            @Html.DisplayFor(modelItem => item.Consumo) kWh
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UsoMensualMax)
+            @Html.DisplayFor(modelItem => item.UsoMensualMax)  hs
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UsoMensualMin)
+            @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UsoEstimado)
+            @Html.DisplayFor(modelItem => item.UsoEstimado)  hs
         </td>
         @if (item.ModuloAdaptador == null)
         {

@@ -18,7 +18,7 @@ namespace Integrador.Models
         [StringLength(50)]
         public string NombreGenerico { get; set; }
 
-        public int Consumo { get; set; }
+        public double Consumo { get; set; }
 
         public int UsoMensualMax { get; set; }
 

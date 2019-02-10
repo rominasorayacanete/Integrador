@@ -61,9 +61,9 @@ namespace Integrador.Models
             Puntos += puntos;
         }
 
-        public int ConsumoHogar()
+        public double ConsumoHogar()
         {
-            var total = 0;
+            double total = 0;
             foreach(Dispositivo dispositivo in Dispositivos)
             {
                 total = +dispositivo.Consumo;

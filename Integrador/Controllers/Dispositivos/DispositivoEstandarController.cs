@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Models.Helper;
 using Integrador.Services;
 
 namespace Integrador.Controllers.Dispositivos
@@ -17,6 +18,7 @@ namespace Integrador.Controllers.Dispositivos
         private Context db = new Context();
         private OperacionService operacionService = new OperacionService();
         private ClienteService clienteService = new ClienteService();
+        private DeviceService deviceService = new DeviceService();
 
         // GET: DispositivoEstandar/Details/5
         public ActionResult Details(int? id)
@@ -36,6 +38,15 @@ namespace Integrador.Controllers.Dispositivos
         // GET: DispositivoEstandar/Create
         public ActionResult Create()
         {
+            var dispositivos = db.TemplateDispositivos.Where(t => t.Inteligente == false).ToList();
+
+            ViewBag.Dispositivos = db.TemplateDispositivos.Where(t => t.Inteligente == false)
+            .Select(t => new SelectListItem
+            {
+                Text = t.Tipo + " " + t.EquipoConcreto,
+                Value = t.Id.ToString()
+            });
+
             return View();
         }
 
@@ -44,18 +55,12 @@ namespace Integrador.Controllers.Dispositivos
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin,UsoEstimado")] DispositivoEstandar dispositivoEstandar)
+        public ActionResult Create(DispositivoConcreto dispositivoConcreto)
         {
-            if (ModelState.IsValid)
-            {
-                var id = Convert.ToInt32(Session["ClientId"].ToString());
-                dispositivoEstandar.ClienteID = id;
-                db.DispositivoEstandar.Add(dispositivoEstandar);
-                db.SaveChanges();
-                return RedirectToAction("Index","DispositivoCliente", new { id });
-            }
 
-            return View("/DispostivoEstandar/Create.cshtml");
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+            deviceService.CrearNuevoDispositivoEstandar(clientId, dispositivoConcreto);
+            return RedirectToAction("Index","DispositivoCliente", new { id = clientId });
         }
 
         // GET: DispositivoEstandar/Edit/5

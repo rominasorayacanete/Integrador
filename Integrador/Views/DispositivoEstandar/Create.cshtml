@@ -1,56 +1,33 @@
-﻿@model Integrador.Models.DispositivoEstandar
+﻿@model Integrador.Models.Helper.DispositivoConcreto
 
 @{
     ViewBag.Title = "Agregar dispositivo estándar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm()) 
+
+<div class="jumbotron" style="background-color: indigo; color: whitesmoke">
+    <h1>Agregar dispositivo estandar</h1>
+</div>
+
+@using (Html.BeginForm("Create", "DispositivoEstandar", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div class="jumbotron" style="background-color: indigo; color: whitesmoke; padding-bottom: 10px">
-        <h1>Agregar dispositivo estándar</h1>
-    </div>
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <div class="col-md-10">
-                <label>Nombre</label>
-                @Html.EditorFor(model => model.NombreGenerico, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NombreGenerico, "", new { @class = "text-danger" })
+                <label>Dispositivo: </label>
+                @Html.DropDownListFor(x => x.IdDispositivo, new SelectList(ViewBag.Dispositivos, "Value", "Text"), new { @class = "form-control dropdown-field" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-10">
-                <label>Consumo</label>
-                @Html.EditorFor(model => model.Consumo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Consumo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                <label>Uso mensual máximo</label>
-                @Html.EditorFor(model => model.UsoMensualMax, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UsoMensualMax, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                <label>Uso mensual mínimo</label>
-                @Html.EditorFor(model => model.UsoMensualMin, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UsoMensualMin, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                <label>Uso estimado</label>
-                @Html.EditorFor(model => model.UsoEstimado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UsoEstimado, "", new { @class = "text-danger" })
+                <label>Uso aproximado</label>
+                @Html.EditorFor(model => model.UsoAproximado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UsoAproximado, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -59,6 +36,7 @@
     </div>
 }
 
-    <div>
-        @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente")
-    </div>
+
+<div>
+    @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente")
+</div>
