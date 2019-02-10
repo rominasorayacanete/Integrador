@@ -45,11 +45,16 @@ namespace Integrador.Controllers
         [ActionName("Simplex")]
         public ActionResult Simplex()
         {
+            try
+            {
                 var clientId = Convert.ToInt32(Session["ClientId"].ToString());
                 Cliente cliente = clienteService.FindById(clientId);
                 var objeto = simplexService.executeSimplex(cliente);
                 ViewBag.Objeto = objeto;
-          
+            } catch
+            {
+                ViewBag.Error = "No se pudo ejecutar el metodo simplex";
+            }
             return View();
         }
 

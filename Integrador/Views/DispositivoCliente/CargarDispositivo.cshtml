@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Mis dispositivos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron" style="background-color: indigo; color: whitesmoke; padding-bottom: 10px">
+    <h2>Importar Dispositivos </h2>
+    <span> Seleccione el archivo .JSON </span>
+</div>
+
+
+@using (Html.BeginForm("CargarInteligente", "DispositivoCliente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @ViewBag.Error
+        <span>Dispositivos inteligentes</span>
+        <br />
+        JSON File <input type="file" name="jsonFile" />
+        <br />
+        <input type="submit" value="Cargar" />
+    </div>
+}
+
+<br />
+
+@using (Html.BeginForm("CargarEstandar", "DispositivoCliente", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @ViewBag.Error
+        <span>Dispositivos estandar</span>
+        <br />
+        JSON File <input type="file" name="jsonFile" />
+        <br />
+        <input type="submit" value="Cargar" />
+    </div>
+}

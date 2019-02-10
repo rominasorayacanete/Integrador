@@ -10,12 +10,15 @@ using Integrador.DAL;
 using Integrador.Models;
 using Integrador.Services;
 using Integrador.Models.Clases.Helper;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace Integrador.Controllers.Dispositivos
 {
     public class DispositivoClienteController : Controller
     {
         private Context db = new Context();
+        private DispositivoService dispositivoService = new DispositivoService();
 
         // GET: DispositivoCliente
         [ActionName("Index")]
@@ -32,103 +35,80 @@ namespace Integrador.Controllers.Dispositivos
             return View(listado);
         }
 
-        // GET: DispositivoCliente/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Dispositivo dispositivo = db.Dispositivos.Find(id);
-            if (dispositivo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(dispositivo);
-        }
-
-        // GET: DispositivoCliente/Create
-        public ActionResult Create()
+        public ActionResult CargarDispositivo()
         {
             return View();
         }
 
-        // POST: DispositivoCliente/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin,Encendido,ModoAhorroDeEnergia")] DispositivoInteligente dispositivoInteligente)
+        public ActionResult CargarInteligente(HttpPostedFileBase jsonFile)
         {
-            if (ModelState.IsValid)
+            if (!Path.GetFileName(jsonFile.FileName).EndsWith(".json"))
             {
-                db.Dispositivos.Add(dispositivoInteligente);
+                ViewBag.Error = "Tipo de archivo inváido.";
+            }
+            else
+            {
+                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+                jsonFile.SaveAs(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
+                StreamReader streamReader = new StreamReader(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
+                string data = streamReader.ReadToEnd();
+                List<DispositivoInteligente> dispositivos = JsonConvert.DeserializeObject<List<DispositivoInteligente>>(data);
+                dispositivos.ForEach(d => {
+                    DispositivoInteligente dispositivo = new DispositivoInteligente()
+                    {
+                        NombreGenerico = d.NombreGenerico,
+                        Consumo = d.Consumo,
+                        Encendido = d.Encendido,
+                        ModoAhorroDeEnergia = d.ModoAhorroDeEnergia,
+                        UsoMensualMax = d.UsoMensualMax,
+                        UsoMensualMin = d.UsoMensualMin,
+                        Inteligente = true,
+                        ClienteID = clientId,
+                    };
+                    db.DispositivosInteligentes.Add(dispositivo);
+                });
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Success = "Success";
+                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+
             }
 
-            return View(dispositivoInteligente);
+            return View("~/Views/Home/Index.cshtml");
         }
 
-        // GET: DispositivoCliente/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Dispositivo dispositivo = db.Dispositivos.Find(id);
-            if (dispositivo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(dispositivo);
-        }
-
-        // POST: DispositivoCliente/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin")] Dispositivo dispositivo)
+        public ActionResult CargarEstandar(HttpPostedFileBase jsonFile)
         {
-            if (ModelState.IsValid)
+            if (!Path.GetFileName(jsonFile.FileName).EndsWith(".json"))
             {
-                db.Entry(dispositivo).State = EntityState.Modified;
+                ViewBag.Error = "Tipo de archivo inváido.";
+            }
+            else
+            {
+                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+                jsonFile.SaveAs(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
+                StreamReader streamReader = new StreamReader(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
+                string data = streamReader.ReadToEnd();
+                List<DispositivoEstandar> dispositivos = JsonConvert.DeserializeObject<List<DispositivoEstandar>>(data);
+                dispositivos.ForEach(d => {
+                    DispositivoEstandar dispositivo = new DispositivoEstandar()
+                    {
+                        NombreGenerico = d.NombreGenerico,
+                        Consumo = d.Consumo,
+                        Inteligente = false,
+                        UsoMensualMax = d.UsoMensualMax,
+                        UsoMensualMin = d.UsoMensualMin,
+                        ClienteID = clientId,
+                    };
+                    db.DispositivoEstandar.Add(dispositivo);
+                });
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Success = "Success";
+                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
             }
-            return View(dispositivo);
-        }
 
-        // GET: DispositivoCliente/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Dispositivo dispositivo = db.Dispositivos.Find(id);
-            if (dispositivo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(dispositivo);
-        }
-
-        // POST: DispositivoCliente/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Dispositivo dispositivo = db.Dispositivos.Find(id);
-
-            OperacionService operacionService = new OperacionService();
-            operacionService.EliminarOperacionesDispositivo(id);
-
-            db.Dispositivos.Remove(dispositivo);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View("~/Views/Home/Index.cshtml");
         }
 
         protected override void Dispose(bool disposing)

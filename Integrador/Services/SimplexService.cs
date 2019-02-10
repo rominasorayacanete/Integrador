@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Text.RegularExpressions;
 using Integrador.Models;
-using Integrador.Models.Clases.Tipos;
+using Integrador.Models.Helper;
 using System.Net;
 using Newtonsoft.Json;
 using System.Text;
@@ -100,13 +100,15 @@ namespace Integrador.Services
 
                 // HTTP POST
                 List<float> httpResult = this.SendJson(jsonArr);
-                
+
                 // Formateo la informacion
-                IDictionary<Object, Object> resultado = new Dictionary<Object, Object>();
+
+                List<SimplexData> resultado = new List<SimplexData>();
                 int l = 0;
                 foreach (Dispositivo dispositivo in listado)
                 {
-                    resultado.Add(dispositivo.NombreGenerico, httpResult[l]);
+                    SimplexData data = new SimplexData(dispositivo.NombreGenerico, httpResult[l]);
+                    resultado.Add(data);
                     l++;
                 }
 

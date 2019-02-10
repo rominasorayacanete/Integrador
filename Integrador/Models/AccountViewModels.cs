@@ -101,7 +101,6 @@ namespace Integrador.Models
 
         public string Code { get; set; }
     }
-
     public class ForgotPasswordViewModel
     {
         [Required]

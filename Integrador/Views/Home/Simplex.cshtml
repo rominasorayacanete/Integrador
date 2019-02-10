@@ -1,11 +1,36 @@
 ﻿@{
-    ViewBag.Title = "Simplex";
+    ViewBag.Title = "Resultado del metodo Simplex";
 }
-<h2>@ViewBag.Title.</h2>
 
-@foreach (var item in ViewBag.Objeto)
+<div class="jumbotron" style="background-color: indigo; color: whitesmoke; padding-bottom: 10px">
+    <h2>@ViewBag.Title </h2>
+</div>
+
+@if (ViewBag.Error != null)
 {
-    <div>
-        <span>Dispostivo / Consumo : @item</span>
-    </div>
+    <h4 style="color:darkred">@ViewBag.error</h4>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                Dispositivo
+            </th>
+            <th>
+                Tiempo optimo de uso
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in ViewBag.Objeto)
+        {
+            <tr>
+                <td>
+                    @item.Dispositivo
+                </td>
+                <td>
+                    @item.HorasDisponiles (h)
+            </tr>
+        }
+    </table>
 }
