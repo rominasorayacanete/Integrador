@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Integrador.Models.TemplateDispositivo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dispositivos";
 }
 
 <div class="jumbotron" style="background-color: indigo; color: whitesmoke">
@@ -9,24 +9,24 @@
 </div>
 
 <p>
-    @Html.ActionLink("+Agregar", "Create")
+    @Html.ActionLink("Agregar", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Tipo)
+            Tipo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EquipoConcreto)
+            Equipo concreto
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Inteligente)
+            Inteligente
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BajoConsumo)
+            Bajo consumo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Consumo)
+            Consumo (kWh)
         </th>
         <th></th>
     </tr>
@@ -49,8 +49,8 @@
             @Html.DisplayFor(modelItem => item.Consumo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

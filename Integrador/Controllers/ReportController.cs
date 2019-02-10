@@ -103,7 +103,7 @@ namespace Integrador.Controllers
                 ViewBag.Consumo = mongoReport.Value;
                 ViewBag.Nombre = "Dispositivo " + mongoReport.DisplayName;
                 ViewBag.Periodo = mongoReport.Periodo;
-                ViewBag.Mongo = "Este reporte ha sido generado a travez de MongoDB!";
+                ViewBag.Mongo = "Este reporte ha sido generado a través de MongoDB.";
                 return View("~/Views/Report/detail.cshtml");
             }
 
