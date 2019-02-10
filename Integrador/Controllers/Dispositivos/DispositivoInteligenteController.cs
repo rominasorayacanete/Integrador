@@ -51,8 +51,8 @@ namespace Integrador.Controllers.Dispositivos
             {
                 var id = Convert.ToInt32(Session["ClientId"].ToString());
                 dispositivoInteligente.ClienteID = id;
+                db.Clientes.Find(id).SumarPuntos(15);
                 db.DispositivosInteligentes.Add(dispositivoInteligente);
-                //dispositivoInteligente.Cliente.SumarPuntos(15);
                 db.SaveChanges();
                 return RedirectToAction("Index", "DispositivoCliente", new { id });
             }
@@ -67,11 +67,14 @@ namespace Integrador.Controllers.Dispositivos
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
+
             if (dispositivoInteligente == null)
             {
                 return HttpNotFound();
             }
+
             return View(dispositivoInteligente);
         }
 
@@ -121,7 +124,7 @@ namespace Integrador.Controllers.Dispositivos
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             db.Dispositivos.Remove(dispositivoInteligente);
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+            return RedirectToAction("Index", "DispositivoCliente", new { clientId });
         }
 
         [ActionName("Apagar")]
