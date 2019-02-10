@@ -49,11 +49,12 @@ namespace Integrador.Controllers.Dispositivos
         {
             if (ModelState.IsValid)
             {
-                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+                var id = Convert.ToInt32(Session["ClientId"].ToString());
+                dispositivoInteligente.ClienteID = id;
                 db.DispositivosInteligentes.Add(dispositivoInteligente);
-                dispositivoInteligente.Cliente.SumarPuntos(15);
+                //dispositivoInteligente.Cliente.SumarPuntos(15);
                 db.SaveChanges();
-                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+                return RedirectToAction("Index", "DispositivoCliente", new { id });
             }
 
             return View(dispositivoInteligente);
