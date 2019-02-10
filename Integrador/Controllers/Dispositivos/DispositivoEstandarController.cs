@@ -179,21 +179,22 @@ namespace Integrador.Controllers.Dispositivos
         public ActionResult Adaptar(int? id)
         {
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
-
             DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
+            db.Clientes.Find(clientId).SumarPuntos(10);
+
             if (dispositivoEstandar == null)
             {
                 return HttpNotFound();
             }
+
             ModuloAdaptador adaptador = new ModuloAdaptador();
             dispositivoEstandar.Adaptar(adaptador);
-            dispositivoEstandar.Cliente.SumarPuntos(10);
-            // Registro
+
             var operacion = operacionService.RegistrarOperacionConvertir(dispositivoEstandar);
             dispositivoEstandar.Operaciones.Add(operacion);
-
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente");
+
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         protected override void Dispose(bool disposing)
