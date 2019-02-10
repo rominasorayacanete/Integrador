@@ -38,5 +38,5 @@
 
 
     <div>
-        @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente")
+        @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, null)
     </div>

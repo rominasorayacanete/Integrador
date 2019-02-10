@@ -83,7 +83,8 @@
         @Html.ActionLink("Adaptar", "Adaptar", new { id = Model.Id })
     } |
     @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente")
+
+    @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente", new { id = Session["ClientId"]}, null)
 </p>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>

@@ -69,7 +69,7 @@
             <div class="col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-default" style="background-color:indigo; color: whitesmoke" />
                 |
-                @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente")
+                @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, null)
             </div>
         </div>
     </div>

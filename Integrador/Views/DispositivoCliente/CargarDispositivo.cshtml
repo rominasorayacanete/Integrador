@@ -34,3 +34,5 @@
         <input type="submit" value="Cargar" />
     </div>
 }
+
+@Html.ActionLink("Volver al listado", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, null)

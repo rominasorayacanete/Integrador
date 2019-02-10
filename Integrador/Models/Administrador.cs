@@ -17,5 +17,30 @@ namespace Integrador.Models
 
         [Required]
         public virtual Usuario Usuario { get; set; }
+
+        public string Nombre { get; set; }
+
+        public string Apellido { get; set; }
+
+        public string Domicilio { get; set; }
+
+        public DateTime FechaAlta { get; set; }
+
+        public Administrador()
+        {
+            FechaAlta = DateTime.Now;
+
+        }
+
+        public string GetFullName()
+        {
+            return Nombre + " " + Apellido;
+        }
+
+        public double MesesComoAdministrador()
+        {
+            DateTime fecharegistro = DateTime.Parse(FechaAlta.ToString());
+            return (DateTime.Now - fecharegistro).TotalDays;
+        }
     }
 }

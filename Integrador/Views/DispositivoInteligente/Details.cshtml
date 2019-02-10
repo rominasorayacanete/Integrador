@@ -83,5 +83,5 @@
         @Ajax.ActionLink("Modo ahorro", "ActivarAhorro", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
     }
     @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente")
+    @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, null)
 </p>
