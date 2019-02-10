@@ -8,16 +8,24 @@ namespace Integrador.Models
 {
     public class TemplateDispositivo
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
-        [StringLength(30)]
-        public string Nombre { get; set; }
+        [StringLength(45)]
+        public string Tipo { get; set; }
 
+        [Required]
+        [StringLength(45)]
+        public string EquipoConcreto { get; set; }
+
+        [Required]
         public bool Inteligente { get; set; }
 
+        [Required]
         public bool BajoConsumo { get; set; }
 
+        [Required]
         public double Consumo { get; set; }
 
     }

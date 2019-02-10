@@ -9,19 +9,19 @@ using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
 
-namespace Integrador.Controllers
+namespace Integrador.Controllers.Dispositivos
 {
-    public class TemplateDispositivoController : Controller
+    public class TemplateDispositivosController : Controller
     {
         private Context db = new Context();
 
-        // GET: TemplateDispositivo
+        // GET: TemplateDispositivos
         public ActionResult Index()
         {
             return View(db.TemplateDispositivos.ToList());
         }
 
-        // GET: TemplateDispositivo/Details/5
+        // GET: TemplateDispositivos/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,18 +36,18 @@ namespace Integrador.Controllers
             return View(templateDispositivo);
         }
 
-        // GET: TemplateDispositivo/Create
+        // GET: TemplateDispositivos/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TemplateDispositivo/Create
+        // POST: TemplateDispositivos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nombre,Inteligente,BajoConsumo,Consumo")] TemplateDispositivo templateDispositivo)
+        public ActionResult Create([Bind(Include = "Id,Tipo,EquipoConcreto,Inteligente,BajoConsumo,Consumo")] TemplateDispositivo templateDispositivo)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace Integrador.Controllers
             return View(templateDispositivo);
         }
 
-        // GET: TemplateDispositivo/Edit/5
+        // GET: TemplateDispositivos/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,12 +74,12 @@ namespace Integrador.Controllers
             return View(templateDispositivo);
         }
 
-        // POST: TemplateDispositivo/Edit/5
+        // POST: TemplateDispositivos/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nombre,Inteligente,BajoConsumo,Consumo")] TemplateDispositivo templateDispositivo)
+        public ActionResult Edit([Bind(Include = "Id,Tipo,EquipoConcreto,Inteligente,BajoConsumo,Consumo")] TemplateDispositivo templateDispositivo)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace Integrador.Controllers
             return View(templateDispositivo);
         }
 
-        // GET: TemplateDispositivo/Delete/5
+        // GET: TemplateDispositivos/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,7 +105,7 @@ namespace Integrador.Controllers
             return View(templateDispositivo);
         }
 
-        // POST: TemplateDispositivo/Delete/5
+        // POST: TemplateDispositivos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

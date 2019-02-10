@@ -222,12 +222,12 @@
     <Compile Include="Controllers\Dispositivos\DispositivoClienteController.cs" />
     <Compile Include="Controllers\Dispositivos\DispositivoEstandarController.cs" />
     <Compile Include="Controllers\Dispositivos\DispositivoInteligenteController.cs" />
+    <Compile Include="Controllers\Dispositivos\TemplateDispositivosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Registro\OperacionesController.cs" />
     <Compile Include="Controllers\Reglas\ReglasController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Controllers\TemplateDispositivoController.cs" />
     <Compile Include="Controllers\TransformadorController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\ZonaController.cs" />
@@ -386,11 +386,6 @@
     <Content Include="Views\Home\Zonas.cshtml" />
     <Content Include="Views\Home\Simplex.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
-    <Content Include="Views\Template_Dispositivo\Create.cshtml" />
-    <Content Include="Views\Template_Dispositivo\Delete.cshtml" />
-    <Content Include="Views\Template_Dispositivo\Details.cshtml" />
-    <Content Include="Views\Template_Dispositivo\Edit.cshtml" />
-    <Content Include="Views\Template_Dispositivo\Index.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Transformadors\Create.cshtml" />
     <Content Include="Views\Transformadors\Delete.cshtml" />
@@ -403,11 +398,6 @@
     <Content Include="Views\Report\transformador.cshtml" />
     <Content Include="Views\Transformadors\Map.cshtml" />
     <Content Include="Views\Dispositivo\Index.cshtml" />
-    <Content Include="Views\TemplateDispositivo\Create.cshtml" />
-    <Content Include="Views\TemplateDispositivo\Delete.cshtml" />
-    <Content Include="Views\TemplateDispositivo\Details.cshtml" />
-    <Content Include="Views\TemplateDispositivo\Edit.cshtml" />
-    <Content Include="Views\TemplateDispositivo\Index.cshtml" />
     <Content Include="Views\Transformador\Create.cshtml" />
     <Content Include="Views\Transformador\Delete.cshtml" />
     <Content Include="Views\Transformador\Details.cshtml" />
@@ -445,6 +435,11 @@
     <Content Include="Views\Reglas\Details.cshtml" />
     <Content Include="Views\Reglas\Edit.cshtml" />
     <Content Include="Views\Reglas\Index.cshtml" />
+    <Content Include="Views\TemplateDispositivos\Create.cshtml" />
+    <Content Include="Views\TemplateDispositivos\Delete.cshtml" />
+    <Content Include="Views\TemplateDispositivos\Details.cshtml" />
+    <Content Include="Views\TemplateDispositivos\Edit.cshtml" />
+    <Content Include="Views\TemplateDispositivos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

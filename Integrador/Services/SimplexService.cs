@@ -23,9 +23,8 @@ namespace Integrador.Services
 
         public object executeSimplex(Cliente cliente)
         {
-            // Instancia de cliente ->  Mock Temporals
 
-            List<DispositivoInteligente> listado = cliente.GetDispositivoInteligentes(); //-> Reemplazar por cliente.DispositivosInteligentes;
+            List<Dispositivo> listado = cliente.GetDispositivos();
 
             int cantDispostivos = listado.Count;
             if (cantDispostivos > 0)
@@ -34,12 +33,12 @@ namespace Integrador.Services
                 IDictionary<Object, Object> jsonArr = new Dictionary<Object, Object>();
                 List<int> varsArray = new List<int>();
                 
-                // Agregamos todos los dispositivos 
+                // Agregamos todos los dispositivos al array de variables
                 foreach (object dispositivo in listado)
                 {
                     varsArray.Add(1);
                 }
-                // Agregamos la cantidad de variables
+                // Agregamos la cantidad de variables al contenedor
                 jsonArr.Add("vars", varsArray);
 
                 List<IDictionary<Object, Object>> restriciones = new List<IDictionary<Object, Object>>();

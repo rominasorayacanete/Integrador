@@ -71,6 +71,11 @@ namespace Integrador.Models
             return total;
         }
 
+        public List<Dispositivo> GetDispositivos()
+        {
+            return Dispositivos;
+        }
+
         /*
 
         public void AdaptarDispositivo(DispositivoEstandar dispositivo)

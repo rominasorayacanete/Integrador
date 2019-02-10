@@ -1,24 +1,31 @@
 ﻿@model Integrador.Models.TemplateDispositivo
 
 @{
-    ViewBag.Title = "Detalle de dispositivo";
+    ViewBag.Title = "Details";
 }
 
-<div class="jumbotron" style="background-color: indigo; color: whitesmoke">
-    <h1>Detalle de dispositivo</h1>
-</div>
+<h2>Details</h2>
 
 <div>
+    <h4>TemplateDispositivo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model.Tipo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nombre)
+            @Html.DisplayFor(model => model.Tipo)
         </dd>
-        <br>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EquipoConcreto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EquipoConcreto)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Inteligente)
         </dt>
@@ -26,15 +33,15 @@
         <dd>
             @Html.DisplayFor(model => model.Inteligente)
         </dd>
-        <br>
+
         <dt>
-            <label class="control-label col-md-offset-5" for="BajoConsumo">Bajo consumo</label>
+            @Html.DisplayNameFor(model => model.BajoConsumo)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.BajoConsumo)
         </dd>
-        <br>
+
         <dt>
             @Html.DisplayNameFor(model => model.Consumo)
         </dt>
@@ -42,10 +49,10 @@
         <dd>
             @Html.DisplayFor(model => model.Consumo)
         </dd>
-        <br>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Volver a lista", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>
