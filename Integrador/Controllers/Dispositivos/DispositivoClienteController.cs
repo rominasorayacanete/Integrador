@@ -68,6 +68,8 @@ namespace Integrador.Controllers.Dispositivos
                     };
                     db.DispositivosInteligentes.Add(dispositivo);
                 });
+
+                db.Clientes.Find(clientId).SumarPuntos(15);
                 db.SaveChanges();
                 ViewBag.Success = "Success";
                 return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
@@ -103,6 +105,7 @@ namespace Integrador.Controllers.Dispositivos
                     };
                     db.DispositivoEstandar.Add(dispositivo);
                 });
+
                 db.SaveChanges();
                 ViewBag.Success = "Success";
                 return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });

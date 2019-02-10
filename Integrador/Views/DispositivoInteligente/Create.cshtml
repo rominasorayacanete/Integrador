@@ -5,21 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br>
-<br>
-<br>
-<h2>Agregar dispositivo inteligente</h2>
+<div class="jumbotron" style="background-color: indigo; color: whitesmoke; padding-bottom: 20px; padding-top: 15px; padding-left: 30px">
+    <h1>Agregar dispositivo inteligente</h1>
+</div>
 
 
 @using (Html.BeginForm("Create", "DispositivoInteligente", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <div class="col-md-10">
-                <label>Dispositivo: </label>
                 @Html.DropDownListFor(x => x.IdDispositivo, new SelectList(ViewBag.Dispositivos, "Value", "Text"), new { @class = "form-control dropdown-field" })
             </div>
         </div>

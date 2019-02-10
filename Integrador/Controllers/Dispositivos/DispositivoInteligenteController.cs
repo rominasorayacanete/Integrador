@@ -58,6 +58,8 @@ namespace Integrador.Controllers.Dispositivos
         {
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
             deviceService.CrearNuevoDispositivoInteligente(clientId, dispositivoConcreto);
+            db.Clientes.Find(clientId).SumarPuntos(15);
+            db.SaveChanges();
             return RedirectToAction("Index","DispositivoCliente", new { id = clientId });
         }
 
