@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Models.Helper;
 using Integrador.Services;
 
 namespace Integrador.Controllers.Dispositivos
@@ -16,6 +17,7 @@ namespace Integrador.Controllers.Dispositivos
     {
         private Context db = new Context();
         private OperacionService operacionService = new OperacionService();
+        private DeviceService deviceService = new DeviceService();
 
         // GET: DispositivoInteligente/Details/5
         public ActionResult Details(int? id)
@@ -37,6 +39,13 @@ namespace Integrador.Controllers.Dispositivos
         // GET: DispositivoInteligente/Create
         public ActionResult Create()
         {
+            ViewBag.Dispositivos = db.TemplateDispositivos.Where(t => t.Inteligente == true)
+            .Select(t => new SelectListItem
+            {
+                Text = t.Tipo + " " + t.EquipoConcreto,
+                Value = t.Id.ToString()
+            });
+
             return View();
         }
 
@@ -45,19 +54,11 @@ namespace Integrador.Controllers.Dispositivos
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,NombreGenerico,Consumo,UsoMensualMax,UsoMensualMin,Encendido,ModoAhorroDeEnergia")] DispositivoInteligente dispositivoInteligente)
+        public ActionResult Create(DispositivoConcreto dispositivoConcreto)
         {
-            if (ModelState.IsValid)
-            {
-                var id = Convert.ToInt32(Session["ClientId"].ToString());
-                dispositivoInteligente.ClienteID = id;
-                db.Clientes.Find(id).SumarPuntos(15);
-                db.DispositivosInteligentes.Add(dispositivoInteligente);
-                db.SaveChanges();
-                return RedirectToAction("Index", "DispositivoCliente", new { id });
-            }
-
-            return View(dispositivoInteligente);
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+            deviceService.CrearNuevoDispositivoInteligente(clientId, dispositivoConcreto);
+            return RedirectToAction("Index","DispositivoCliente", new { id = clientId });
         }
 
         // GET: DispositivoInteligente/Edit/5

@@ -36,6 +36,22 @@ namespace Integrador.Services
             return;
         }
 
+
+        public void CrearNuevoDispositivoInteligente(int clientId, DispositivoConcreto dispositivoConcreto)
+        {
+            var templateDispostivo = db.TemplateDispositivos.Find(dispositivoConcreto.IdDispositivo);
+            DispositivoInteligente dispositivoInteligente = new DispositivoInteligente
+            {
+                NombreGenerico = templateDispostivo.EquipoConcreto,
+                Inteligente = true,
+                ClienteID = clientId,
+                Consumo = templateDispostivo.Consumo
+            };
+            db.DispositivosInteligentes.Add(dispositivoInteligente);
+            db.SaveChanges();
+            return;
+        }
+
         public double findConsumo(string NombreDispositivo)
         {
             var json = "{\"De 3500 frigorás\":{\"EsInteligente\":true,\"EsDeBajoConsumo\":false,\"Consumo\":1.613}," +

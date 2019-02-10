@@ -38,8 +38,6 @@ namespace Integrador.Controllers.Dispositivos
         // GET: DispositivoEstandar/Create
         public ActionResult Create()
         {
-            var dispositivos = db.TemplateDispositivos.Where(t => t.Inteligente == false).ToList();
-
             ViewBag.Dispositivos = db.TemplateDispositivos.Where(t => t.Inteligente == false)
             .Select(t => new SelectListItem
             {
@@ -57,7 +55,6 @@ namespace Integrador.Controllers.Dispositivos
         [ValidateAntiForgeryToken]
         public ActionResult Create(DispositivoConcreto dispositivoConcreto)
         {
-
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
             deviceService.CrearNuevoDispositivoEstandar(clientId, dispositivoConcreto);
             return RedirectToAction("Index","DispositivoCliente", new { id = clientId });

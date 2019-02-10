@@ -14,5 +14,7 @@ namespace Integrador.Models.Helper
         [Required]
         [DisplayName("Uso aproximado (hs)")]
         public int UsoAproximado { get; set; }
+
+     //   public string Marca { get; set; }
     }
 }

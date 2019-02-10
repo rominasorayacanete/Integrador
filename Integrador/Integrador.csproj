@@ -414,12 +414,10 @@
     <Content Include="Views\DispositivoInteligente\Delete.cshtml" />
     <Content Include="Views\DispositivoInteligente\Details.cshtml" />
     <Content Include="Views\DispositivoInteligente\Edit.cshtml" />
-    <Content Include="Views\DispositivoInteligente\Index.cshtml" />
     <Content Include="Views\DispositivoEstandar\Create.cshtml" />
     <Content Include="Views\DispositivoEstandar\Delete.cshtml" />
     <Content Include="Views\DispositivoEstandar\Details.cshtml" />
     <Content Include="Views\DispositivoEstandar\Edit.cshtml" />
-    <Content Include="Views\DispositivoEstandar\Index.cshtml" />
     <Content Include="Views\DispositivoCliente\Create.cshtml" />
     <Content Include="Views\DispositivoCliente\Delete.cshtml" />
     <Content Include="Views\DispositivoCliente\Details.cshtml" />
