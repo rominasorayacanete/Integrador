@@ -446,7 +446,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="JSONFiles\" />
-    <Folder Include="Views\Cliente\" />
     <Folder Include="Views\Zona\" />
   </ItemGroup>
   <ItemGroup>
