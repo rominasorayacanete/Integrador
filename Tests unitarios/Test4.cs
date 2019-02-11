@@ -12,7 +12,7 @@ namespace Tests_unitarios
     public class Test4
     {
         [TestMethod]
-        public void RecuperarTransformadores_Agregar1_LacuentaDebeCoincidir()
+        public void CasoDePrueba4()
         {
             ZonaService zonaService = new ZonaService();
             TransformadorService transformadorService = new TransformadorService();

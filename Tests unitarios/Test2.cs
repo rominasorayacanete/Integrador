@@ -11,7 +11,7 @@ namespace Tests_unitarios
     public class Test2
     {
         [TestMethod]
-        public void MostrarDispositivo_EditarNombre_DebeCoincidir()
+        public void CasoDePrueba2()
         {
             DispositivoService dispositivoService = new DispositivoService();
 
