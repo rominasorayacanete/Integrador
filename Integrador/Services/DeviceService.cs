@@ -27,6 +27,7 @@ namespace Integrador.Services
             UsoMaxYMin MaxYMin = this.GetMinAndMaxUsage(templateDispostivo.Tipo);
             DispositivoEstandar dispositivoEstandar = new DispositivoEstandar
             {
+                Tipo = templateDispostivo.Tipo,
                 NombreGenerico = templateDispostivo.EquipoConcreto,
                 Inteligente = false,
                 ClienteID = clientId,
@@ -47,6 +48,7 @@ namespace Integrador.Services
             UsoMaxYMin MaxYMin = this.GetMinAndMaxUsage(templateDispostivo.Tipo);
             DispositivoInteligente dispositivoInteligente = new DispositivoInteligente
             {
+                Tipo = templateDispostivo.Tipo,
                 NombreGenerico = templateDispostivo.EquipoConcreto,
                 Inteligente = true,
                 ClienteID = clientId,

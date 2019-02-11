@@ -16,6 +16,10 @@ namespace Integrador.Models
 
         [Required]
         [StringLength(50)]
+        public string Tipo { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string NombreGenerico { get; set; }
 
         public double Consumo { get; set; }

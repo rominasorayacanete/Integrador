@@ -22,7 +22,7 @@
 <table class="table">
     <tr>
         <th>
-            Nombre genérico
+            Nombre
         </th>
         <th>
             Consumo
@@ -50,6 +50,7 @@
         <tr>
             <td>
                 <a href="@Url.Action("Details", "DispositivoInteligente", new { id = item.Id })">
+                    @Html.DisplayFor(modelItem => item.Tipo)
                     @Html.DisplayFor(modelItem => item.NombreGenerico)
                 </a>
             </td>
@@ -57,10 +58,10 @@
                 @Html.DisplayFor(modelItem => item.Consumo) kWh
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMax) hs
+                @Html.DisplayFor(modelItem => item.UsoMensualMax) hs.
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs
+                @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs.
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Encendido)
@@ -90,7 +91,7 @@
 <table class="table">
     <tr>
         <th>
-            Nombre genérico
+            Nombre
         </th>
         <th>
             Consumo
@@ -118,19 +119,20 @@
             <td>
                 <a href="@Url.Action("Details", "DispositivoEstandar", new { id = item.Id })">
                     @Html.DisplayFor(modelItem => item.NombreGenerico)
+                    @Html.DisplayFor(modelItem => item.Tipo)
                 </a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Consumo) kWh
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMax)  hs
+                @Html.DisplayFor(modelItem => item.UsoMensualMax)  hs.
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs
+                @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs.
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsoEstimado)  hs
+                @Html.DisplayFor(modelItem => item.UsoEstimado)  hs.
             </td>
             @if (item.ModuloAdaptador == null)
             {

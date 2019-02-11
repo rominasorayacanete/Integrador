@@ -57,6 +57,7 @@ namespace Integrador.Controllers.Dispositivos
                 dispositivos.ForEach(d => {
                     DispositivoInteligente dispositivo = new DispositivoInteligente()
                     {
+                        Tipo = d.Tipo,
                         NombreGenerico = d.NombreGenerico,
                         Consumo = d.Consumo,
                         Encendido = d.Encendido,
@@ -96,6 +97,7 @@ namespace Integrador.Controllers.Dispositivos
                 dispositivos.ForEach(d => {
                     DispositivoEstandar dispositivo = new DispositivoEstandar()
                     {
+                        Tipo = d.Tipo,
                         NombreGenerico = d.NombreGenerico,
                         Consumo = d.Consumo,
                         Inteligente = false,
