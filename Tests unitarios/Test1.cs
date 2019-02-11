@@ -1,6 +1,7 @@
 ﻿using System;
-using Integrador.Services;
+using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests_unitarios
@@ -8,53 +9,54 @@ namespace Tests_unitarios
     [TestClass]
     public class Test1
     {
-        /*Crear 1 usuario nuevo. Persistirlo. Recuperarlo, modificar la geolocalización y
-            grabarlo. Recuperarlo y evaluar que el cambio se haya realizado
-            */
+        private Context db = new Context();
+        private UserService userService = new UserService();
+        private ClienteService clienteService = new ClienteService();
 
         [TestMethod]
-        public void Test_CrearUsuarioModificarlo_ObtenerUsuarioModificado()
+        public void CasoDePrueba1()
         {
-            UserService userService = new UserService();
-            ClienteService clienteService = new ClienteService();
+            // Creo usuario
 
-            var Seed = DateTime.Now.ToString("HHmmss");
-            var username = "test" + Seed;
-
-            Usuario nuevoUsuario = new Usuario()
+            Usuario usuario = new Usuario()
             {
-                Username = username,
+                Username = "username",
                 Password = "password",
-                Email = "email@email.com",
+                Email = "juan_perez@gmail.com",
             };
 
-            Cliente nuevoCliente = new Cliente()
+            Cliente cliente = new Cliente()
             {
-                Nombre = "Tester",
-                Apellido = "1",
+                Nombre = "Juan",
+                Apellido = "Pérez",
                 TipoDoc = "DNI",
-                NroDoc = 10101010,
+                NroDoc = 12345678,
                 Latitud = -10.1000,
                 Longitud = -30.1000,
-                Usuario = nuevoUsuario
+                Usuario = usuario
             };
 
-            clienteService.createNewCliente(nuevoCliente);
+            // Persisto usuario
+
+            db.Usuarios.Add(usuario);
+            db.SaveChanges();
+            db.Clientes.Add(cliente);
+            db.SaveChanges();
             
-            var usuario = userService.findUserByUsername(username);
+            // Recupero usuario
 
-            Assert.AreEqual(username, usuario.Username);
-
-            var cliente = clienteService.findClientByUserId(usuario.Id);
+            cliente = clienteService.findClientByUserId(usuario.Id);
             var latitud = cliente.Longitud;
             var longitud = cliente.Longitud;
             
+            // Modifico geolocalización de usuario
+
             clienteService.updateGeoCliente(cliente, latitud + 10, longitud - 10);
 
-            var clienteUpdated = clienteService.findClientByUserId(usuario.Id);
-
-            Assert.AreEqual(latitud + 10, clienteUpdated.Latitud);
-            Assert.AreEqual(longitud - 10, clienteUpdated.Longitud);
+            // Verifico que el cambio se haya realizado
+            Cliente clienteModificado = clienteService.findClientByUserId(usuario.Id);
+            Assert.AreEqual(latitud + 10, clienteModificado.Latitud);
+            Assert.AreEqual(longitud - 10, clienteModificado.Longitud);
         }
     }
 }
