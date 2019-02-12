@@ -8,12 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Models.Helper;
+using Integrador.Services;
 
 namespace Integrador.Controllers
 {
     public class ClientesController : Controller
     {
         private Context db = new Context();
+        private ClienteService clienteService = new ClienteService();
 
         // GET: Clientes
         public ActionResult Index()
@@ -114,6 +117,36 @@ namespace Integrador.Controllers
             db.Clientes.Remove(cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ConsumoTotal()
+        {
+            return View(new ConsumosTotales());
+        }
+
+        [HttpPost]
+        public ActionResult ConsumoTotal(ConsumosTotales consumo)
+        {
+            try
+            {
+                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+                Cliente cliente = clienteService.FindById(clientId);
+                var consumosTotales = clienteService.ConsumoTotal(cliente, consumo.Desde, consumo.Hasta);
+                if (consumosTotales.Operaciones.Count > 0)
+                {
+                    ViewBag.Show = true;
+                }
+                else
+                {
+                    ViewBag.Empty = "No se encontraron consumos para los parametros pasados";
+                }
+                return View(consumosTotales);
+            }
+            catch
+            {
+                ViewBag.Empty = "No se encontraron consumos para los parametros pasados";
+                return View();
+            }
         }
 
         protected override void Dispose(bool disposing)

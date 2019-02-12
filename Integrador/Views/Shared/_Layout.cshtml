@@ -34,34 +34,34 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @{
-        if (Session["Username"] != null)
-        {
-            if (Session["Role"] != "Admin")
-            {
-                <li>@Html.ActionLink("Mi puntaje", "Puntaje", "Cliente")</li>
-                <li>
-                    @Ajax.ActionLink("Mis dispositivos", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, new AjaxOptions { HttpMethod = "GET" })
-                </li>
-                <li>@Html.ActionLink("Mis reglas", "Index", "Home")</li>
-                <li>@Html.ActionLink("Mis consumos", "Index", "Home")</li>
-                <li>@Html.ActionLink("Calcular mi consumo óptimo", "Simplex", "Home")</li>
-}
-else
-{
-                <li>@Html.ActionLink("Hogares", "Index", "Clientes")</li>
-                <li>@Html.ActionLink("Dispositivos", "Index", "TemplateDispositivos")</li>
-                <li>@Html.ActionLink("Reportes", "Index", "Report")</li>
-                <li>@Html.ActionLink("Registros", "Index", "Operaciones")</li>
-}
-}
+                        if (Session["Username"] != null)
+                        {
+                            if (Session["Role"] != "Admin")
+                            {
+                                <li>@Html.ActionLink("Mi puntaje", "Puntaje", "Cliente")</li>
+                                <li>
+                                    @Ajax.ActionLink("Mis dispositivos", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, new AjaxOptions { HttpMethod = "GET" })
+                                </li>
+                                <li>@Html.ActionLink("Mis reglas", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Mis consumos", "ConsumoTotal", "Clientes")</li>
+                                <li>@Html.ActionLink("Calcular mi consumo óptimo", "Simplex", "Home")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Hogares", "Index", "Clientes")</li>
+                                <li>@Html.ActionLink("Dispositivos", "Index", "TemplateDispositivos")</li>
+                                <li>@Html.ActionLink("Reportes", "Index", "Report")</li>
+                                <li>@Html.ActionLink("Registros", "Index", "Operaciones")</li>
+                            }
+                        }
                     }
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
-    
-        @RenderBody()       
+
+        @RenderBody()
 
         <hr />
         <footer class="container">
@@ -72,6 +72,7 @@ else
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/moment")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

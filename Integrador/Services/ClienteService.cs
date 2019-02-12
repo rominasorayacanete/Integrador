@@ -1,12 +1,15 @@
 ﻿using System.Linq;
 using Integrador.Models;
 using Integrador.DAL;
+using System;
+using Integrador.Models.Helper;
 
 namespace Integrador.Services
 {
     public class ClienteService
     {
         private Context db = new Context();
+        private DispositivoService dispositivoService = new DispositivoService();
 
         public Cliente findClientByUserId(int userId)
         {
@@ -57,6 +60,26 @@ namespace Integrador.Services
         {
             var cliente = db.Clientes.FirstOrDefault(c => c.Usuario.Username == username);
             return cliente.Puntos;
+        }
+
+        public ConsumosTotales ConsumoTotal(Cliente cliente, DateTime desde, DateTime hasta)
+        {
+            ConsumosTotales consumosTotales = new ConsumosTotales();
+            double total = 0;
+
+            foreach (Dispositivo item in cliente.Dispositivos)
+            {
+                var tiempoEncendido = dispositivoService.TiempoEncendido(item, desde, hasta);
+                total = tiempoEncendido * item.Consumo;
+            }
+
+            consumosTotales.Desde = desde;
+            consumosTotales.Hasta = hasta;
+            consumosTotales.ConsumoTotal = Math.Round(total, 2);
+            consumosTotales.DiasTotal = (hasta - desde).TotalDays;
+            consumosTotales.Operaciones = dispositivoService.OperacionesDeConsumo(desde, hasta);
+
+            return consumosTotales;
         }
     }
 }

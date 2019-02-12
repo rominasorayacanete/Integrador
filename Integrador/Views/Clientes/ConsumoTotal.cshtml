@@ -1,0 +1,90 @@
+﻿@model Integrador.Models.Helper.ConsumosTotales
+
+
+@{
+    ViewBag.Title = "Mis dispositivos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron mt-4" style="background-color: indigo; color: whitesmoke; padding-bottom: 20px; padding-top: 15px; padding-left: 25px">
+    <h2>Calcular consumo</h2>
+    @if (ViewBag.Show == true)
+    {
+        <h2>Consumo Total: @Model.ConsumoTotal kWh</h2>
+        <h2>Dias: @Model.DiasTotal</h2>
+    }
+</div>
+
+@using (Html.BeginForm("ConsumoTotal", "Clientes", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                <label>Desde: </label>
+                @Html.EditorFor(model => model.Desde, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <label>Hasta: </label>
+                @Html.EditorFor(model => model.Hasta, new { htmlAttributes = new { @class = "form-control single-line valid", type = "date"} })
+            </div>
+        </div>
+        <input type="submit" value="Calcular" class="btn btn-default" style="color: whitesmoke; background-color: indigo" />
+        <br><br>
+    </div>
+}
+
+
+@if (ViewBag.Show == true)
+{
+<table class="table">
+    <tr>
+        <th>
+            Id
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Operaciones)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+        </tr>
+    }
+
+</table>
+}
+
+@if (ViewBag.Empty != null)
+{
+    <h4>@ViewBag.Empty</h4>
+}
+
+
+
+

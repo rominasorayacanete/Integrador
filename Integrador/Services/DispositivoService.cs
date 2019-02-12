@@ -54,6 +54,37 @@ namespace Integrador.Services
             }
         }
 
+        public double TiempoEncendido(Dispositivo dispositivo, DateTime desde, DateTime hasta)
+        {
+            List<Operacion> listadoOperacionesEncendidas = db.Operaciones.Where(o => (o.Fecha >= desde && o.Fecha <= hasta) && o.Tipo == "encender").ToList();
+            double totalHoras = 0;
+            foreach (var primeraOperacion in listadoOperacionesEncendidas)
+            {
+                var siguienteOperacion = SiguienteOperacionApagada(primeraOperacion);
+                if (siguienteOperacion != null)
+                {
+                    totalHoras += (siguienteOperacion.Fecha - primeraOperacion.Fecha).TotalHours;
+                }
+                else
+                {
+                    totalHoras += (hasta - primeraOperacion.Fecha).TotalHours;
+                }
+            }
+            return totalHoras;
+        }
+
+        public List<Operacion> OperacionesDeConsumo(DateTime desde, DateTime hasta)
+        {
+            return db.Operaciones.Where(o => (o.Fecha >= desde && o.Fecha <= hasta) && (o.Tipo == "encender" || o.Tipo == "apagar")).ToList();
+        }
+
+        private Operacion SiguienteOperacionApagada(Operacion operacion)
+        {
+            Operacion item = db.Operaciones.FirstOrDefault(o => o.Fecha <= operacion.Fecha && o.Tipo == "apagar");
+            return item;
+        }
+
+
         public double ConsumoDispositivo(DateTime Desde, DateTime Hasta, Dispositivo dispositivo)
         {
             return this.operacionService.ConsumosRango(Desde, Hasta, dispositivo);

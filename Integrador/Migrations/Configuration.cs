@@ -87,7 +87,8 @@ namespace Integrador.Migrations
 
             DispositivoInteligente d1 = new DispositivoInteligente
             {
-                NombreGenerico = "Aire Acondicionado Smart",
+                NombreGenerico = "Smart 200",
+                Tipo = "Aire Acondicionado",
                 Consumo = 200,
                 UsoMensualMax = 2000,
                 UsoMensualMin = 200,
@@ -96,7 +97,8 @@ namespace Integrador.Migrations
             };
             DispositivoEstandar d2 = new DispositivoEstandar
             {
-                NombreGenerico = "Heladera No smart",
+                NombreGenerico = "No smart w3003",
+                Tipo = "Heladera",
                 Consumo = 100,
                 UsoMensualMax = 1000,
                 UsoMensualMin = 100,
@@ -106,7 +108,8 @@ namespace Integrador.Migrations
 
             DispositivoEstandar d3 = new DispositivoEstandar
             {
-                NombreGenerico = "Lampara  No smart",
+                NombreGenerico = "Ultra Led",
+                Tipo = "Lampara",
                 Consumo = 50,
                 UsoMensualMax = 500,
                 UsoMensualMin = 120,
@@ -120,7 +123,7 @@ namespace Integrador.Migrations
 
             // Set Administrador
 
-             Administrador admin = new Administrador { IdSistema = "100SSB", Usuario = usuarioAdmin };
+             Administrador admin = new Administrador { IdSistema = "100SSB", Usuario = usuarioAdmin, Nombre = "Juan" , Apellido = "Solo", Domicilio = "Rivadavia 9889", FechaAlta = DateTime.Now };
             context.Administradores.Add(admin);
 
             // Set Cliente
