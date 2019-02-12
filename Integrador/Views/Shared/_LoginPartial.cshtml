@@ -12,16 +12,16 @@ else
         @if (Session["Role"] == "Admin")
     {
         <li>
-            @Html.ActionLink((string)Session["Username"], "Index", "Home")
+            @Html.ActionLink((string)Session["Username"], "AdminProfile", "Home")
         </li>
 }
 else
 {
-    <li>
-        @Html.ActionLink((string)Session["Username"], "Index", "Home")
-    </li>
+        <li style="display:inline-block">
+            @Html.ActionLink((string)Session["Username"], "ClientProfile", "Home")
+        </li>
 }
-        <li>@Html.ActionLink("Cerrar sesión", "LogOut", new { Controller = "Usuario"})</li>
+        <li>@Html.ActionLink("Cerrar sesión", "LogOut", new { Controller = "Usuario" })</li>
     </ul>
     
 

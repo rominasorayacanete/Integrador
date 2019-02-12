@@ -41,6 +41,7 @@ namespace Integrador.Controllers
                 if (userService.isAdmin(usr))
                 {
                     Session["Role"] = "Admin";
+                    Session["AdminId"] = userService.GetAdminId(usr);
                 }
                 else
                 {

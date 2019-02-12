@@ -1,0 +1,63 @@
+﻿@model Integrador.Models.Cliente
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron" style="background-color: indigo; color: whitesmoke; padding-bottom: 15px">
+    <h2>Perfil cliente:</h2>
+</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Nombre</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            <label>Apellido</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+
+        <dt>
+            <label>@Html.DisplayNameFor(model => model.TipoDoc)</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayNameFor(model => model.NroDoc)
+        </dd>
+
+        <dt>
+            <label>Telefono</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            <label>Domicilio</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Domicilio)
+        </dd>
+
+        <dt>
+            <label>Categoria</label>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.Nombre)
+        </dd>
+
+    </dl>
+</div>

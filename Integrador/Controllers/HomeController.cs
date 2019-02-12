@@ -20,6 +20,7 @@ namespace Integrador.Controllers
         private MongoContext mongo = new MongoContext();
         private SimplexService simplexService = new SimplexService();
         private ClienteService clienteService = new ClienteService();
+        private AdminService adminService = new AdminService();
 
         public ActionResult Index()
         {
@@ -56,6 +57,20 @@ namespace Integrador.Controllers
                 ViewBag.Error = "No se pudo ejecutar el metodo simplex";
             }
             return View();
+        }
+
+        public ActionResult AdminProfile()
+        {
+            var clientId = Convert.ToInt32(Session["AdminId"].ToString());
+            Administrador admin = adminService.FindById(clientId);
+            return View(admin);
+        }
+
+        public ActionResult ClientProfile()
+        {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+            Cliente cliente = clienteService.FindById(clientId);
+            return View(cliente);
         }
 
         public ActionResult List()

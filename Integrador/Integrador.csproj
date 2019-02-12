@@ -302,6 +302,7 @@
     <Compile Include="ORM\Usuario.cs" />
     <Compile Include="ORM\Zona_Geografica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\ReportService.cs" />
     <Compile Include="Services\TransformadorService.cs" />
     <Compile Include="Services\OperacionService.cs" />
@@ -529,6 +530,8 @@
     <Content Include="Views\TemplateDispositivos\Index.cshtml" />
     <Content Include="Views\DispositivoCliente\CargarDispositivo.cshtml" />
     <Content Include="Views\Clientes\ConsumoTotal.cshtml" />
+    <Content Include="Views\Home\ClientProfile.cshtml" />
+    <Content Include="Views\Home\AdminProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

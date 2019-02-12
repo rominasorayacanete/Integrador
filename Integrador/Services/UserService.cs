@@ -46,7 +46,7 @@ namespace Integrador.Services
 
         public bool isAdmin(Models.Usuario usuario)
         {
-            var admin = db.Administradores.First(a => a.Usuario.Id == usuario.Id);
+            var admin = db.Administradores.FirstOrDefault(a => a.Usuario.Id == usuario.Id);
             if (admin != null)
             {
                 return true;
@@ -61,6 +61,15 @@ namespace Integrador.Services
                 .FirstOrDefault();
 
             return cliente.Id;
+        }
+
+        public int GetAdminId(Usuario user)
+        {
+            var admin = db.Administradores
+                .Where(a => a.Usuario.Id == user.Id)
+                .FirstOrDefault();
+
+            return admin.Id;
         }
 
         public void CheckUser(int userId)
