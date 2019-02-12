@@ -22,11 +22,11 @@ namespace Integrador.Migrations
         {
             context.Usuarios.AddOrUpdate();
 
-            // Set Services
+            // ----- Set Services ----- 
             OperacionService operacionService = new OperacionService();
 
+            // ----- Set Categorias ----- 
 
-            // Set Categorias
             List<Categoria> categorias = new List<Categoria>();
             Categoria categoria1 = new Categoria {Nombre = "R1", ConsumoMaximo = 150, CargoFijo = 18.76, CargoVariable = 0.644};
             Categoria categoria2 = new Categoria {Nombre = "R2", ConsumoMinimo = 150 , ConsumoMaximo = 325, CargoFijo = 35.32, CargoVariable = 0.644};
@@ -45,7 +45,8 @@ namespace Integrador.Migrations
             categorias.Add(categoria7);
             categorias.ForEach(c => context.Categorias.Add(c));
 
-            // Set ZonaGeografica
+            // ----- Set ZonaGeografica ----- 
+
             List<ZonaGeografica> zonasGeograficas = new List<ZonaGeografica>();
 
             ZonaGeografica zonaNorte = new ZonaGeografica {NombreZona = "ZonaNorte", Radio = 20, Latitud = -34.560306, Longitud = -58.503978 };
@@ -76,14 +77,14 @@ namespace Integrador.Migrations
 
             List<Usuario> usuarios = this.getUsuarios(context);
             var usuarioAdmin = usuarios[0];
-            var usuarioCliente = usuarios[1];
-
-            // Set Marcas
+            var usuarioCliente1 = usuarios[1];
+            var usuarioCliente2 = usuarios[2];
 
 
             // Set Dispositivos
 
-            List<Dispositivo> dispositivos = new List<Dispositivo>();
+            List<Dispositivo> dispositivos1 = new List<Dispositivo>();
+            List<Dispositivo> dispositivos2 = new List<Dispositivo>();
 
             DispositivoInteligente d1 = new DispositivoInteligente
             {
@@ -93,6 +94,7 @@ namespace Integrador.Migrations
                 UsoMensualMax = 2000,
                 UsoMensualMin = 200,
                 Encendido = true,
+                MarcaDispositivo = "LG",
                 ModoAhorroDeEnergia = true,
             };
             DispositivoEstandar d2 = new DispositivoEstandar
@@ -100,6 +102,7 @@ namespace Integrador.Migrations
                 NombreGenerico = "No smart w3003",
                 Tipo = "Heladera",
                 Consumo = 100,
+                MarcaDispositivo = "Sony",
                 UsoMensualMax = 1000,
                 UsoMensualMin = 100,
             };
@@ -113,21 +116,37 @@ namespace Integrador.Migrations
                 Consumo = 50,
                 UsoMensualMax = 500,
                 UsoMensualMin = 120,
+                MarcaDispositivo = "BGH",
                 ModuloAdaptador = adaptador,
             };
 
-            dispositivos.Add(d1);
-            dispositivos.Add(d2);
+            DispositivoEstandar d4 = new DispositivoEstandar
+            {
+                NombreGenerico = "Lenovo 2020K",
+                Tipo = "Pc",
+                Consumo = 10,
+                UsoMensualMax = 500,
+                MarcaDispositivo = "Philco",
+                UsoMensualMin = 120
+            };
 
-            dispositivos.ForEach(d => context.Dispositivos.Add(d));
+            dispositivos1.Add(d1);
+            dispositivos1.Add(d2);
+            dispositivos2.Add(d3);
+            dispositivos2.Add(d4);
+
+            dispositivos1.ForEach(d => context.Dispositivos.Add(d));
+            dispositivos2.ForEach(d => context.Dispositivos.Add(d));
 
             // Set Administrador
 
-             Administrador admin = new Administrador { IdSistema = "100SSB", Usuario = usuarioAdmin, Nombre = "Juan" , Apellido = "Solo", Domicilio = "Rivadavia 9889", FechaAlta = DateTime.Now };
-            context.Administradores.Add(admin);
+             Administrador admin1 = new Administrador { IdSistema = "100SSB", Usuario = usuarioAdmin, Nombre = "Jan" , Apellido = "Solo", Domicilio = "Rivadavia 9889", FechaAlta = DateTime.Now };
+             Administrador admin2 = new Administrador { IdSistema = "100SSB", Usuario = usuarioAdmin, Nombre = "Jan" , Apellido = "Solo", Domicilio = "Rivadavia 9889", FechaAlta = DateTime.Now };
+            context.Administradores.Add(admin1);
+            context.Administradores.Add(admin2);
 
-            // Set Cliente
-            Cliente cliente = new Cliente
+            // Set Clientes
+            Cliente cliente1 = new Cliente
             {
                 Nombre = "Juan",
                 Apellido = "Gonzalez",
@@ -135,15 +154,89 @@ namespace Integrador.Migrations
                 NroDoc = 10101010,
                 Telefono = 12345678,
                 Puntos = 11,
-                Dispositivos = dispositivos,
+                Dispositivos = dispositivos1,
                 Transformador = t1,
-                Usuario = usuarioCliente
+                Usuario = usuarioCliente1,
+                Domicilio = "Rivadavia 2888",
+                Latitud = -34.649090,
+                Longitud = -58.506350,
+                Categoria = categoria1
             };
 
-            context.Clientes.Add(cliente);
+            Cliente cliente2 = new Cliente
+            {
+                Nombre = "Pedro",
+                Apellido = "Soto",
+                TipoDoc = "DNI",
+                NroDoc = 202020202,
+                Telefono = 11768392,
+                Puntos = 50,
+                Dispositivos = dispositivos2,
+                Transformador = t3,
+                Usuario = usuarioCliente2,
+                Domicilio = "Rivadavia 2888",
+                Latitud = -34.665169,
+                Longitud = -58.486817,
+                Categoria = categoria2
+            };
+            context.Clientes.Add(cliente1);
+            context.Clientes.Add(cliente2);
+
+
+
+            // Template Dispositivo
+
+            TemplateDispositivo td1 = new TemplateDispositivo { Tipo = "Aire Acondicionado", EquipoConcreto = "De 3500 frigorías", Inteligente = true, BajoConsumo = false, Consumo = 1.613 };
+            TemplateDispositivo td2 = new TemplateDispositivo { Tipo = "Aire Acondicionado", EquipoConcreto = "De 2200 frigorías", Inteligente = true, BajoConsumo = true, Consumo = 1.013 };
+            TemplateDispositivo td3 = new TemplateDispositivo { Tipo = "Televisor", EquipoConcreto = "Color de tubo fluorocente de 21'", Inteligente = false, BajoConsumo = false, Consumo = 0.075 };
+            TemplateDispositivo td4 = new TemplateDispositivo { Tipo = "Televisor", EquipoConcreto = "Color de tubo fluorocente de 29' a 34'", Inteligente = false, BajoConsumo = false, Consumo = 0.175 };
+            TemplateDispositivo td5 = new TemplateDispositivo { Tipo = "Televisor", EquipoConcreto = "LCD de 40'", Inteligente = false, BajoConsumo = false, Consumo = 0.18 };
+            TemplateDispositivo td6 = new TemplateDispositivo { Tipo = "Televisor", EquipoConcreto = "LED 24'", Inteligente = true, BajoConsumo = true, Consumo = 0.04 };
+            TemplateDispositivo td7 = new TemplateDispositivo { Tipo = "Televisor", EquipoConcreto = "LED 32'", Inteligente = true, BajoConsumo = true, Consumo = 0.055 };
+            TemplateDispositivo td8 = new TemplateDispositivo { Tipo = "Televisor", EquipoConcreto = "LED 40'", Inteligente = true, BajoConsumo = true, Consumo = 0.8 };
+            TemplateDispositivo td9 = new TemplateDispositivo { Tipo = "Heladera", EquipoConcreto = "Con freezer", Inteligente = true, BajoConsumo = true, Consumo = 0.09 };
+            TemplateDispositivo td10 = new TemplateDispositivo { Tipo = "Heladera", EquipoConcreto = "Sin freezer", Inteligente = true, BajoConsumo = true, Consumo = 0.075 };
+            TemplateDispositivo td11 = new TemplateDispositivo { Tipo = "Lavarropas", EquipoConcreto = "Automatico de 5kg con calentamiento de agua", Inteligente = false, BajoConsumo = false, Consumo = 0.875 };
+            TemplateDispositivo td12 = new TemplateDispositivo { Tipo = "Lavarropas", EquipoConcreto = "Automatico de 5kg", Inteligente = true, BajoConsumo = true, Consumo = 0.175 };
+            TemplateDispositivo td13 = new TemplateDispositivo { Tipo = "Lavarropas", EquipoConcreto = "Semi-automatico de 5kg ", Inteligente = false, BajoConsumo = true, Consumo = 0.1275 };
+            TemplateDispositivo td14 = new TemplateDispositivo { Tipo = "Ventilador", EquipoConcreto = "De pie", Inteligente = false, BajoConsumo = true, Consumo = 0.09 };
+            TemplateDispositivo td15 = new TemplateDispositivo { Tipo = "Ventilador", EquipoConcreto = "Semi de techo", Inteligente = true, BajoConsumo = true, Consumo = 0.06 };
+            TemplateDispositivo td16 = new TemplateDispositivo { Tipo = "Lámpara", EquipoConcreto = "Halógenas de 40w", Inteligente = true, BajoConsumo = false, Consumo = 0.04 };
+            TemplateDispositivo td17 = new TemplateDispositivo { Tipo = "Lámpara", EquipoConcreto = "Halógenas de 60w", Inteligente = true, BajoConsumo = false, Consumo = 0.06 };
+            TemplateDispositivo td18 = new TemplateDispositivo { Tipo = "Lámpara", EquipoConcreto = "Halógenas de 100w", Inteligente = true, BajoConsumo = false, Consumo = 0.015 };
+            TemplateDispositivo td19 = new TemplateDispositivo { Tipo = "Lámpara", EquipoConcreto = "de 11w", Inteligente = true, BajoConsumo = true, Consumo = 0.011 };
+            TemplateDispositivo td20 = new TemplateDispositivo { Tipo = "Lámpara", EquipoConcreto = "de 15w", Inteligente = true, BajoConsumo = true, Consumo = 0.015 };
+            TemplateDispositivo td21 = new TemplateDispositivo { Tipo = "Lámpara", EquipoConcreto = "de 20w", Inteligente = true, BajoConsumo = true, Consumo = 0.02 };
+            TemplateDispositivo td22 = new TemplateDispositivo { Tipo = "PC", EquipoConcreto = "De escritorio", Inteligente = true, BajoConsumo = true, Consumo = 0.4 };
+            TemplateDispositivo td23 = new TemplateDispositivo { Tipo = "Microondas", EquipoConcreto = "Convencional", Inteligente = false, BajoConsumo = true, Consumo = 0.64 };
+            TemplateDispositivo td24 = new TemplateDispositivo { Tipo = "Plancha", EquipoConcreto = "A vapor", Inteligente = false, BajoConsumo = true, Consumo = 0.75 };
+
+            context.TemplateDispositivos.Add(td1);
+            context.TemplateDispositivos.Add(td2);
+            context.TemplateDispositivos.Add(td3);
+            context.TemplateDispositivos.Add(td4);
+            context.TemplateDispositivos.Add(td5);
+            context.TemplateDispositivos.Add(td6);
+            context.TemplateDispositivos.Add(td7);
+            context.TemplateDispositivos.Add(td8);
+            context.TemplateDispositivos.Add(td9);
+            context.TemplateDispositivos.Add(td10);
+            context.TemplateDispositivos.Add(td11);
+            context.TemplateDispositivos.Add(td12);
+            context.TemplateDispositivos.Add(td13);
+            context.TemplateDispositivos.Add(td14);
+            context.TemplateDispositivos.Add(td15);
+            context.TemplateDispositivos.Add(td16);
+            context.TemplateDispositivos.Add(td17);
+            context.TemplateDispositivos.Add(td18);
+            context.TemplateDispositivos.Add(td19);
+            context.TemplateDispositivos.Add(td20);
+            context.TemplateDispositivos.Add(td21);
+            context.TemplateDispositivos.Add(td22);
+            context.TemplateDispositivos.Add(td23);
+            context.TemplateDispositivos.Add(td24);
 
             context.SaveChanges();
-
         }
 
         private List<Usuario> getUsuarios(Integrador.DAL.Context context)
@@ -160,18 +253,30 @@ namespace Integrador.Migrations
                 context.Usuarios.Add(admin);
             }
 
-            var cliente = context.Usuarios
+            var cliente1 = context.Usuarios
                 .Where(u => u.Username == "cliente1")
                 .FirstOrDefault();
 
-            if (cliente == null)
+            if (cliente1 == null)
             {
-                cliente = new Usuario { Username = "cliente1", Password = "cliente1", Email = "cliente@cliente.com", FechaAltaSistema = DateTime.Now };
-                context.Usuarios.Add(cliente);
+                cliente1 = new Usuario { Username = "cliente1", Password = "cliente1", Email = "cliente1@cliente.com", FechaAltaSistema = DateTime.Now };
+                context.Usuarios.Add(cliente1);
+            }
+
+            var cliente2 = context.Usuarios
+                .Where(u => u.Username == "cliente1")
+                .FirstOrDefault();
+
+            if (cliente2 == null)
+            {
+                cliente2 = new Usuario { Username = "cliente2", Password = "cliente2", Email = "cliente2@cliente.com", FechaAltaSistema = DateTime.Now };
+                context.Usuarios.Add(cliente2);
             }
 
             usuarios.Add(admin);
-            usuarios.Add(cliente);
+            usuarios.Add(cliente1);
+            usuarios.Add(cliente2);
+
 
             return usuarios;
         }

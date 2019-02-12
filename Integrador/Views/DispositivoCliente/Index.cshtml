@@ -70,7 +70,7 @@
                 @Html.DisplayFor(modelItem => item.ModoAhorroDeEnergia)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
+                @Html.DisplayFor(modelItem => item.MarcaDispositivo)
             </td>
             <td>
                 @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
@@ -88,77 +88,84 @@
 <p>
     @Html.ActionLink("Agregar", "Create", "DispositivoEstandar")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Consumo
-        </th>
-        <th>
-            Uso mensual máximo
-        </th>
-        <th>
-            Uso mensual mínimo
-        </th>
-        <th>
-            Uso estimado
-        </th>
-        <th>
-            Encendido
-        </th>
-        <th>
-            Modo ahorro de energía
-        </th>
-        <th></th>
-    </tr>
-    @foreach (var item in Model.DispositivosEstandar)
-    {
-        <tr>
-            <td>
-                <a href="@Url.Action("Details", "DispositivoEstandar", new { id = item.Id })">
-                    @Html.DisplayFor(modelItem => item.NombreGenerico)
-                    @Html.DisplayFor(modelItem => item.Tipo)
-                </a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Consumo) kWh
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMax)  hs.
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs.
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsoEstimado)  hs.
-            </td>
-            @if (item.ModuloAdaptador == null)
-            {
-                <td>
-                    N/A
-                </td>
-                <td>
-                    N/A
-                </td>
-            }
-            else
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModuloAdaptador.Encendido)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ModuloAdaptador.ModoAhorroDeEnergia)
-                </td>
-            }
-            <td>
-                @Html.DisplayFor(modelItem => item.MarcaDispositivo.Id)
-            </td>
-            <td>
-                @Html.ActionLink("Eliminar", "Delete", "DispositivoEstandar", new { id = item.Id }, new { @title = "Eliminar" })
-            </td>
-        </tr>
-    }
 
-</table>
+@if (Model.DispositivosEstandar.Count > 0)
+{
+
+    <table class="table">
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Consumo
+            </th>
+            <th>
+                Uso mensual máximo
+            </th>
+            <th>
+                Uso mensual mínimo
+            </th>
+            <th>
+                Uso estimado
+            </th>
+            <th>
+                Encendido
+            </th>
+            <th>
+                Modo ahorro de energía
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.DispositivosEstandar)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "DispositivoEstandar", new { id = item.Id })">
+                        @Html.DisplayFor(modelItem => item.NombreGenerico)
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Consumo) kWh
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsoMensualMax)  hs.
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs.
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsoEstimado)  hs.
+                </td>
+                @if (item.ModuloAdaptador == null)
+                {
+                    <td>
+                        N/A
+                    </td>
+                    <td>
+                        N/A
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModuloAdaptador.Encendido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModuloAdaptador.ModoAhorroDeEnergia)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.MarcaDispositivo)
+                </td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Delete", "DispositivoEstandar", new { id = item.Id }, new { @title = "Eliminar" })
+                </td>
+            </tr>
+        }
+
+    </table>
+} else {
+    <h4>No se encontraron dispositivos </h4>
+}

@@ -36,7 +36,7 @@ namespace Integrador.Services
 
         public void updateUser(Usuario usuario)
         {
-            var usr = db.Usuarios.SingleOrDefault(u => u.Id == usuario.Id);
+            var usr = db.Usuarios.First(u => u.Id == usuario.Id);
             if (usr != null)
             {
                 usr = usuario;
@@ -46,7 +46,7 @@ namespace Integrador.Services
 
         public bool isAdmin(Models.Usuario usuario)
         {
-            var admin = db.Administradores.SingleOrDefault(a => a.Usuario.Id == usuario.Id);
+            var admin = db.Administradores.First(a => a.Usuario.Id == usuario.Id);
             if (admin != null)
             {
                 return true;

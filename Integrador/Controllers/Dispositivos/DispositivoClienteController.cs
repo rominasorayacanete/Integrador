@@ -24,8 +24,8 @@ namespace Integrador.Controllers.Dispositivos
         [ActionName("Index")]
         public ActionResult Index(int? id)
         {
-            var _dispositivoInteligentes = db.DispositivosInteligentes.Where(d => d.Cliente.Id == id).ToList();
-            var _dispositivosEstandar = db.DispositivoEstandar.Where(d => d.Cliente.Id == id).ToList();
+            var _dispositivoInteligentes = db.DispositivosInteligentes.Where(d => d.Cliente.Id == id && d.Archivado == false).ToList();
+            var _dispositivosEstandar = db.DispositivoEstandar.Where(d => d.Cliente.Id == id && d.Archivado == false).ToList();
             var listado = new ListadoDispositivos
             {
                 DispositivosEstandar = _dispositivosEstandar,

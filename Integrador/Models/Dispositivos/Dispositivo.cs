@@ -34,7 +34,9 @@ namespace Integrador.Models
 
         public virtual List<Operacion> Operaciones { get; set; }
 
-        public virtual MarcaDispositivo MarcaDispositivo { get; set; }
+        public string MarcaDispositivo { get; set; }
+
+        public bool Archivado { get; set; }
 
         [ForeignKey("Cliente")]
         public int? ClienteID { get; set; }
@@ -44,6 +46,7 @@ namespace Integrador.Models
         {
             this.Operaciones = new List<Operacion>();
             this.Actuadores = new List<Actuador>();
+            this.Archivado = false;
         }
 
         public abstract void Encender();

@@ -116,7 +116,7 @@ namespace Integrador.Controllers.Dispositivos
         {
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
             DispositivoEstandar dispositivoEstandar = db.DispositivoEstandar.Find(id);
-            db.Dispositivos.Remove(dispositivoEstandar);
+            dispositivoEstandar.Archivado = true;
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
