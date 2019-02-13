@@ -45,7 +45,7 @@ namespace Integrador.Models
 
         public virtual Categoria Categoria { get; set; }
 
-        public virtual Transformador Transformador { get; set; }
+        public Transformador Transformador { get; set; }
 
         public virtual Usuario Usuario { get; set; }
 

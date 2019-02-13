@@ -30,6 +30,17 @@ namespace Integrador.Models.Clases
         [NotMapped]
         public virtual ZonaGeografica ZonaGeografica { get; set; }
 
+        public ICollection<Cliente> Clientes { get; set; }
+
+        public double GetConsumoTotal()
+        {
+            double consumo = 0;
+            foreach(Cliente cliente in Clientes)
+            {
+                consumo += cliente.ConsumoHogar();
+            }
+            return consumo;
+        }
     }
 }
 
