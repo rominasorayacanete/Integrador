@@ -43,76 +43,88 @@ namespace Integrador.Controllers.Dispositivos
         [HttpPost]
         public ActionResult CargarInteligente(HttpPostedFileBase jsonFile)
         {
-            if (!Path.GetFileName(jsonFile.FileName).EndsWith(".json"))
+            try
             {
-                ViewBag.Error = "Tipo de archivo inváido.";
+                if (!Path.GetFileName(jsonFile.FileName).EndsWith(".json"))
+                {
+                    ViewBag.IError = "Tipo de archivo inváido.";
+                }
+                else
+                {
+                    var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+                    jsonFile.SaveAs(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
+                    StreamReader streamReader = new StreamReader(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
+                    string data = streamReader.ReadToEnd();
+                    List<DispositivoInteligente> dispositivos = JsonConvert.DeserializeObject<List<DispositivoInteligente>>(data);
+                    dispositivos.ForEach(d => {
+                        DispositivoInteligente dispositivo = new DispositivoInteligente()
+                        {
+                            Tipo = d.Tipo,
+                            NombreGenerico = d.NombreGenerico,
+                            Consumo = d.Consumo,
+                            Encendido = d.Encendido,
+                            ModoAhorroDeEnergia = d.ModoAhorroDeEnergia,
+                            UsoMensualMax = d.UsoMensualMax,
+                            UsoMensualMin = d.UsoMensualMin,
+                            Inteligente = true,
+                            ClienteID = clientId,
+                        };
+                        db.DispositivosInteligentes.Add(dispositivo);
+                    });
+
+                    db.Clientes.Find(clientId).SumarPuntos(15);
+                    db.SaveChanges();
+                    ViewBag.Success = "Success";
+                    return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+
+                }
             }
-            else
+            catch
             {
-                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
-                jsonFile.SaveAs(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
-                StreamReader streamReader = new StreamReader(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
-                string data = streamReader.ReadToEnd();
-                List<DispositivoInteligente> dispositivos = JsonConvert.DeserializeObject<List<DispositivoInteligente>>(data);
-                dispositivos.ForEach(d => {
-                    DispositivoInteligente dispositivo = new DispositivoInteligente()
-                    {
-                        Tipo = d.Tipo,
-                        NombreGenerico = d.NombreGenerico,
-                        Consumo = d.Consumo,
-                        Encendido = d.Encendido,
-                        ModoAhorroDeEnergia = d.ModoAhorroDeEnergia,
-                        UsoMensualMax = d.UsoMensualMax,
-                        UsoMensualMin = d.UsoMensualMin,
-                        Inteligente = true,
-                        ClienteID = clientId,
-                    };
-                    db.DispositivosInteligentes.Add(dispositivo);
-                });
-
-                db.Clientes.Find(clientId).SumarPuntos(15);
-                db.SaveChanges();
-                ViewBag.Success = "Success";
-                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
-
+                ViewBag.IError = "Error al cargar el archivo.";
             }
-
-            return View("~/Views/Home/Index.cshtml");
+            return RedirectToAction("CargarDispositivo", "DispositivoCliente");
         }
 
         [HttpPost]
         public ActionResult CargarEstandar(HttpPostedFileBase jsonFile)
         {
-            if (!Path.GetFileName(jsonFile.FileName).EndsWith(".json"))
+            try
             {
-                ViewBag.Error = "Tipo de archivo inváido.";
+                if (!Path.GetFileName(jsonFile.FileName).EndsWith(".json"))
+                {
+                    ViewBag.EError = "Tipo de archivo inváido.";
+                }
+                else
+                {
+                    var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+                    jsonFile.SaveAs(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
+                    StreamReader streamReader = new StreamReader(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
+                    string data = streamReader.ReadToEnd();
+                    List<DispositivoEstandar> dispositivos = JsonConvert.DeserializeObject<List<DispositivoEstandar>>(data);
+                    dispositivos.ForEach(d => {
+                        DispositivoEstandar dispositivo = new DispositivoEstandar()
+                        {
+                            Tipo = d.Tipo,
+                            NombreGenerico = d.NombreGenerico,
+                            Consumo = d.Consumo,
+                            Inteligente = false,
+                            UsoMensualMax = d.UsoMensualMax,
+                            UsoMensualMin = d.UsoMensualMin,
+                            ClienteID = clientId,
+                        };
+                        db.DispositivoEstandar.Add(dispositivo);
+                    });
+
+                    db.SaveChanges();
+                    ViewBag.Success = "Success";
+                    return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+                }
             }
-            else
+            catch
             {
-                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
-                jsonFile.SaveAs(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
-                StreamReader streamReader = new StreamReader(Server.MapPath("~/JSONFiles/" + Path.GetFileName(jsonFile.FileName)));
-                string data = streamReader.ReadToEnd();
-                List<DispositivoEstandar> dispositivos = JsonConvert.DeserializeObject<List<DispositivoEstandar>>(data);
-                dispositivos.ForEach(d => {
-                    DispositivoEstandar dispositivo = new DispositivoEstandar()
-                    {
-                        Tipo = d.Tipo,
-                        NombreGenerico = d.NombreGenerico,
-                        Consumo = d.Consumo,
-                        Inteligente = false,
-                        UsoMensualMax = d.UsoMensualMax,
-                        UsoMensualMin = d.UsoMensualMin,
-                        ClienteID = clientId,
-                    };
-                    db.DispositivoEstandar.Add(dispositivo);
-                });
-
-                db.SaveChanges();
-                ViewBag.Success = "Success";
-                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+                ViewBag.EError = "Error al cargar el archivo.";
             }
-
             return View("~/Views/Home/Index.cshtml");
         }
 

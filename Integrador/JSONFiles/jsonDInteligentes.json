@@ -1,0 +1,22 @@
+[  
+	{  
+		"NombreGenerico":"D importado 12",
+		"Tipo":"Aire Acondicionado",
+		"Consumo":0.999,
+		"UsoMensualMax":299,
+		"UsoMensualMin":39,
+		"Encendido":true,
+		"MarcaDispositivo":"Importada",
+		"ModoAhorroDeEnergia":false,
+	},
+	{  
+		"NombreGenerico":"D importado 22",
+		"Tipo":"Tv",
+		"Consumo":0.888,
+		"UsoMensualMax":288,
+		"UsoMensualMin":38,
+		"Encendido":true,
+		"MarcaDispositivo":"Importada",
+		"ModoAhorroDeEnergia":false,
+	},
+]

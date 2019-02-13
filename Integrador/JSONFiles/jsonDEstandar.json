@@ -1,0 +1,18 @@
+[  
+	{  
+		"NombreGenerico":"Estandar importado 54",
+		"Tipo":"Lampara",
+		"Consumo":0.999,
+		"UsoMensualMax":299,
+		"UsoMensualMin":39,
+		"MarcaDispositivo":"LG",
+	},
+	{  
+		"NombreGenerico":"Estandar importado 77",
+		"Tipo":"Tv",
+		"Consumo":0.087,
+		"UsoMensualMax":888,
+		"UsoMensualMin":88,
+		"MarcaDispositivo":"HHHH",
+	},
+]

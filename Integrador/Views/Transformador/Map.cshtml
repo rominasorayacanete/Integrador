@@ -3,7 +3,7 @@
 }
 
 <div class="jumbotron" style="background-color: indigo; color: whitesmoke; padding-bottom: 20px; padding-top: 15px">
-    <h1>Transformadores disponibles</h1>
+    <h2>Transformadores disponibles</h2>
 </div>
 
 @{
@@ -11,12 +11,14 @@
     {
         if (Session["Role"] == "Admin")
         {
-            <h1>Agregar zona</h1>
+            <h4>Importar zonas JSON</h4>
+
 
             using (Html.BeginForm("MostrarZonas", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <p>
                     <input class="form-control-file" type="file" id="archivo" name="archivo" size="23" />
+                    <button type="submit">Importar</button>
                 </p>
             }
         }

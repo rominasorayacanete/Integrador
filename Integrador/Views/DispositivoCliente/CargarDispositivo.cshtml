@@ -12,12 +12,12 @@
 @using (Html.BeginForm("CargarInteligente", "DispositivoCliente", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div>
-        @ViewBag.Error
-        <span>Dispositivos inteligentes</span>
+        @ViewBag.IError
+        <b>Dispositivos inteligentes</b>
         <br />
         JSON File <input type="file" name="jsonFile" />
         <br />
-        <input type="submit" value="Cargar" />
+        <input type="submit" value="Cargar"class="btn btn-default" style="color: whitesmoke; background-color: indigo" />
     </div>
 }
 
@@ -26,12 +26,12 @@
 @using (Html.BeginForm("CargarEstandar", "DispositivoCliente", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div>
-        @ViewBag.Error
-        <span>Dispositivos estandar</span>
+        @ViewBag.EError
+        <b>Dispositivos estandar</b>
         <br />
         JSON File <input type="file" name="jsonFile" />
         <br />
-        <input type="submit" value="Cargar" />
+        <input type="submit" value="Cargar" class="btn btn-default" style="color: whitesmoke; background-color: indigo"/>
     </div>
 }
 
