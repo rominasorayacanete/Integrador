@@ -158,7 +158,8 @@ namespace Integrador.Migrations
                 Domicilio = "Rivadavia 2888",
                 Latitud = -34.649090,
                 Longitud = -58.506350,
-                Categoria = categoria1
+                Categoria = categoria1,
+                FechaAlta = DateTime.Now
             };
 
             Cliente cliente2 = new Cliente
@@ -175,7 +176,8 @@ namespace Integrador.Migrations
                 Domicilio = "Soler 1010",
                 Latitud = -34.665169,
                 Longitud = -58.486817,
-                Categoria = categoria2
+                Categoria = categoria2,
+                FechaAlta = DateTime.Now
             };
             context.Clientes.Add(cliente1);
             context.Clientes.Add(cliente2);

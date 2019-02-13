@@ -40,7 +40,7 @@ namespace Integrador.Models
         public double MesesComoAdministrador()
         {
             DateTime fecharegistro = DateTime.Parse(FechaAlta.ToString());
-            return (DateTime.Now - fecharegistro).TotalDays;
+            return Math.Round((DateTime.Now - fecharegistro).TotalDays, 0);
         }
     }
 }

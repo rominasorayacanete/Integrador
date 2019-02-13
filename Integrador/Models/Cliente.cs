@@ -13,6 +13,7 @@ namespace Integrador.Models
         public Cliente()
         {
             this.Dispositivos = new List<Dispositivo>();
+            FechaAlta = DateTime.Now;
         }
 
         [Key]
@@ -50,6 +51,9 @@ namespace Integrador.Models
         public virtual Usuario Usuario { get; set; }
 
         public virtual List<Dispositivo> Dispositivos { get; set; }
+
+        public DateTime FechaAlta { get; set; }
+
 
         public string NombreRegistro()
         {
