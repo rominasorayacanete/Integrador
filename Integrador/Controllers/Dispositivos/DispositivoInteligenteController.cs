@@ -125,7 +125,7 @@ namespace Integrador.Controllers.Dispositivos
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
             dispositivoInteligente.Archivado = true;
             db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { clientId });
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         [ActionName("Apagar")]

@@ -107,7 +107,8 @@ namespace Integrador.Services
                 int l = 0;
                 foreach (Dispositivo dispositivo in listado)
                 {
-                    SimplexData data = new SimplexData(dispositivo.NombreGenerico, httpResult[l]);
+                    string nombreDispositivo = dispositivo.Tipo + " " + dispositivo.NombreGenerico;
+                    SimplexData data = new SimplexData(nombreDispositivo, httpResult[l]);
                     resultado.Add(data);
                     l++;
                 }
