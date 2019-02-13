@@ -90,9 +90,9 @@ namespace Integrador.Migrations
             {
                 NombreGenerico = "Smart 200",
                 Tipo = "Aire Acondicionado",
-                Consumo = 200,
-                UsoMensualMax = 2000,
-                UsoMensualMin = 200,
+                Consumo = 0.15,
+                UsoMensualMax = 360,
+                UsoMensualMin = 30,
                 Encendido = true,
                 MarcaDispositivo = "LG",
                 ModoAhorroDeEnergia = true,
@@ -101,7 +101,7 @@ namespace Integrador.Migrations
             {
                 NombreGenerico = "No smart w3003",
                 Tipo = "Heladera",
-                Consumo = 100,
+                Consumo = 0.0850,
                 MarcaDispositivo = "Sony",
                 UsoMensualMax = 1000,
                 UsoMensualMin = 100,
@@ -113,9 +113,9 @@ namespace Integrador.Migrations
             {
                 NombreGenerico = "Ultra Led",
                 Tipo = "Lampara",
-                Consumo = 50,
+                Consumo = 0.0157,
                 UsoMensualMax = 500,
-                UsoMensualMin = 120,
+                UsoMensualMin = 30,
                 MarcaDispositivo = "BGH",
                 ModuloAdaptador = adaptador,
             };
@@ -124,10 +124,10 @@ namespace Integrador.Migrations
             {
                 NombreGenerico = "Lenovo 2020K",
                 Tipo = "Pc",
-                Consumo = 10,
-                UsoMensualMax = 500,
-                MarcaDispositivo = "Philco",
-                UsoMensualMin = 120
+                Consumo = 0.067,
+                UsoMensualMax = 200,
+                UsoMensualMin = 30,
+                MarcaDispositivo = "Philco"
             };
 
             dispositivos1.Add(d1);
@@ -141,9 +141,7 @@ namespace Integrador.Migrations
             // Set Administrador
 
              Administrador admin1 = new Administrador { IdSistema = "100SSB", Usuario = usuarioAdmin, Nombre = "Jan" , Apellido = "Solo", Domicilio = "Rivadavia 9889", FechaAlta = DateTime.Now };
-             Administrador admin2 = new Administrador { IdSistema = "100SSB", Usuario = usuarioAdmin, Nombre = "Jan" , Apellido = "Solo", Domicilio = "Rivadavia 9889", FechaAlta = DateTime.Now };
             context.Administradores.Add(admin1);
-            context.Administradores.Add(admin2);
 
             // Set Clientes
             Cliente cliente1 = new Cliente
@@ -174,7 +172,7 @@ namespace Integrador.Migrations
                 Dispositivos = dispositivos2,
                 Transformador = t3,
                 Usuario = usuarioCliente2,
-                Domicilio = "Rivadavia 2888",
+                Domicilio = "Soler 1010",
                 Latitud = -34.665169,
                 Longitud = -58.486817,
                 Categoria = categoria2

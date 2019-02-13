@@ -1,17 +1,33 @@
-﻿<body>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4">
-            <h3> Reporte</h3>
-            <h4>@ViewBag.Nombre </h4>
-            <h4>Periodo @ViewBag.Periodo días</h4>
-            <h4>Consumo total @ViewBag.Consumo kWh </h4>
-            <span style="text-align:center; color:dimgray"> @ViewBag.Mongo </span>
-            <div class="text-center">
-                @Html.ActionLink("Volver", "Index", "Report")
-            </div>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-</body>
-</html>
+﻿<div class="jumbotron mt-4" style="background-color: indigo; color: whitesmoke; padding-bottom: 20px; padding-top: 15px; padding-left: 25px">
+    <h2>Resultado @ViewBag.Nombre </h2>
+</div>
+<div>
+    <span style="text-align:center; color:seagreen"> @ViewBag.Mongo </span>
+</div>
+
+<p></p>
+<table class="table">
+    <tr>
+        <th>
+            Periodo(dias)
+        </th>
+        <th>
+            Consumo total (kWh)
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            @ViewBag.Periodo
+        </td>
+        <td>
+            @ViewBag.Consumo
+        </td>
+    </tr>
+
+</table>
+
+<p>
+    @Html.ActionLink("Volver a reportes", "Index", "Report")
+</p>
+
