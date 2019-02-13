@@ -46,6 +46,8 @@ namespace Integrador.Controllers.Dispositivos
                 Value = t.Id.ToString()
             });
 
+            ViewBag.Marcas = deviceService.GetMarcas();
+
             return View();
         }
 

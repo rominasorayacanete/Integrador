@@ -29,6 +29,7 @@ namespace Integrador.Services
             {
                 Tipo = templateDispostivo.Tipo,
                 NombreGenerico = templateDispostivo.EquipoConcreto,
+                MarcaDispositivo = dispositivoConcreto.Marca,
                 Inteligente = false,
                 ClienteID = clientId,
                 Consumo = templateDispostivo.Consumo,
@@ -50,6 +51,7 @@ namespace Integrador.Services
             {
                 Tipo = templateDispostivo.Tipo,
                 NombreGenerico = templateDispostivo.EquipoConcreto,
+                MarcaDispositivo = dispositivoConcreto.Marca,
                 Inteligente = true,
                 ClienteID = clientId,
                 Consumo = templateDispostivo.Consumo,
@@ -67,39 +69,52 @@ namespace Integrador.Services
             switch (tipoDispositivo)
             {
                 case "Aire Acondicionado":
-                    values.Maximo = 90; 
-                    values.Minimo = 360; 
+                    values.Minimo = 90; 
+                    values.Maximo = 360; 
                     break;
                 case "Lámpara":
-                    values.Maximo = 90;
-                    values.Minimo = 360;
+                    values.Minimo = 90;
+                    values.Maximo = 360;
                     break;
                 case "Televisor":
-                    values.Maximo = 90;
-                    values.Minimo = 360;
+                    values.Minimo = 90;
+                    values.Maximo = 360;
                     break;
                 case "Lavarropas":
-                    values.Maximo = 6;
-                    values.Minimo = 30;
+                    values.Minimo = 6;
+                    values.Maximo = 30;
                     break;
                 case "Microondas":
-                    values.Maximo = 3;
-                    values.Minimo = 15;
+                    values.Minimo = 3;
+                    values.Maximo = 15;
                     break;
                 case "Plancha":
-                    values.Maximo = 3;
-                    values.Minimo = 30;
+                    values.Minimo = 3;
+                    values.Maximo = 30;
                     break;
                 case "Ventilador":
-                    values.Maximo = 120;
-                    values.Minimo = 360;
+                    values.Minimo = 120;
+                    values.Maximo = 360;
                     break;
                 default :
-                    values.Maximo = 10;
-                    values.Minimo = 200;
+                    values.Minimo = 10;
+                    values.Maximo = 200;
                     break;
             }
             return values;
+        }
+
+        public List<SelectListItem> GetMarcas()
+        {
+            List<SelectListItem> lst = new List<SelectListItem>();
+
+            lst.Add(new SelectListItem() { Text = "LG", Value = "LG" });
+            lst.Add(new SelectListItem() { Text = "Sony", Value = "Sony" });
+            lst.Add(new SelectListItem() { Text = "BGH", Value = "BGH" });
+            lst.Add(new SelectListItem() { Text = "Samsung", Value = "Samsung" });
+
+            return lst;
+;
         }
 
         public double findConsumo(string NombreDispositivo)

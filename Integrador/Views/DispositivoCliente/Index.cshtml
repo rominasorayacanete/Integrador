@@ -19,66 +19,74 @@
 </p>
 <p>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Consumo
-        </th>
-        <th>
-            Uso mensual máximo
-        </th>
-        <th>
-            Uso mensual mínimo
-        </th>
-        <th>
-            Encendido
-        </th>
-        <th>
-            Modo ahorro de energía
-        </th>
-        <th>
-            Marca
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.DispositivosInteligente)
-    {
+@if (Model.DispositivosInteligente.Count > 0)
+{
+    <table class="table">
         <tr>
-            <td>
-                <a href="@Url.Action("Details", "DispositivoInteligente", new { id = item.Id })">
-                    @Html.DisplayFor(modelItem => item.Tipo)
-                    @Html.DisplayFor(modelItem => item.NombreGenerico)
-                </a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Consumo) kWh
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMax) hs.
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs.
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Encendido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModoAhorroDeEnergia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MarcaDispositivo)
-            </td>
-            <td>
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
-            </td>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Consumo
+            </th>
+            <th>
+                Uso mensual máximo
+            </th>
+            <th>
+                Uso mensual mínimo
+            </th>
+            <th>
+                Encendido
+            </th>
+            <th>
+                Modo ahorro de energía
+            </th>
+            <th>
+                Marca
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model.DispositivosInteligente)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "DispositivoInteligente", new { id = item.Id })">
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                        @Html.DisplayFor(modelItem => item.NombreGenerico)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Consumo) kWh
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsoMensualMax) hs.
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsoMensualMin)  hs.
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Encendido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModoAhorroDeEnergia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MarcaDispositivo)
+                </td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @title = "Eliminar" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+else
+{
+    <h4>No se encontraron dispositivos </h4>
+}
 <hr />
 
 <div class="jumbotron mt-4" style="background-color: indigo; color: whitesmoke; padding-bottom: 18px; padding-left: 25px; padding-top: 15px">
@@ -169,6 +177,8 @@
         }
 
     </table>
-} else {
+}
+else
+{
     <h4>No se encontraron dispositivos </h4>
 }

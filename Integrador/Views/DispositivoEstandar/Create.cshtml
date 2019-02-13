@@ -31,6 +31,13 @@
             </div>
         </div>
 
+         <div class="form-group">
+             <div class="col-md-10">
+                 <label>Marca</label>
+                 @Html.DropDownListFor(model => model.Marca, (IEnumerable<SelectListItem>)ViewBag.Marcas, new { @class = "form-control" })
+             </div>
+        </div>
+
         <input type="submit" value="Agregar" class="btn btn-default" style="color: whitesmoke; background-color: indigo" />
         <br><br>
     </div>

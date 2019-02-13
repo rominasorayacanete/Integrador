@@ -62,36 +62,24 @@
         {
             using (Html.BeginForm())
             {
-                @Ajax.ActionLink("Apagar", "Apagar", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
+                <li> @Ajax.ActionLink("Apagar", "Apagar", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })</li>
             }
         }
         else
         {
             using (Html.BeginForm())
             {
-                @Ajax.ActionLink("Encender", "Encender", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
+                <li>@Ajax.ActionLink("Encender", "Encender", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })</li>
             }
         }
-        <span>|</span>
         using (Html.BeginForm())
         {
-            @Ajax.ActionLink("Modo ahorro", "ActivarAhorro", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
+            <li> @Ajax.ActionLink("Modo ahorro", "ActivarAhorro", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })</li>
         }
     }
     else
     {
-        @Html.ActionLink("Adaptar", "Adaptar", new { id = Model.Id })
-    } |
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-
-    @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente", new { id = Session["ClientId"]}, null)
+        <li>@Html.ActionLink("Adaptar", "Adaptar", new { id = Model.Id })</li>
+    }
+    <li>@Html.ActionLink("Volver al listado", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, null)</li>
 </p>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.apagarButton').click(function () {
-            $(this).closest('form')[0].submit();
-        });
-    });
-</script>

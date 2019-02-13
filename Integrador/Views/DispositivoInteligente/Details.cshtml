@@ -63,25 +63,25 @@
     </dl>
 </div>
 <p>
-    @if (Model.Encendido == true)
-    {
-        using (Html.BeginForm())
+    <ul>
+        @if (Model.Encendido == true)
         {
-            @Ajax.ActionLink("Apagar", "Apagar", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
+            using (Html.BeginForm())
+            {
+              <li>@Ajax.ActionLink("Apagar", "Apagar", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })</li>
+            }
         }
-    }
-    else
-    {
-        using (Html.BeginForm())
+        else
         {
-            @Ajax.ActionLink("Encender", "Encender", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
+            using (Html.BeginForm())
+            {
+                 <li>@Ajax.ActionLink("Encender", "Encender", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })</li>
+            }
         }
-    }
-    <span>|</span>
-    @using (Html.BeginForm())
-    {
-        @Ajax.ActionLink("Modo ahorro", "ActivarAhorro", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })
-    }
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Volver al listado", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, null)
+        @using (Html.BeginForm())
+        {
+                 <li>@Ajax.ActionLink("Modo ahorro", "ActivarAhorro", new { id = Model.Id }, new AjaxOptions { HttpMethod = "POST" })</li>
+        }
+                 <li>@Html.ActionLink("Volver al listado", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, null)</li>
+</ul>
 </p>
