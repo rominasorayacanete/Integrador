@@ -4,45 +4,30 @@ using System.Data.Entity;
 using System.Linq;
 using Integrador.Services;
 using Integrador.Models;
+using Integrador.DAL;
+using System.Collections.Generic;
 
 namespace Tests_unitarios
 {
     [TestClass]
     public class Test2
     {
+        private Context db = new Context();
+        private DispositivoService dispositivoService = new DispositivoService();
+        private OperacionService operacionService = new OperacionService();
+
         [TestMethod]
         public void CasoDePrueba2()
         {
-            DispositivoService dispositivoService = new DispositivoService();
+            var dispositivo = dispositivoService.FindById(1);
+            // Muestro por consola los intervalos en los que estuvo encendido un dispositivo durante el último mes         
+            operacionService.MostrarIntervalosEncendidoUltimoMes(dispositivo);
 
-            var Seed = DateTime.Now.ToString("HHmmss");
-            var name = "Dispo1" + Seed;
+            // Modifico el nombre del dispositivo y lo grabo
+            dispositivoService.CambiarNombreDispositivo(dispositivo, "NombreModificado");
 
-            DispositivoInteligente dispositivo1 = new DispositivoInteligente
-            {
-                NombreGenerico = name,
-                Consumo = 100,
-                Inteligente = true,
-                UsoMensualMax = 1000,
-                UsoMensualMin = 10
-            };
-
-            dispositivoService.createNewDispositivo(dispositivo1);
-
-            var dispositivoRecuperado = dispositivoService.findDispositivoByName(name);
-
-            // TODO : Mostar el log de veces encendido Console.Write()
-
-            Assert.AreEqual(name, dispositivoRecuperado.NombreGenerico);
-
-            var changeName = "DispoTestCambioNombre" + Seed;
-            dispositivoRecuperado.NombreGenerico = changeName;
-            dispositivoService.cambiarNombre(dispositivoRecuperado, changeName);
-
-            var finalDisp = dispositivoService.findDispositivoByName(changeName);
-
-            Assert.AreEqual(changeName, finalDisp.NombreGenerico);
+            // Recupero el dispositivo y verifico que el nombre se haya modificado correctamente
+            Assert.AreEqual("NombreModificado", dispositivoService.FindById(1).NombreGenerico);
         }
-
     }
 }
