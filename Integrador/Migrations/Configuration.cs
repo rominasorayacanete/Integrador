@@ -2,6 +2,7 @@ namespace Integrador.Migrations
 {
     using Integrador.Models;
     using Integrador.Models.Clases;
+    using Integrador.Models.Clases.Interface;
     using Integrador.Services;
     using System;
     using System.Collections.Generic;
@@ -182,7 +183,48 @@ namespace Integrador.Migrations
             context.Clientes.Add(cliente1);
             context.Clientes.Add(cliente2);
 
+            // Actuador
 
+            Actuador ac1 = new Actuador() {Accion = "Bajar temperatura" };
+            Actuador ac2 = new Actuador() {Accion = "Apagar" };
+
+            context.Actuadores.Add(ac1);
+            context.Actuadores.Add(ac2);
+        
+            // Sensor
+
+            Regla r1 = new Regla() {Tipo = "mayor", Condicion = "Aire Mayor a 24", Valor = 24};
+            Regla r2 = new Regla() {Tipo = "mayor", Condicion = "Tension Alta" , Valor = 80 };
+            Regla r3 = new Regla() {Tipo = "mayor", Condicion = "Movimiento alto", Valor = 5 };
+            Regla r4 = new Regla() {Tipo = "menor", Condicion = "Movimiento bajo", Valor = 30 };
+
+            context.Reglas.Add(r1);
+            context.Reglas.Add(r2);
+            context.Reglas.Add(r3);
+            context.Reglas.Add(r4);
+
+            List<IReglaObserver> listReglas1 = new List<IReglaObserver>();
+            listReglas1.Add(r1);
+            listReglas1.Add(r2);
+
+            List<IReglaObserver> listReglas2 = new List<IReglaObserver>();
+            listReglas2.Add(r3);
+
+            List<IReglaObserver> listReglas3 = new List<IReglaObserver>();
+            listReglas3.Add(r4);
+
+            ac1.ReglasRequeridas = listReglas1;
+            ac2.ReglasRequeridas = listReglas2;
+
+            // Sensor
+
+            Sensor s1 = new Sensor() { Magnitud = "°C ", Reglas = listReglas1, Descripcion = "Sensor de temperatura" };
+            Sensor s2 = new Sensor() { Magnitud = "kWh", Reglas = listReglas2, Descripcion = "Sensor de tension" };
+            Sensor s3 = new Sensor() { Magnitud = "K/h", Reglas = listReglas3, Descripcion = "Sensor de velocidad" };
+
+            context.Sensores.Add(s1);
+            context.Sensores.Add(s2);
+            context.Sensores.Add(s3);
 
             // Template Dispositivo
 

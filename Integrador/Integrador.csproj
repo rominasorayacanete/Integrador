@@ -227,6 +227,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Registro\OperacionesController.cs" />
     <Compile Include="Controllers\Reglas\ReglasController.cs" />
+    <Compile Include="Controllers\Reglas\SensorsController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\TransformadorController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -266,6 +267,7 @@
     <Compile Include="Models\Dispositivos\DispositivoInteligente.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Log\Operacion.cs" />
+    <Compile Include="Models\Reglas\Medicion.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Reglas\Regla.cs" />
     <Compile Include="Models\Dispositivos\TemplateDispositivo.cs" />
@@ -532,6 +534,11 @@
     <Content Include="Views\Clientes\ConsumoTotal.cshtml" />
     <Content Include="Views\Home\ClientProfile.cshtml" />
     <Content Include="Views\Home\AdminProfile.cshtml" />
+    <Content Include="Views\Sensors\Create.cshtml" />
+    <Content Include="Views\Sensors\Delete.cshtml" />
+    <Content Include="Views\Sensors\Details.cshtml" />
+    <Content Include="Views\Sensors\Edit.cshtml" />
+    <Content Include="Views\Sensors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

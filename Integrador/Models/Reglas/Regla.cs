@@ -12,12 +12,14 @@ namespace Integrador.Models.Clases
         public int Id { get; set; }
         public bool ReglaCumplida { get; set; } = false;
         public string Condicion { get; set; }
+        public string Tipo { get; set; }
+        public double Valor { get; set; }
 
         public virtual List<Actuador> Actuadores { get; set; }
 
         public bool SeCumple()
         {
-            return this.ReglaCumplida;
+            return ReglaCumplida;
         }
 
         public void Attach(Actuador actuador)
@@ -42,12 +44,19 @@ namespace Integrador.Models.Clases
             }
         }
 
-
-        public void Update(string magnitud)
+        public void Update(string magnitud, double valorMedido)
         {
-            /*evaluar magnitud ==>des/activar regla*/
+            if(Condicion == "menor")
+            {
+                ReglaCumplida = Valor < valorMedido; 
+            }
+            else if (Condicion == "mayor")
+            {
+                ReglaCumplida = Valor >= valorMedido;
+            }
+            NotifyAllObservers();
         }
 
-    } //end of class Regla//
+    }
 
 }

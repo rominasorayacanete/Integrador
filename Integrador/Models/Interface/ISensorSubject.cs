@@ -10,7 +10,7 @@ namespace Integrador.Models.Clases.Interface
     {
         void Attach(IReglaObserver regla);
         void Detach(IReglaObserver regla);
-        void NotifyAllObservers(string magnitud);
+        void NotifyAllObservers(string magnitud, double valor);
     }
 
 }

@@ -1,4 +1,5 @@
 ﻿using Integrador.Models.Clases.Interface;
+using Integrador.Models.Reglas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,18 +15,26 @@ namespace Integrador.Models.Clases
 
         public string Magnitud { get; set; }
 
+        public string Descripcion { get; set; }
+        
+        public virtual List<Medicion> Mediciones { get; set; }
+
         public List<IReglaObserver> Reglas { get; set; }
 
-        public Sensor(string magnitud)
+        public Sensor()
         {
             this.Reglas = new List<IReglaObserver>();
         }
 
 
-        public void Obtenermagnitud()
+        public void ObtenerMedicion()
         {
-            this.Magnitud = "Magnitud4";
-            this.NotifyAllObservers(Magnitud);
+            Random random = new Random();
+            var maximum = 80;
+            var minimum = 20;
+
+            double medicion = random.NextDouble() * (maximum - minimum) + minimum;
+            NotifyAllObservers(Magnitud, medicion);
         }
 
 
@@ -43,11 +52,11 @@ namespace Integrador.Models.Clases
         }
 
 
-        public void NotifyAllObservers(string magnitud)
+        public void NotifyAllObservers(string magnitud,double medicion)
         {
             foreach(IReglaObserver regla in Reglas)
            {
-                regla.Update(magnitud);
+                regla.Update(magnitud, medicion);
             }
         }
 

@@ -19,7 +19,7 @@ namespace Integrador.Models
         public string Accion { get; set; }
 
         public virtual Dispositivo Dispositivo { get; set; }
-        public virtual List<Regla> ReglasRequeridas { get; set; }
+        public virtual List<IReglaObserver> ReglasRequeridas { get; set; }
 
         public void Update()
           {

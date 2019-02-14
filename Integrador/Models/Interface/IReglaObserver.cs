@@ -8,6 +8,6 @@ namespace Integrador.Models.Clases.Interface
 {
     public interface IReglaObserver
     {
-        void Update(string magnitud);
+        void Update(string magnitud, double valor);
      }
 }
