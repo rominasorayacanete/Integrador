@@ -42,9 +42,10 @@ namespace Integrador.Services
             db.SaveChanges();
         }
 
-        public void cambiarNombre(Dispositivo dispositivo, string nombre)
+        public void CambiarNombreDispositivo(Dispositivo dispositivo, string nombre)
         {
             var disp = db.Dispositivos.SingleOrDefault(d => d.Id == dispositivo.Id);
+
             if (disp != null)
             {
                 disp.NombreGenerico = nombre;

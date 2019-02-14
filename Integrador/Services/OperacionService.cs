@@ -22,8 +22,14 @@ namespace Integrador.Services
 
             return (operaciones.Count() * dispositivo.Consumo) / 2;
         }
+        
+        public bool UltimoMes(DateTime fecha)
+        {
+            TimeSpan ts = DateTime.Now - fecha;
+            return ts.Days <= 31;
+        }
 
-        public void MostrarIntervalosEncendido(Dispositivo dispositivo)
+        public void MostrarIntervalosEncendidoUltimoMes(Dispositivo dispositivo)
         {
             List<Operacion> operacionesEncendido = db.Operaciones.Where(o => o.Dispositivo == dispositivo && o.Tipo == "encender").ToList();
             List<Operacion> operacionesApagado = db.Operaciones.Where(o => o.Dispositivo == dispositivo && o.Tipo == "apagar").ToList();
@@ -31,7 +37,10 @@ namespace Integrador.Services
             int cant = Math.Max(operacionesEncendido.Count(), operacionesApagado.Count());
 
             for (int i = 0; i < cant; i++)
-                Console.WriteLine("Intervalo " + i.ToString() + " desde " + operacionesEncendido[i].Fecha.ToString() + " hasta " + operacionesApagado[i].Fecha.ToString());
+            {
+                if (UltimoMes(operacionesEncendido[i].Fecha) && UltimoMes(operacionesApagado[i].Fecha))
+                    Console.WriteLine("Intervalo " + i.ToString() + ": desde " + operacionesEncendido[i].Fecha.ToString() + " hasta " + operacionesApagado[i].Fecha.ToString());
+            }
         }
 
         public Operacion RegistrarOperacionApagar(Dispositivo _dispositivo)
