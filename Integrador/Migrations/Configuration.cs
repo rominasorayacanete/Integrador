@@ -2,7 +2,7 @@ namespace Integrador.Migrations
 {
     using Integrador.Models;
     using Integrador.Models.Clases;
-    using Integrador.Models.Clases.Interface;
+    using Integrador.Models.Interface;
     using Integrador.Services;
     using System;
     using System.Collections.Generic;

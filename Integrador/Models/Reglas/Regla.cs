@@ -1,10 +1,10 @@
-﻿using Integrador.Models.Clases.Interface;
+﻿using Integrador.Models.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Integrador.Models.Clases
+namespace Integrador.Models
 {
     public class Regla : IReglaSubject , IReglaObserver
     {

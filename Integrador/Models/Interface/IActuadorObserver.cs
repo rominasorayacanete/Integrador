@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Integrador.Models.Clases.Interface
+namespace Integrador.Models.Interface
 {
     public interface IActuadorObserver
     {

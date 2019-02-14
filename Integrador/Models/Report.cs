@@ -1,4 +1,4 @@
-﻿using Integrador.Models.Clases.Interface;
+﻿using Integrador.Models.Interface;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using Integrador.Models.Clases.Interface;
+﻿using Integrador.Models.Interface;
 using Integrador.Models.Reglas;
 using System;
 using System.Collections.Generic;
