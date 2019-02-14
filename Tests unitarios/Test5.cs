@@ -7,7 +7,7 @@ namespace Tests_unitarios
     public class Test5
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CasoDePrueba5()
         {
         }
     }

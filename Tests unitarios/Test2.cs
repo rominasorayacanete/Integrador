@@ -12,21 +12,22 @@ namespace Tests_unitarios
     [TestClass]
     public class Test2
     {
-        Context db = new Context();
-        DispositivoService dispositivoService = new DispositivoService();
-        OperacionService operacionService = new OperacionService();
+        private Context db = new Context();
+        private DispositivoService dispositivoService = new DispositivoService();
+        private OperacionService operacionService = new OperacionService();
 
         [TestMethod]
         public void CasoDePrueba2()
         {
-            // Muestro por consola los intervalos en los que estuvo encendido durante el último mes         
-            operacionService.MostrarIntervalosEncendidoUltimoMes(db.Dispositivos.FirstOrDefault().Id);
+            var dispositivo = dispositivoService.FindById(1);
+            // Muestro por consola los intervalos en los que estuvo encendido un dispositivo durante el último mes         
+            operacionService.MostrarIntervalosEncendidoUltimoMes(dispositivo);
 
             // Modifico el nombre del dispositivo y lo grabo
-            dispositivoService.CambiarNombreDispositivo(db.Dispositivos.FirstOrDefault(), "NombreModificado");
+            dispositivoService.CambiarNombreDispositivo(dispositivo, "NombreModificado");
 
             // Recupero el dispositivo y verifico que el nombre se haya modificado correctamente
-            Assert.AreEqual("NombreModificado", db.Dispositivos.FirstOrDefault());
+            Assert.AreEqual("NombreModificado", dispositivoService.FindById(1).NombreGenerico);
         }
     }
 }

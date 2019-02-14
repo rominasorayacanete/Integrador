@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using Integrador.DAL;
 using Integrador.Models;
-using Integrador.Models.Clases;
 using System.Linq;
 using System;
 
@@ -29,12 +28,10 @@ namespace Integrador.Services
             return ts.Days <= 31;
         }
 
-        public void MostrarIntervalosEncendidoUltimoMes(int id)
+        public void MostrarIntervalosEncendidoUltimoMes(Dispositivo dispositivo)
         {
-            DispositivoService dispositivoService = new DispositivoService();
-            var dispositivo = dispositivoService.FindById(id);
-            List<Operacion> operacionesEncendido = db.Operaciones.Where(o => o.Dispositivo == dispositivo && o.Tipo == "encender").ToList();
-            List<Operacion> operacionesApagado = db.Operaciones.Where(o => o.Dispositivo == dispositivo && o.Tipo == "apagar").ToList();
+            List<Operacion> operacionesEncendido = db.Operaciones.Where(o => o.Tipo == "encender" && o.Dispositivo.Id == dispositivo.Id).ToList();
+            List<Operacion> operacionesApagado = db.Operaciones.Where(o => o.Tipo == "apagar" && o.Dispositivo.Id == dispositivo.Id).ToList();
 
             int cant = Math.Max(operacionesEncendido.Count(), operacionesApagado.Count());
 
@@ -48,28 +45,28 @@ namespace Integrador.Services
         public Operacion RegistrarOperacionApagar(Dispositivo _dispositivo)
         {
             var descripcion = "Dispositivo " + _dispositivo.Id + " fue apagado.";
-            return this.CrearOperacion(_dispositivo, "apagar", descripcion);
+            return CrearOperacion(_dispositivo, "apagar", descripcion);
         }
 
 
         public Operacion RegistrarOperacionEncender(Dispositivo _dispositivo)
         {
             var descripcion = "Dispositivo " + _dispositivo.Id + " fue encendido.";
-            return this.CrearOperacion(_dispositivo, "encender", descripcion);
+            return CrearOperacion(_dispositivo, "encender", descripcion);
         }
 
 
         public Operacion RegistrarOperacionAhorro(Dispositivo _dispositivo)
         {
             var descripcion = "Dispositivo " + _dispositivo.Id + " cambio a modo ahorro de energia";
-            return this.CrearOperacion(_dispositivo, "ahorro-energia", descripcion);
+            return CrearOperacion(_dispositivo, "ahorro-energia", descripcion);
         }
 
 
         public Operacion RegistrarOperacionConvertir(Dispositivo _dispositivo)
         {
             var descripcion = "Dispositivo " + _dispositivo.Id + " fue convertido a inteligente.";
-            return this.CrearOperacion(_dispositivo, "convertir", descripcion);
+            return CrearOperacion(_dispositivo, "convertir", descripcion);
         }
 
         private Operacion CrearOperacion(Dispositivo _dispositivo, string _tipo, string _descripcion)
@@ -81,10 +78,12 @@ namespace Integrador.Services
                 Tipo = _tipo,
                 Dispositivo = _dispositivo
             };
+
             return operacion;
         }
 
-        public void EliminarOperacionesDispositivo(int id) {
+        public void EliminarOperacionesDispositivo(int id)
+        {
             foreach (Operacion operacion in db.Operaciones)
             {
                 if (operacion.Dispositivo.Id == id)
@@ -93,6 +92,5 @@ namespace Integrador.Services
 
             db.SaveChanges();
         }
-
     }
 }
