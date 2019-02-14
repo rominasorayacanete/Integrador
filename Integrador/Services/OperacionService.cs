@@ -29,8 +29,10 @@ namespace Integrador.Services
             return ts.Days <= 31;
         }
 
-        public void MostrarIntervalosEncendidoUltimoMes(Dispositivo dispositivo)
+        public void MostrarIntervalosEncendidoUltimoMes(int id)
         {
+            DispositivoService dispositivoService = new DispositivoService();
+            var dispositivo = dispositivoService.FindById(id);
             List<Operacion> operacionesEncendido = db.Operaciones.Where(o => o.Dispositivo == dispositivo && o.Tipo == "encender").ToList();
             List<Operacion> operacionesApagado = db.Operaciones.Where(o => o.Dispositivo == dispositivo && o.Tipo == "apagar").ToList();
 

@@ -4,30 +4,29 @@ using System.Data.Entity;
 using System.Linq;
 using Integrador.Services;
 using Integrador.Models;
+using Integrador.DAL;
+using System.Collections.Generic;
 
 namespace Tests_unitarios
 {
     [TestClass]
     public class Test2
     {
+        Context db = new Context();
+        DispositivoService dispositivoService = new DispositivoService();
+        OperacionService operacionService = new OperacionService();
+
         [TestMethod]
         public void CasoDePrueba2()
         {
-            DispositivoService dispositivoService = new DispositivoService();
-            OperacionService operacionService = new OperacionService();
-
-            // Recupero dispositivo
-            Dispositivo dispositivo = dispositivoService.FindById(1);
-
             // Muestro por consola los intervalos en los que estuvo encendido durante el último mes         
-            operacionService.MostrarIntervalosEncendidoUltimoMes(dispositivo);
+            operacionService.MostrarIntervalosEncendidoUltimoMes(db.Dispositivos.FirstOrDefault().Id);
 
             // Modifico el nombre del dispositivo y lo grabo
-            dispositivoService.CambiarNombreDispositivo(dispositivo, "NombreModificado");
+            dispositivoService.CambiarNombreDispositivo(db.Dispositivos.FirstOrDefault(), "NombreModificado");
 
             // Recupero el dispositivo y verifico que el nombre se haya modificado correctamente
-            Dispositivo dispositivoModificado = dispositivoService.FindById(1);
-            Assert.AreEqual("NombreModificado", dispositivoModificado.NombreGenerico);
+            Assert.AreEqual("NombreModificado", db.Dispositivos.FirstOrDefault());
         }
     }
 }
