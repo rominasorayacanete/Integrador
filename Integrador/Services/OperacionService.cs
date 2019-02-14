@@ -23,6 +23,17 @@ namespace Integrador.Services
             return (operaciones.Count() * dispositivo.Consumo) / 2;
         }
 
+        public void MostrarIntervalosEncendido(Dispositivo dispositivo)
+        {
+            List<Operacion> operacionesEncendido = db.Operaciones.Where(o => o.Dispositivo == dispositivo && o.Tipo == "encender").ToList();
+            List<Operacion> operacionesApagado = db.Operaciones.Where(o => o.Dispositivo == dispositivo && o.Tipo == "apagar").ToList();
+
+            int cant = Math.Max(operacionesEncendido.Count(), operacionesApagado.Count());
+
+            for (int i = 0; i < cant; i++)
+                Console.WriteLine("Intervalo " + i.ToString() + " desde " + operacionesEncendido[i].Fecha.ToString() + " hasta " + operacionesApagado[i].Fecha.ToString());
+        }
+
         public Operacion RegistrarOperacionApagar(Dispositivo _dispositivo)
         {
             var descripcion = "Dispositivo " + _dispositivo.Id + " fue apagado.";

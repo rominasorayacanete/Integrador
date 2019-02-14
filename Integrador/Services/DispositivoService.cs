@@ -36,8 +36,6 @@ namespace Integrador.Services
                  .FirstOrDefault();
         }
 
-      
-
         public void createNewDispositivo(Dispositivo dispositivo)
         {
             db.Dispositivos.Add(dispositivo);
