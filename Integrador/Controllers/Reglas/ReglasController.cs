@@ -40,6 +40,19 @@ namespace Integrador.Controllers.Reglas
         // GET: Reglas/Create
         public ActionResult Create()
         {
+            ViewBag.Sensores = db.Sensores
+            .Select(s => new SelectListItem
+            {
+                Text = s.Descripcion + " " + s.Magnitud,
+                Value = s.Id.ToString()
+            });
+
+            ViewBag.Tipos = new List<SelectListItem>
+            {
+                new SelectListItem{Text = "Mayor (>)", Value = "mayor"},
+                new SelectListItem{Text = "Menor (<)", Value = "menor"}
+            };
+
             return View();
         }
 
@@ -48,21 +61,32 @@ namespace Integrador.Controllers.Reglas
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ReglaCumplida,Condicion")] Regla regla)
+        public ActionResult Create([Bind(Include = "Id,ReglaCumplida,Condicion,Tipo,Valor,SensorID")] Regla regla)
         {
-            if (ModelState.IsValid)
-            {
-                db.Reglas.Add(regla);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+            regla.ClientID = clientId;
+            db.Reglas.Add(regla);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Reglas", new { id = clientId });
 
-            return View(regla);
         }
 
         // GET: Reglas/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.Sensores = db.Sensores
+            .Select(s => new SelectListItem
+            {
+                Text = s.Descripcion + " " + s.Magnitud,
+                Value = s.Id.ToString()
+            });
+
+            ViewBag.Tipos = new List<SelectListItem>
+            {
+                new SelectListItem{Text = "Mayor (>)", Value = "mayor"},
+                new SelectListItem{Text = "Menor (<)", Value = "menor"}
+            };
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,13 +104,15 @@ namespace Integrador.Controllers.Reglas
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ReglaCumplida,Condicion")] Regla regla)
+        public ActionResult Edit([Bind(Include = "Id,ReglaCumplida,Condicion,Tipo,Valor,SensorID")] Regla regla)
         {
             if (ModelState.IsValid)
             {
+                var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+                regla.ClientID = clientId;
                 db.Entry(regla).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Reglas", new { id = clientId });
             }
             return View(regla);
         }
@@ -111,10 +137,11 @@ namespace Integrador.Controllers.Reglas
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
             Regla regla = db.Reglas.Find(id);
             db.Reglas.Remove(regla);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Reglas", new { id = clientId });
         }
 
         protected override void Dispose(bool disposing)

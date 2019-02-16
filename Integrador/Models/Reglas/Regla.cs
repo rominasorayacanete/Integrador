@@ -1,6 +1,7 @@
 ﻿using Integrador.Models.Interface;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -21,6 +22,7 @@ namespace Integrador.Models.Clases
         public virtual Cliente Cliente { get; set; }
 
         [ForeignKey("Sensor")]
+        [Display(Name = "Sensor")]
         public int? SensorID { get; set; }
         public virtual Sensor Sensor { get; set; }
 
