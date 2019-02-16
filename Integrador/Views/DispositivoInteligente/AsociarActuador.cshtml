@@ -15,21 +15,22 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-         <div class="form-group">
-        @Html.LabelFor(model => model.Accion, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(x => x.Accion, new SelectList(ViewBag.Acciones, "Value", "Text"), new { @class = "form-control dropdown-field" })
-        </div>
-    </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Reglas, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Accion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(x => x.Reglas, new MultiSelectList(ViewBag.Reglas, "Value", "Text"), new { @class = "form-control" })
+                @Html.DropDownListFor(x => x.Accion, new SelectList(ViewBag.Acciones, "Value", "Text"), new { @class = "form-control dropdown-field" })
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Asociar" class="btn btn-default" style="color: whitesmoke; background-color: indigo" />
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Reglas, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.ListBoxFor(x => x.Reglas, new MultiSelectList(ViewBag.Reglas, "Value", "Text"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Asociar" class="btn btn-default" style="color: whitesmoke; background-color: indigo" />
+                </div>
             </div>
         </div>
     </div>

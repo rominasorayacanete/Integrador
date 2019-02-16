@@ -19,6 +19,7 @@ namespace Integrador.Controllers.Dispositivos
         private OperacionService operacionService = new OperacionService();
         private ClienteService clienteService = new ClienteService();
         private DeviceService deviceService = new DeviceService();
+        private ActuadorService actuadorService = new ActuadorService();
 
         // GET: DispositivoEstandar/Details/5
         public ActionResult Details(int? id)
@@ -205,8 +206,39 @@ namespace Integrador.Controllers.Dispositivos
         [ActionName("AsociarActuador")]
         public ActionResult AsociarActuador(int? id)
         {
-            DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
-            return View(dispositivoInteligente);
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+            ViewBag.Reglas = db.Reglas.Where(r => r.ClientID == clientId)
+            .Select(r => new SelectListItem
+            {
+                Text = r.Condicion + " " + r.Tipo + " " + r.Valor,
+                Value = r.Id.ToString()
+            });
+
+            ViewBag.Acciones = new List<SelectListItem>
+            {
+                new SelectListItem{Text = "Apagar", Value = "apagar"},
+                new SelectListItem{Text = "Bajar Temperatura", Value = "bajar-temperatura"},
+                new SelectListItem{Text = "Bajar Intensidad", Value = "bajar-intensidad"}
+            };
+
+            ActuadorDispositivo actuadorDispositivo = new ActuadorDispositivo();
+            DispositivoEstandar DispositivoEstandar = db.DispositivoEstandar.Find(id);
+
+            actuadorDispositivo.Dispositivo = DispositivoEstandar;
+            Session["DeviceId"] = DispositivoEstandar.Id;
+
+            return View(actuadorDispositivo);
+        }
+
+        [HttpPost, ActionName("AsociarActuador")]
+        public ActionResult AsociarActuador(ActuadorDispositivo actuadorDispositivo)
+        {
+            var clientId = Convert.ToInt32(Session["ClientId"].ToString());
+            var dispositivoID = Convert.ToInt32(Session["DeviceId"].ToString());
+            Actuador actuador = actuadorService.CrearActuador(dispositivoID, actuadorDispositivo.Accion, actuadorDispositivo.Reglas);
+            db.Actuadores.Add(actuador);
+            db.SaveChanges();
+            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
         protected override void Dispose(bool disposing)

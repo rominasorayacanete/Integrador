@@ -10,6 +10,7 @@ namespace Integrador.Models.Helper
 {
     public class ActuadorDispositivo
     {
+        public int DispositivoID { get; set; }
         public virtual Dispositivo Dispositivo { get; set; }
         public virtual List<Regla> Reglas { get; set; }
         public string Accion { get; set; }

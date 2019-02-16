@@ -208,6 +208,7 @@ namespace Integrador.Controllers.Dispositivos
             DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
 
             actuadorDispositivo.Dispositivo = dispositivoInteligente;
+            Session["DeviceId"] = dispositivoInteligente.Id;
 
             return View(actuadorDispositivo);
         }
@@ -216,7 +217,8 @@ namespace Integrador.Controllers.Dispositivos
         public ActionResult AsociarActuador(ActuadorDispositivo actuadorDispositivo)
         {
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
-            Actuador actuador = actuadorService.CrearActuador(actuadorDispositivo.Dispositivo.Id,actuadorDispositivo.Accion,actuadorDispositivo.Reglas);
+            var dispositivoID = Convert.ToInt32(Session["DeviceId"].ToString());
+            Actuador actuador = actuadorService.CrearActuador(dispositivoID, actuadorDispositivo.Accion,actuadorDispositivo.Reglas);
             db.Actuadores.Add(actuador);
             db.SaveChanges();
             return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
