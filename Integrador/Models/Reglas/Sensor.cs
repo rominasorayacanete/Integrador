@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Integrador.Models.Clases
 {
-    public class Sensor : ISensorSubject
+    public class Sensor
     {
         [Key]
         public int Id { get; set; }
@@ -19,11 +19,11 @@ namespace Integrador.Models.Clases
         
         public virtual List<Medicion> Mediciones { get; set; }
 
-        public List<IReglaObserver> Reglas { get; set; }
+        public List<Regla> Reglas { get; set; }
 
         public Sensor()
         {
-            this.Reglas = new List<IReglaObserver>();
+            this.Reglas = new List<Regla>();
         }
 
 
@@ -38,14 +38,14 @@ namespace Integrador.Models.Clases
         }
 
 
-        public void Attach(IReglaObserver regla)
+        public void Attach(Regla regla)
         {
             if (!Reglas.Contains(regla))
                 Reglas.Add(regla);
         }
 
 
-        public void Detach(IReglaObserver regla)
+        public void Detach(Regla regla)
         {
             if (Reglas.Contains(regla))
                 Reglas.Remove(regla);
@@ -54,7 +54,7 @@ namespace Integrador.Models.Clases
 
         public void NotifyAllObservers(string magnitud,double medicion)
         {
-            foreach(IReglaObserver regla in Reglas)
+            foreach(Regla regla in Reglas)
            {
                 regla.Update(magnitud, medicion);
             }

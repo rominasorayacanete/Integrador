@@ -1,10 +1,11 @@
 ﻿using Integrador.Models.Interface;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Integrador.Models
+namespace Integrador.Models.Clases
 {
     public class Regla : IReglaSubject , IReglaObserver
     {
@@ -14,6 +15,14 @@ namespace Integrador.Models
         public string Condicion { get; set; }
         public string Tipo { get; set; }
         public double Valor { get; set; }
+
+        [ForeignKey("Cliente")]
+        public int? ClientID { get; set; }
+        public virtual Cliente Cliente { get; set; }
+
+        [ForeignKey("Sensor")]
+        public int? SensorID { get; set; }
+        public virtual Sensor Sensor { get; set; }
 
         public virtual List<Actuador> Actuadores { get; set; }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Integrador.Models.Clases;
 
 namespace Integrador.Models
 {
@@ -18,7 +19,7 @@ namespace Integrador.Models
         public string Accion { get; set; }
 
         public virtual Dispositivo Dispositivo { get; set; }
-        public virtual List<IReglaObserver> ReglasRequeridas { get; set; }
+        public virtual List<Regla> ReglasRequeridas { get; set; }
 
         public void Update()
           {

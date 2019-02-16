@@ -5,11 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<div class="jumbotron" style="background-color: indigo; color: whitesmoke; padding-bottom: 15px">
+    <h2>Eliminar Regla</h2>
+</div>
 <div>
-    <h4>Regla</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -33,9 +32,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Eliminar" class="btn btn-default" style="background-color:indigo; color: whitesmoke" /> |
+        @Html.ActionLink("Volver al listado", "Index", "Reglas", new { id = Session["ClientId"] }, null)
+    </div>
     }
 </div>

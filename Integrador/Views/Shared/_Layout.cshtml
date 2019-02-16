@@ -41,7 +41,10 @@
                                 <li>
                                     @Ajax.ActionLink("Mis dispositivos", "Index", "DispositivoCliente", new { id = Session["ClientId"] }, new AjaxOptions { HttpMethod = "GET" })
                                 </li>
-                                <li>@Html.ActionLink("Mis reglas", "Index", "Home")</li>
+                                <li>
+                                    @Ajax.ActionLink("Mis reglas", "Index", "Reglas", new { id = Session["ClientId"] }, new AjaxOptions { HttpMethod = "GET" })
+                                </li>
+
                                 <li>@Html.ActionLink("Mis consumos", "ConsumoTotal", "Clientes")</li>
                                 <li>@Html.ActionLink("Calcular mi consumo óptimo", "Simplex", "Home")</li>
                             }

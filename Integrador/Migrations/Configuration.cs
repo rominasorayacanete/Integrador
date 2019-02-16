@@ -193,24 +193,24 @@ namespace Integrador.Migrations
         
             // Sensor
 
-            Regla r1 = new Regla() {Tipo = "mayor", Condicion = "Aire Mayor a 24", Valor = 24};
-            Regla r2 = new Regla() {Tipo = "mayor", Condicion = "Tension Alta" , Valor = 80 };
-            Regla r3 = new Regla() {Tipo = "mayor", Condicion = "Movimiento alto", Valor = 5 };
-            Regla r4 = new Regla() {Tipo = "menor", Condicion = "Movimiento bajo", Valor = 30 };
+            Regla r1 = new Regla() {Tipo = "mayor", Condicion = "Aire Mayor a 24", Valor = 24, Cliente = cliente1};
+            Regla r2 = new Regla() {Tipo = "mayor", Condicion = "Tension Alta" , Valor = 80, Cliente = cliente1 };
+            Regla r3 = new Regla() {Tipo = "mayor", Condicion = "Movimiento alto", Valor = 5, Cliente = cliente2 };
+            Regla r4 = new Regla() {Tipo = "menor", Condicion = "Movimiento bajo", Valor = 30, Cliente = cliente2 };
 
             context.Reglas.Add(r1);
             context.Reglas.Add(r2);
             context.Reglas.Add(r3);
             context.Reglas.Add(r4);
 
-            List<IReglaObserver> listReglas1 = new List<IReglaObserver>();
+            List<Regla> listReglas1 = new List<Regla>();
             listReglas1.Add(r1);
             listReglas1.Add(r2);
 
-            List<IReglaObserver> listReglas2 = new List<IReglaObserver>();
+            List<Regla> listReglas2 = new List<Regla>();
             listReglas2.Add(r3);
 
-            List<IReglaObserver> listReglas3 = new List<IReglaObserver>();
+            List<Regla> listReglas3 = new List<Regla>();
             listReglas3.Add(r4);
 
             ac1.ReglasRequeridas = listReglas1;

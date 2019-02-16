@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Integrador.DAL;
 using Integrador.Models;
+using Integrador.Models.Clases;
 
 namespace Integrador.Controllers.Reglas
 {
@@ -16,9 +17,9 @@ namespace Integrador.Controllers.Reglas
         private Context db = new Context();
 
         // GET: Reglas
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.Reglas.ToList());
+            return View(db.Reglas.Where(r => r.ClientID == id).ToList());
         }
 
         // GET: Reglas/Details/5
