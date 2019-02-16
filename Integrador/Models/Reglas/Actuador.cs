@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using Integrador.Models.Clases;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Integrador.Models
 {
@@ -16,25 +17,34 @@ namespace Integrador.Models
 
         [Required]
         [StringLength(255)]
-        public string Accion { get; set; }
+        public string AccionSlug { get; set; }
 
+        public IAccion Accion { get; set; }
+
+        [ForeignKey("Dispositivo")]
+        public int? DispositivoID { get; set; }
         public virtual Dispositivo Dispositivo { get; set; }
+
         public virtual List<Regla> ReglasRequeridas { get; set; }
+
+        public Actuador(IAccion _accion)
+        {
+            Accion = _accion;
+        }
 
         public void Update()
           {
               if (SeCumplenTodasLasReglas())
               {
-                // Listado de todo lo que puede hacer con respecto a la accion
-                //accion.Accionar(dispositivo)
-                    Dispositivo.Encender();
+                Accion.Accionar(Dispositivo);
+                Dispositivo.Encender();
               }
           }
           public bool SeCumplenTodasLasReglas()
           {
               foreach(Regla regla in ReglasRequeridas)
              {
-                  if (!regla.SeCumple())
+                  if (regla.SeCumple() == false)
                   {
                       return false;
                   }
@@ -42,10 +52,6 @@ namespace Integrador.Models
               return true;
           }
 
-          public void Update(bool estadoRegla)
-          {
-              throw new NotImplementedException();
-          }
     }
 }
 

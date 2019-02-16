@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Integrador.Models.Abstract
 {
-    interface IAccion
+    public interface IAccion
     {
         void Accionar(Dispositivo dispositivo);
     }

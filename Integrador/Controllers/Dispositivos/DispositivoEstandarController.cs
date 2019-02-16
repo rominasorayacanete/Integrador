@@ -202,6 +202,13 @@ namespace Integrador.Controllers.Dispositivos
             return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
         }
 
+        [ActionName("AsociarActuador")]
+        public ActionResult AsociarActuador(int? id)
+        {
+            DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
+            return View(dispositivoInteligente);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

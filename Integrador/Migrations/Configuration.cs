@@ -2,6 +2,7 @@ namespace Integrador.Migrations
 {
     using Integrador.Models;
     using Integrador.Models.Clases;
+    using Integrador.Models.Clases.Acciones;
     using Integrador.Models.Interface;
     using Integrador.Services;
     using System;
@@ -185,13 +186,13 @@ namespace Integrador.Migrations
 
             // Actuador
 
-            Actuador ac1 = new Actuador() {Accion = "Bajar temperatura" };
-            Actuador ac2 = new Actuador() {Accion = "Apagar" };
+            Actuador ac1 = new Actuador(new AccionBajarTemperatura()) {AccionSlug = "Bajar temperatura", Dispositivo = d1 };
+            Actuador ac2 = new Actuador(new AccionApagar()) { AccionSlug = "Apagar", Dispositivo = d2 };
 
             context.Actuadores.Add(ac1);
             context.Actuadores.Add(ac2);
         
-            // Sensor
+            // Reglas
 
             Regla r1 = new Regla() {Tipo = "mayor", Condicion = "Aire Mayor a 24", Valor = 24, Cliente = cliente1};
             Regla r2 = new Regla() {Tipo = "mayor", Condicion = "Tension Alta" , Valor = 80, Cliente = cliente1 };

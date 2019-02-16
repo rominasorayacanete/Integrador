@@ -8,7 +8,7 @@ namespace Integrador.Models.Interface
 {
     public interface IActuadorObserver
     {
-        void Update(bool estadoRegla);
+        void Update();
     }
 
 }
