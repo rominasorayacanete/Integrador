@@ -223,6 +223,7 @@
     <Compile Include="Controllers\Dispositivos\DispositivoEstandarController.cs" />
     <Compile Include="Controllers\Dispositivos\DispositivoInteligenteController.cs" />
     <Compile Include="Controllers\Dispositivos\TemplateDispositivosController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Registro\OperacionesController.cs" />
@@ -334,6 +335,7 @@
     <Content Include="Images\casa.jpg" />
     <Content Include="Images\electricidad.jpg" />
     <Content Include="Images\gentlemen.jpg" />
+    <Content Include="Images\text.png" />
     <Content Include="obj\Debug\Integrador.csproj.FileListAbsolute.txt" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -543,6 +545,8 @@
     <Content Include="Views\Sensors\Edit.cshtml" />
     <Content Include="Views\DispositivoInteligente\AsociarActuador.cshtml" />
     <Content Include="Views\DispositivoEstandar\AsociarActuador.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Error500.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

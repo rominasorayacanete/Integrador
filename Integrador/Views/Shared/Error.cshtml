@@ -3,7 +3,13 @@
 @{
     ViewBag.Title = "Error";
 }
-
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">Error al procesar la solicitud.</h2>
-
+<body>
+    <div id="notfound">
+        <div class="notfound">
+            <h1 style="text-decoration-color:aqua!important; font-size: 5em ">500</h1>
+            <h2>Oops! Algo se rompió!</h2>
+            <p>Lo lamentamos, ocurrio un problema grave, estaremos trabajando para arreglarlo.</p>
+            @Html.ActionLink("Volver al Inicio", "Index", "Home")
+        </div>
+    </div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->

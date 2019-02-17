@@ -12,6 +12,8 @@ namespace Integrador.Controllers
     public class UsuarioController : Controller
     {
         private Context db = new Context();
+        UserService userService = new UserService();
+
 
         // GET: Usuario
         public ActionResult Index()
@@ -25,10 +27,8 @@ namespace Integrador.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Usuario usuario)
-        {
-            UserService userService = new UserService();
-
+        public ActionResult Login(Usuario usuario) {
+        
             var usr = db.Usuarios.Where(u => u.Username == usuario.Username && u.Password == usuario.Password).FirstOrDefault();
 
             if (usr != null)
