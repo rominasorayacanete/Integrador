@@ -8,6 +8,12 @@
 
 <div class="jumbotron mt-4" style="background-color: indigo; color: whitesmoke; padding-bottom: 20px; padding-top: 15px; padding-left: 25px">
     <h2>Dispositivos inteligentes</h2>
+    @if (@Model.DispositivosInteligente.Count() > 0)
+    {
+        <h5>Total: @Model.DispositivosInteligente.Count()</h5>
+        <h5>Encendido: @Model.DispositivosInteligente.Where(d => d.Encendido == true).Count() </h5>
+        <h5>Apagados: @Model.DispositivosInteligente.Where(d => d.Encendido == false).Count() </h5>
+    }
 </div>
 
 <p>
@@ -91,6 +97,12 @@ else
 
 <div class="jumbotron mt-4" style="background-color: indigo; color: whitesmoke; padding-bottom: 18px; padding-left: 25px; padding-top: 15px">
     <h2>Dispositivos estándar</h2>
+    @if (@Model.DispositivosEstandar.Count() > 0)
+    {
+        <h5>Total: @Model.DispositivosEstandar.Count()</h5>
+        <h5>Encendido: @Model.DispositivosEstandar.Where(d => d.ModuloAdaptador != null && d.ModuloAdaptador.Encendido == true).Count() </h5>
+        <h5>Apagados: @Model.DispositivosEstandar.Where(d => d.ModuloAdaptador != null && d.ModuloAdaptador.Encendido == false).Count() </h5>
+    }
 </div>
 
 <p>

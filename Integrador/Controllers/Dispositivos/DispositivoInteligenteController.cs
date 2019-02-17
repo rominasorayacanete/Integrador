@@ -133,19 +133,27 @@ namespace Integrador.Controllers.Dispositivos
         public ActionResult Apagar(int? id)
         {
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
-
-            DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
-            if (dispositivoInteligente == null)
+            try
             {
-                return HttpNotFound();
-            }
-            dispositivoInteligente.Apagar();
-            // Registro
-            var operacion = operacionService.RegistrarOperacionApagar(dispositivoInteligente);
-            dispositivoInteligente.Operaciones.Add(operacion);
+                DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
+                if (dispositivoInteligente == null)
+                {
+                    return HttpNotFound();
+                }
+                dispositivoInteligente.Apagar();
+                // Registro
+                var operacion = operacionService.RegistrarOperacionApagar(dispositivoInteligente);
+                dispositivoInteligente.Operaciones.Add(operacion);
 
-            db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+                db.SaveChanges();
+                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                return RedirectToAction("Details", "DispositivoInteligente", new { id });
+            }
+       
         }
 
         [ActionName("Encender")]
@@ -153,37 +161,52 @@ namespace Integrador.Controllers.Dispositivos
         {
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
 
-            DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
-            if (dispositivoInteligente == null)
+            try
             {
-                return HttpNotFound();
-            }
-            dispositivoInteligente.Encender();
-            // Registro
-            var operacion = operacionService.RegistrarOperacionEncender(dispositivoInteligente);
-            dispositivoInteligente.Operaciones.Add(operacion);
+                DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
+                if (dispositivoInteligente == null)
+                {
+                    return HttpNotFound();
+                }
+                dispositivoInteligente.Encender();
+                // Registro
+                var operacion = operacionService.RegistrarOperacionEncender(dispositivoInteligente);
+                dispositivoInteligente.Operaciones.Add(operacion);
 
-            db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+                db.SaveChanges();
+                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                return RedirectToAction("Details", "DispositivoInteligente", new { id });
+            }
         }
 
         [ActionName("ActivarAhorro")]
         public ActionResult ActivarAhorro(int? id)
         {
             var clientId = Convert.ToInt32(Session["ClientId"].ToString());
-
-            DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
-            if (dispositivoInteligente == null)
+            try
             {
-                return HttpNotFound();
-            }
-            dispositivoInteligente.ActivarModoAhorro();
-            // Registro
-            var operacion = operacionService.RegistrarOperacionAhorro(dispositivoInteligente);
-            dispositivoInteligente.Operaciones.Add(operacion);
+                DispositivoInteligente dispositivoInteligente = db.DispositivosInteligentes.Find(id);
+                if (dispositivoInteligente == null)
+                {
+                    return HttpNotFound();
+                }
+                dispositivoInteligente.ActivarModoAhorro();
+                // Registro
+                var operacion = operacionService.RegistrarOperacionAhorro(dispositivoInteligente);
+                dispositivoInteligente.Operaciones.Add(operacion);
 
-            db.SaveChanges();
-            return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+                db.SaveChanges();
+                return RedirectToAction("Index", "DispositivoCliente", new { id = clientId });
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                return RedirectToAction("Details", "DispositivoInteligente", new { id });
+            }
         }
 
         [ActionName("AsociarActuador")]
