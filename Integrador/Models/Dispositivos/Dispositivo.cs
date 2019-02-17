@@ -36,6 +36,8 @@ namespace Integrador.Models
 
         public string MarcaDispositivo { get; set; }
 
+        public virtual MarcaDispositivo Marca { get; set; }
+
         public bool Archivado { get; set; }
 
         [ForeignKey("Cliente")]

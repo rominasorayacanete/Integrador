@@ -10,7 +10,7 @@ namespace Integrador.Models.Clases.Acciones
     {
         public void Accionar(Dispositivo dispositivo)
         {
-         //   dispositivo.MarcaDispositivo.BajarTemperatura();
+           dispositivo.Marca.BajarTemperatura();
         }
     }
 }
