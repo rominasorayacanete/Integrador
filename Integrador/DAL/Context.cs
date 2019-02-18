@@ -11,6 +11,11 @@ namespace Integrador.DAL
 {
     public class Context : DbContext
     {
+        public Context()
+    : base("DBContext")
+        {
+        }
+
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Administrador> Administradores { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
