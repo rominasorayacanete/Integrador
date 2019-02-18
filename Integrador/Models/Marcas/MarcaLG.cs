@@ -12,16 +12,16 @@ namespace Integrador.Models.Clases
 
         public override string Nombre { get; set; } = "LG";
 
-        public override void BajarTemperatura()
+        public override void BajarTemperatura(int valor)
         {
             throw new NotImplementedException();
         }
-        public override void BajarIntensidad()
+        public override void BajarIntensidad(int valor)
         {
-            throw new NotImplementedException();
+            Intensidad = valor;
         }
 
-        public override void CambiarModo()
+        public override void CambiarModo(int valor)
         {
             throw new NotImplementedException();
         }

@@ -187,7 +187,7 @@ namespace Integrador.Migrations
             // Actuador
 
             Actuador ac1 = new Actuador(new AccionBajarTemperatura()) {AccionSlug = "Bajar temperatura", Dispositivo = d1 };
-            Actuador ac2 = new Actuador(new AccionApagar()) { AccionSlug = "Apagar", Dispositivo = d2 };
+            Actuador ac2 = new Actuador(new AccionApagar()) { AccionSlug = "Apagar", Dispositivo = d1 };
 
             context.Actuadores.Add(ac1);
             context.Actuadores.Add(ac2);
@@ -292,7 +292,7 @@ namespace Integrador.Migrations
 
             if (admin == null)
             {
-                admin = new Usuario { Username = "admin1", Password = "admin1", Email = "admin@admin.com", FechaAltaSistema = DateTime.Now };
+                admin = new Usuario { Username = "admin1", Password = "admin1", Email = "admin@admin.com"};
                 context.Usuarios.Add(admin);
             }
 
@@ -302,7 +302,7 @@ namespace Integrador.Migrations
 
             if (cliente1 == null)
             {
-                cliente1 = new Usuario { Username = "cliente1", Password = "cliente1", Email = "cliente1@cliente.com", FechaAltaSistema = DateTime.Now };
+                cliente1 = new Usuario { Username = "cliente1", Password = "cliente1", Email = "cliente1@cliente.com"};
                 context.Usuarios.Add(cliente1);
             }
 
@@ -312,7 +312,7 @@ namespace Integrador.Migrations
 
             if (cliente2 == null)
             {
-                cliente2 = new Usuario { Username = "cliente2", Password = "cliente2", Email = "cliente2@cliente.com", FechaAltaSistema = DateTime.Now };
+                cliente2 = new Usuario { Username = "cliente2", Password = "cliente2", Email = "cliente2@cliente.com"};
                 context.Usuarios.Add(cliente2);
             }
 

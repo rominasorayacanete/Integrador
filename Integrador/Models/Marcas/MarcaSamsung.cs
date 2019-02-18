@@ -8,20 +8,20 @@ namespace Integrador.Models.Clases
 {
     public class MarcaSamsung : MarcaDispositivo
     {
-        public int Intensidad { get; set; }
+        public int Temperatura { get; set; }
 
         public override string Nombre { get; set; } = "Samsung";
 
-        public override void BajarTemperatura()
+        public override void BajarTemperatura(int valor)
         {
-            throw new NotImplementedException();
+            Temperatura = valor;
         }
-        public override void BajarIntensidad()
+        public override void BajarIntensidad(int valor)
         {
             throw new NotImplementedException();
         }
 
-        public override void CambiarModo()
+        public override void CambiarModo(int valor)
         {
             throw new NotImplementedException();
         }

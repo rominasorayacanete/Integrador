@@ -38,5 +38,11 @@ namespace Integrador.Services
             return;
         }
 
+        public Report GenerateReport (string nombre , int periodo, int value)
+        {
+            Report report = new Report(nombre, nombre,periodo,value);
+            return report;
+        }
+
     }
 }

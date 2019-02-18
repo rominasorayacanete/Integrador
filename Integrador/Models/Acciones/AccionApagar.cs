@@ -8,7 +8,7 @@ namespace Integrador.Models.Clases.Acciones
 {
     public class AccionApagar : IAccion
     {
-        public void Accionar(Dispositivo dispositivo)
+        public void Accionar(DispositivoInteligente dispositivo, int valor)
         {
             dispositivo.Apagar();
         }

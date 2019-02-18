@@ -47,6 +47,7 @@ namespace Integrador.Controllers
             ViewBag.Consumo = transformador.EnergiaSuministrada * periodo;
             ViewBag.Nombre = "Transformador " + transformador.Nombre;
             ViewBag.Periodo = periodo;
+            reportService.GenerateReport(ViewBag.Nombre, periodo, ViewBag.Consumo);
 
             reportService.SaveReport(SearchName, transformador.Nombre, periodo, transformador.EnergiaSuministrada * periodo);
 
@@ -79,6 +80,7 @@ namespace Integrador.Controllers
             ViewBag.Consumo = cliente.ConsumoHogar() * periodo;
             ViewBag.Nombre = "Hogar de " + cliente.Nombre + " " + cliente.Apellido;
             ViewBag.Periodo = periodo;
+            reportService.GenerateReport( ViewBag.Nombre, periodo, ViewBag.Consumo);
 
             reportService.SaveReport(SearchName, cliente.Nombre, periodo, cliente.ConsumoHogar() * periodo);
 
@@ -110,6 +112,7 @@ namespace Integrador.Controllers
             ViewBag.Consumo = dispositivo.Consumo * periodo;
             ViewBag.Nombre = "Dispositivo " + dispositivo.NombreGenerico;
             ViewBag.Periodo = periodo;
+            reportService.GenerateReport(ViewBag.Nombre, periodo, ViewBag.Consumo);
 
             reportService.SaveReport(SearchName, dispositivo.NombreGenerico , periodo, dispositivo.Consumo * periodo);
 

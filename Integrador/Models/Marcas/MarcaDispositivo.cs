@@ -10,11 +10,10 @@ namespace Integrador.Models.Abstract
     abstract public class MarcaDispositivo
     {
         [Key]
-        public virtual double Id { get; set; }
+        public int Id { get; set; }
         public abstract string Nombre { get; set; }
-
-        public abstract void BajarTemperatura();
-        public abstract void BajarIntensidad();
-        public abstract void CambiarModo();
+        public abstract void BajarTemperatura(int valor);
+        public abstract void BajarIntensidad(int valor);
+        public abstract void CambiarModo(int valor);
     }
 }

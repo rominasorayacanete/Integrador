@@ -8,9 +8,9 @@ namespace Integrador.Models.Clases.Acciones
 {
     public class AccionBajarTemperatura : IAccion
     {
-        public void Accionar(Dispositivo dispositivo)
+        public void Accionar(DispositivoInteligente dispositivo, int valor)
         {
-           dispositivo.Marca.BajarTemperatura();
+            dispositivo.Marca.BajarTemperatura(valor);
         }
     }
 }

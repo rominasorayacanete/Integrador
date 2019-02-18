@@ -25,8 +25,5 @@ namespace Integrador.Models
         public string Password { get; set; }
 
         public string Email { get; set; }
-
-        [Column(TypeName = "datetime2")]
-        public DateTime FechaAltaSistema { get; set; }
     }
 }

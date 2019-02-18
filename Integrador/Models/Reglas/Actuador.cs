@@ -23,7 +23,7 @@ namespace Integrador.Models
 
         [ForeignKey("Dispositivo")]
         public int? DispositivoID { get; set; }
-        public virtual Dispositivo Dispositivo { get; set; }
+        public virtual DispositivoInteligente Dispositivo { get; set; }
 
         public virtual List<Regla> ReglasRequeridas { get; set; }
 
@@ -36,7 +36,7 @@ namespace Integrador.Models
           {
               if (SeCumplenTodasLasReglas())
               {
-                Accion.Accionar(Dispositivo);
+                Accion.Accionar(Dispositivo, 1);
                 Dispositivo.Encender();
               }
           }
@@ -51,6 +51,11 @@ namespace Integrador.Models
               }
               return true;
           }
+
+        public void EjecutarAccion()
+        {
+            Accion.Accionar(Dispositivo, 1);
+        }
 
     }
 }
