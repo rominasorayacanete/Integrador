@@ -125,15 +125,23 @@ namespace Integrador.Controllers
         [HttpPost]
         public ActionResult MostrarZonas(HttpPostedFileBase archivo)
         {
-            string str = (new StreamReader(archivo.InputStream)).ReadToEnd();
-            var zonas = JsonConvert.DeserializeObject<List<ZonaGeografica>>(str);
-            foreach(var zona in zonas)
+            try
             {
-                db.ZonaGeograficas.Add(zona);
+                string str = (new StreamReader(archivo.InputStream)).ReadToEnd();
+                var zonas = JsonConvert.DeserializeObject<List<ZonaGeografica>>(str);
+                foreach (var zona in zonas)
+                {
+                    db.ZonaGeograficas.Add(zona);
+                }
+                db.SaveChanges();
+                ViewBag.Zonas = zonas;
             }
-            db.SaveChanges();
-            ViewBag.Zonas = zonas;
-            return View("~/Views/Transformador/Map.cshtml");
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+            }
+            
+            return RedirectToAction("Map", "Transformador");
         }
 
     }

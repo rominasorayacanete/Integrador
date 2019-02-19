@@ -12,16 +12,16 @@
         if (Session["Role"] == "Admin")
         {
             <h4>Importar zonas JSON</h4>
+            
 
-
-            using (Html.BeginForm("MostrarZonas", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            using (Html.BeginForm("Map", "Zona", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <p>
                     <input class="form-control-file" type="file" id="archivo" name="archivo" size="23" />
                     <button type="submit">Importar</button>
                 </p>
             }
-            <h4>@ViewBag.Error</h4>
+            <h5>@ViewBag.Error</h5>
         }
     }
 }
